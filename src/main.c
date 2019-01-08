@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/14 16:31:29 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/08 13:45:38 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/08 16:19:15 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -38,6 +38,24 @@ void		print_token(t_token *token)
 		print_token(token->next);
 }
 
+void		print_node(t_node *node)
+{
+	printf("node->type: %s\n", type[node->type]);
+	printf("node->command: %p\n", node->command);
+	if (node->command)
+	{
+		printf("node->command->name: %s\n", node->command->name);
+		printf("node->command->arguments: %p\n", node->command->arguments);
+		for (int i = 0; node->command->arguments && node->command->arguments[i]; i++)
+			printf("  - %s\n", node->command->arguments[i]);
+		printf("node->command->redirection: %p\n", node->command->redirection);
+
+	}
+	printf("node->next: %p\n\n", node->next);
+	if (node->next)
+		print_node(node->next);
+}
+
 int			main(int argc, char **argv, char **environment)
 {
 	char	*line;
@@ -64,6 +82,7 @@ int			main(int argc, char **argv, char **environment)
 			print_token(g_shell->lexer->begin);
 			printf("=== PARSER\n");
 			printf("parser_parse = %d\n", parser_parse(g_shell->parser));
+			print_node(g_shell->parser->root);
 		}
 		ft_strdel(&line);
 		lexer_cleanup(g_shell->lexer);

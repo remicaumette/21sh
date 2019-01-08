@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/14 08:35:27 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/08 13:43:39 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/08 16:35:05 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,7 +15,7 @@
 # define PARSER_H
 
 typedef struct s_shell			t_shell;
-typedef enum e_tokentype		t_tokentype;
+typedef enum e_nodetype			t_nodetype;
 typedef struct s_parser			t_parser;
 typedef struct s_node			t_node;
 typedef struct s_command		t_command;
@@ -59,6 +59,7 @@ int								parser_expand(t_parser *parser);
 t_node							*node_create(t_tokentype type,
 	t_command *command);
 void							node_destroy(t_node *node);
+void							node_insert(t_node **root, t_node *node);
 t_command						*command_create(char *name);
 void							command_destroy(t_command *command);
 t_redirection					*redirection_create(t_tokentype type,

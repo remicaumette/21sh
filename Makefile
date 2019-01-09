@@ -12,10 +12,12 @@ SOURCES=\
 	src/parser/parser.c			\
 	src/parser/redirection.c	\
 	src/parser/utils.c			\
-	src/environment.c			\
-	src/history.c				\
-	src/main.c					\
-	src/shell.c
+	src/shell/environment.c		\
+	src/shell/history.c			\
+	src/shell/shell_start.c		\
+	src/shell/shell.c			\
+	src/shell/utils.c			\
+	src/main.c
 OBJECTS=$(SOURCES:.c=.o)
 INCLUDES=\
 	include/lexer.h				\
@@ -28,7 +30,7 @@ libft:
 	@make -s -C $(LIBFT)
 
 $(NAME): $(OBJECTS) $(INCLUDES)
-	$(CC) $(CFLAGS) -L$(LIBFT) -lft -o $(NAME) $(OBJECTS)
+	$(CC) $(CFLAGS) -L$(LIBFT) -lft -ltermcap -o $(NAME) $(OBJECTS)
 
 clean:
 	@make -s -C $(LIBFT) clean

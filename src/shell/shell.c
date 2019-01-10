@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/14 16:27:49 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/09 15:15:13 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/10 13:07:22 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,6 +26,7 @@ t_shell		*shell_create(char **environment)
 			environment[i])))
 			return (NULL);
 	shell->history = NULL;
+	shell->line = NULL;
 	if (!(shell->lexer = lexer_create()))
 		return (NULL);
 	if (!(shell->parser = parser_create(shell)))

@@ -1,4 +1,3 @@
-
 NAME		:= 21sh
 DEBUG		:="yes"
 # **************************************************************************** #
@@ -234,8 +233,6 @@ $(OBJ_PATH)%.o : $(SRC_PATH)%.c $(INC_LST)
 	@$(CC) $(CC_FLAGS) $(INC) -o $@ -c $<
 	@printf "done\n"
 
-
-
 #		RULES CLEAN
 
 .PHONY: clean fclean re
@@ -278,4 +275,3 @@ norme_header:
 
 norme_src:
 	@$(NORME_CHECK) $(SRC)
- 

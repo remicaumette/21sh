@@ -1,24 +1,29 @@
 
 NAME		:= 21sh
 DEBUG		:="yes"
-
 # **************************************************************************** #
 #								PATH                                           #
 # **************************************************************************** #
 
-#			IN
+#			In
 
 PWD			:= $(shell pwd)
 NO_ERROR	:= 2> /dev/null
 
 #			PATH
 
-LIB_PATH	:= $(PWD)/libft/
-INC_PATH	:= $(PWD)/include/
-SRC_PATH	:= $(PWD)/src/
-OBJ_PATH	:= $(PWD)/obj/
+LIB_PATH	:= $(PWD)/libft
+INC_PATH	:= $(PWD)/include
+SRC_PATH	:= $(PWD)/src
+OBJ_PATH	:= $(PWD)/obj
 
+
+#			Ext
+
+CC			:= /usr/bin/clang
 CMD_NORME	:= norminette
+
+export CMD_NORME
 
 # **************************************************************************** #
 #								NAME LST                                       #
@@ -27,6 +32,10 @@ CMD_NORME	:= norminette
 LIB_NAME	:= libft
 
 LIB_SYS		:= -lncurses
+
+INC_TMP_LST	:= lexer.h parser.h shell.h
+INC_LST		:= $(addprefix $(INC_PATH)/, $(INC_TMP_LST)) libft/include/libft.h
+
 
 #	on this block we make to var used in ompilation:
 #
@@ -52,7 +61,7 @@ LIB_SYS		:= -lncurses
 
 MAIN_LST	:= main.c
 
-SRC_LST		:= $(MAIN_SRC)
+SRC_LST		:= $(MAIN_LST)
 
 #			Builtins
 
@@ -103,6 +112,20 @@ TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)
 SRC_LST		:= $(SRC_LST) $(TMP_SRC)
 
+
+# **************************************************************************** #
+#								VAR                                            #
+# **************************************************************************** #
+
+LIB_SRC			:= $(addprefix $(LIB_PATH)/, libft.a)
+
+OBJ_LST			:= $(SRC_LST:.c=.o)
+
+INC				:= -I $(INC_PATH) -I $(LIB_PATH)/include/
+SRC				:= $(addprefix $(SRC_PATH)/, $(SRC_LST))
+OBJ				:= $(addprefix $(OBJ_PATH)/, $(OBJ_LST))
+
+
 # **************************************************************************** #
 #								SHELL                                          #
 # **************************************************************************** #
@@ -139,7 +162,7 @@ export		RM
 ifndef CC_FLAGS
 	CC_FLAGS			= -Wall -Werror -Wextra
 	ifeq ($(DEBUG),"yes")
-		CC_FLAGS		+= -g3 -fsanitize=address# -ferror-limit=-1
+		CC_FLAGS		+= -g3 -fsanitize=address # -ferror-limit=-1
 	else
 		CC_FLAGS		+= -Ofast
 	endif
@@ -162,25 +185,12 @@ export		LN_FLAGS
 export		RM_FLAGS
 
 # **************************************************************************** #
-#								VAR                                            #
-# **************************************************************************** #
-
-
-OBJ_LST			:= $(SRC_LST:.c=.o)
-
-
-INC				:= -I $(INC_PATH) -I $(LIB_PATH)include
-SRC				:= $(addprefix $(SRC_PATH), $(SRC_LST))
-OBJ				:= $(addprefix $(OBJ_PATH), $(OBJ_LST))
-LIB_SRC			:= $(addprefix $(LIB_PATH), libft.a)
-
-# **************************************************************************** #
 #								COLOR                                          #
 # **************************************************************************** #
 
 START		:=\033[0;32mStart\033[0m\n
-END			:=\033[0;32mEnd\033[0;0m\n\n
-OK			:=\033[0;33mOK\033[0;0m\n\n
+END			:=\033[0;32mEnd\033[0;0m\n
+OK			:=\033[0;33mOK\033[0;0m\n
 
 # **************************************************************************** #
 #								RULES                                          #
@@ -188,10 +198,10 @@ OK			:=\033[0;33mOK\033[0;0m\n\n
 
 .PHONY: all
 
-all: $(NAME)
+all: lib $(NAME)
 
 $(NAME): $(LIB_SRC) $(OBJ_PATH) $(OBJ)
-	@printf "Creation de $(NAME): "
+	@printf "$(NAME): "
 	@$(CC) $(CC_FLAGS) $(INC) $(OBJ) $(LIB_SRC) $(LIB_SYS) -o $(NAME)
 	@printf "$(OK)"
 
@@ -199,29 +209,27 @@ $(NAME): $(LIB_SRC) $(OBJ_PATH) $(OBJ)
 
 .PHONY: lib clean_lib fclean_lib
 
-lib: $(LIB_SRC)
-
-$(LIB_SRC):
-	@printf "Creation de $(LIB_NAME).a: $(START)"
-	@$(MAKE) -C $(LIB_PATH) all
-	@printf "Creation de $(LIB_NAME).a: $(END)"
+lib:
+	@printf "$(LIB_NAME).a: $(START)"
+	@$(MAKE) --silent --directory=$(LIB_PATH) all
+	@printf "$(LIB_NAME).a: $(END)"
 
 clean_lib:
-	@$(MAKE) -C $(LIB_PATH) clean
+	@$(MAKE) --silent --directory= $(LIB_PATH) clean
 
 fclean_lib:
-	@$(MAKE) -C $(LIB_PATH) fclean
+	@$(MAKE) --silent --directory=$(LIB_PATH) fclean
 
 
 #			RULES FOR OBJ
 
 $(OBJ_PATH):
-	@printf "Creation de obj dir"
+	@printf "obj directory: "
 	@mkdir -p $(OBJ_PATH) $(NO_ERROR)
-	@mkdir -p $(addprefix $(OBJ_PATH), $(SUB_LST)) $(NO_ERROR)
+	@mkdir -p $(addprefix $(OBJ_PATH)/, $(SUB_LST)) $(NO_ERROR)
 	@printf "$(OK)"
 
-$(OBJ_PATH)%.o : $(SRC_PATH)%.c $(INC_PATH)
+$(OBJ_PATH)%.o : $(SRC_PATH)%.c $(INC_LST)
 	@printf "$(notdir $<) => $(notdir $@): "
 	@$(CC) $(CC_FLAGS) $(INC) -o $@ -c $<
 	@printf "done\n"
@@ -249,9 +257,17 @@ re: fclean all
 
 #		Rules for debuging Makefile
 
+.PHONY: source_list full_list
+
 source_list:
 	@printf "<SUB_LST>\n$(SUB_LST)\n</SUB_LST>\n"
 	@printf "<SRC_LST>\n$(SRC_LST)\n</SRC_LST>\n"
+
+full_list:
+	@printf "<SUB_LST>\n$(SUB_LST)\n</SUB_LST>\n"
+	@printf "<INC>\n$(INC_LST)\n</INC>\n"
+	@printf "<SRC>\n$(SRC)\n</SRC>\n"
+
 
 #		Rules norme
 

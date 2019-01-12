@@ -82,7 +82,7 @@ SRC_LST		:= $(SRC_LST) $(TMP_SRC)
 
 TMP_NAME	:= lexer
 
-TMP_LST		:=  lexer.c token.c utils.c
+TMP_LST		:=  lexer_addtoken.c lexer_cleanup.c lexer_create.c lexer_deltoken.c lexer_destroy.c lexer_tokenize.c utils.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)
@@ -92,7 +92,7 @@ SRC_LST		:= $(SRC_LST) $(TMP_SRC)
 
 TMP_NAME	:= parser
 
-TMP_LST		:= command.c expansion.c node.c parser.c redirection.c utils.c
+TMP_LST		:= command_create.c command_destroy.c command_parse.c node_create.c node_destroy.c node_insert.c parser_cleanup.c parser_create.c parser_destroy.c parser_expandword.c parser_parse.c redirection_create.c redirection_destroy.c utils.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/,$(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)

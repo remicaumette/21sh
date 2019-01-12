@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   action_arrowup.c                                 .::    .:/ .      .::   */
+/*   ft_lCharLen.c                                    .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/01/12 14:50:00 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/12 16:22:58 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/06/28 14:32:20 by timfuzea     #+#   ##    ##    #+#       */
+/*   Updated: 2018/06/28 14:32:22 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include "lChar.h"
 
-int	action_arrowup(t_shell *shell)
+size_t		ft_lCharlen(t_lChar *tmp)
 {
-	// up 27 91 65
-	// down 27 91 66
-	// left 27 91 68
-	// right 27 91 67
-	(void)shell;
-	return (0);
+	size_t		i;
+
+	i = 0;
+	while(tmp)
+	{
+		tmp = tmp->next;
+		i++;
+	}
+	return (i);
 }

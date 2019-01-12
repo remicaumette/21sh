@@ -1,6 +1,19 @@
-NAME		:= libft.a
-DEBUG		:="yes"
+# **************************************************************************** #
+#                                                           LE - /             #
+#                                                               /              #
+#    Makefile                                         .::    .:/ .      .::    #
+#                                                  +:+:+   +:    +:  +:+:+     #
+#    By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+      #
+#                                                  #+#   #+    #+    #+#       #
+#    Created: 2019/01/12 18:55:30 by timfuzea     #+#   ##    ##    #+#        #
+#    Updated: 2019/01/12 18:57:00 by timfuzea    ###    #+. /#+    ###.fr      #
+#                                                          /                   #
+#                                                         /                    #
+# **************************************************************************** #
 
+NAME		:= libft.a
+
+#DEBUG		:="no" uncomtant this line to force status
 # **************************************************************************** #
 #									PATH                                       #
 # **************************************************************************** #
@@ -22,11 +35,29 @@ OBJ_PATH	:= $(PWD)/obj
 
 #			Header
 
-SUB_INC_LST	:= io.h std.h strconv.h string.h type.h
-TMP_INC_LST	:= libft.h $(addprefix ft/, $(SUB_INC_LST))
+INC_LST		:= $(addprefix $(INC_PATH)/, libft.h)
 
-INC_LST		:= $(addprefix $(INC_PATH)/, $(TMP_INC_LST))
 
+#			Ft
+
+TMP_NAME	:= ft
+
+TMP_LST		:= io.h std.h strconv.h string.h type.h
+
+TMP_SRC		:= $(addprefix ft/, $(TMP_LST))
+SUB_INC		:= $(SUB_INC) $(addprefix $(INC_PATH)/, $(TMP_NAME))
+INC_LST		:= $(INC_LST) $(addprefix $(INC_PATH)/, $(TMP_SRC))
+
+
+#			Other
+
+TMP_NAME	:= other
+
+TMP_LST		:= lstnp.h
+
+TMP_SRC 	:= $(addprefix other/, $(TMP_LST))
+SUB_INC		:= $(SUB_INC) $(addprefix $(INC_PATH)/, $(TMP_NAME))
+INC_LST		:= $(INC_LST) $(addprefix $(INC_PATH)/, $(TMP_SRC))
 
 # to add othe block just copy past
 ##			
@@ -103,6 +134,19 @@ TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)
 SRC_LST		:= $(SRC_LST) $(TMP_SRC)
 
+#			lstnp
+
+TMP_NAME	:= lstnp
+
+TMP_LST		:= ft_lstnpdel_one.c ft_lstnpfirst.c ft_lstnplast.c ft_lstnplog.c \
+				ft_lstnpnew.c
+
+TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
+SUB_LST		:= $(SUB_LST) $(TMP_NAME)
+SRC_LST		:= $(SRC_LST) $(TMP_SRC)
+
+
+
 
 # **************************************************************************** #
 #									VAR                                        #
@@ -110,7 +154,7 @@ SRC_LST		:= $(SRC_LST) $(TMP_SRC)
 
 OBJ_LST			:= $(SRC_LST:.c=.o)
 
-INC				:= -I $(INC_PATH)
+INC				:= -I $(INC_PATH) $(addprefix -I , $(SUB_INC))
 SRC				:= $(addprefix $(SRC_PATH)/, $(SRC_LST))
 OBJ				:= $(addprefix $(OBJ_PATH)/, $(OBJ_LST))
 
@@ -118,6 +162,10 @@ OBJ				:= $(addprefix $(OBJ_PATH)/, $(OBJ_LST))
 # **************************************************************************** #
 #									SHELL                                      #
 # **************************************************************************** #
+
+ifndef DEBUG
+	DEBUG	:= "no"
+endif
 
 #			Compilator
 
@@ -202,7 +250,7 @@ $(OBJ_PATH):
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c $(INC_LST)
 	@printf "$(basename $(NAME)) => $(notdir $@):"
-	@$(CC) $(CC_FLAGS) -I $(INC_PATH) -o $@ -c $<
+	@$(CC) $(CC_FLAGS) $(INC) -o $@ -c $<
 	@printf " done\n"
 
 #				Rule clean
@@ -224,7 +272,7 @@ re: fclean all
 
 source_list:
 	@printf "<SUB_LST>\n$(SUB_LST)\n</SUB_LST>\n"
-	@printf "<INC_LST>\n$(TMP_INC_LST)\n</INC_LST>\n"
+	@printf "<INC_LST>\n$(INC_LST)\n</INC_LST>\n"
 	@printf "<SRC_LST>\n$(SRC_LST)\n</SRC_LST>\n"
 
 full_list:

@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   action_arrowup.c                                 .::    .:/ .      .::   */
+/*   action_clear.c                                   .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/01/12 14:50:00 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/12 16:22:58 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/06/28 16:48:33 by timfuzea     #+#   ##    ##    #+#       */
+/*   Updated: 2019/01/12 16:26:47 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include "line_edit.h"
 
-int	action_arrowup(t_shell *shell)
+int		action_return(t_shell *shell)
 {
-	// up 27 91 65
-	// down 27 91 66
-	// left 27 91 68
-	// right 27 91 67
-	(void)shell;
-	return (0);
+	(void)(shell);
+	ft_putstr("\n");
+	return (END);
+}
+
+int		action_stop(t_shell *shell)
+{
+	if (shell->cursor->current == NULL)
+		return (STOP);
+	return (EGAIN);
 }

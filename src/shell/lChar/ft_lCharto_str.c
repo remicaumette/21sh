@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   action_arrowup.c                                 .::    .:/ .      .::   */
+/*   ft_lCharTostr.c                                  .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/01/12 14:50:00 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/12 16:22:58 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/06/28 14:32:45 by timfuzea     #+#   ##    ##    #+#       */
+/*   Updated: 2018/06/28 14:32:48 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include "lChar.h"
 
-int	action_arrowup(t_shell *shell)
+char		*ft_lCharto_str(t_lChar *node)
 {
-	// up 27 91 65
-	// down 27 91 66
-	// left 27 91 68
-	// right 27 91 67
-	(void)shell;
-	return (0);
+	char		*out;
+	char		*pt_out;
+	size_t		len;
+
+	len = ft_lCharlen(node);
+	if ((out = ft_strnew(len)) == NULL)
+		return (NULL);
+	pt_out = out;
+	while (node)
+	{
+		*pt_out = node->c;
+		node = node->next;
+		pt_out++;
+	}
+	*pt_out = '\0';
+	return out;
 }

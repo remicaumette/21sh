@@ -1,5 +1,19 @@
+# **************************************************************************** #
+#                                                           LE - /             #
+#                                                               /              #
+#    Makefile                                         .::    .:/ .      .::    #
+#                                                  +:+:+   +:    +:  +:+:+     #
+#    By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+      #
+#                                                  #+#   #+    #+    #+#       #
+#    Created: 2019/01/12 17:21:11 by timfuzea     #+#   ##    ##    #+#        #
+#    Updated: 2019/01/12 19:27:12 by rcaumett    ###    #+. /#+    ###.fr      #
+#                                                          /                   #
+#                                                         /                    #
+# **************************************************************************** #
+
 NAME		:= 21sh
 DEBUG		:="yes"
+
 # **************************************************************************** #
 #								PATH                                           #
 # **************************************************************************** #
@@ -23,7 +37,7 @@ CC			:= /usr/bin/clang
 CMD_NORME	:= norminette
 
 export CMD_NORME
-
+export DEBUG
 # **************************************************************************** #
 #								NAME LST                                       #
 # **************************************************************************** #
@@ -112,7 +126,11 @@ SRC_LST		:= $(SRC_LST) $(TMP_SRC)
 
 TMP_NAME	:= shell
 
-TMP_LST		:= shell_envinit.c shell_create.c shell_destroy.c shell_getenv.c shell_gethome.c shell_setenv.c shell_unsetenv.c shell_actiondispatcher.c shell_processline.c shell_start.c utils.c
+TMP_LST		:= shell_envinit.c shell_create.c shell_destroy.c shell_getenv.c \
+				shell_gethome.c shell_setenv.c shell_unsetenv.c \
+				shell_actiondispatcher.c shell_processline.c shell_start.c \
+				utils.c \
+				ft_winsize.c logdebug.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)
@@ -120,13 +138,59 @@ SRC_LST		:= $(SRC_LST) $(TMP_SRC)
 
 #			Action
 
-TMP_NAME	:= shell/action
+TMP_DAD		:= shell
+TMP_NAME	:= action
 
-TMP_LST		:= action_arrowup.c action_basic.c action_return.c
+TMP_LST		:= action_arrowup.c action_clear.c action_debug.c action_del.c \
+				action_hist.c action_move.c action_multi_move.c \
+				action_return.c
+
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
-SUB_LST		:= $(SUB_LST) $(TMP_NAME)
+TMP_SRC		:= $(addprefix $(TMP_DAD)/, $(TMP_SRC))
+SUB_LST		:= $(SUB_LST) $(addprefix $(TMP_DAD)/, $(TMP_NAME))
 SRC_LST		:= $(SRC_LST) $(TMP_SRC)
+
+#			lChar    TODO replace this
+
+TMP_DAD		:= shell
+TMP_NAME	:= lChar
+
+TMP_LST		:= ft_lChardel.c ft_lCharfirst.c ft_lCharlast.c ft_lCharlen.c \
+				ft_lCharnew.c ft_lCharpush.c ft_lCharto_str.c ft_strto_lChar.c
+
+TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
+TMP_SRC		:= $(addprefix $(TMP_DAD)/, $(TMP_SRC))
+SUB_LST		:= $(SUB_LST) $(addprefix $(TMP_DAD)/, $(TMP_NAME))
+SRC_LST		:= $(SRC_LST) $(TMP_SRC)
+
+#			Cursor
+
+TMP_DAD		:= shell
+TMP_NAME	:= cursor
+
+TMP_LST		:= ft_cursor.c ft_cursoradd.c ft_cursordel_all.c \
+				ft_cursordel_current.c ft_cursordel_toend.c ft_cursorinit.c \
+				ft_cursorinser.c
+
+TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
+TMP_SRC		:= $(addprefix $(TMP_DAD)/, $(TMP_SRC))
+SUB_LST		:= $(SUB_LST) $(addprefix $(TMP_DAD)/, $(TMP_NAME))
+SRC_LST		:= $(SRC_LST) $(TMP_SRC)
+
+#			History
+
+TMP_DAD		:= shell
+TMP_NAME	:= history
+
+TMP_LST		:= ft_hist.c ft_histdebug.c ft_histget.c ft_histpush.c
+
+TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
+TMP_SRC		:= $(addprefix $(TMP_DAD)/, $(TMP_SRC))
+SUB_LST		:= $(SUB_LST) $(addprefix $(TMP_DAD)/, $(TMP_NAME))
+SRC_LST		:= $(SRC_LST) $(TMP_SRC)
+
+
 
 
 # **************************************************************************** #
@@ -289,7 +353,7 @@ full_list:
 norme: norme_header norme_src
 
 norme_header:
-	@$(NORME_CHECK) $(INC_PATH)
+	@$(CMD_NORME) $(INC_LST)
 
 norme_src:
-	@$(NORME_CHECK) $(SRC)
+	@$(CMD_NORME) $(SRC)

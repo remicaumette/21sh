@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   action_arrowup.c                                 .::    .:/ .      .::   */
+/*   ft_cursoradd.c                                   .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/01/12 14:50:00 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/12 16:22:58 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/07/12 13:39:05 by timfuzea     #+#   ##    ##    #+#       */
+/*   Updated: 2018/07/12 13:39:06 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include "line_edit.h"
 
-int	action_arrowup(t_shell *shell)
+int			ft_cursoradd(long buf, t_cursor *cursor)
 {
-	// up 27 91 65
-	// down 27 91 66
-	// left 27 91 68
-	// right 27 91 67
-	(void)shell;
-	return (0);
+	t_lChar		*tmp;
+
+	if (buf >= 20 && buf <= 126)
+	{
+		if ((tmp = ft_lCharnew((char)buf)) == NULL)
+			return (FAIL);
+		ft_cursorinser(tmp, cursor);
+		return (EGAIN);
+	}
+	else
+		dprintf(1, "%c", (int)buf);
+	return (EGAIN);
 }

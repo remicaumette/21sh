@@ -112,7 +112,7 @@ SRC_LST		:= $(SRC_LST) $(TMP_SRC)
 
 TMP_NAME	:= shell
 
-TMP_LST		:= shell_envinit.c shell_create.c shell_destroy.c shell_getenv.c shell_gethome.c shell_setenv.c shell_unsetenv.c history.c shell_actiondispatcher.c shell_processline.c shell_start.c utils.c
+TMP_LST		:= shell_envinit.c shell_create.c shell_destroy.c shell_getenv.c shell_gethome.c shell_setenv.c shell_unsetenv.c shell_actiondispatcher.c shell_processline.c shell_start.c utils.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)

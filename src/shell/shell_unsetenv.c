@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   utils.h                                          .::    .:/ .      .::   */
+/*   shell_unsetenv.c                                 .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/01/10 12:55:39 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/12 19:09:50 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/01/12 16:54:11 by rcaumett     #+#   ##    ##    #+#       */
+/*   Updated: 2019/01/12 17:05:19 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "shell.h"
 
-# ifndef SUCCESS
-#  define SUCCESS	0
-#  define FAIL		1
-# endif
+char	**shell_unsetenv(t_shell *shell, char *name)
+{
+	char	len;
+	char	**env;
+	int		i;
 
-char	*ft_strjoinc(char **word, char c);
-#endif
+	len = ft_strlen(name);
+	env = NULL;
+	i = -1;
+	while (shell->environment && shell->environment[++i])
+		if (ft_strncmp(name, shell->environment[i], len) &&
+			!(env = ft_strarr_add(env, shell->environment[i])))
+			return (NULL);
+	ft_strarr_del(shell->environment);
+	return (shell->environment = env);
+}

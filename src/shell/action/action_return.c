@@ -6,17 +6,15 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/12 14:50:00 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/12 14:51:16 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/12 19:10:42 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int	action_return(t_shell *shell, char *buf, int readed)
+int	action_return(t_shell *shell)
 {
-	(void)buf;
-	(void)readed;
 	write(1, "\n", 1);
 	if (!shell->line || lexer_tokenize(shell->lexer, shell->line))
 		return (!!shell->line);

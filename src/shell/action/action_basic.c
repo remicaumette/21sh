@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   main.c                                           .::    .:/ .      .::   */
+/*   action_basic.c                                   .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/12/14 16:31:29 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/12 14:30:45 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/01/12 14:49:46 by rcaumett     #+#   ##    ##    #+#       */
+/*   Updated: 2019/01/12 14:51:25 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int	fail(t_shell *shell)
+int	action_basic(t_shell *shell, char *buf, int readed)
 {
-	shell_destroy(shell);
-	return (1);
-}
+	char	*tmp;
 
-int	main(int argc, char **argv, char **environment)
-{
-	(void)argc;
-	(void)argv;
-	if (!(g_shell = shell_create(environment)) || shell_start(g_shell))
-		return (fail(g_shell));
-	shell_destroy(g_shell);
+	if (!(tmp = ft_strjoin(shell->line, buf)))
+		return (1);
+	write(1, buf, readed);
+	ft_strdel(&shell->line);
+	shell->line = tmp;
 	return (0);
 }

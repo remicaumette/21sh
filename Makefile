@@ -29,11 +29,18 @@ export CMD_NORME
 # **************************************************************************** #
 
 LIB_NAME	:= libft
-
 LIB_SYS		:= -lncurses
-
-INC_TMP_LST	:= lexer.h parser.h shell.h
-INC_LST		:= $(addprefix $(INC_PATH)/, $(INC_TMP_LST)) libft/include/libft.h
+INC_LST		:=\
+	include/lexer.h				\
+	include/parser.h			\
+	include/shell.h				\
+	include/utils.h				\
+	libft/include/libft.h		\
+	libft/include/ft/io.h		\
+	libft/include/ft/std.h		\
+	libft/include/ft/strconv.h	\
+	libft/include/ft/string.h	\
+	libft/include/ft/type.h
 
 
 #	on this block we make to var used in ompilation:
@@ -58,7 +65,7 @@ INC_LST		:= $(addprefix $(INC_PATH)/, $(INC_TMP_LST)) libft/include/libft.h
 
 #			Main
 
-MAIN_LST	:= main.c
+MAIN_LST	:= main.c utils.c
 
 SRC_LST		:= $(MAIN_LST)
 
@@ -105,7 +112,17 @@ SRC_LST		:= $(SRC_LST) $(TMP_SRC)
 
 TMP_NAME	:= shell
 
-TMP_LST		:= environment.c history.c shell.c shell_start.c utils.c
+TMP_LST		:= environment.c history.c shell_actiondispatcher.c shell_processline.c shell_start.c shell.c utils.c
+
+TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
+SUB_LST		:= $(SUB_LST) $(TMP_NAME)
+SRC_LST		:= $(SRC_LST) $(TMP_SRC)
+
+#			Action
+
+TMP_NAME	:= shell/action
+
+TMP_LST		:= action_arrowup.c action_basic.c action_return.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)
@@ -226,6 +243,7 @@ $(OBJ_PATH):
 	@printf "obj directory: "
 	@mkdir -p $(OBJ_PATH) $(NO_ERROR)
 	@mkdir -p $(addprefix $(OBJ_PATH)/, $(SUB_LST)) $(NO_ERROR)
+	@mkdir -p obj/shell/action $(NO_ERROR)
 	@printf "$(OK)"
 
 $(OBJ_PATH)%.o : $(SRC_PATH)%.c $(INC_LST)

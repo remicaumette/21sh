@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   main.c                                           .::    .:/ .      .::   */
+/*   shell_actiondispatcher.c                         .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/12/14 16:31:29 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/12 14:30:45 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/01/10 14:13:40 by rcaumett     #+#   ##    ##    #+#       */
+/*   Updated: 2019/01/12 15:05:09 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int	fail(t_shell *shell)
-{
-	shell_destroy(shell);
-	return (1);
-}
+t_action	g_actions[] = {
+	{{27, 91, 65}, action_arrowup},
+	{{10, 0, 0}, action_return},
+};
 
-int	main(int argc, char **argv, char **environment)
+int			shell_actiondispatcher(t_shell *shell, char *buf, int readed)
 {
-	(void)argc;
-	(void)argv;
-	if (!(g_shell = shell_create(environment)) || shell_start(g_shell))
-		return (fail(g_shell));
-	shell_destroy(g_shell);
-	return (0);
+	int	i;
+
+	i = -1;
+	while (++i < 2)
+		if (ft_memcmp(g_actions[i].code, buf, 3) == 0)
+			return (g_actions[i].handler(shell, buf, readed));
+	return (action_basic(shell, buf, readed));
 }

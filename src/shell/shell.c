@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/14 16:27:49 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/10 14:56:30 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/12 15:57:51 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,20 +16,17 @@
 t_shell		*shell_create(char **environment)
 {
 	t_shell	*shell;
-	int		i;
 
 	if (!(shell = ft_memalloc(sizeof(t_shell))))
 		return (NULL);
-	i = -1;
-	while (environment[++i])
-		if (!(shell->environment = ft_strarr_add(shell->environment,
-			environment[i])))
-			return (NULL);
+	shell->environment = NULL;
 	shell->history = NULL;
 	shell->line = NULL;
-	if (!(shell->lexer = lexer_create()))
-		return (NULL);
-	if (!(shell->parser = parser_create(shell)))
+	shell->lexer = NULL;
+	shell->parser = NULL;
+	if (shell_envinit(shell, environment) ||
+		!(shell->lexer = lexer_create()) ||
+		!(shell->parser = parser_create(shell)))
 		return (NULL);
 	return (shell);
 }

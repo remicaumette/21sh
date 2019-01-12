@@ -6,12 +6,37 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/14 16:44:32 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/15 21:35:24 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/12 16:06:40 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "shell.h"
+
+int		shell_envinit(t_shell *shell, char **env)
+{
+	int		i;
+	int		fd;
+	char	*line;
+	char	*path;
+	char	*tmp;
+
+	i = -1;
+	path = NULL;
+	while (env[++i])
+		if (!(shell->environment = ft_strarr_add(shell->environment, env[i])))
+			return (1);
+	if (!(shell_getenv(shell, "PATH")))
+	{
+		if ((fd = open("/etc/paths", O_RDONLY)) == -1)
+			return (1);
+		while (get_next_line(fd, &line) > 0)
+		{
+
+		}
+	}
+	return (0);
+}
 
 char	*shell_getenv(t_shell *shell, char *name)
 {

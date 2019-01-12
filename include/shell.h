@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/14 08:08:55 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/12 15:03:03 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/12 16:05:49 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,6 +15,7 @@
 # define SHELL_H
 # include <curses.h>
 # include <term.h>
+# include <fcntl.h>
 # include "libft.h"
 # include "lexer.h"
 # include "parser.h"
@@ -46,6 +47,7 @@ t_shell						*g_shell;
 t_shell						*shell_create(char **environment);
 void						shell_destroy(t_shell *shell);
 int							shell_start(t_shell *shell);
+int							shell_envinit(t_shell *shell, char **default_env);
 char						*shell_getenv(t_shell *shell, char *name);
 char						**shell_setenv(t_shell *shell, char *name,
 	char *value);

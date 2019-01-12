@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_realloc.c                                     .::    .:/ .      .::   */
+/*   shell_gethome.c                                  .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/01/10 13:22:32 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/10 13:43:54 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/01/12 16:54:28 by rcaumett     #+#   ##    ##    #+#       */
+/*   Updated: 2019/01/12 16:54:39 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "shell.h"
 
-void	*ft_realloc(void *ptr, size_t size)
+char	*shell_gethome(t_shell *shell)
 {
-	void	*tmp;
+	char	*home;
 
-	if (size <= 0)
-		return (NULL);
-	if (!(tmp = ft_memalloc(size)))
-		return (NULL);
-	if (ptr)
-	{
-		ft_memcpy(tmp, ptr, size);
-		ft_memdel(&ptr);
-	}
-	return (tmp);
+	home = shell_getenv(shell, "HOME");
+	return (home ? home : "/");
 }

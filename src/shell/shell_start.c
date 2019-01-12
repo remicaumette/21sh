@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/09 15:15:02 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/12 15:36:44 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/12 17:16:56 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,12 +25,10 @@ static int	shell_readline(t_shell *shell)
 	int		readed;
 	char	buf[4];
 
-	while (1)
+	if (shell_prompt(shell))
+		return (1);
+	while ((readed = read(0, buf, 3)) > 0)
 	{
-		if (shell_prompt(shell))
-			return (1);
-		if (!((readed = read(0, buf, 3)) > 0))
-			break ;
 		ft_bzero(buf + readed, 4 - readed);
 		if (buf[0] == 4 && buf[1] == 0 && buf[2] == 0)
 			break ;

@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   utils.h                                          .::    .:/ .      .::   */
+/*   ft_lCharTostr.c                                  .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/01/10 12:55:39 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/12 16:59:26 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/06/28 14:32:45 by timfuzea     #+#   ##    ##    #+#       */
+/*   Updated: 2018/06/28 14:32:48 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "lChar.h"
 
-# ifndef SUCCESS
-#  define SUCCESS	0
-#  define FAIL		1
-# endif
+char		*ft_lCharto_str(t_lChar *node)
+{
+	char		*out;
+	char		*pt_out;
+	size_t		len;
 
-char	*ft_strjoinc(char **word, char c);
-#endif
+	len = ft_lCharlen(node);
+	if ((out = ft_strnew(len)) == NULL)
+		return (NULL);
+	pt_out = out;
+	while (node)
+	{
+		*pt_out = node->c;
+		node = node->next;
+		pt_out++;
+	}
+	*pt_out = '\0';
+	return out;
+}

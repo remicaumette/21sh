@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   utils.h                                          .::    .:/ .      .::   */
+/*   ft_cursorinit.c                                  .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/01/10 12:55:39 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/12 16:59:26 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/07/12 13:39:31 by timfuzea     #+#   ##    ##    #+#       */
+/*   Updated: 2018/07/12 14:02:00 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "line_edit.h"
 
-# ifndef SUCCESS
-#  define SUCCESS	0
-#  define FAIL		1
-# endif
-
-char	*ft_strjoinc(char **word, char c);
-#endif
+void		ft_cursorinit(t_cursor *cursor)
+{
+	if (cursor == NULL)
+		return ;
+	ft_winpos(&(cursor->pos));
+	cursor->winsize = ft_winsize(GET);
+	cursor->current = NULL;
+	cursor->first = NULL;
+	cursor->last = NULL;
+	cursor->dist_first = -1;
+	cursor->dist_last = -1;
+}

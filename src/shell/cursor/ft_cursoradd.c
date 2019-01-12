@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   utils.h                                          .::    .:/ .      .::   */
+/*   ft_cursoradd.c                                   .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/01/10 12:55:39 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/12 16:59:26 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/07/12 13:39:05 by timfuzea     #+#   ##    ##    #+#       */
+/*   Updated: 2018/07/12 13:39:06 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "line_edit.h"
 
-# ifndef SUCCESS
-#  define SUCCESS	0
-#  define FAIL		1
-# endif
+int			ft_cursoradd(long buf, t_cursor *cursor)
+{
+	t_lChar		*tmp;
 
-char	*ft_strjoinc(char **word, char c);
-#endif
+	if (buf >= 20 && buf <= 126)
+	{
+		if ((tmp = ft_lCharnew((char)buf)) == NULL)
+			return (FAIL);
+		ft_cursorinser(tmp, cursor);
+		return (EGAIN);
+	}
+	else
+		dprintf(1, "%c", (int)buf);
+	return (EGAIN);
+}

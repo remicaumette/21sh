@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   action_basic.c                                   .::    .:/ .      .::   */
+/*   ft_lCharNew.c                                    .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/01/12 14:49:46 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/12 14:51:25 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/06/28 14:32:30 by timfuzea     #+#   ##    ##    #+#       */
+/*   Updated: 2018/06/28 14:32:31 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include "lChar.h"
 
-int	action_basic(t_shell *shell, char *buf, int readed)
+t_lChar			*ft_lCharnew(char c)
 {
-	char	*tmp;
+	t_lChar		*out;
 
-	if (!(tmp = ft_strjoin(shell->line, buf)))
-		return (1);
-	write(1, buf, readed);
-	ft_strdel(&shell->line);
-	shell->line = tmp;
-	return (0);
+	if ((out = malloc(sizeof(out))) == NULL)
+		return (NULL);
+	out->c = c;
+	out->next = NULL;
+	out->prev = NULL;
+	return out;
 }

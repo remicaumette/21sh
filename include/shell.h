@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/14 08:08:55 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/12 15:03:03 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/12 16:58:40 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,7 +22,8 @@
 
 typedef struct s_shell		t_shell;
 typedef struct s_action		t_action;
-typedef int					(*t_actionhandler)(t_shell *, char *, int);
+typedef struct s_cursor		t_cursor;
+typedef int					(*t_actionhandler)(t_shell *);
 
 struct						s_shell
 {
@@ -30,6 +31,7 @@ struct						s_shell
 	char		**history;
 	char		*line;
 	char		missing_token;
+	t_cursor	*cursor;		// remove in the futur 
 	t_lexer		*lexer;
 	t_parser	*parser;
 };
@@ -54,12 +56,9 @@ char						*shell_gethome(t_shell *shell);
 int							shell_actiondispatcher(t_shell *shell, char *buf,
 	int readed);
 int							shell_processline(t_shell *shell);
-int							action_arrowup(t_shell *shell, char *buf,
-	int readed);
-int							action_basic(t_shell *shell, char *buf,
-	int readed);
-int							action_return(t_shell *shell, char *buf,
-	int readed);
+
+int							action_arrowup(t_shell *shell);
+int							action_return(t_shell *shell);
 
 // debug
 void						print_token(t_token *token);

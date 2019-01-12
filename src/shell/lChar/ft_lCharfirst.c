@@ -1,14 +1,22 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   history.c                                        .::    .:/ .      .::   */
+/*   ft_lCharFirst.c                                  .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/12/14 16:44:30 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/16 00:53:11 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/06/28 14:32:10 by timfuzea     #+#   ##    ##    #+#       */
+/*   Updated: 2018/06/28 14:32:12 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include "lChar.h"
+
+t_lChar		*ft_lCharfirst(t_lChar *node)
+{
+	if (node != NULL)
+		while (node->prev)
+			node = node->prev;
+	return node;
+}

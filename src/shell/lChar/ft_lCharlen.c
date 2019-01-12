@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   utils.h                                          .::    .:/ .      .::   */
+/*   ft_lCharLen.c                                    .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/01/10 12:55:39 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/12 16:59:26 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/06/28 14:32:20 by timfuzea     #+#   ##    ##    #+#       */
+/*   Updated: 2018/06/28 14:32:22 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "lChar.h"
 
-# ifndef SUCCESS
-#  define SUCCESS	0
-#  define FAIL		1
-# endif
+size_t		ft_lCharlen(t_lChar *tmp)
+{
+	size_t		i;
 
-char	*ft_strjoinc(char **word, char c);
-#endif
+	i = 0;
+	while(tmp)
+	{
+		tmp = tmp->next;
+		i++;
+	}
+	return (i);
+}

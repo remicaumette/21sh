@@ -1,3 +1,16 @@
+/* ************************************************************************** */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   ft_lstnplog.c                                    .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2019/01/13 17:32:17 by timfuzea     #+#   ##    ##    #+#       */
+/*   Updated: 2019/01/13 17:37:55 by timfuzea    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
+/* ************************************************************************** */
+
 #include "lstnp.h"
 
 /*
@@ -13,16 +26,15 @@
 **		list to print in file
 **	head_msg : const char *
 **		msg to print in first line of debug
-**
 */
 
-static inline void print_head(int fd, const char *head_msg)
+static inline void	print_head(int fd, const char *head_msg)
 {
 	dprintf(fd, "\n\t\t Debug t_lstnp\n");
 	dprintf(fd, "\t\t%s\n", head_msg);
 }
 
-static inline void print_body(int fd, int i, t_lstnp *tmp)
+static inline void	print_body(int fd, int i, t_lstnp *tmp)
 {
 	dprintf(fd, "\n\tNode %p\n", tmp);
 	dprintf(fd, "nb   :%d\n", i);
@@ -32,8 +44,8 @@ static inline void print_body(int fd, int i, t_lstnp *tmp)
 	dprintf(fd, "\tEnd node\n");
 }
 
-
-void			ft_lstnplog(int fd, t_lstnp *begin_lst, const char *head_msg)
+void				ft_lstnplog(int fd, t_lstnp *begin_lst,
+		const char *head_msg)
 {
 	int			i;
 	t_lstnp		*tmp;
@@ -49,7 +61,7 @@ void			ft_lstnplog(int fd, t_lstnp *begin_lst, const char *head_msg)
 		if (tmp == tmp->next || tmp->next == begin_lst)
 		{
 			dprintf(fd, "Waring loop detected stop print\n");
-			break;
+			break ;
 		}
 		tmp = tmp->next;
 		i++;

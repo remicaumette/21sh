@@ -6,7 +6,7 @@
 #    By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/01/12 18:55:30 by timfuzea     #+#   ##    ##    #+#        #
-#    Updated: 2019/01/12 18:57:00 by timfuzea    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/01/13 17:30:06 by timfuzea    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -286,4 +286,4 @@ norme:
 	@printf "\tNorme de $(SRC_LST)\n"
 	@norminette $(SRC)
 	@printf "\tNorme de $(INC_LST)\n"
-	@norminette $(INC)
+	@norminette $(INC_LST)

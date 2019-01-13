@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/10 14:13:40 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/12 16:28:52 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/13 18:15:36 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -14,7 +14,6 @@
 #include "shell.h"
 
 t_action	g_actions[] = {
-	{{27, 91, 65}, action_arrowup},
 	{{10, 0, 0}, action_return},
 };
 

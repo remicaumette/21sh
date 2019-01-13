@@ -6,7 +6,7 @@
 #    By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/01/12 17:21:11 by timfuzea     #+#   ##    ##    #+#        #
-#    Updated: 2019/01/12 19:27:12 by rcaumett    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/01/13 18:28:09 by timfuzea    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -96,7 +96,8 @@ SRC_LST		:= $(SRC_LST) $(TMP_SRC)
 
 TMP_NAME	:= lexer
 
-TMP_LST		:=  lexer_addtoken.c lexer_cleanup.c lexer_create.c lexer_deltoken.c lexer_destroy.c lexer_tokenize.c utils.c
+TMP_LST		:= lexer_addtoken.c lexer_cleanup.c lexer_create.c \
+				lexer_deltoken.c lexer_destroy.c lexer_tokenize.c utils.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)
@@ -106,7 +107,11 @@ SRC_LST		:= $(SRC_LST) $(TMP_SRC)
 
 TMP_NAME	:= parser
 
-TMP_LST		:= command_create.c command_destroy.c command_parse.c node_create.c node_destroy.c node_insert.c parser_cleanup.c parser_create.c parser_destroy.c parser_expandword.c parser_parse.c redirection_create.c redirection_destroy.c utils.c
+TMP_LST		:= command_create.c command_destroy.c command_parse.c \
+				node_create.c node_destroy.c node_insert.c parser_cleanup.c \
+				parser_create.c parser_destroy.c parser_expandword.c \
+				parser_parse.c redirection_create.c redirection_destroy.c \
+				utils.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/,$(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)
@@ -126,10 +131,8 @@ SRC_LST		:= $(SRC_LST) $(TMP_SRC)
 
 TMP_NAME	:= shell
 
-TMP_LST		:= shell_envinit.c shell_create.c shell_destroy.c shell_getenv.c \
-				shell_gethome.c shell_setenv.c shell_unsetenv.c \
-				shell_actiondispatcher.c shell_processline.c shell_start.c \
-				utils.c \
+TMP_LST		:= shell_create.c shell_destroy.c shell_actiondispatcher.c \
+				shell_processline.c shell_start.c utils.c \
 				ft_winsize.c logdebug.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
@@ -141,15 +144,28 @@ SRC_LST		:= $(SRC_LST) $(TMP_SRC)
 TMP_DAD		:= shell
 TMP_NAME	:= action
 
-TMP_LST		:= action_arrowup.c action_clear.c action_debug.c action_del.c \
+TMP_LST		:= action_clear.c action_debug.c action_del.c \
 				action_hist.c action_move.c action_multi_move.c \
 				action_return.c
-
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 TMP_SRC		:= $(addprefix $(TMP_DAD)/, $(TMP_SRC))
 SUB_LST		:= $(SUB_LST) $(addprefix $(TMP_DAD)/, $(TMP_NAME))
 SRC_LST		:= $(SRC_LST) $(TMP_SRC)
+
+#			Env
+
+TMP_DAD		:= shell
+TMP_NAME	:= env
+
+TMP_LST		:= shell_envinit.c shell_getenv.c shell_gethome.c shell_setenv.c \
+				shell_unsetenv.c
+
+TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
+TMP_SRC		:= $(addprefix $(TMP_DAD)/, $(TMP_SRC))
+SUB_LST		:= $(SUB_LST) $(addprefix $(TMP_DAD)/, $(TMP_NAME))
+SRC_LST		:= $(SRC_LST) $(TMP_SRC)
+
 
 #			lChar    TODO replace this
 
@@ -307,7 +323,6 @@ $(OBJ_PATH):
 	@printf "obj directory: "
 	@mkdir -p $(OBJ_PATH) $(NO_ERROR)
 	@mkdir -p $(addprefix $(OBJ_PATH)/, $(SUB_LST)) $(NO_ERROR)
-	@mkdir -p obj/shell/action $(NO_ERROR)
 	@printf "$(OK)"
 
 $(OBJ_PATH)%.o : $(SRC_PATH)%.c $(INC_LST)

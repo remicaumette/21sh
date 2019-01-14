@@ -6,7 +6,7 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/14 15:59:11 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/12 17:21:48 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/14 14:46:26 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -151,54 +151,6 @@ void					ft_winpos(t_point *pos);
 **		in action_tab.c
 */
 t_tc_action			*get_action_tab(void);
-
-
-// debug
-int					action_debug(t_shell *shell);
-
-/*
-**		in action.c
-*/
-int					action_return(t_shell *shell);
-int					action_stop(t_shell *shell);
-
-/*
-**	in action_hist.c
-*/
-int					action_hist_up(t_shell *shell);
-int					action_hist_down(t_shell *shell);
-
-/*
-**		in action_clear
-*/
-int					action_clear(t_shell *shell);
-int					action_clear_to_end(t_shell *shell);
-
-/*
-**		in action_del.c
-*/
-int					action_del(t_shell *shell);
-
-/*
-**		in action_move.c
-*/
-int					action_move_left(t_shell *shell);
-int					action_move_right(t_shell *shell);
-int					action_move_next_word(t_shell *shell);
-int					action_move_prev_word(t_shell *shell);
-
-/*
-**		in action_multi_move.c
-*/
-int					action_move_first(t_shell *shell);
-int					action_move_end(t_shell *shell);
-int					action_move_up(t_shell *shell);
-int					action_move_down(t_shell *shell);
-
-/*
-**					Cursor Part
-*/
-
 /*
 **		in ft_cursor.c
 */
@@ -217,7 +169,7 @@ void				ft_cursordel_all(t_cursor **cursor);
 /*
 **		in ft_cursoradd.c
 */
-int					ft_cursoradd(long buf, t_cursor *cursor);
+int					ft_cursoradd(char buf, t_cursor *cursor);
 
 /*
 **		in ft_cursordel_current.c

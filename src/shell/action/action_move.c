@@ -6,12 +6,41 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/28 16:48:33 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/12 16:25:31 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/14 11:44:10 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "line_edit.h"
+
+
+int			action_move_up(t_shell *shell)
+{
+	char	*tmp;
+
+	if (shell->cursor->dist_first > shell->cursor->winsize->y)
+	{
+		if ((tmp = tgetstr(TC_MOVE_UP, NULL)) == NULL)
+			return (FAIL);
+		ft_putstr(tmp);
+		shell->cursor->pos.y--;
+	}
+	return (SUCCESS);
+}
+
+int			action_move_down(t_shell *shell)
+{
+	char	*tmp;
+
+	if (shell->cursor->dist_last > shell->cursor->winsize->y)
+	{
+		if ((tmp = tgetstr(TC_MOVE_DOWN, NULL)) == NULL)
+			return (FAIL);
+		ft_putstr(tmp);
+		shell->cursor->pos.y++;
+	}
+	return (SUCCESS);
+}
 
 /*
 **	<-
@@ -37,7 +66,7 @@ int			action_move_left(t_shell *shell)
 		shell->cursor->dist_first--;
 		shell->cursor->dist_last++;
 	}
-	return (EGAIN);
+	return (SUCCESS);
 }
 
 /*
@@ -62,33 +91,5 @@ int			action_move_right(t_shell *shell)
 		shell->cursor->dist_first++;
 		shell->cursor->dist_last--;
 	}
-	return (EGAIN);
-}
-
-int			action_move_up(t_shell *shell)
-{
-	char	*tmp;
-
-	if (shell->cursor->dist_first > shell->cursor->winsize->y)
-	{
-		if ((tmp = tgetstr(TC_MOVE_UP, NULL)) == NULL)
-			return (FAIL);
-		ft_putstr(tmp);
-		shell->cursor->pos.y--;
-	}
-	return (EGAIN);
-}
-
-int			action_move_down(t_shell *shell)
-{
-	char	*tmp;
-
-	if (shell->cursor->dist_last > shell->cursor->winsize->y)
-	{
-		if ((tmp = tgetstr(TC_MOVE_DOWN, NULL)) == NULL)
-			return (FAIL);
-		ft_putstr(tmp);
-		shell->cursor->pos.y++;
-	}
-	return (EGAIN);
+	return (SUCCESS);
 }

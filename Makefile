@@ -6,17 +6,17 @@
 #    By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/01/12 17:21:11 by timfuzea     #+#   ##    ##    #+#        #
-#    Updated: 2019/01/13 18:28:09 by timfuzea    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/01/14 14:26:52 by timfuzea    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
 
-NAME		:= 21sh
-DEBUG		:="yes"
 
 # **************************************************************************** #
 #								PATH                                           #
 # **************************************************************************** #
+
+NAME		:= 21sh
 
 #			In
 
@@ -35,9 +35,11 @@ OBJ_PATH	:= $(PWD)/obj
 
 CC			:= /usr/bin/clang
 CMD_NORME	:= norminette
+DEBUG		:="yes"
 
 export CMD_NORME
 export DEBUG
+
 # **************************************************************************** #
 #								NAME LST                                       #
 # **************************************************************************** #
@@ -49,6 +51,7 @@ INC_LST		:=\
 	include/parser.h			\
 	include/shell.h				\
 	include/utils.h				\
+	include/tc_key.h			\
 	libft/include/libft.h		\
 	libft/include/ft/io.h		\
 	libft/include/ft/std.h		\
@@ -146,7 +149,7 @@ TMP_NAME	:= action
 
 TMP_LST		:= action_clear.c action_debug.c action_del.c \
 				action_hist.c action_move.c action_multi_move.c \
-				action_return.c
+				action_stop.c action_return.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 TMP_SRC		:= $(addprefix $(TMP_DAD)/, $(TMP_SRC))
@@ -200,6 +203,18 @@ TMP_DAD		:= shell
 TMP_NAME	:= history
 
 TMP_LST		:= ft_hist.c ft_histdebug.c ft_histget.c ft_histpush.c
+
+TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
+TMP_SRC		:= $(addprefix $(TMP_DAD)/, $(TMP_SRC))
+SUB_LST		:= $(SUB_LST) $(addprefix $(TMP_DAD)/, $(TMP_NAME))
+SRC_LST		:= $(SRC_LST) $(TMP_SRC)
+
+#			prompt
+
+TMP_DAD		:= shell
+TMP_NAME	:= prompt
+
+TMP_LST		:= shell_prompt.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 TMP_SRC		:= $(addprefix $(TMP_DAD)/, $(TMP_SRC))

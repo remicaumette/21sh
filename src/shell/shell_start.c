@@ -6,27 +6,20 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/09 15:15:02 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/12 17:16:56 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/14 14:23:16 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-static int	shell_prompt(t_shell *shell)
-{
-	(void)shell;
-	ft_putstr("-> ");
-	return (0);
-}
-
 static int	shell_readline(t_shell *shell)
 {
 	int		readed;
 	char	buf[4];
 
-	if (shell_prompt(shell))
-		return (1);
+	if (shell_prompt(shell) != SUCCESS)
+		return (FAIL);
 	while ((readed = read(0, buf, 3)) > 0)
 	{
 		ft_bzero(buf + readed, 4 - readed);
@@ -51,5 +44,6 @@ int			shell_start(t_shell *shell)
 	term.c_cc[VTIME] = 0;
 	if (tcsetattr(0, TCSANOW, &term) == -1)
 		return (1);
+	shell->cursor = ft_cursor(CUR_RESET | CUR_SET_ALL);
 	return (shell_readline(shell));
 }

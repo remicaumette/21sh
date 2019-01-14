@@ -6,7 +6,7 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/13 17:32:26 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/13 17:32:30 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/14 12:11:23 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -32,7 +32,7 @@ t_lstnp		*ft_lstnpnew(void *data)
 {
 	t_lstnp			*new;
 
-	if ((new = malloc(sizeof(new))) == NULL)
+	if ((new = malloc(sizeof(t_lstnp))) == NULL)
 		return (NULL);
 	new->data = data;
 	new->next = NULL;

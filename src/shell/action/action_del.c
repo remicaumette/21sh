@@ -6,7 +6,7 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/12 14:27:00 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/12 16:24:07 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/14 11:43:56 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,5 +27,5 @@ int		action_del(t_shell *shell)
 		ft_putstr(tmp);
 		ft_cursordel_current(shell->cursor);
 	}
-	return (EGAIN);
+	return (SUCCESS);
 }

@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   action_stop.c                                    .::    .:/ .      .::   */
+/*   shell_prompt.c                                   .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/01/14 11:08:59 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/14 12:12:41 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/01/14 09:51:37 by timfuzea     #+#   ##    ##    #+#       */
+/*   Updated: 2019/01/14 09:52:40 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "line_edit.h"
+#include "shell.h"
 
-int		action_stop(t_shell *shell)
+int		shell_prompt(t_shell *shell)
 {
-	if (shell->cursor->current == NULL)
-		return (STOP);
+	(void)shell;
+	ft_putstr("\n$ ");
 	return (SUCCESS);
 }

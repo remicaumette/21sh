@@ -18,5 +18,5 @@ int		action_debug(t_shell *shell)
 		dprintf(fd, "shell->cursor->current=NULL\n");
 	dprintf(fd, "shell->cursor->dist_first=%d\n", shell->cursor->dist_first);
 	dprintf(fd, "shell->cursor->dist_last=%d\n", shell->cursor->dist_last);
-	return (EGAIN);
+	return (SUCCESS);
 }

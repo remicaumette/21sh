@@ -16,7 +16,7 @@ t_cursor				*ft_cursor(t_flag action)
 
 	if (cursor == NULL)
 	{
-		if ((cursor = malloc(sizeof(cursor))) == NULL)
+		if ((cursor = malloc(sizeof(t_cursor))) == NULL)
 			return (NULL);
 		ft_cursorinit(cursor);
 	}

@@ -95,7 +95,7 @@ SRC_LST		:= $(SRC_LST) $(TMP_SRC)
 
 TMP_NAME	:= process
 
-TMP_LST		:=
+TMP_LST		:= process_create.c process_destroy.c process_start.c process_stop.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)
@@ -161,7 +161,7 @@ export		RM
 ifndef CC_FLAGS
 	CC_FLAGS			= -Wall -Werror -Wextra
 	ifeq ($(DEBUG),"yes")
-		CC_FLAGS		+= -g3 -fsanitize=address # -ferror-limit=-1
+		CC_FLAGS		+= -g3 #-fsanitize=address # -ferror-limit=-1
 	else
 		CC_FLAGS		+= -Ofast
 	endif

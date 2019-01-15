@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   action_del.c                                     .::    .:/ .      .::   */
+/*   line_replace.c                                   .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/07/12 14:27:00 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/15 14:40:10 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/01/16 12:18:25 by timfuzea     #+#   ##    ##    #+#       */
+/*   Updated: 2019/01/16 12:18:28 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int		action_backdel(t_shell *shell)
+void		line_replace(t_line *line, char *src)
 {
-	char	*tmp;
-
-	if (shell->line->cursor > 1)
-	{
-		if ((tmp = tgetstr(TC_MOVE_LEFT, NULL)) == NULL)
-			return (FAIL);
-		ft_putstr(tmp);
-		if ((tmp = tgetstr(TC_DEL, NULL)) == NULL)
-			return (FAIL);
-		ft_putstr(tmp);
-		line_backdel(shell->line);
-	}
-	return (SUCCESS);
+	ft_strdel(&line->content);
+	line->content = src;
+	line->size = ft_strlen(src);
+	line->cursor = line->size + 1;
 }

@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   action_del.c                                     .::    .:/ .      .::   */
+/*   ft_strndup.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/07/12 14:27:00 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/15 14:40:10 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Created: 2017/12/06 21:18:59 by timfuzea     #+#   ##    ##    #+#       */
+/*   Updated: 2017/12/06 21:18:59 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include "libft.h"
 
-int		action_backdel(t_shell *shell)
+char	*ft_strndup(const char *s1, size_t n)
 {
-	char	*tmp;
+	char		*out;
+	char		*tmp;
+	size_t		len_max;
 
-	if (shell->line->cursor > 1)
+	len_max = ft_strlen(s1);
+	if (len_max > n)
+		len_max = n;
+	if ((out = (char *)malloc(sizeof(char) * (len_max + 1))) == NULL)
+		return (NULL);
+	tmp = out;
+	while (*s1 && n)
 	{
-		if ((tmp = tgetstr(TC_MOVE_LEFT, NULL)) == NULL)
-			return (FAIL);
-		ft_putstr(tmp);
-		if ((tmp = tgetstr(TC_DEL, NULL)) == NULL)
-			return (FAIL);
-		ft_putstr(tmp);
-		line_backdel(shell->line);
+		*out = *s1;
+		out++;
+		s1++;
+		n--;
 	}
-	return (SUCCESS);
+	*out = '\0';
+	return (tmp);
 }

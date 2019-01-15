@@ -6,12 +6,12 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/28 16:48:33 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/14 11:43:36 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/15 14:39:45 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "line_edit.h"
+#include "shell.h"
 
 int		action_clear(t_shell *shell)
 {
@@ -20,12 +20,8 @@ int		action_clear(t_shell *shell)
 	if ((tmp = tgetstr(TC_CLEAR, NULL)) == NULL)
 		return (FAIL);
 	ft_putstr(tmp);
-//	ft_prompt();
-	if ((tmp = ft_lCharto_str(shell->cursor->first)) == NULL)
-		return (FAIL);
-	ft_putstr(tmp);
-	ft_strdel(&tmp);
-	ft_cursor(CUR_SET_ALL);
+	shell_prompt(shell);
+	ft_putstr(shell->line->content);
 	return (SUCCESS);
 }
 
@@ -33,12 +29,12 @@ int		action_clear_to_end(t_shell *shell)
 {
 	char	*tmp;
 
-	if (shell->cursor->dist_last > -1)
+	if (shell->line->cursor < (shell->line->size + 1))
 	{
 		if ((tmp = tgetstr(TC_CLEAR_TO_END, NULL)) == NULL)
 			return (FAIL);
 		ft_putstr(tmp);
-		ft_cursordel_toend(shell->cursor);
+		line_deltoend(shell->line);
 	}
 	return (SUCCESS);
 }

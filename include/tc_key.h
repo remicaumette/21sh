@@ -6,7 +6,7 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/28 14:41:08 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/14 14:27:45 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/15 14:24:53 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -32,7 +32,7 @@
 # define TC_CTRL_Q		{17, 0, 0}
 # define TC_CTRL_R		{18, 0, 0}
 
-# define TC_KEY_DEL		{127, 0, 0}
+# define TC_KEY_BACKDEL	{127, 0, 0}
 
 # define TC_KEY_UP		{27, 91, 65}
 # define TC_KEY_DOWN	{27, 91, 66}
@@ -47,5 +47,22 @@
 # define TC_CTRL_UP		{}71696882162459
 # define TC_CTRL_DOWN	72796393790235
 
+
+# define TC_NB_COL			"co"
+# define TC_NB_LINE			"li"
+
+# define TC_CLEAR			"cl"
+# define TC_CLEAR_TO_END	"ce"
+
+# define TC_DEL				"dc"
+# define TC_DEL_LINE		"dl"
+
+# define TC_INSER_START		"im"
+# define TC_INSER_STOP		"ei"
+
+# define TC_MOVE_UP			"up"
+# define TC_MOVE_DOWN		"do"
+# define TC_MOVE_LEFT		"le"
+# define TC_MOVE_RIGHT		"nd"
 
 #endif

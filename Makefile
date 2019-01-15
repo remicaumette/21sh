@@ -6,7 +6,7 @@
 #    By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/01/12 17:21:11 by timfuzea     #+#   ##    ##    #+#        #
-#    Updated: 2019/01/15 11:03:51 by rcaumett    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/01/16 11:53:30 by timfuzea    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -136,7 +136,7 @@ TMP_NAME	:= shell
 
 TMP_LST		:= shell_create.c shell_destroy.c shell_actiondispatcher.c \
 				shell_processline.c shell_start.c utils.c \
-				ft_winsize.c shell_prompt.c
+				get_winsize.c shell_prompt.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)
@@ -173,11 +173,10 @@ SRC_LST		:= $(SRC_LST) $(TMP_SRC)
 #			Cursor
 
 TMP_DAD		:= shell
-TMP_NAME	:= cursor
+TMP_NAME	:= line
 
-TMP_LST		:= ft_cursor.c ft_cursoradd.c ft_cursordel_all.c \
-				ft_cursordel_current.c ft_cursordel_toend.c ft_cursorinit.c \
-				ft_cursorinser.c
+TMP_LST		:= line_backdel.c line_create.c line_deltoend.c line_destroy.c \
+				line_inser.c line_replace.c line_reset.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 TMP_SRC		:= $(addprefix $(TMP_DAD)/, $(TMP_SRC))
@@ -189,7 +188,7 @@ SRC_LST		:= $(SRC_LST) $(TMP_SRC)
 TMP_DAD		:= shell
 TMP_NAME	:= history
 
-TMP_LST		:= ft_hist.c ft_histdebug.c ft_histget.c ft_histpush.c
+TMP_LST		:= hist.c ft_histdebug.c hist_get.c hist_push.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 TMP_SRC		:= $(addprefix $(TMP_DAD)/, $(TMP_SRC))
@@ -245,7 +244,7 @@ export		RM
 ifndef CC_FLAGS
 	CC_FLAGS			= -Wall -Werror -Wextra
 	ifeq ($(DEBUG),"yes")
-		CC_FLAGS		+= -g -fsanitize=address # -ferror-limit=-1
+		CC_FLAGS		+= -g -fsanitize=address -ferror-limit=-1
 	else
 		CC_FLAGS		+= -Ofast
 	endif

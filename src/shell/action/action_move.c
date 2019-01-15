@@ -6,14 +6,14 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/28 16:48:33 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/14 11:44:10 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/15 14:45:11 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "line_edit.h"
+#include "shell.h"
 
-
+/*
 int			action_move_up(t_shell *shell)
 {
 	char	*tmp;
@@ -41,7 +41,7 @@ int			action_move_down(t_shell *shell)
 	}
 	return (SUCCESS);
 }
-
+*/
 /*
 **	<-
 */
@@ -49,22 +49,18 @@ int			action_move_left(t_shell *shell)
 {
 	char	*tmp;
 
-	if (shell->cursor->dist_first > 0)
+	if (shell->line->cursor > 1)
 	{
 		if ((tmp = tgetstr(TC_MOVE_LEFT, NULL)) == NULL)
 			return (FAIL);
 		ft_putstr(tmp);
-		if (shell->cursor->dist_last == -1)
+		if (shell->line->cursor > shell->line->size )
 		{
 			if ((tmp = tgetstr(TC_INSER_START, NULL)) == NULL)
 				return (FAIL);
 			ft_putstr(tmp);
-			shell->cursor->current = shell->cursor->last;
 		}
-		else if (shell->cursor->current->prev)
-			shell->cursor->current = shell->cursor->current->prev;
-		shell->cursor->dist_first--;
-		shell->cursor->dist_last++;
+		shell->line->cursor--;
 	}
 	return (SUCCESS);
 }
@@ -76,20 +72,18 @@ int			action_move_right(t_shell *shell)
 {
 	char	*tmp;
 
-	if (shell->cursor->dist_last >= 0)
+	if (shell->line->cursor <= shell->line->size)
 	{
 		if ((tmp = tgetstr(TC_MOVE_RIGHT, NULL)) == NULL)
 			return (FAIL);
 		ft_putstr(tmp);
-		if (shell->cursor->dist_last == 0)
+		if (shell->line->cursor == shell->line->size)
 		{
 			if ((tmp = tgetstr(TC_INSER_STOP, NULL)) == NULL)
 				return (FAIL);
 			ft_putstr(tmp);
 		}
-		shell->cursor->current = shell->cursor->current->next;
-		shell->cursor->dist_first++;
-		shell->cursor->dist_last--;
+		shell->line->cursor++;
 	}
 	return (SUCCESS);
 }

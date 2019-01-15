@@ -5,23 +5,14 @@
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/01/12 18:47:04 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/12 18:47:47 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/01/15 15:26:08 by timfuzea     #+#   ##    ##    #+#       */
+/*   Updated: 2019/01/15 15:28:24 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "history.h"
-/*
-static int			getsize_max(void)
-{
-	char	*tmp;
+#include "shell.h"
 
-	if ((tmp = ft_getenv_valu("HIST_SIZE")) == NULL)
-		return (HIST_SIZE_DEFAULT);
-	return (ft_atoi(tmp));
-}
-*/
 static void			del_first(t_stackhist *history)
 {
 	t_hist		*tmp;
@@ -51,14 +42,14 @@ static inline void	push(t_hist *new, t_stackhist *history)
 	history->size++;
 }
 
-int					ft_histpush(const char *str)
+int					hist_push(const char *str)
 {
 	int				size_max;
 	t_hist			*tmp;
 	t_stackhist		*history;
 
-	history = ft_hist();
-	size_max = 100; /*getsize_max();*/
+	history = hist();
+	size_max = HIST_MAX_SIZE;
 	if ((tmp = FT_HISTNEW(ft_strdup(str))) == NULL)
 		return (FAIL);
 	if (size_max != -1)

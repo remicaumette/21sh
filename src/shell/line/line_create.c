@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   action_del.c                                     .::    .:/ .      .::   */
+/*   line_create.c                                    .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/07/12 14:27:00 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/15 14:40:10 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/01/15 13:14:10 by timfuzea     #+#   ##    ##    #+#       */
+/*   Updated: 2019/01/15 16:10:21 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int		action_backdel(t_shell *shell)
+t_line		*line_create(void)
 {
-	char	*tmp;
+	t_line		*line;
 
-	if (shell->line->cursor > 1)
-	{
-		if ((tmp = tgetstr(TC_MOVE_LEFT, NULL)) == NULL)
-			return (FAIL);
-		ft_putstr(tmp);
-		if ((tmp = tgetstr(TC_DEL, NULL)) == NULL)
-			return (FAIL);
-		ft_putstr(tmp);
-		line_backdel(shell->line);
-	}
-	return (SUCCESS);
+	if ((line = malloc(sizeof(t_line))) == NULL)
+		return (NULL);
+	line->content = NULL;
+	line->size = 0;
+	line->cursor = 1;
+	if (get_winsize(&(line->window)) !=SUCCESS)
+		return (NULL);
+	return (line);
 }

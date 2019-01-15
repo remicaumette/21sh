@@ -1,6 +1,6 @@
-#include "history.h"
+#include "shell.h"
 
-t_stackhist		*ft_hist(void)
+t_stackhist		*hist(void)
 {
 	static t_stackhist		history = {0, NULL, NULL, NULL};
 

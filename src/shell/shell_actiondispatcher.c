@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/10 14:13:40 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/15 11:23:23 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/16 10:29:47 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,7 +20,7 @@ t_action	g_actions[] = {
 	{TC_CTRL_E, action_move_end},
 	{TC_CTRL_K, action_clear_to_end},
 	{TC_CTRL_L, action_clear},
-	{TC_KEY_DEL, action_del},
+	{TC_KEY_BACKDEL, action_backdel},
 	{TC_KEY_UP, action_hist_up},
 	{TC_KEY_DOWN, action_hist_down},
 	{TC_KEY_LEFT, action_move_left},
@@ -36,14 +36,11 @@ t_action	g_actions[] = {
 
 static int	action_basic(t_shell *shell, char *buf, int readed)
 {
-	char	*tmp;
 
-	if (!(tmp = ft_strjoin(shell->line, buf)))
-		return (1);
+	if (line_inser(shell->line, *buf) != SUCCESS)
+		return (FAIL);
 	write(1, buf, readed);
-	ft_strdel(&shell->line);
-	shell->line = tmp;
-	return (0);
+	return (SUCCESS);
 }
 
 int			shell_actiondispatcher(t_shell *shell, char *buf, int readed)

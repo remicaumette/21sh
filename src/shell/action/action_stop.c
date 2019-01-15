@@ -6,16 +6,16 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/14 11:08:59 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/14 12:12:41 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/15 15:37:40 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "line_edit.h"
+#include "shell.h"
 
 int		action_stop(t_shell *shell)
 {
-	if (shell->cursor->current == NULL)
-		return (STOP);
+	if (!shell->line->size)
+		return (FAIL); // replace by exit
 	return (SUCCESS);
 }

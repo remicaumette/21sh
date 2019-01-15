@@ -13,14 +13,20 @@
 
 #include "shell.h"
 
-t_process	*process_create(char *name, char **args, char **env)
+t_process	*process_create(char *file, char **args, char **env)
 {
 	t_process	*process;
 
 	if (!(process = ft_memalloc(sizeof(t_process))) ||
-		!(process->name = ft_strdup(name)) ||
+		!(process->file = ft_strdup(file)) ||
 		!(process->args = ft_strarr_clone(args)) ||
-		!(process->env = ft_strarr_clone(env)))
+		!(process->env = ft_strarr_clone(env)) ||
+		pipe(process->stdin) == -1 ||
+		pipe(process->stdout) == -1 ||
+		pipe(process->stderr) == -1)
 		return (NULL);
+	process->error = 0;
+	process->status = -1;
+	process->pid = -1;
 	return (process);
 }

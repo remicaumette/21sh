@@ -95,7 +95,7 @@ SRC_LST		:= $(SRC_LST) $(TMP_SRC)
 
 TMP_NAME	:= process
 
-TMP_LST		:= process_create.c process_destroy.c process_start.c process_stop.c
+TMP_LST		:= process_create.c process_destroy.c process_run.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)

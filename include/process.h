@@ -19,16 +19,20 @@ typedef struct s_process	t_process;
 
 struct						s_process
 {
-	char	*name;
+	char	*file;
 	char	*cwd;
 	char	**args;
 	char	**env;
 	pid_t	pid;
+	int		status;
+	int		error;
+	int		stdin[2];
+	int		stdout[2];
+	int		stderr[2];
 };
 
-t_process					*process_create(char *name, char **args,
+t_process					*process_create(char *file, char **args,
 	char **env);
 void						process_destroy(t_process *process);
-int							process_start(t_process *process);
-int							process_stop(t_process *process);
+int							process_run(t_process *process);
 #endif

@@ -8,7 +8,7 @@ static void		print_pos(int fd, t_cursor *cursor)
 
 	ft_winpos(&var);
 	dprintf(fd, "\n\tPos\n");
-	dprintf(fd, "winsize : x=%d, y=%d\n", cursor->winsize->x, cursor->winsize->y);
+	dprintf(fd, "winsize : x=%d, y=%d\n", cursor->winsize.ws_row, cursor->winsize.ws_col);
 	dprintf(fd, "current : x=%d, y=%d\n", cursor->pos.x, cursor->pos.y);
 	dprintf(fd, "true    : x=%d, y=%d\n", var.x, var.y);
 }

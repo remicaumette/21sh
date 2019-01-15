@@ -6,7 +6,7 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/12 13:39:31 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/12 14:02:00 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/15 11:04:21 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,7 +18,7 @@ void		ft_cursorinit(t_cursor *cursor)
 	if (cursor == NULL)
 		return ;
 	ft_winpos(&(cursor->pos));
-	cursor->winsize = ft_winsize(GET);
+	get_winsize(&cursor->winsize);
 	cursor->current = NULL;
 	cursor->first = NULL;
 	cursor->last = NULL;

@@ -8,7 +8,7 @@ int		action_debug(t_shell *shell)
 		dprintf(2, "fail open debug.log\n");
 	dprintf(fd, "\n");
 	dprintf(fd, "Debug info form cursor\n");
-	dprintf(fd, "shell->cursor->winsize: (x=%d,y=%d)\n", shell->cursor->winsize->x, shell->cursor->winsize->y);
+	dprintf(fd, "shell->cursor->winsize: (x=%d,y=%d)\n", shell->cursor->winsize.ws_row, shell->cursor->winsize.ws_col);
 	if (shell->cursor->current)
 	{
 		dprintf(fd, "shell->cursor->current=%c\n", shell->cursor->current->c);

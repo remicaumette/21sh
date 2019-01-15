@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/12 14:50:00 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/14 14:43:47 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/15 10:14:27 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -43,6 +43,7 @@ int				action_return(t_shell *shell)
 	}
 	ft_strdel(&shell->line);
 	shell_prompt(shell);
+	ft_cursor(CUR_RESET | CUR_SET_ALL);
 	return (SUCCESS);
 }
 /*

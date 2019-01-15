@@ -6,7 +6,7 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/14 15:59:11 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/14 14:46:26 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/15 11:00:57 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -83,6 +83,7 @@
 ********************************************************************************
 */
 
+typedef struct winsize	t_winsize;
 typedef unsigned int	t_flag;
 
 typedef struct		s_point
@@ -94,7 +95,7 @@ typedef struct		s_point
 typedef struct		s_cursor
 {
 	t_point			pos;
-	t_point			*winsize;
+	t_winsize		winsize;
 	t_lChar			*current;
 	t_lChar			*first;
 	t_lChar			*last;
@@ -113,6 +114,8 @@ typedef struct		s_tc_action
 **								FUNCTIONS                                     **
 ********************************************************************************
 */
+
+int					get_winsize(t_winsize *winsize);
 
 /*
 **		in logdebug.c

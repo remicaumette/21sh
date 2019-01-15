@@ -25,7 +25,7 @@ t_cursor				*ft_cursor(t_flag action)
 	if (action & CUR_SET_CURRENT)
 		ft_winpos(&cursor->pos);
 	if (action & CUR_SET_WINSIZE)
-		cursor->winsize = ft_winsize(SET);
+		get_winsize(&cursor->winsize);
 	if (action & CUR_FREE)
 		ft_cursordel_all(&cursor);
 	return (cursor);

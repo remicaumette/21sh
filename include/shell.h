@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/14 08:08:55 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/15 11:11:33 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/15 12:46:02 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,16 +24,15 @@
 
 typedef struct s_shell		t_shell;
 typedef struct s_action		t_action;
-typedef struct s_cursor		t_cursor;
+typedef struct s_line		t_line;
 typedef int					(*t_actionhandler)(t_shell *);
 
 struct						s_shell
 {
 	char		**environment;
 	char		**history;
-	char		*line;
 	char		missing_token;
-	t_cursor	*cursor;
+	t_line		*line;
 	t_lexer		*lexer;
 	t_parser	*parser;
 };
@@ -42,6 +41,14 @@ struct						s_action
 {
 	char			code[3];
 	t_actionhandler	handler;
+};
+
+struct						s_line
+{
+	char		*content;
+	int			size;
+	int			cursor;
+	t_winsize	window;
 };
 
 extern t_action				g_actions[];

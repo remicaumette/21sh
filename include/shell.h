@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/14 08:08:55 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/14 11:15:54 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/15 10:01:04 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -34,7 +34,7 @@ struct						s_shell
 	char		**history;
 	char		*line;
 	char		missing_token;
-	t_cursor	*cursor;		// remove in the futur 
+	t_cursor	*cursor;
 	t_lexer		*lexer;
 	t_parser	*parser;
 };
@@ -55,15 +55,8 @@ int							shell_start(t_shell *shell);
 int							shell_actiondispatcher(t_shell *shell, char *buf,
 	int readed);
 int							shell_processline(t_shell *shell);
-
-/*
-**		Prompt
-*/
 int							shell_prompt(t_shell *shell);
 
-/*
-**		Env
-*/
 int							shell_envinit(t_shell *shell, char **default_env);
 char						*shell_getenv(t_shell *shell, char *name);
 char						**shell_setenv(t_shell *shell, char *name,
@@ -71,9 +64,6 @@ char						**shell_setenv(t_shell *shell, char *name,
 char						**shell_unsetenv(t_shell *shell, char *name);
 char						*shell_gethome(t_shell *shell);
 
-/*
-**		Action
-*/
 int							action_return(t_shell *shell);
 int							action_clear(t_shell *shell);
 int							action_clear_to_end(t_shell *shell);
@@ -90,10 +80,6 @@ int							action_move_next_word(t_shell *shell);
 int							action_move_prev_word(t_shell *shell);
 int							action_stop(t_shell *shell);
 
-//debug need to be del
-int							action_debug(t_shell *shell);
-
-// debug
 void						print_token(t_token *token);
 void						print_node(t_node *node);
 #endif

@@ -6,7 +6,7 @@
 #    By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/01/12 17:21:11 by timfuzea     #+#   ##    ##    #+#        #
-#    Updated: 2019/01/14 14:26:52 by timfuzea    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/01/15 10:25:26 by rcaumett    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -136,7 +136,7 @@ TMP_NAME	:= shell
 
 TMP_LST		:= shell_create.c shell_destroy.c shell_actiondispatcher.c \
 				shell_processline.c shell_start.c utils.c \
-				ft_winsize.c logdebug.c
+				ft_winsize.c shell_prompt.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)
@@ -147,7 +147,7 @@ SRC_LST		:= $(SRC_LST) $(TMP_SRC)
 TMP_DAD		:= shell
 TMP_NAME	:= action
 
-TMP_LST		:= action_clear.c action_debug.c action_del.c \
+TMP_LST		:= action_clear.c action_del.c \
 				action_hist.c action_move.c action_multi_move.c \
 				action_stop.c action_return.c
 
@@ -208,21 +208,6 @@ TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 TMP_SRC		:= $(addprefix $(TMP_DAD)/, $(TMP_SRC))
 SUB_LST		:= $(SUB_LST) $(addprefix $(TMP_DAD)/, $(TMP_NAME))
 SRC_LST		:= $(SRC_LST) $(TMP_SRC)
-
-#			prompt
-
-TMP_DAD		:= shell
-TMP_NAME	:= prompt
-
-TMP_LST		:= shell_prompt.c
-
-TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
-TMP_SRC		:= $(addprefix $(TMP_DAD)/, $(TMP_SRC))
-SUB_LST		:= $(SUB_LST) $(addprefix $(TMP_DAD)/, $(TMP_NAME))
-SRC_LST		:= $(SRC_LST) $(TMP_SRC)
-
-
-
 
 # **************************************************************************** #
 #								VAR                                            #

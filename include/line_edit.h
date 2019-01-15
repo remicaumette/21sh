@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   line_edit.h                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
+/*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/14 15:59:11 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/14 14:46:26 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/15 10:21:46 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,7 +24,6 @@
 # include <term.h>
 # include <unistd.h>
 # include "tc_key.h"
-#include "debug.h"
 # include "lChar.h"
 #include "shell.h"
 #include "history.h"
@@ -113,11 +112,6 @@ typedef struct		s_tc_action
 **								FUNCTIONS                                     **
 ********************************************************************************
 */
-
-/*
-**		in logdebug.c
-*/
-void				logdebug(t_cursor * cursor, char c);
 
 /*
 **		in init_line.c

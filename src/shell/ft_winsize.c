@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   ft_winsize.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
+/*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/12 14:23:47 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/12 16:28:16 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/15 09:56:43 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -40,9 +40,9 @@ void		ft_winpos(t_point *pos)
 	ft_putstr(TC_GETPOS);
 	if ((ret = read(0, buf, 10)) <= 0)
 		return;
-	buf[ret] = '\0';
+	buf[ret] = 0;
 	pos->y = ft_atoi(&buf[2]);
-	while (buf[i] != ';')
+	while (buf[i] && buf[i] != ';')
 		i++;
 	pos->x = ft_atoi(&buf[i]);
 }

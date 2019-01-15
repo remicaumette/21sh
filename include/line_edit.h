@@ -6,7 +6,7 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/14 15:59:11 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/15 11:00:57 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/15 11:51:11 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,6 +26,7 @@
 # include "tc_key.h"
 #include "debug.h"
 # include "lChar.h"
+# include <sys/ioctl.h>
 #include "shell.h"
 #include "history.h"
 /*

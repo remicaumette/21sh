@@ -6,12 +6,27 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/09 15:15:02 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/14 14:23:16 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/15 11:24:13 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "shell.h"
+
+static int	shell_stop(int status)
+{
+	char			*tmp;
+	struct	termios	term;
+
+	if ((tmp = tgetstr("ei", NULL)) == NULL)
+		return (1);
+	ft_putstr(tmp);
+	if (tcgetattr(0, &term) == -1)
+		return (1);
+	term.c_lflag = (ICANON | ECHO);
+	tcsetattr(0, 0, &term);
+	return (status);
+}
 
 static int	shell_readline(t_shell *shell)
 {
@@ -19,16 +34,16 @@ static int	shell_readline(t_shell *shell)
 	char	buf[4];
 
 	if (shell_prompt(shell) != SUCCESS)
-		return (FAIL);
+		return (shell_stop(1));
 	while ((readed = read(0, buf, 3)) > 0)
 	{
 		ft_bzero(buf + readed, 4 - readed);
 		if (buf[0] == 4 && buf[1] == 0 && buf[2] == 0)
 			break ;
 		if (shell_actiondispatcher(shell, buf, readed))
-			return (1);
+			return (shell_stop(1));
 	}
-	return (0);
+	return (shell_stop(0));
 }
 
 int			shell_start(t_shell *shell)
@@ -44,6 +59,5 @@ int			shell_start(t_shell *shell)
 	term.c_cc[VTIME] = 0;
 	if (tcsetattr(0, TCSANOW, &term) == -1)
 		return (1);
-	shell->cursor = ft_cursor(CUR_RESET | CUR_SET_ALL);
 	return (shell_readline(shell));
 }

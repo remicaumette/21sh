@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/14 08:08:55 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/15 10:01:04 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/15 11:11:33 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,7 +21,6 @@
 # include "parser.h"
 # include "utils.h"
 # include "tc_key.h"
-#include "line_edit.h"
 
 typedef struct s_shell		t_shell;
 typedef struct s_action		t_action;

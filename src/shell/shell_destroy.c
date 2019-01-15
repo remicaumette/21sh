@@ -6,26 +6,12 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/12 17:18:55 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/14 13:35:47 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/15 11:12:02 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "shell.h"
-
-void	exit_line(void)
-{
-	char			*tmp;
-	struct	termios		term;
-
-	if ((tmp = tgetstr(TC_INSER_STOP, NULL)) == NULL)
-		return ;
-	ft_putstr(tmp);
-	if (tcgetattr(0, &term) == -1)
-		return ;
-	term.c_lflag = (ICANON | ECHO);
-	tcsetattr(0, 0, &term);
-}
 
 void	shell_destroy(t_shell *shell)
 {
@@ -43,5 +29,4 @@ void	shell_destroy(t_shell *shell)
 			parser_destroy(shell->parser);
 		ft_memdel((void **)&shell);
 	}
-	exit_line();
 }

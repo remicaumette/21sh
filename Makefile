@@ -6,7 +6,7 @@
 #    By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/01/12 17:21:11 by timfuzea     #+#   ##    ##    #+#        #
-#    Updated: 2019/01/15 10:25:26 by rcaumett    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/01/15 11:03:51 by rcaumett    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -169,19 +169,6 @@ TMP_SRC		:= $(addprefix $(TMP_DAD)/, $(TMP_SRC))
 SUB_LST		:= $(SUB_LST) $(addprefix $(TMP_DAD)/, $(TMP_NAME))
 SRC_LST		:= $(SRC_LST) $(TMP_SRC)
 
-
-#			lChar    TODO replace this
-
-TMP_DAD		:= shell
-TMP_NAME	:= lChar
-
-TMP_LST		:= ft_lChardel.c ft_lCharfirst.c ft_lCharlast.c ft_lCharlen.c \
-				ft_lCharnew.c ft_lCharpush.c ft_lCharto_str.c ft_strto_lChar.c
-
-TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
-TMP_SRC		:= $(addprefix $(TMP_DAD)/, $(TMP_SRC))
-SUB_LST		:= $(SUB_LST) $(addprefix $(TMP_DAD)/, $(TMP_NAME))
-SRC_LST		:= $(SRC_LST) $(TMP_SRC)
 
 #			Cursor
 

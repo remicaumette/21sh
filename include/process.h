@@ -1,24 +1,38 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   main.c                                           .::    .:/ .      .::   */
+/*   process.h                                        .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/12/14 16:31:29 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/15 13:24:17 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/01/10 12:55:39 by rcaumett     #+#   ##    ##    #+#       */
+/*   Updated: 2019/01/15 13:38:36 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "shell.h"
+#ifndef PROCESS_H
+# define PROCESS_H
+# include <stdio.h>
 
-int	main(int argc, char **argv, char **environment)
+typedef struct s_process	t_process;
+
+struct						s_process
 {
-	(void)argc;
-	(void)argv;
-	if (!(g_shell = shell_create(environment)) || shell_start(g_shell))
-		return (1);
-	shell_destroy(g_shell);
-	return (0);
-}
+	char	*file;
+	char	*cwd;
+	char	**args;
+	char	**env;
+	pid_t	pid;
+	int		status;
+	int		error;
+	int		stdin[2];
+	int		stdout[2];
+	int		stderr[2];
+};
+
+t_process					*process_create(char *file, char **args,
+	char **env);
+void						process_destroy(t_process *process);
+int							process_run(t_process *process);
+#endif

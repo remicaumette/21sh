@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   main.c                                           .::    .:/ .      .::   */
+/*   process_create.c                                 .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/12/14 16:31:29 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/15 13:24:17 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/01/15 12:51:03 by rcaumett     #+#   ##    ##    #+#       */
+/*   Updated: 2019/01/15 13:35:18 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int	main(int argc, char **argv, char **environment)
+t_process	*process_create(char *file, char **args, char **env)
 {
-	(void)argc;
-	(void)argv;
-	if (!(g_shell = shell_create(environment)) || shell_start(g_shell))
-		return (1);
-	shell_destroy(g_shell);
-	return (0);
+	t_process	*process;
+
+	if (!(process = ft_memalloc(sizeof(t_process))) ||
+		!(process->file = ft_strdup(file)) ||
+		!(process->args = ft_strarr_clone(args)) ||
+		!(process->env = ft_strarr_clone(env)) ||
+		pipe(process->stdin) == -1 ||
+		pipe(process->stdout) == -1 ||
+		pipe(process->stderr) == -1)
+		return (NULL);
+	process->error = 0;
+	process->status = -1;
+	process->pid = -1;
+	return (process);
 }

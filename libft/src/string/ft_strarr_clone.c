@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   main.c                                           .::    .:/ .      .::   */
+/*   ft_strarr_clone.c                                .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/12/14 16:31:29 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/15 13:24:17 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/01/15 13:34:20 by rcaumett     #+#   ##    ##    #+#       */
+/*   Updated: 2019/01/15 13:34:29 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **environment)
+char	**ft_strarr_clone(char **arr)
 {
-	(void)argc;
-	(void)argv;
-	if (!(g_shell = shell_create(environment)) || shell_start(g_shell))
-		return (1);
-	shell_destroy(g_shell);
-	return (0);
+	int		i;
+	char	**tmp;
+
+	i = -1;
+	tmp = NULL;
+	while (arr && arr[++i])
+		if (!(tmp = ft_strarr_add(tmp, arr[i])))
+			return (NULL);
+	return (tmp);
 }

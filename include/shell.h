@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/14 08:08:55 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/10 14:34:46 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/15 13:22:47 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,6 +18,7 @@
 # include "libft.h"
 # include "lexer.h"
 # include "parser.h"
+# include "process.h"
 # include "utils.h"
 
 typedef struct s_shell		t_shell;

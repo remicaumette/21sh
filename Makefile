@@ -6,7 +6,7 @@
 #    By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/01/12 17:21:11 by timfuzea     #+#   ##    ##    #+#        #
-#    Updated: 2019/01/14 14:26:52 by timfuzea    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/01/16 14:58:18 by timfuzea    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -124,7 +124,7 @@ SRC_LST		:= $(SRC_LST) $(TMP_SRC)
 
 TMP_NAME	:= process
 
-TMP_LST		:=
+TMP_LST		:= process_create.c process_destroy.c process_run.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)
@@ -273,7 +273,7 @@ export		RM
 ifndef CC_FLAGS
 	CC_FLAGS			= -Wall -Werror -Wextra
 	ifeq ($(DEBUG),"yes")
-		CC_FLAGS		+= -g -fsanitize=address # -ferror-limit=-1
+		CC_FLAGS		+= -g3 #-fsanitize=address # -ferror-limit=-1
 	else
 		CC_FLAGS		+= -Ofast
 	endif
@@ -349,12 +349,15 @@ $(OBJ_PATH)%.o : $(SRC_PATH)%.c $(INC_LST)
 
 .PHONY: clean fclean re
 
+tmp:
+	@rm *.log
+
 clean: clean_lib
 	@printf "Delete obj:"
 	@$(RM) $(RM_FLAGS) $(OBJ_PATH)
 	@printf " done\n"
 
-fclean: fclean_lib
+fclean: fclean_lib tmp
 	@printf "Delete obj:"
 	@$(RM) $(RM_FLAGS) $(OBJ_PATH)
 	@printf " done\n"

@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/14 08:08:55 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/14 11:15:54 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/16 14:51:55 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,6 +19,7 @@
 # include "libft.h"
 # include "lexer.h"
 # include "parser.h"
+# include "process.h"
 # include "utils.h"
 # include "tc_key.h"
 #include "line_edit.h"

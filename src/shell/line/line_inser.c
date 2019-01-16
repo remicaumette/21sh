@@ -6,7 +6,7 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/15 13:24:41 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/16 11:11:42 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/16 15:24:05 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -45,7 +45,7 @@ static inline void	inser_end(char *new, t_line *line, char c, int i)
 	new[i] = '\0';
 }
 
-int						line_inser(t_line *line, char c)
+int					line_inser(t_line *line, char c)
 {
 	int		i;
 	char	*tmp;

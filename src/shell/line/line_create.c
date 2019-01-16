@@ -6,7 +6,7 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/15 13:14:10 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/15 16:10:21 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/16 15:23:41 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,7 +22,7 @@ t_line		*line_create(void)
 	line->content = NULL;
 	line->size = 0;
 	line->cursor = 1;
-	if (get_winsize(&(line->window)) !=SUCCESS)
+	if (get_winsize(&(line->window)) != SUCCESS)
 		return (NULL);
 	return (line);
 }

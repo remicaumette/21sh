@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/09 15:15:02 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/16 15:05:22 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/16 15:24:39 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,7 +16,7 @@
 static int	shell_stop(int status)
 {
 	char			*tmp;
-	struct	termios	term;
+	struct termios	term;
 
 	if ((tmp = tgetstr("ei", NULL)) == NULL)
 		return (1);

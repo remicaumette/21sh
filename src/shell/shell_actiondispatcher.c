@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/10 14:13:40 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/16 10:29:47 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/16 15:25:07 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -36,7 +36,6 @@ t_action	g_actions[] = {
 
 static int	action_basic(t_shell *shell, char *buf, int readed)
 {
-
 	if (line_inser(shell->line, *buf) != SUCCESS)
 		return (FAIL);
 	write(1, buf, readed);

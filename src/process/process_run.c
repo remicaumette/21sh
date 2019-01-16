@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/15 13:37:58 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/15 13:38:41 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/16 15:32:02 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -33,7 +33,6 @@ static int	handle_child_process(t_process *process)
 	}
 	exit(0);
 }
-
 
 int			process_run(t_process *process)
 {

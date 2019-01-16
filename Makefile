@@ -6,7 +6,7 @@
 #    By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/01/12 17:21:11 by timfuzea     #+#   ##    ##    #+#        #
-#    Updated: 2019/01/16 15:01:44 by timfuzea    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/01/16 15:22:35 by timfuzea    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -320,15 +320,12 @@ $(OBJ_PATH)%.o : $(SRC_PATH)%.c $(INC_LST)
 
 .PHONY: clean fclean re
 
-tmp:
-	@rm *.log
-
 clean: clean_lib
 	@printf "Delete obj:"
 	@$(RM) $(RM_FLAGS) $(OBJ_PATH)
 	@printf " done\n"
 
-fclean: fclean_lib tmp
+fclean: fclean_lib
 	@printf "Delete obj:"
 	@$(RM) $(RM_FLAGS) $(OBJ_PATH)
 	@printf " done\n"

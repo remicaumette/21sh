@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   main.c                                           .::    .:/ .      .::   */
+/*   process_destroy.c                                .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/12/14 16:31:29 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/16 14:53:43 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/01/15 13:01:57 by rcaumett     #+#   ##    ##    #+#       */
+/*   Updated: 2019/01/15 13:04:04 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int	fail(t_shell *shell)
+void	process_destroy(t_process *process)
 {
-	shell_destroy(shell);
-	return (1);
-}
-
-int	main(int argc, char **argv, char **environment)
-{
-	(void)argc;
-	(void)argv;
-	if (!(g_shell = shell_create(environment)) || shell_start(g_shell))
-		return (fail(g_shell));
-	shell_destroy(g_shell);
-	return (0);
+	if (process)
+	{
+		if (process->file)
+			ft_strdel(&process->file);
+		if (process->cwd)
+			ft_strdel(&process->cwd);
+		if (process->args)
+			ft_strarr_del(process->args);
+		if (process->env)
+			ft_strarr_del(process->env);
+		close(process->stdin[0]);
+		close(process->stdin[1]);
+		close(process->stdout[0]);
+		close(process->stdout[1]);
+		close(process->stderr[0]);
+		close(process->stderr[1]);
+		ft_memdel((void **)&process);
+	}
 }

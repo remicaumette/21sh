@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_cursoradd.c                                   .::    .:/ .      .::   */
+/*   ft_strarr_clone.c                                .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
+/*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/07/12 13:39:05 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/14 11:34:30 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/01/15 13:34:20 by rcaumett     #+#   ##    ##    #+#       */
+/*   Updated: 2019/01/15 13:34:29 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "line_edit.h"
+#include "libft.h"
 
-int			ft_cursoradd(char buf, t_cursor *cursor)
+char	**ft_strarr_clone(char **arr)
 {
-	t_lChar		*tmp;
+	int		i;
+	char	**tmp;
 
-	if ((tmp = ft_lCharnew(buf)) == NULL)
-		return (FAIL);
-	ft_cursorinser(tmp, cursor);
-	return (SUCCESS);
+	i = -1;
+	tmp = NULL;
+	while (arr && arr[++i])
+		if (!(tmp = ft_strarr_add(tmp, arr[i])))
+			return (NULL);
+	return (tmp);
 }

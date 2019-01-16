@@ -6,7 +6,7 @@
 #    By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/01/12 18:55:30 by timfuzea     #+#   ##    ##    #+#        #
-#    Updated: 2019/01/15 16:04:09 by timfuzea    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/01/16 15:03:34 by timfuzea    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -109,7 +109,8 @@ SRC_LST		:= $(SRC_LST) $(TMP_SRC)
 
 TMP_NAME	:= string
 
-TMP_LST		:= ft_strarr_add.c ft_strarr_del.c ft_strarr_join.c ft_strarr_len.c \
+TMP_LST		:= ft_strarr_add.c ft_strarr_clone.c ft_strarr_del.c \
+				ft_strarr_len.c ft_strarr_join.c \
 				ft_strarr_sort.c ft_strcat.c ft_strchr.c ft_strclr.c \
 				ft_strcmp.c ft_strcpy.c ft_strdel.c ft_strdup.c ft_strequ.c \
 				ft_striter.c ft_striteri.c ft_strjoin.c ft_strlcat.c \

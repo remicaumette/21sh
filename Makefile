@@ -6,7 +6,7 @@
 #    By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/01/12 17:21:11 by timfuzea     #+#   ##    ##    #+#        #
-#    Updated: 2019/01/16 11:53:30 by timfuzea    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/01/16 15:01:44 by timfuzea    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -124,7 +124,7 @@ SRC_LST		:= $(SRC_LST) $(TMP_SRC)
 
 TMP_NAME	:= process
 
-TMP_LST		:=
+TMP_LST		:= process_create.c process_destroy.c process_run.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)
@@ -320,12 +320,15 @@ $(OBJ_PATH)%.o : $(SRC_PATH)%.c $(INC_LST)
 
 .PHONY: clean fclean re
 
+tmp:
+	@rm *.log
+
 clean: clean_lib
 	@printf "Delete obj:"
 	@$(RM) $(RM_FLAGS) $(OBJ_PATH)
 	@printf " done\n"
 
-fclean: fclean_lib
+fclean: fclean_lib tmp
 	@printf "Delete obj:"
 	@$(RM) $(RM_FLAGS) $(OBJ_PATH)
 	@printf " done\n"

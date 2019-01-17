@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_histpush.c                                    .::    .:/ .      .::   */
+/*   hist_push.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
+/*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/15 15:26:08 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/15 15:28:24 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/17 14:11:29 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -58,6 +58,5 @@ int					hist_push(const char *str)
 			del_first(history);
 	}
 	push(tmp, history);
-	ft_histdebug();
 	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/14 08:08:55 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/16 15:02:28 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/17 14:14:32 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,9 +17,6 @@
 # include <term.h>
 # include <fcntl.h>
 # include <sys/ioctl.h>
-
-#include "debug.h"
-
 # include "libft.h"
 # include "lexer.h"
 # include "parser.h"
@@ -35,8 +32,6 @@
 # define FT_HISTDEL_ONE		ft_lstnpdel_one
 
 //# define HIST_STR					(char *)data
-
-
 
 typedef struct s_shell		t_shell;
 typedef struct s_action		t_action;
@@ -83,7 +78,6 @@ struct				s_stackhist
 extern t_action				g_actions[];
 t_shell						*g_shell;
 
-
 t_shell						*shell_create(char **environment);
 void						shell_destroy(t_shell *shell);
 int							shell_start(t_shell *shell);
@@ -91,15 +85,12 @@ int							shell_actiondispatcher(t_shell *shell, char *buf,
 	int readed);
 int							shell_processline(t_shell *shell);
 int							shell_prompt(t_shell *shell);
-
 int							shell_envinit(t_shell *shell, char **default_env);
 char						*shell_getenv(t_shell *shell, char *name);
 char						**shell_setenv(t_shell *shell, char *name,
 	char *value);
 char						**shell_unsetenv(t_shell *shell, char *name);
 char						*shell_gethome(t_shell *shell);
-
-int							get_winsize(t_winsize *window);
 
 t_line						*line_create(void);
 void						line_destroy(t_line **line);
@@ -130,11 +121,6 @@ t_stackhist					*hist(void);
 int							hist_push(const char *str);
 int							hist_getup(char **line);
 int							hist_getdown(char **line);
-
-// debug
-void						ft_histdebug();
-
-
 
 void						print_token(t_token *token);
 void						print_node(t_node *node);

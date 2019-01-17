@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_histget.c                                     .::    .:/ .      .::   */
+/*   hist_get.c                                       .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
+/*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/15 15:21:22 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/16 15:30:38 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/17 14:11:24 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -43,7 +43,6 @@ int			hist_getup(char **line)
 		history->tmp = history->last;
 	*line = ft_strdup((char *)history->tmp->data);
 	history->tmp = history->tmp->prev;
-	ft_histdebug();
 	return (SUCCESS);
 }
 
@@ -58,6 +57,5 @@ int			hist_getdown(char **line)
 		history->tmp = history->first;
 	*line = ft_strdup((char *)history->tmp->data);
 	history->tmp = history->tmp->next;
-	ft_histdebug();
 	return (SUCCESS);
 }

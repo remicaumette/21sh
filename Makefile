@@ -6,7 +6,7 @@
 #    By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/01/12 17:21:11 by timfuzea     #+#   ##    ##    #+#        #
-#    Updated: 2019/01/16 15:22:35 by timfuzea    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/01/17 14:12:11 by rcaumett    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -188,7 +188,7 @@ SRC_LST		:= $(SRC_LST) $(TMP_SRC)
 TMP_DAD		:= shell
 TMP_NAME	:= history
 
-TMP_LST		:= hist.c ft_histdebug.c hist_get.c hist_push.c
+TMP_LST		:= hist.c hist_get.c hist_push.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 TMP_SRC		:= $(addprefix $(TMP_DAD)/, $(TMP_SRC))
@@ -244,7 +244,7 @@ export		RM
 ifndef CC_FLAGS
 	CC_FLAGS			= -Wall -Werror -Wextra
 	ifeq ($(DEBUG),"yes")
-		CC_FLAGS		+= -g -fsanitize=address -ferror-limit=-1
+		CC_FLAGS		+= -g #-fsanitize=address
 	else
 		CC_FLAGS		+= -Ofast
 	endif

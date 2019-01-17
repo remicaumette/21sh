@@ -6,7 +6,7 @@
 #    By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/01/12 17:21:11 by timfuzea     #+#   ##    ##    #+#        #
-#    Updated: 2019/01/17 14:12:11 by rcaumett    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/01/17 16:09:27 by rcaumett    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -136,7 +136,7 @@ TMP_NAME	:= shell
 
 TMP_LST		:= shell_create.c shell_destroy.c shell_actiondispatcher.c \
 				shell_processline.c shell_start.c utils.c \
-				get_winsize.c shell_prompt.c
+				shell_prompt.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)
@@ -188,7 +188,7 @@ SRC_LST		:= $(SRC_LST) $(TMP_SRC)
 TMP_DAD		:= shell
 TMP_NAME	:= history
 
-TMP_LST		:= hist.c hist_get.c hist_push.c
+TMP_LST		:= history_create.c history_destroy.c history_insert.c histentry_create.c histentry_destroy.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 TMP_SRC		:= $(addprefix $(TMP_DAD)/, $(TMP_SRC))

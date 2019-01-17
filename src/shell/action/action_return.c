@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/16 15:28:52 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/17 13:48:39 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/17 16:11:12 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,12 +23,13 @@ int	action_return(t_shell *shell)
 		shell->missing_token = lexer_getmissingtoken(shell->lexer);
 		if (shell->lexer->begin)
 		{
-			if (shell->missing_token == -1)
-				printf("shell_processline: %d\n", shell_processline(shell));
+			// if (shell->missing_token == -1)
+			// 	printf("shell_processline: %d\n", shell_processline(shell));
 			lexer_cleanup(shell->lexer);
 			parser_cleanup(shell->parser);
 		}
-		hist_push(shell->line->content);
+		if (!(history_insert(shell->history, shell->line->content)))
+			return (FAIL);
 		line_reset(shell->line);
 	}
 	shell_prompt(shell);

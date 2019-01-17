@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   shell_destroy.c                                  .::    .:/ .      .::   */
+/*   histentry_create.c                               .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/01/12 17:18:55 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/17 14:54:06 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/01/17 15:31:48 by rcaumett     #+#   ##    ##    #+#       */
+/*   Updated: 2019/01/17 15:55:45 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-void	shell_destroy(t_shell *shell)
+t_histentry	*histentry_create(char *content)
 {
-	if (shell)
-	{
-		if (shell->environment)
-			ft_strarr_del(shell->environment);
-		if (shell->history)
-			history_destroy(shell->history);
-		if (shell->lexer)
-			lexer_destroy(shell->lexer);
-		if (shell->parser)
-			parser_destroy(shell->parser);
-		if (shell->line)
-			line_destroy(&shell->line);
-		ft_memdel((void **)&shell);
-	}
+	t_histentry	*histentry;
+
+	if (!(histentry = ft_memalloc(sizeof(t_histentry))) ||
+		!(histentry->content = ft_strdup(content)))
+		return (NULL);
+	histentry->prev = NULL;
+	histentry->next = NULL;
+	return (histentry);
 }

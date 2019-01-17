@@ -1,38 +1,24 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_lstnpfirst.c                                  .::    .:/ .      .::   */
+/*   histentry_destroy.c                              .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
+/*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/01/13 17:32:07 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/13 17:32:09 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/01/17 15:37:04 by rcaumett     #+#   ##    ##    #+#       */
+/*   Updated: 2019/01/17 15:49:49 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "lstnp.h"
+#include "shell.h"
 
-/*
-**	return first node form the list containe node
-**
-**	Parameters
-**	----------
-**	node : t_lstnp *
-**		node form list
-**
-**	Returns
-**	-------
-**	node : t_lstnp
-**		first node of the list
-*/
-
-t_lstnp		*ft_lstnpfirst(t_lstnp *node)
+void	histentry_destroy(t_histentry *entry)
 {
-	if (node)
+	if (entry)
 	{
-		while (node->prev)
-			node = node->prev;
+		if (entry->content)
+			ft_strdel(&entry->content);
+		ft_memdel((void **)&entry);
 	}
-	return (node);
 }

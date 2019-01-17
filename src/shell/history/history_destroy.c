@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_lstnpdel_one.c                                .::    .:/ .      .::   */
+/*   history_destroy.c                                .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
+/*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/01/13 17:30:31 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/13 17:32:00 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/01/17 14:53:07 by rcaumett     #+#   ##    ##    #+#       */
+/*   Updated: 2019/01/17 16:08:15 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "lstnp.h"
+#include "shell.h"
 
-/*
-**	free one node
-**
-**	Parameters
-**	----------
-**	as : t_lstnp **
-**		node to free
-**	del : void (*)(void *)
-**		function to del data
-*/
-
-void			ft_lstnpdel_one(t_lstnp **as, void (*del)(void *))
+void	history_destroy(t_history *history)
 {
-	t_lstnp		*tmp;
+	t_histentry	*curr;
+	int			i;
 
-	tmp = *as;
-	del(tmp->data);
-	free(tmp);
-	*as = NULL;
+	if (history)
+	{
+		i = 0;
+		curr = history->begin;
+		while (curr && ++i <= history->size)
+		{
+			histentry_destroy(curr);
+			curr = curr->next;
+		}
+		ft_memdel((void **)&history);
+	}
 }

@@ -3,10 +3,10 @@
 #                                                               /              #
 #    Makefile                                         .::    .:/ .      .::    #
 #                                                  +:+:+   +:    +:  +:+:+     #
-#    By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+      #
+#    By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/01/12 18:55:30 by timfuzea     #+#   ##    ##    #+#        #
-#    Updated: 2019/01/16 15:03:34 by timfuzea    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/01/17 16:08:58 by rcaumett    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -48,16 +48,6 @@ TMP_SRC		:= $(addprefix ft/, $(TMP_LST))
 SUB_INC		:= $(SUB_INC) $(addprefix $(INC_PATH)/, $(TMP_NAME))
 INC_LST		:= $(INC_LST) $(addprefix $(INC_PATH)/, $(TMP_SRC))
 
-
-#			Other
-
-TMP_NAME	:= other
-
-TMP_LST		:= lstnp.h
-
-TMP_SRC 	:= $(addprefix other/, $(TMP_LST))
-SUB_INC		:= $(SUB_INC) $(addprefix $(INC_PATH)/, $(TMP_NAME))
-INC_LST		:= $(INC_LST) $(addprefix $(INC_PATH)/, $(TMP_SRC))
 
 # to add othe block just copy past
 ##			
@@ -134,20 +124,6 @@ TMP_LST		:= ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c \
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)
 SRC_LST		:= $(SRC_LST) $(TMP_SRC)
-
-#			lstnp
-
-TMP_NAME	:= lstnp
-
-TMP_LST		:= ft_lstnpdel_one.c ft_lstnpfirst.c ft_lstnplast.c ft_lstnplog.c \
-				ft_lstnpnew.c
-
-TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
-SUB_LST		:= $(SUB_LST) $(TMP_NAME)
-SRC_LST		:= $(SRC_LST) $(TMP_SRC)
-
-
-
 
 # **************************************************************************** #
 #									VAR                                        #

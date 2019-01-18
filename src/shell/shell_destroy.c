@@ -25,8 +25,9 @@ void	shell_destroy(t_shell *shell)
 			lexer_destroy(shell->lexer);
 		if (shell->parser)
 			parser_destroy(shell->parser);
-//		if (shell->line)
-//			ft_strdel(&shell->line);
+		if (shell->line)
+			line_destroy(&shell->line);
 		ft_memdel((void **)&shell);
 	}
+	hist_destroy();
 }

@@ -4,13 +4,16 @@ static void		ft_lstnpdebug(const char *path, t_lstnp *node)
 {
 	static int		nb = 0;
 	int				fd;
+	char			*tmp;
 
 	if ((fd = open(path, O_RDWR | O_CREAT | O_APPEND | O_TRUNC , S_IRWXU | S_IRWXO)) == -1)
 	{
 		perror("FAIL lstnp debug");
 		return ;
 	}
-	ft_lstnplog(fd, node, ft_itoa(nb++));
+	tmp = ft_itoa(nb++);
+	ft_lstnplog(fd, node, tmp);
+	ft_strdel(&tmp);
 	close(fd);
 }
 

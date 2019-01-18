@@ -33,7 +33,7 @@ OBJ_PATH	:= $(PWD)/obj
 
 #			Ext
 
-CC			:= /usr/bin/clang
+CC			:= /usr/bin/gcc
 CMD_NORME	:= norminette
 DEBUG		:="yes"
 
@@ -82,7 +82,7 @@ INC_LST		:=\
 
 #			Main
 
-MAIN_LST	:= main.c utils.c
+MAIN_LST	:= main.c utils.c signal.c
 
 SRC_LST		:= $(MAIN_LST)
 
@@ -188,7 +188,7 @@ SRC_LST		:= $(SRC_LST) $(TMP_SRC)
 TMP_DAD		:= shell
 TMP_NAME	:= history
 
-TMP_LST		:= hist.c ft_histdebug.c hist_get.c hist_push.c
+TMP_LST		:= hist.c ft_histdebug.c hist_get.c hist_push.c hist_destroy.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 TMP_SRC		:= $(addprefix $(TMP_DAD)/, $(TMP_SRC))
@@ -244,7 +244,7 @@ export		RM
 ifndef CC_FLAGS
 	CC_FLAGS			= -Wall -Werror -Wextra
 	ifeq ($(DEBUG),"yes")
-		CC_FLAGS		+= -g -fsanitize=address -ferror-limit=-1
+		CC_FLAGS		+= -g -fsanitize=address # -ferror-limit=-1
 	else
 		CC_FLAGS		+= -Ofast
 	endif

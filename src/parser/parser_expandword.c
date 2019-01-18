@@ -15,11 +15,9 @@
 
 char	*parser_expandword(t_parser *parser, t_token *token)
 {
-	char	*word;
 	char	*tmp;
 
 	(void)parser;
-	word = NULL;
 	tmp = token->content - 1;
 	while (*++tmp)
 	{

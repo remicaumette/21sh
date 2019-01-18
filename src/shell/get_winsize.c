@@ -19,6 +19,16 @@ int		get_winsize(t_winsize *window)
 		return (FAIL);
 	return (SUCCESS);
 }
+
+void	re_size(t_shell *set_shell)
+{
+	static t_shell *shell = NULL;
+
+	if (set_shell != NULL)
+		shell = set_shell;
+	ioctl(STDOUT_FILENO, TIOCGWINSZ, shell->line->window);
+	dprintf(1, "ws_row=%d, ws_col=%d", shell->line->window.ws_row, shell->line->window.ws_col);
+}
 /*
 void		ft_winpos(t_point *pos)
 {

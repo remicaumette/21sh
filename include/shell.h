@@ -84,6 +84,8 @@ extern t_action				g_actions[];
 t_shell						*g_shell;
 
 
+void						init_signal(void);
+
 t_shell						*shell_create(char **environment);
 void						shell_destroy(t_shell *shell);
 int							shell_start(t_shell *shell);
@@ -100,6 +102,7 @@ char						**shell_unsetenv(t_shell *shell, char *name);
 char						*shell_gethome(t_shell *shell);
 
 int							get_winsize(t_winsize *window);
+void						re_size(t_shell *set_shell);
 
 t_line						*line_create(void);
 void						line_destroy(t_line **line);
@@ -126,6 +129,7 @@ int							action_move_prev_word(t_shell *shell);
 int							action_stop(t_shell *shell);
 
 t_stackhist					*hist(void);
+void						hist_destroy(void);
 
 int							hist_push(const char *str);
 int							hist_getup(char **line);

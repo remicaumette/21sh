@@ -59,5 +59,7 @@ int			shell_start(t_shell *shell)
 	term.c_cc[VTIME] = 0;
 	if (tcsetattr(0, TCSANOW, &term) == -1)
 		return (1);
+	re_size(shell);
+	init_signal();
 	return (shell_readline(shell));
 }

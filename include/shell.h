@@ -89,8 +89,7 @@ void						init_signal(void);
 t_shell						*shell_create(char **environment);
 void						shell_destroy(t_shell *shell);
 int							shell_start(t_shell *shell);
-int							shell_actiondispatcher(t_shell *shell, char *buf,
-	int readed);
+int							shell_actiondispatcher(t_shell *shell, char *buf, int readed);
 int							shell_processline(t_shell *shell);
 int							shell_prompt(t_shell *shell);
 
@@ -112,6 +111,7 @@ int							line_deltoend(t_line *line);
 int							line_backdel(t_line *line);
 void						line_replace(t_line *line, char *src);
 
+int							action_basic(t_shell *shell, char *buf, int readed);
 int							action_return(t_shell *shell);
 int							action_clear(t_shell *shell);
 int							action_clear_to_end(t_shell *shell);

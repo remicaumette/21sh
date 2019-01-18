@@ -147,7 +147,7 @@ SRC_LST		:= $(SRC_LST) $(TMP_SRC)
 TMP_DAD		:= shell
 TMP_NAME	:= action
 
-TMP_LST		:= action_clear.c action_del.c \
+TMP_LST		:= action_basic.c action_clear.c action_del.c \
 				action_hist.c action_move.c action_multi_move.c \
 				action_stop.c action_return.c
 

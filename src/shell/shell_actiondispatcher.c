@@ -34,14 +34,6 @@ t_action	g_actions[] = {
 	{{0, 0, 0}, NULL}
 };
 
-static int	action_basic(t_shell *shell, char *buf, int readed)
-{
-	if (line_inser(shell->line, *buf) != SUCCESS)
-		return (FAIL);
-	write(1, buf, readed);
-	return (SUCCESS);
-}
-
 int			shell_actiondispatcher(t_shell *shell, char *buf, int readed)
 {
 	t_action	*tmp_action;

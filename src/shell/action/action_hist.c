@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/12 16:24:17 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/19 12:57:20 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/19 13:55:19 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,7 +24,7 @@ int					action_hist_up(t_shell *shell)
 		if (!(tmp = tgetstr(TC_DEL_LINE, NULL)))
 			return (FAIL);
 		ft_putstr(tmp);
-		ft_putstr("$ ");
+		shell_prompt(shell);
 		ft_putstr(entry->content);
 		line_replace(shell->line, ft_strdup(entry->content));
 	}
@@ -33,17 +33,18 @@ int					action_hist_up(t_shell *shell)
 
 int					action_hist_down(t_shell *shell)
 {
-	// char	*hist;
-	// char	*tmp;
+	t_histentry	*entry;
+	char		*tmp;
 
-	// hist = NULL;
-	// hist_getdown(&hist);
-	// if ((tmp = tgetstr(TC_DEL_LINE, NULL)) == NULL)
-	// 	return (FAIL);
-	// ft_putstr(tmp);
-	// ft_putstr("$ ");
-	// ft_putstr(hist);
-	// line_replace(shell->line, hist);
-	(void)shell;
+	if ((entry = shell->history->curr ? shell->history->curr : shell->history->end))
+	{
+		shell->history->curr = entry->prev;
+		if (!(tmp = tgetstr(TC_DEL_LINE, NULL)))
+			return (FAIL);
+		ft_putstr(tmp);
+		shell_prompt(shell);
+		ft_putstr(entry->content);
+		line_replace(shell->line, ft_strdup(entry->content));
+	}
 	return (SUCCESS);
 }

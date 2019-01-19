@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/12 16:24:17 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/17 16:12:39 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/19 12:57:20 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,7 +16,7 @@
 int					action_hist_up(t_shell *shell)
 {
 	t_histentry	*entry;
-	char	*tmp;
+	char		*tmp;
 
 	if ((entry = shell->history->curr ? shell->history->curr : shell->history->begin))
 	{

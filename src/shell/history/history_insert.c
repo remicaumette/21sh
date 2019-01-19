@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/17 15:29:10 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/17 15:54:12 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/19 13:16:22 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,11 +19,13 @@ t_histentry	*history_insert(t_history *history, char *content)
 
 	if (!(entry = histentry_create(content)))
 		return (NULL);
-	entry->prev = history->end;
 	entry->next = history->begin;
-	if (!(history->begin))
-		history->begin = entry;
-	history->end = entry;
+	entry->prev = history->end;
 	history->size++;
+	history->begin = entry;
+	if (history->end)
+		history->end->next = entry;
+	else
+		history->end = entry;
 	return (entry);
 }

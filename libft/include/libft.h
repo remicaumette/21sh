@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/01 14:29:03 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/12 18:45:48 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/17 14:21:05 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,6 +18,4 @@
 # include "ft/strconv.h"
 # include "ft/string.h"
 # include "ft/type.h"
-
-# include "other/lstnp.h"
 #endif

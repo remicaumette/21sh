@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_lstnpdel_one.c                                .::    .:/ .      .::   */
+/*   histentry_create.c                               .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
+/*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/01/13 17:30:31 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/13 17:32:00 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/01/17 15:31:48 by rcaumett     #+#   ##    ##    #+#       */
+/*   Updated: 2019/01/17 15:55:45 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "lstnp.h"
+#include "shell.h"
 
-/*
-**	free one node
-**
-**	Parameters
-**	----------
-**	as : t_lstnp **
-**		node to free
-**	del : void (*)(void *)
-**		function to del data
-*/
-
-void			ft_lstnpdel_one(t_lstnp **as, void (*del)(void *))
+t_histentry	*histentry_create(char *content)
 {
-	t_lstnp		*tmp;
+	t_histentry	*histentry;
 
-	tmp = *as;
-	del(tmp->data);
-	free(tmp);
-	*as = NULL;
+	if (!(histentry = ft_memalloc(sizeof(t_histentry))) ||
+		!(histentry->content = ft_strdup(content)))
+		return (NULL);
+	histentry->prev = NULL;
+	histentry->next = NULL;
+	return (histentry);
 }

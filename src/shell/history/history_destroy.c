@@ -1,21 +1,34 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   hist.c                                           .::    .:/ .      .::   */
+/*   history_destroy.c                                .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
+/*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/01/16 15:30:16 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/16 15:30:18 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/01/17 14:53:07 by rcaumett     #+#   ##    ##    #+#       */
+/*   Updated: 2019/01/19 14:17:30 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-t_stackhist		*hist(void)
+void	history_destroy(t_history *history)
 {
-	static t_stackhist		history = {0, NULL, NULL, NULL};
+	t_histentry	*curr;
+	t_histentry	*next;
+	int			i;
 
-	return (&history);
+	if (history)
+	{
+		i = 0;
+		next = history->begin;
+		while (next)
+		{
+			curr = next;
+			next = history->size != ++i ? curr->next : NULL;
+			histentry_destroy(curr);
+		}
+		ft_memdel((void **)&history);
+	}
 }

@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   shell_destroy.c                                  .::    .:/ .      .::   */
+/*   history_insert.c                                 .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/01/12 17:18:55 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/17 14:54:06 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/01/17 15:29:10 by rcaumett     #+#   ##    ##    #+#       */
+/*   Updated: 2019/01/19 13:16:22 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-void	shell_destroy(t_shell *shell)
+t_histentry	*history_insert(t_history *history, char *content)
 {
-	if (shell)
-	{
-		if (shell->environment)
-			ft_strarr_del(shell->environment);
-		if (shell->history)
-			history_destroy(shell->history);
-		if (shell->lexer)
-			lexer_destroy(shell->lexer);
-		if (shell->parser)
-			parser_destroy(shell->parser);
-		if (shell->line)
-			line_destroy(&shell->line);
-		ft_memdel((void **)&shell);
-	}
+	t_histentry	*entry;
+
+	if (!(entry = histentry_create(content)))
+		return (NULL);
+	entry->next = history->begin;
+	entry->prev = history->end;
+	history->size++;
+	history->begin = entry;
+	if (history->end)
+		history->end->next = entry;
+	else
+		history->end = entry;
+	return (entry);
 }

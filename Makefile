@@ -3,10 +3,23 @@
 #                                                               /              #
 #    Makefile                                         .::    .:/ .      .::    #
 #                                                  +:+:+   +:    +:  +:+:+     #
+#    By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+      #
+#                                                  #+#   #+    #+    #+#       #
+#    Created: 2019/01/22 16:11:35 by timfuzea     #+#   ##    ##    #+#        #
+#    Updated: 2019/01/22 17:00:06 by timfuzea    ###    #+. /#+    ###.fr      #
+#                                                          /                   #
+#                                                         /                    #
+# **************************************************************************** #
+
+# **************************************************************************** #
+#                                                           LE - /             #
+#                                                               /              #
+#    Makefile                                         .::    .:/ .      .::    #
+#                                                  +:+:+   +:    +:  +:+:+     #
 #    By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/01/12 17:21:11 by timfuzea     #+#   ##    ##    #+#        #
-#    Updated: 2019/01/16 15:22:35 by timfuzea    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/01/22 16:02:42 by timfuzea    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -136,7 +149,7 @@ TMP_NAME	:= shell
 
 TMP_LST		:= shell_create.c shell_destroy.c shell_actiondispatcher.c \
 				shell_processline.c shell_start.c utils.c \
-				get_winsize.c shell_prompt.c
+				shell_prompt.c window.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)
@@ -148,7 +161,8 @@ TMP_DAD		:= shell
 TMP_NAME	:= action
 
 TMP_LST		:= action_basic.c action_clear.c action_del.c \
-				action_hist.c action_move.c action_multi_move.c \
+				action_arrow_up.c action_arrow_down.c action_arrow_left.c \
+				action_arrow_right.c action_end.c action_home.c \
 				action_stop.c action_return.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
@@ -188,7 +202,8 @@ SRC_LST		:= $(SRC_LST) $(TMP_SRC)
 TMP_DAD		:= shell
 TMP_NAME	:= history
 
-TMP_LST		:= hist.c ft_histdebug.c hist_get.c hist_push.c hist_destroy.c
+TMP_LST		:= history_create.c history_destroy.c history_insert.c \
+				histentry_create.c histentry_destroy.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 TMP_SRC		:= $(addprefix $(TMP_DAD)/, $(TMP_SRC))

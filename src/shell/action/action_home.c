@@ -1,36 +1,21 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_lstnplast.c                                   .::    .:/ .      .::   */
+/*   action_home.c                                    .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
+/*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/01/13 17:32:12 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/13 17:33:00 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/01/19 19:33:54 by rcaumett     #+#   ##    ##    #+#       */
+/*   Updated: 2019/01/19 19:34:01 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "lstnp.h"
+#include "shell.h"
 
-/*
-**	Parametres
-**	----------
-**	node : t_lstnp *
-**		node from lstnp
-**
-**	Returns
-**	-------
-**	t_lstnp :
-**		last node of the list
-*/
-
-t_lstnp		*lstnplast(t_lstnp *node)
+int	action_home(t_shell *shell)
 {
-	if (node)
-	{
-		while (node->next)
-			node = node->next;
-	}
-	return (node);
+	while (shell->line->cursor != 1)
+		action_arrow_left(shell);
+	return (SUCCESS);
 }

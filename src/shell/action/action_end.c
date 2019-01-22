@@ -1,35 +1,21 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   lexer_addtoken.c                                 .::    .:/ .      .::   */
+/*   action_end.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/01/17 13:07:58 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/17 13:08:00 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/01/19 19:34:17 by rcaumett     #+#   ##    ##    #+#       */
+/*   Updated: 2019/01/19 19:34:26 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-t_token	*lexer_addtoken(t_lexer *lexer, t_tokentype type,
-	char *content)
+int	action_end(t_shell *shell)
 {
-	t_token	*token;
-
-	if (!(token = ft_memalloc(sizeof(t_token))))
-		return (NULL);
-	token->type = type;
-	token->content = NULL;
-	token->next = NULL;
-	if (content && !(token->content = ft_strdup(content)))
-		return (NULL);
-	if (!lexer->begin)
-		lexer->begin = token;
-	if (lexer->end)
-		lexer->end->next = token;
-	lexer->end = token;
-	lexer->count++;
-	return (token);
+	while (shell->line->cursor <= shell->line->size)
+		action_arrow_right(shell);
+	return (SUCCESS);
 }

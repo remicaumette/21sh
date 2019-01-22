@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   hist.c                                           .::    .:/ .      .::   */
+/*   history_create.c                                 .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
+/*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/01/16 15:30:16 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/16 15:30:18 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/01/17 14:42:05 by rcaumett     #+#   ##    ##    #+#       */
+/*   Updated: 2019/01/17 16:00:32 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-t_stackhist		*hist(void)
+t_history	*history_create(void)
 {
-	static t_stackhist		history = {0, NULL, NULL, NULL};
+	t_history	*history;
 
-	return (&history);
+	if (!(history = ft_memalloc(sizeof(t_history))))
+		return (NULL);
+	history->size = 0;
+	history->begin = NULL;
+	history->curr = NULL;
+	history->end = NULL;
+	return (history);
 }

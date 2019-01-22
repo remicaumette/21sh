@@ -1,35 +1,24 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_lstnpdel_one.c                                .::    .:/ .      .::   */
+/*   histentry_destroy.c                              .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
+/*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/01/13 17:30:31 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/13 17:32:00 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/01/17 15:37:04 by rcaumett     #+#   ##    ##    #+#       */
+/*   Updated: 2019/01/17 15:49:49 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "lstnp.h"
+#include "shell.h"
 
-/*
-**	free one node
-**
-**	Parameters
-**	----------
-**	as : t_lstnp **
-**		node to free
-**	del : void (*)(void *)
-**		function to del data
-*/
-
-void			ft_lstnpdel_one(t_lstnp **as, void (*del)(void *))
+void	histentry_destroy(t_histentry *entry)
 {
-	t_lstnp		*tmp;
-
-	tmp = *as;
-	del(tmp->data);
-	free(tmp);
-	*as = NULL;
+	if (entry)
+	{
+		if (entry->content)
+			ft_strdel(&entry->content);
+		ft_memdel((void **)&entry);
+	}
 }

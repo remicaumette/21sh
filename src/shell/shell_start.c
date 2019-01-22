@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/09 15:15:02 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/16 15:24:39 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/22 17:14:57 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -59,7 +59,7 @@ int			shell_start(t_shell *shell)
 	term.c_cc[VTIME] = 0;
 	if (tcsetattr(0, TCSANOW, &term) == -1)
 		return (1);
-	re_size(shell);
+	window_resize(shell);
 	init_signal();
 	return (shell_readline(shell));
 }

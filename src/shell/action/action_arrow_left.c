@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   lexer_addtoken.c                                 .::    .:/ .      .::   */
+/*   action_arrow_left.c                              .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/01/17 13:07:58 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/17 13:08:00 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/06/28 16:48:33 by timfuzea     #+#   ##    ##    #+#       */
+/*   Updated: 2019/01/19 19:31:27 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-t_token	*lexer_addtoken(t_lexer *lexer, t_tokentype type,
-	char *content)
+int	action_arrow_left(t_shell *shell)
 {
-	t_token	*token;
+	char	*tmp;
 
-	if (!(token = ft_memalloc(sizeof(t_token))))
-		return (NULL);
-	token->type = type;
-	token->content = NULL;
-	token->next = NULL;
-	if (content && !(token->content = ft_strdup(content)))
-		return (NULL);
-	if (!lexer->begin)
-		lexer->begin = token;
-	if (lexer->end)
-		lexer->end->next = token;
-	lexer->end = token;
-	lexer->count++;
-	return (token);
+	if (shell->line->cursor > 1)
+	{
+		if ((tmp = tgetstr(TC_MOVE_LEFT, NULL)) == NULL)
+			return (FAIL);
+		ft_putstr(tmp);
+		if (shell->line->cursor > shell->line->size)
+		{
+			if ((tmp = tgetstr(TC_INSER_START, NULL)) == NULL)
+				return (FAIL);
+			ft_putstr(tmp);
+		}
+		shell->line->cursor--;
+	}
+	return (SUCCESS);
 }

@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   lstnp.h                                          .::    .:/ .      .::   */
+/*   line_window.c                                    .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/01/13 17:38:43 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/13 17:39:53 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/01/18 13:25:21 by timfuzea     #+#   ##    ##    #+#       */
+/*   Updated: 2019/01/22 17:40:00 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#ifndef LSTNP_H
-# define LSTNP_H
+#include "shell.h"
 
-# include <stdlib.h>
-// debug
-# include <stdio.h>
-
-typedef struct		s_lstnp
+void		window_resize(t_shell *shell)
 {
-	void			*data;
-	struct s_lstnp	*next;
-	struct s_lstnp	*prev;
-}					t_lstnp;
+	static	t_shell		*shell_save = NULL;
 
-t_lstnp				*ft_lstnpnew(void *data);
-void				ft_lstnpdel_one(t_lstnp **as, void (*del)(void *));
-
-// use dprintf
-void				ft_lstnplog(int fd, t_lstnp *begin_lst,
-		const char *head_msg);
-#endif
+	if (shell_save == NULL && shell)
+		shell_save = shell;
+	ioctl(STDOUT_FILENO, TIOCGWINSZ, &(shell_save->line->window));
+}

@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/12 17:18:55 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/15 12:58:54 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/22 14:43:04 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,7 +20,7 @@ void	shell_destroy(t_shell *shell)
 		if (shell->environment)
 			ft_strarr_del(shell->environment);
 		if (shell->history)
-			ft_strarr_del(shell->history);
+			history_destroy(shell->history);
 		if (shell->lexer)
 			lexer_destroy(shell->lexer);
 		if (shell->parser)
@@ -29,5 +29,4 @@ void	shell_destroy(t_shell *shell)
 			line_destroy(&shell->line);
 		ft_memdel((void **)&shell);
 	}
-	hist_destroy();
 }

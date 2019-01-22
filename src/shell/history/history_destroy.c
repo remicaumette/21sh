@@ -1,38 +1,34 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_lstnpfirst.c                                  .::    .:/ .      .::   */
+/*   history_destroy.c                                .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
+/*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/01/13 17:32:07 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/13 17:32:09 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/01/17 14:53:07 by rcaumett     #+#   ##    ##    #+#       */
+/*   Updated: 2019/01/19 14:17:30 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "lstnp.h"
+#include "shell.h"
 
-/*
-**	return first node form the list containe node
-**
-**	Parameters
-**	----------
-**	node : t_lstnp *
-**		node form list
-**
-**	Returns
-**	-------
-**	node : t_lstnp
-**		first node of the list
-*/
-
-t_lstnp		*ft_lstnpfirst(t_lstnp *node)
+void	history_destroy(t_history *history)
 {
-	if (node)
+	t_histentry	*curr;
+	t_histentry	*next;
+	int			i;
+
+	if (history)
 	{
-		while (node->prev)
-			node = node->prev;
+		i = 0;
+		next = history->begin;
+		while (next)
+		{
+			curr = next;
+			next = history->size != ++i ? curr->next : NULL;
+			histentry_destroy(curr);
+		}
+		ft_memdel((void **)&history);
 	}
-	return (node);
 }

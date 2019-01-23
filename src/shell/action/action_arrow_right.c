@@ -6,28 +6,28 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/28 16:48:33 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/19 19:31:35 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/23 14:09:05 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int	action_arrow_right(t_shell *shell)
+int		action_arrow_right(t_shell *shell)
 {
-	char	*tmp;
+	int		i;
+	int		endline;
 
+	i = 0;
+	endline = action_isendline(shell->line);
 	if (shell->line->cursor <= shell->line->size)
 	{
-		if ((tmp = tgetstr(TC_MOVE_RIGHT, NULL)) == NULL)
-			return (FAIL);
-		ft_putstr(tmp);
+		if (endline == TRUE)
+			action_str(TC_MOVE_DOWN);
+		else
+			action_str(TC_MOVE_RIGHT);
 		if (shell->line->cursor == shell->line->size)
-		{
-			if ((tmp = tgetstr(TC_INSER_STOP, NULL)) == NULL)
-				return (FAIL);
-			ft_putstr(tmp);
-		}
+			action_str(TC_INSER_STOP);
 		shell->line->cursor++;
 	}
 	return (SUCCESS);

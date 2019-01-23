@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/14 08:08:55 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/22 16:58:50 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/23 13:53:22 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -108,6 +108,9 @@ int							line_deltoend(t_line *line);
 int							line_backdel(t_line *line);
 void						line_replace(t_line *line, char *src);
 
+int							action_str(char *str);
+int							action_isendline(t_line *line);
+int							action_islatline(t_line *line);
 int							action_basic(t_shell *shell, char *buf, int readed);
 int							action_return(t_shell *shell);
 int							action_clear(t_shell *shell);

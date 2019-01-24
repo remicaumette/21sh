@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/14 08:08:55 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/23 13:53:22 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/25 21:56:25 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,12 +19,19 @@
 # include <sys/ioctl.h>
 # include <sys/stat.h>
 
+# include "debug.h"
 # include "libft.h"
 # include "lexer.h"
 # include "parser.h"
 # include "process.h"
 # include "utils.h"
 # include "tc_key.h"
+
+# define IS_BEGINLINE (line->cur_pos.ws_col == 0)
+# define IS_ENDLINE (line->cur_pos.ws_col >= line->window.ws_col)
+
+# define IS_FIRSTLINE (line->cur_pos.ws_row == 0)
+# define IS_LASTLINE (line->cur_pos.ws_row >= line->window.ws_row)
 
 typedef struct s_shell		t_shell;
 typedef struct s_action		t_action;
@@ -55,6 +62,7 @@ struct						s_line
 	char		*content;
 	int			size;
 	int			cursor;
+	t_winsize	cur_pos;
 	t_winsize	window;
 };
 
@@ -91,8 +99,8 @@ char						**shell_setenv(t_shell *shell, char *name,
 char						**shell_unsetenv(t_shell *shell, char *name);
 char						*shell_gethome(t_shell *shell);
 
-int							window_getsize(t_winsize *window);
 void						window_resize(t_shell *shell);
+int							window_getcurentpos(t_winsize *curent_pos);
 
 t_history					*history_create(void);
 void						history_destroy(t_history *history);
@@ -107,11 +115,17 @@ int							line_inser(t_line *line, char c);
 int							line_deltoend(t_line *line);
 int							line_backdel(t_line *line);
 void						line_replace(t_line *line, char *src);
+int							line_debug(t_line *line);
 
-int							action_str(char *str);
-int							action_isendline(t_line *line);
-int							action_islatline(t_line *line);
-int							action_basic(t_shell *shell, char *buf, int readed);
+int							action_debug(t_shell *shell);
+
+int							action_str(char *cap);
+int							action_goto(t_line *line, int col, int row);
+
+int							action_move_left(t_line *line);
+int							action_move_right(t_line *line);
+
+int							action_basic(t_line *line, char *buf, int readed);
 int							action_return(t_shell *shell);
 int							action_clear(t_shell *shell);
 int							action_clear_to_end(t_shell *shell);

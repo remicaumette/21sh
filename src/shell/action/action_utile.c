@@ -12,26 +12,33 @@
 /* ************************************************************************** */
 
 #include "shell.h"
+#include "debug.h"
 
-int				action_isendline(t_line *line)
+static int	putcharr(int c)
 {
-	if ((line->cursor + 2) == line->window.ws_col)
-		return (TRUE);
-	return (FALSE);
+	return (write(1, &c, 1));
 }
 
-int				action_islastline(t_line *line)
-{
-	if (((line->cursor + 2) / line->window.ws_col) == line->window.ws_row)
-		return (TRUE);
-	return (FALSE);
-}
-
-int			action_str(char *str)
+int			action_str(char *cap)
 {
 	char	*tmp;
-	if (!(tmp = tgetstr(str, NULL)))
+
+	if (!(tmp = tgetstr(cap, NULL)))
 		return (FAIL);
 	ft_putstr(tmp);
+	return (SUCCESS);
+}
+
+int			action_goto(t_line *line, int col, int row)
+{
+	char	*tmp;
+	DEBUG_FD("goto.log")
+
+	if (!(tmp = tgetstr(TC_GOTO, NULL)))
+		return (FAIL);
+	dprintf(fd_debug, "goto col=%d, row=%d\n", col, row);
+	tputs(tgoto(tmp, col, row), 1, putcharr);
+	line->cur_pos.ws_col = col;
+	line->cur_pos.ws_row = row;
 	return (SUCCESS);
 }

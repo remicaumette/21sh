@@ -6,24 +6,10 @@
 #    By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/01/22 16:11:35 by timfuzea     #+#   ##    ##    #+#        #
-#    Updated: 2019/01/23 12:55:14 by timfuzea    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/01/25 21:29:42 by timfuzea    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
-
-# **************************************************************************** #
-#                                                           LE - /             #
-#                                                               /              #
-#    Makefile                                         .::    .:/ .      .::    #
-#                                                  +:+:+   +:    +:  +:+:+     #
-#    By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+      #
-#                                                  #+#   #+    #+    #+#       #
-#    Created: 2019/01/12 17:21:11 by timfuzea     #+#   ##    ##    #+#        #
-#    Updated: 2019/01/22 16:02:42 by timfuzea    ###    #+. /#+    ###.fr      #
-#                                                          /                   #
-#                                                         /                    #
-# **************************************************************************** #
-
 
 # **************************************************************************** #
 #								PATH                                           #
@@ -60,6 +46,7 @@ export DEBUG
 LIB_NAME	:= libft
 LIB_SYS		:= -lncurses
 INC_LST		:=\
+	include/debug.h				\
 	include/lexer.h				\
 	include/parser.h			\
 	include/shell.h				\
@@ -163,7 +150,8 @@ TMP_NAME	:= action
 TMP_LST		:= action_basic.c action_clear.c action_del.c \
 				action_arrow_up.c action_arrow_down.c action_arrow_left.c \
 				action_arrow_right.c action_end.c action_home.c \
-				action_stop.c action_return.c action_utile.c
+				action_stop.c action_return.c action_utile.c action_move.c \
+				action_debug.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 TMP_SRC		:= $(addprefix $(TMP_DAD)/, $(TMP_SRC))
@@ -190,7 +178,8 @@ TMP_DAD		:= shell
 TMP_NAME	:= line
 
 TMP_LST		:= line_backdel.c line_create.c line_deltoend.c line_destroy.c \
-				line_inser.c line_replace.c line_reset.c
+				line_inser.c line_replace.c line_reset.c \
+				line_debug.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 TMP_SRC		:= $(addprefix $(TMP_DAD)/, $(TMP_SRC))

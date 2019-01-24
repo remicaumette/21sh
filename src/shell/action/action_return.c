@@ -32,6 +32,9 @@ int	action_return(t_shell *shell)
 			return (FAIL);
 		line_reset(shell->line);
 	}
-	shell_prompt(shell);
+	if (shell_prompt(shell) != SUCCESS)
+		return (FAIL);
+	if (window_getcurentpos(&(shell->line->cur_pos)) != SUCCESS)
+		return (FAIL);
 	return (SUCCESS);
 }

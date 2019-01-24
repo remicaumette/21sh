@@ -1,10 +1,18 @@
 #include "shell.h"
 
-int		action_basic(t_shell *shell, char *buf, int readed)
+int		action_basic(t_line *line, char *buf, int readed)
 {
-	if (line_inser(shell->line, *buf) != SUCCESS)
+	if (line_inser(line, *buf) != SUCCESS)
 		return (FAIL);
 	write(1, buf, readed);
+	if (IS_ENDLINE)
+	{
+		if (!IS_LASTLINE)
+			line->cur_pos.ws_row++;
+		line->cur_pos.ws_col = 0;
+	}
+	else
+		line->cur_pos.ws_col++;
 	return (SUCCESS);
 }
 /*

@@ -16,39 +16,34 @@
 int		action_clear(t_shell *shell)
 {
 	int		i;
-	char	*tmp;
 
-	if ((tmp = tgetstr(TC_CLEAR, NULL)) == NULL)
+	if (action_str(TC_CLEAR) != SUCCESS)
 		return (FAIL);
-	ft_putstr(tmp);
 	shell_prompt(shell);
 	ft_putstr(shell->line->content);
 	i = shell->line->size + 1;
 	if (shell->line->cursor != i)
 	{
-		if ((tmp = tgetstr(TC_INSER_START, NULL)) == NULL)
+		if (action_str(TC_INSER_START) != SUCCESS)
 			return (FAIL);
-		ft_putstr(tmp);
 		while (i != shell->line->cursor)
 		{
-			if ((tmp = tgetstr(TC_MOVE_LEFT, NULL)) == NULL)
+			if (action_move_left(shell->line) != SUCCESS)
 				return (FAIL);
-			ft_putstr(tmp);
 			i--;
 		}
 	}
+	if (window_getcurentpos(&(shell->line->cur_pos)) != SUCCESS)
+		return (FAIL);
 	return (SUCCESS);
 }
 
 int		action_clear_to_end(t_shell *shell)
 {
-	char	*tmp;
-
 	if (shell->line->cursor < (shell->line->size + 1))
 	{
-		if ((tmp = tgetstr(TC_CLEAR_TO_END, NULL)) == NULL)
+		if (action_str(TC_CLEAR_TO_END) != SUCCESS)
 			return (FAIL);
-		ft_putstr(tmp);
 		line_deltoend(shell->line);
 	}
 	return (SUCCESS);

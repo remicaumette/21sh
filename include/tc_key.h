@@ -47,6 +47,7 @@
 # define TC_CTRL_UP		{}71696882162459
 # define TC_CTRL_DOWN	72796393790235
 
+# define TC_GOTO			"cm"
 # define TC_NB_COL			"co"
 # define TC_NB_LINE			"li"
 
@@ -63,4 +64,6 @@
 # define TC_MOVE_DOWN		"do"
 # define TC_MOVE_LEFT		"le"
 # define TC_MOVE_RIGHT		"nd"
+
+# define TC_GETCURSOR		"\033[6n"
 #endif

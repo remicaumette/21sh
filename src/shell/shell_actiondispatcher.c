@@ -15,6 +15,7 @@
 
 t_action	g_actions[] = {
 	{TC_KEY_RETURN, action_return},
+	{TC_CTRL_R, action_debug},
 	{TC_CTRL_A, action_home},
 	{TC_CTRL_D, action_stop},
 	{TC_CTRL_E, action_end},
@@ -43,5 +44,5 @@ int			shell_actiondispatcher(t_shell *shell, char *buf, int readed)
 			return (tmp_action->handler(shell));
 		tmp_action++;
 	}
-	return (action_basic(shell, buf, readed));
+	return (action_basic(shell->line, buf, readed));
 }

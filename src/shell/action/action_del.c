@@ -15,16 +15,12 @@
 
 int		action_backdel(t_shell *shell)
 {
-	char	*tmp;
-
 	if (shell->line->cursor > 1)
 	{
-		if ((tmp = tgetstr(TC_MOVE_LEFT, NULL)) == NULL)
+		if (action_move_left(shell->line) != SUCCESS)
 			return (FAIL);
-		ft_putstr(tmp);
-		if ((tmp = tgetstr(TC_DEL, NULL)) == NULL)
+		if (action_str(TC_DEL) != SUCCESS)
 			return (FAIL);
-		ft_putstr(tmp);
 		line_backdel(shell->line);
 	}
 	return (SUCCESS);

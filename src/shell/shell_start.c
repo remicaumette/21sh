@@ -35,6 +35,8 @@ static int	shell_readline(t_shell *shell)
 
 	if (shell_prompt(shell) != SUCCESS)
 		return (shell_stop(1));
+	if (window_getcurentpos(&(shell->line->cur_pos)) != SUCCESS)
+		return (shell_stop(1));
 	while ((readed = read(0, buf, 3)) > 0)
 	{
 		ft_bzero(buf + readed, 4 - readed);

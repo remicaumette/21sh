@@ -88,7 +88,8 @@ SRC_LST		:= $(SRC_LST) $(TMP_SRC)
 
 TMP_NAME	:= strconv
 
-TMP_LST		:= ft_atoi.c ft_atol.c ft_atoll.c ft_itoa.c ft_lltoa.c ft_ltoa.c
+TMP_LST		:= ft_atoi.c ft_atol.c ft_atoll.c ft_itoa.c ft_lltoa.c ft_ltoa.c \
+				ft_atous.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)

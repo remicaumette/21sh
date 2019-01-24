@@ -16,14 +16,12 @@
 int	action_arrow_up(t_shell *shell)
 {
 	t_histentry *entry;
-	char *tmp;
 
 	if ((entry = shell->history->curr ? shell->history->curr : shell->history->begin))
 	{
 		shell->history->curr = entry->next;
-		if (!(tmp = tgetstr(TC_DEL_LINE, NULL)))
+		if (action_str(TC_DEL_LINE) != SUCCESS)
 			return (FAIL);
-		ft_putstr(tmp);
 		shell_prompt(shell);
 		ft_putstr(entry->content);
 		line_replace(shell->line, ft_strdup(entry->content));

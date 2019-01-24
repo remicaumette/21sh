@@ -12,6 +12,7 @@
 /* ************************************************************************** */
 
 #include "shell.h"
+#include "debug.h"
 
 void		window_resize(t_shell *shell)
 {
@@ -20,4 +21,27 @@ void		window_resize(t_shell *shell)
 	if (shell_save == NULL && shell)
 		shell_save = shell;
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &(shell_save->line->window));
+}
+
+int			window_getcurentpos(t_winsize *curent_pos)
+{
+	char	buf[10 + 1];
+	int		ret;
+	int		i;
+
+	i = 3;
+	ft_putstr(TC_GETCURSOR);
+	if ((ret = read(STDIN_FILENO, &buf, 10)) <= 0)
+		return (FAIL);
+	buf[ret] = '\0';
+	curent_pos->ws_row = ft_atous(&buf[2]);
+	while (buf[i] && buf[i] != ';')
+		i++;
+	if (!buf[i])
+	{
+		dprintf(1, "fail de conseption need rewite sone code\n"); // remove after many many test
+		return (FAIL);
+	}
+	curent_pos->ws_col = ft_atous(&buf[++i]);
+	return (SUCCESS);
 }

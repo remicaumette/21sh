@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/28 16:48:33 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/19 19:31:27 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/25 21:24:43 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,18 +15,14 @@
 
 int	action_arrow_left(t_shell *shell)
 {
-	char	*tmp;
-
 	if (shell->line->cursor > 1)
 	{
-		if ((tmp = tgetstr(TC_MOVE_LEFT, NULL)) == NULL)
+		if (action_move_left(shell->line) != SUCCESS)
 			return (FAIL);
-		ft_putstr(tmp);
 		if (shell->line->cursor > shell->line->size)
 		{
-			if ((tmp = tgetstr(TC_INSER_START, NULL)) == NULL)
+			if (action_str(TC_INSER_START) != SUCCESS)
 				return (FAIL);
-			ft_putstr(tmp);
 		}
 		shell->line->cursor--;
 	}

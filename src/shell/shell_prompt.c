@@ -15,7 +15,12 @@
 
 int		shell_prompt(t_shell *shell)
 {
-	(void)shell;
+	char	*pwd;
+
+	if ((pwd = shell_getenv(shell, "PWD")))
+		ft_putendl(pwd);
 	ft_putstr("$ ");
+	if (window_getcurentpos(shell) != SUCCESS)
+		return (FAIL);
 	return (SUCCESS);
 }

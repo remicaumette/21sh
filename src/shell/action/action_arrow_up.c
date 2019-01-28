@@ -20,11 +20,14 @@ int	action_arrow_up(t_shell *shell)
 	if ((entry = shell->history->curr ? shell->history->curr : shell->history->begin))
 	{
 		shell->history->curr = entry->next;
-		if (action_str(TC_DEL_LINE) != SUCCESS)
+
+		if (action_home(shell) != SUCCESS)
 			return (FAIL);
-		shell_prompt(shell);
+		if (action_str(TC_CLEAR_TO_END) != SUCCESS)
+			return (FAIL);
 		ft_putstr(entry->content);
 		line_replace(shell->line, ft_strdup(entry->content));
+		line_curpp(shell->line, shell->line->size);
 	}
 	return (SUCCESS);
 }

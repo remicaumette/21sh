@@ -6,22 +6,13 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/18 13:25:21 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/22 17:40:00 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/30 13:41:24 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "shell.h"
 #include "debug.h"
-
-void		window_resize(t_shell *shell)
-{
-	static	t_shell		*shell_save = NULL;
-
-	if (shell_save == NULL && shell)
-		shell_save = shell;
-	ioctl(STDOUT_FILENO, TIOCGWINSZ, &(shell_save->line->window));
-}
 
 int			window_getcurentpos(t_winsize *curent_pos)
 {
@@ -45,3 +36,15 @@ int			window_getcurentpos(t_winsize *curent_pos)
 	curent_pos->ws_col = ft_atous(&buf[++i]);
 	return (SUCCESS);
 }
+
+void		window_resize(t_shell *shell)
+{
+	static	t_shell		*shell_save = NULL;
+
+	if (shell_save == NULL && shell)
+		shell_save = shell;
+	ioctl(STDOUT_FILENO, TIOCGWINSZ, &(shell_save->line->window));
+	window_getcurentpos(&(shell_save->line->cur_pos));
+}
+
+

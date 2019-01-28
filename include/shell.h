@@ -6,13 +6,14 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/14 08:08:55 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/25 21:56:25 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/30 14:47:55 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #ifndef SHELL_H
 # define SHELL_H
+
 # include <curses.h>
 # include <term.h>
 # include <fcntl.h>
@@ -27,11 +28,17 @@
 # include "utils.h"
 # include "tc_key.h"
 
-# define IS_BEGINLINE (line->cur_pos.ws_col == 0)
-# define IS_ENDLINE (line->cur_pos.ws_col >= line->window.ws_col)
+# ifdef __linux__
+#  define LINUX				1
+# else
+#  define LINUX				0
+# endif
 
-# define IS_FIRSTLINE (line->cur_pos.ws_row == 0)
-# define IS_LASTLINE (line->cur_pos.ws_row >= line->window.ws_row)
+# define IS_BEGINLINE		(line->cur_pos.ws_col == 1)
+# define IS_FIRSTLINE		(line->cur_pos.ws_row == 1)
+
+# define IS_ENDLINE			(line->cur_pos.ws_col >= line->window.ws_col)
+# define IS_LASTLINE		(line->cur_pos.ws_row >= line->window.ws_row)
 
 typedef struct s_shell		t_shell;
 typedef struct s_action		t_action;
@@ -115,6 +122,7 @@ int							line_inser(t_line *line, char c);
 int							line_deltoend(t_line *line);
 int							line_backdel(t_line *line);
 void						line_replace(t_line *line, char *src);
+int							line_curpp(t_line *line, int n);
 int							line_debug(t_line *line);
 
 int							action_debug(t_shell *shell);

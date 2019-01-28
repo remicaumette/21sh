@@ -6,7 +6,7 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/14 14:54:24 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/22 17:24:49 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/30 13:30:06 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,11 +27,7 @@ static void		signale_handl(int sig)
 		exit(1);
 	}
 	if (sig == SIGWINCH)
-	{
-		ft_putstr("SIG_WINCH == redimension windo\n");
 		window_resize(NULL);
-	}
-	dprintf(1, "sig=%d\n", sig);
 }
 
 void			init_signal(void)

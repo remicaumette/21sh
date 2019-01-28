@@ -16,6 +16,7 @@
 int	action_return(t_shell *shell)
 {
 	write(1, "\n", 1);
+	printf("line: %s\n", shell->line->content);
 	if (shell->line->content)
 	{
 		if (lexer_tokenize(shell->lexer, shell->line->content))

@@ -6,7 +6,7 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/28 16:48:33 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/16 13:15:34 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/30 14:32:14 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,19 +22,19 @@ int		action_clear(t_shell *shell)
 	shell_prompt(shell);
 	ft_putstr(shell->line->content);
 	i = shell->line->size + 1;
-	if (shell->line->cursor != i)
+	if (window_getcurentpos(&(shell->line->cur_pos)) != SUCCESS)
+		return (FAIL);
+	if (shell->line->cursor < i)
 	{
-		if (action_str(TC_INSER_START) != SUCCESS)
-			return (FAIL);
-		while (i != shell->line->cursor)
+		while (i > shell->line->cursor)
 		{
 			if (action_move_left(shell->line) != SUCCESS)
 				return (FAIL);
 			i--;
 		}
+		if (action_str(TC_INSER_START) != SUCCESS)
+			return (FAIL);
 	}
-	if (window_getcurentpos(&(shell->line->cur_pos)) != SUCCESS)
-		return (FAIL);
 	return (SUCCESS);
 }
 

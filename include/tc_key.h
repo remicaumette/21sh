@@ -52,7 +52,7 @@
 # define TC_NB_LINE			"li"
 
 # define TC_CLEAR			"cl"
-# define TC_CLEAR_TO_END	"ce"
+# define TC_CLEAR_TO_END	"cd"
 
 # define TC_DEL				"dc"
 # define TC_DEL_LINE		"dl"

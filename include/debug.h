@@ -3,6 +3,9 @@
 
 #include <stdio.h>
 
+# define USE_DEBUG
+# ifdef USE_DEBUG
+
 int		g_fd_debug;
 
 # define DEBUG_INIT(x) \
@@ -20,5 +23,6 @@ int		g_fd_debug;
 			perror("Fail to open x"); \
 	}
 
+# endif
 
 #endif

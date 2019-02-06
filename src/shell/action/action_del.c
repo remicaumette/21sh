@@ -6,7 +6,7 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/12 14:27:00 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/15 14:40:10 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/15 20:16:55 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,9 +22,9 @@ static int		multi_line(t_line *line)
 		return (FAIL);
 	if (action_str(TC_CLEAR_TO_END) != SUCCESS)
 		return (FAIL);
-	ft_putstr(&(line->content[line->cursor - 1]));
-	line_curpp(line, line->size - line->cursor + 2);
-	while (++i <= (line->size - line->cursor + 1))
+	dprintf(g_fd_debug, "multi_line\n");
+	action_putstr(line, &(line->content[line->cursor - 1]));
+	while (++i <= (line->size - line->cursor))
 	{
 		if (action_move_left(line) != SUCCESS)
 			return (FAIL);
@@ -41,9 +41,17 @@ int		action_backdel(t_shell *shell)
 		line_backdel(shell->line);
 		if (action_move_left(shell->line) != SUCCESS)
 			return (FAIL);
-		if (action_str(TC_DEL) != SUCCESS)
-			return (FAIL);
-		if (((shell->line->size + 2) / shell->line->window.ws_col) > ((shell->line->cursor) / shell->line->window.ws_col))
+		if (shell->line->cur_pos.ws_col >= shell->line->window.ws_col)
+		{
+			if (action_str(TC_CLEAR_END_LINE) != SUCCESS)
+				return (FAIL);
+		}
+		else
+		{
+			if (action_str(TC_DEL) != SUCCESS)
+				return (FAIL);
+		}
+		if (((shell->line->size) / shell->line->window.ws_col) > ((shell->line->cursor) / shell->line->window.ws_col))
 		{
 			if (multi_line(shell->line) != SUCCESS)
 				return (FAIL);

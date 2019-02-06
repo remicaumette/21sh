@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/28 14:41:08 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/17 14:17:15 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/13 19:25:21 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -52,6 +52,7 @@
 # define TC_NB_LINE			"li"
 
 # define TC_CLEAR			"cl"
+# define TC_CLEAR_END_LINE	"ce"
 # define TC_CLEAR_TO_END	"cd"
 
 # define TC_DEL				"dc"

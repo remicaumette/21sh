@@ -6,7 +6,7 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/23 12:41:18 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/23 13:54:21 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/15 17:57:17 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,15 +22,31 @@ int			action_str(char *cap)
 	ft_putstr(tmp);
 	return (SUCCESS);
 }
-/*
-int			action_goto(t_line *line, int col, int row)
-{
-	char	*tmp;
 
-	if (!(tmp = tgetstr(TC_GOTO, NULL)))
-		return (FAIL);
-	tputs(tgoto(tmp, col, row), 1, putcharr);
-	line->cur_pos.ws_col = col;
-	line->cur_pos.ws_row = row;
-	return (SUCCESS);
-}*/
+void		action_putchar(t_line *line, char *buf, int readed)
+{
+	write(1, buf, readed);
+	if (IS_ENDLINE)
+	{
+		ft_putchar('\n');
+		if (!IS_LASTLINE)
+			line->cur_pos.ws_row++;
+		line->cur_pos.ws_col = 1;
+	}
+	else
+		line->cur_pos.ws_col++;
+}
+
+void		action_putstr(t_line *line, char *str)
+{
+	dprintf(g_fd_debug, "str=%s", str);
+	if (str)
+	{
+		while (*str != '\0')
+		{
+			dprintf(g_fd_debug, "*str=%c\n", *str);
+			action_putchar(line, str, 1);
+			str++;
+		}
+	}
+}

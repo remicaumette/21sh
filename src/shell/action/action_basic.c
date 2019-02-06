@@ -1,3 +1,16 @@
+/* ************************************************************************** */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   action_basic.c                                   .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2019/02/14 00:26:38 by timfuzea     #+#   ##    ##    #+#       */
+/*   Updated: 2019/02/15 17:11:30 by timfuzea    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
+/* ************************************************************************** */
+
 #include "shell.h"
 
 static int		multi_line(t_line *line)
@@ -7,8 +20,7 @@ static int		multi_line(t_line *line)
 	i = -1;
 	if (action_str(TC_INSER_STOP) != SUCCESS)
 		return (FAIL);
-	ft_putstr(&(line->content[line->cursor - 2]));
-	line_curpp(line, line->size - line->cursor + 2);
+	action_putstr(line, &(line->content[line->cursor - 2]));
 	while (++i <= (line->size - line->cursor))
 	{
 		if (action_move_left(line) != SUCCESS)
@@ -23,25 +35,16 @@ int				action_basic(t_line *line, char *buf, int readed)
 {
 	if (line_inser(line, *buf) != SUCCESS)
 		return (FAIL);
-	if (((line->size >= line->window.ws_col) && (line->size / line->window.ws_col) > (line->cursor / line->window.ws_col)))
+	if ((((line->size + 2) >= line->window.ws_col) && (line->size + 2 / line->window.ws_col) > (line->cursor + 2 / line->window.ws_col)))
 	{
 		if (multi_line(line) != SUCCESS)
 			return (FAIL);
 	}
 	else
-	{
-		write(1, buf, readed);
-		if (IS_ENDLINE)
-		{
-			if (!IS_LASTLINE)
-				line->cur_pos.ws_row++;
-			line->cur_pos.ws_col = 1;
-		}
-		else
-			line->cur_pos.ws_col++;
-	}
+		action_putchar(line, buf, readed);
 	return (SUCCESS);
 }
+
 /*
 int		action_basic(t_shell *shell, char *buf, int readed)
 {

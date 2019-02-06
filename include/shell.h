@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/14 08:08:55 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/30 14:47:55 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/15 17:06:52 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -128,6 +128,8 @@ int							line_debug(t_line *line);
 int							action_debug(t_shell *shell);
 
 int							action_str(char *cap);
+void						action_putchar(t_line *line, char *buf, int readed);
+void						action_putstr(t_line *line, char *str);
 int							action_goto(t_line *line, int col, int row);
 
 int							action_move_left(t_line *line);

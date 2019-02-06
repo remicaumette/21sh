@@ -19,7 +19,9 @@ t_shell	*shell_create(char **environment)
 
 	if (!(shell = ft_memalloc(sizeof(t_shell))))
 		return (NULL);
+# ifdef USE_DEBUG
 	DEBUG_INIT("debug.log");
+# endif 
 	shell->environment = NULL;
 	shell->history = NULL;
 	shell->line = NULL;

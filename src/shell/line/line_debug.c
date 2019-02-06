@@ -1,5 +1,7 @@
 #include "shell.h"
 
+# ifdef USE_DEBUG
+
 int		line_debug(t_line *line)
 {
 	t_winsize		tmp;
@@ -28,3 +30,4 @@ int		line_debug(t_line *line)
 	}
 	return (SUCCESS);
 }
+#endif

@@ -15,7 +15,6 @@
 
 t_action	g_actions[] = {
 	{TC_KEY_RETURN, action_return},
-	{TC_CTRL_R, action_debug},
 	{TC_CTRL_A, action_home},
 	{TC_CTRL_D, action_stop},
 	{TC_CTRL_E, action_end},
@@ -28,6 +27,9 @@ t_action	g_actions[] = {
 	{TC_KEY_RIGHT, action_arrow_right},
 	{TC_KEY_END, action_end},
 	{TC_KEY_HOME, action_home},
+# ifdef USE_DEBUG
+	{TC_CTRL_R, action_debug},
+#endif
 /*	{TC_CTRL_LEFT, action_move_prev_word},
 	{TC_CTRL_RIGHT, action_move_next_word},*/
 	{{0, 0, 0}, NULL}

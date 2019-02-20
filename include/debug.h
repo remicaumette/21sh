@@ -3,7 +3,6 @@
 
 #include <stdio.h>
 
-# define USE_DEBUG
 # ifdef USE_DEBUG
 
 int		g_fd_debug;

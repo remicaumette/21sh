@@ -6,7 +6,7 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/12 14:27:00 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/15 20:16:55 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/20 16:48:41 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -51,7 +51,7 @@ int		action_backdel(t_shell *shell)
 			if (action_str(TC_DEL) != SUCCESS)
 				return (FAIL);
 		}
-		if (((shell->line->size) / shell->line->window.ws_col) > ((shell->line->cursor) / shell->line->window.ws_col))
+		if (((shell->line->size + 2) / shell->line->window.ws_col) > ((shell->line->cursor + 2) / shell->line->window.ws_col))
 		{
 			if (multi_line(shell->line) != SUCCESS)
 				return (FAIL);

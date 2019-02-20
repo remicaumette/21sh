@@ -6,7 +6,7 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/23 12:41:18 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/15 17:57:17 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/20 18:42:41 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -39,12 +39,10 @@ void		action_putchar(t_line *line, char *buf, int readed)
 
 void		action_putstr(t_line *line, char *str)
 {
-	dprintf(g_fd_debug, "str=%s", str);
 	if (str)
 	{
 		while (*str != '\0')
 		{
-			dprintf(g_fd_debug, "*str=%c\n", *str);
 			action_putchar(line, str, 1);
 			str++;
 		}

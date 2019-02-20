@@ -6,7 +6,7 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/12 14:27:00 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/20 16:48:41 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/20 18:42:21 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,7 +22,6 @@ static int		multi_line(t_line *line)
 		return (FAIL);
 	if (action_str(TC_CLEAR_TO_END) != SUCCESS)
 		return (FAIL);
-	dprintf(g_fd_debug, "multi_line\n");
 	action_putstr(line, &(line->content[line->cursor - 1]));
 	while (++i <= (line->size - line->cursor))
 	{

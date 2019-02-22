@@ -31,19 +31,18 @@ static int	shell_stop(int status)
 static int	shell_readline(t_shell *shell)
 {
 	int		readed;
-	char	buf[4];
+	long	buf;
 
+	buf = 0;
 	if (shell_prompt(shell) != SUCCESS)
 		return (shell_stop(1));
 	if (window_getcurentpos(&(shell->line->cur_pos)) != SUCCESS)
 		return (shell_stop(1));
-	while ((readed = read(0, buf, 3)) > 0)
+	while ((readed = read(0, &buf, sizeof(buf))) > 0)
 	{
-		ft_bzero(buf + readed, 4 - readed);
-		if (buf[0] == 4 && buf[1] == 0 && buf[2] == 0)
-			break ;
-		if (shell_actiondispatcher(shell, buf, readed))
+		if (shell_actiondispatcher(shell, buf))
 			return (shell_stop(1));
+		buf = 0;
 	}
 	return (shell_stop(0));
 }

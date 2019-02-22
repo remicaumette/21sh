@@ -31,9 +31,9 @@ static int		multi_line(t_line *line)
 	return (SUCCESS);
 }
 
-int				action_basic(t_line *line, char *buf, int readed)
+int				action_basic(t_line *line, long buf)
 {
-	if (line_inser(line, *buf) != SUCCESS)
+	if (line_inser(line, (char)buf) != SUCCESS)
 		return (FAIL);
 	if ((((line->size + 2) >= line->window.ws_col) && (line->size + 2 / line->window.ws_col) > (line->cursor + 2 / line->window.ws_col)))
 	{
@@ -41,15 +41,14 @@ int				action_basic(t_line *line, char *buf, int readed)
 			return (FAIL);
 	}
 	else
-		action_putchar(line, buf, readed);
+		action_putchar(line, (char)buf);
 	return (SUCCESS);
 }
 
 /*
-int		action_basic(t_shell *shell, char *buf, int readed)
+int		action_basic(t_line *line, long buf, int readed)
 {
-	dprintf(1, "readed=%d\t{%d, %d, %d}, {%c, %c, %c}\n", readed, buf[0], buf[1], buf[2], buf[0], buf[1], buf[2]);
-	if (line_inser(shell->line, *buf) != SUCCESS)
-		return (FAIL);
+	(void)line;
+	dprintf(1, "buf:%ld\nreaded:%d\n", buf, readed);
 	return (SUCCESS);
 }*/

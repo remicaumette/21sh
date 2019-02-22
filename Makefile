@@ -151,7 +151,7 @@ TMP_LST		:= action_basic.c action_clear.c action_del.c \
 				action_arrow_up.c action_arrow_down.c action_arrow_left.c \
 				action_arrow_right.c action_end.c action_home.c \
 				action_stop.c action_return.c action_utile.c action_move.c \
-				action_debug.c
+				action_debug.c action_move_word.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 TMP_SRC		:= $(addprefix $(TMP_DAD)/, $(TMP_SRC))

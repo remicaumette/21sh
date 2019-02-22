@@ -10,6 +10,7 @@ int		line_debug(t_line *line)
 	dprintf(g_fd_debug, "<CONTENT>%s</CONTENT>\n", line->content);
 	dprintf(g_fd_debug, "<SIZE>%d</SIZE>\n", line->size);
 	dprintf(g_fd_debug, "<CURSOR>%d</CURSOR>\n", line->cursor);
+	dprintf(g_fd_debug, "<CURENT_CHAR>%c</CURENT_CHAR>\n", line->content[line->cursor - 1]);
 	dprintf(g_fd_debug, "<CUR_POS>\n");
 	dprintf(g_fd_debug, "\t<WS_ROW>%d</WS_ROW>\n", line->cur_pos.ws_row);
 	dprintf(g_fd_debug, "\t<WS_COL>%d</WS_COL>\n", line->cur_pos.ws_col);

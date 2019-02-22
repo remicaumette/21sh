@@ -25,26 +25,26 @@ t_action	g_actions[] = {
 	{TC_KEY_DOWN, action_arrow_down},
 	{TC_KEY_LEFT, action_arrow_left},
 	{TC_KEY_RIGHT, action_arrow_right},
-	{TC_KEY_END, action_end},
 	{TC_KEY_HOME, action_home},
+	{TC_KEY_END, action_end},
 # ifdef USE_DEBUG
 	{TC_CTRL_R, action_debug},
 #endif
-/*	{TC_CTRL_LEFT, action_move_prev_word},
-	{TC_CTRL_RIGHT, action_move_next_word},*/
-	{{0, 0, 0}, NULL}
+	{TC_CTRL_LEFT, action_move_prev_word},
+	{TC_CTRL_RIGHT, action_move_next_word},
+	{0, NULL}
 };
 
-int			shell_actiondispatcher(t_shell *shell, char *buf, int readed)
+int			shell_actiondispatcher(t_shell *shell, long buf)
 {
 	t_action	*tmp_action;
 
 	tmp_action = g_actions;
 	while (tmp_action->handler != NULL)
 	{
-		if (ft_memcmp(tmp_action->code, buf, 3) == 0)
+		if (tmp_action->key == buf)
 			return (tmp_action->handler(shell));
 		tmp_action++;
 	}
-	return (action_basic(shell->line, buf, readed));
+	return (action_basic(shell->line, buf));
 }

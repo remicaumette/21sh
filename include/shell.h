@@ -60,7 +60,7 @@ struct						s_shell
 
 struct						s_action
 {
-	char			code[3];
+	long			key;
 	t_actionhandler	handler;
 };
 
@@ -96,7 +96,7 @@ void						init_signal(void);
 t_shell						*shell_create(char **environment);
 void						shell_destroy(t_shell *shell);
 int							shell_start(t_shell *shell);
-int							shell_actiondispatcher(t_shell *shell, char *buf, int readed);
+int							shell_actiondispatcher(t_shell *shell, long buf);
 int							shell_processline(t_shell *shell);
 int							shell_prompt(t_shell *shell);
 int							shell_envinit(t_shell *shell, char **default_env);
@@ -128,14 +128,14 @@ int							line_debug(t_line *line);
 int							action_debug(t_shell *shell);
 
 int							action_str(char *cap);
-void						action_putchar(t_line *line, char *buf, int readed);
+void						action_putchar(t_line *line, char buf);
 void						action_putstr(t_line *line, char *str);
 int							action_goto(t_line *line, int col, int row);
 
 int							action_move_left(t_line *line);
 int							action_move_right(t_line *line);
 
-int							action_basic(t_line *line, char *buf, int readed);
+int							action_basic(t_line *line, long buf);
 int							action_return(t_shell *shell);
 int							action_clear(t_shell *shell);
 int							action_clear_to_end(t_shell *shell);

@@ -23,9 +23,9 @@ int			action_str(char *cap)
 	return (SUCCESS);
 }
 
-void		action_putchar(t_line *line, char *buf, int readed)
+void		action_putchar(t_line *line, char buf)
 {
-	write(1, buf, readed);
+	write(1, &buf, 1);
 	if (IS_ENDLINE)
 	{
 		ft_putchar('\n');
@@ -43,7 +43,7 @@ void		action_putstr(t_line *line, char *str)
 	{
 		while (*str != '\0')
 		{
-			action_putchar(line, str, 1);
+			action_putchar(line, *str);
 			str++;
 		}
 	}

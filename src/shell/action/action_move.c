@@ -13,7 +13,7 @@
 
 #include "shell.h"
 
-int		action_move_left(t_line *line)
+int		action_move_left(t_shell *shell)
 {
 	int		i;
 
@@ -22,24 +22,24 @@ int		action_move_left(t_line *line)
 	{
 		if (action_str(TC_MOVE_UP) != SUCCESS)
 			return (FAIL);
-		line->cur_pos.ws_row--;
-		while (++i < line->window.ws_col)
+		shell->line->cur_pos.ws_row--;
+		while (++i < shell->line->window.ws_col)
 		{
 			if (action_str(TC_MOVE_RIGHT) != SUCCESS)
 				return (FAIL);
 		}
-		line->cur_pos.ws_col = line->window.ws_col;
+		shell->line->cur_pos.ws_col = shell->line->window.ws_col;
 	}
 	else
 	{
 		if (action_str(TC_MOVE_LEFT) != SUCCESS)
 			return (FAIL);
-		line->cur_pos.ws_col--;
+		shell->line->cur_pos.ws_col--;
 	}
 	return (SUCCESS);
 }
 
-int		action_move_right(t_line *line)
+int		action_move_right(t_shell *shell)
 {
 	int		i;
 
@@ -48,19 +48,19 @@ int		action_move_right(t_line *line)
 	{
 		if (action_str(TC_MOVE_DOWN) != SUCCESS)
 			return (FAIL);
-		line->cur_pos.ws_row++;
-		while (LINUX && ++i < line->window.ws_col)
+		shell->line->cur_pos.ws_row++;
+		while (LINUX && ++i < shell->line->window.ws_col)
 		{
 			if (action_str(TC_MOVE_LEFT) != SUCCESS)
 				return (FAIL);
 		}
-		line->cur_pos.ws_col = 1;
+		shell->line->cur_pos.ws_col = 1;
 	}
 	else
 	{
 		if (action_str(TC_MOVE_RIGHT) != SUCCESS)
 			return (FAIL);
-		line->cur_pos.ws_col++;
+		shell->line->cur_pos.ws_col++;
 	}
 	return (SUCCESS);
 }

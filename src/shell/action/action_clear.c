@@ -22,13 +22,13 @@ int		action_clear(t_shell *shell)
 	shell_prompt(shell);
 	if (window_getcurentpos(&(shell->line->cur_pos)) != SUCCESS)
 		return (FAIL);
-	action_putstr(shell->line ,shell->line->content);
+	action_putstr(shell ,shell->line->content);
 	i = shell->line->size + 1;
 	if (shell->line->cursor < i)
 	{
 		while (i > shell->line->cursor)
 		{
-			if (action_move_left(shell->line) != SUCCESS)
+			if (action_move_left(shell) != SUCCESS)
 				return (FAIL);
 			i--;
 		}

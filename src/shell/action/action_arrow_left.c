@@ -17,7 +17,7 @@ int	action_arrow_left(t_shell *shell)
 {
 	if (shell->line->cursor > 1)
 	{
-		if (action_move_left(shell->line) != SUCCESS)
+		if (action_move_left(shell) != SUCCESS)
 			return (FAIL);
 		if (shell->line->cursor > shell->line->size)
 		{

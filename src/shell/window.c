@@ -13,6 +13,32 @@
 
 #include "shell.h"
 
+static int	reset_printed_line(t_shell *shell)
+{
+	int				tmp_cursor;
+
+	tmp_cursor = shell->line->cursor;
+	while (tmp_cursor > 1)
+	{
+		if (action_move_left(shell) != SUCCESS)
+			return (FAIL);
+		tmp_cursor--;
+	}
+	if (action_str(TC_CLEAR_TO_END) != SUCCESS)
+		return (FAIL);
+	ft_putstr(shell->line->content);
+	ioctl(STDOUT_FILENO, TIOCGWINSZ, &(shell->line->window));
+	window_getcurentpos(&(shell->line->cur_pos));
+	tmp_cursor = shell->line->size - shell->line->cursor;
+	while(tmp_cursor > 1)
+	{
+		if (action_move_left(shell) != SUCCESS)
+			return (FAIL);
+		tmp_cursor--;
+	}
+	return (SUCCESS);
+}
+
 int			window_getcurentpos(t_winsize *curent_pos)
 {
 	char	buf[10 + 1];
@@ -33,32 +59,6 @@ int			window_getcurentpos(t_winsize *curent_pos)
 		return (FAIL);
 	}
 	curent_pos->ws_col = ft_atous(&buf[++i]);
-	return (SUCCESS);
-}
-
-static int	reset_printed_line(t_shell *shell)
-{
-	int				tmp_cursor;
-
-	tmp_cursor = shell->line->cursor;
-	while (tmp_cursor > 1)
-	{
-		if (action_move_left(shell->line) != SUCCESS)
-			return (FAIL);
-		tmp_cursor--;
-	}
-	if (action_str(TC_CLEAR_TO_END) != SUCCESS)
-		return (FAIL);
-	ft_putstr(shell->line->content);
-	ioctl(STDOUT_FILENO, TIOCGWINSZ, &(shell->line->window));
-	window_getcurentpos(&(shell->line->cur_pos));
-	tmp_cursor = shell->line->size - shell->line->cursor;
-	while(tmp_cursor > 1)
-	{
-		if (action_move_left(shell->line) != SUCCESS)
-			return (FAIL);
-		tmp_cursor--;
-	}
 	return (SUCCESS);
 }
 

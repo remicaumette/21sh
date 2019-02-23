@@ -26,7 +26,7 @@ int	action_arrow_up(t_shell *shell)
 		if (action_str(TC_CLEAR_TO_END) != SUCCESS)
 			return (FAIL);
 		line_replace(shell->line, ft_strdup(entry->content));
-		action_putstr(shell->line, entry->content);
+		action_putstr(shell, entry->content);
 	}
 	return (SUCCESS);
 }

@@ -23,27 +23,27 @@ int			action_str(char *cap)
 	return (SUCCESS);
 }
 
-void		action_putchar(t_line *line, char buf)
+void		action_putchar(t_shell *shell, char buf)
 {
 	write(1, &buf, 1);
 	if (IS_ENDLINE)
 	{
 		ft_putchar('\n');
 		if (!IS_LASTLINE)
-			line->cur_pos.ws_row++;
-		line->cur_pos.ws_col = 1;
+			shell->line->cur_pos.ws_row++;
+		shell->line->cur_pos.ws_col = 1;
 	}
 	else
-		line->cur_pos.ws_col++;
+		shell->line->cur_pos.ws_col++;
 }
 
-void		action_putstr(t_line *line, char *str)
+void		action_putstr(t_shell *shell, char *str)
 {
 	if (str)
 	{
 		while (*str != '\0')
 		{
-			action_putchar(line, *str);
+			action_putchar(shell, *str);
 			str++;
 		}
 	}

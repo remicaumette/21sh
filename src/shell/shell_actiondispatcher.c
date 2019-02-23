@@ -46,5 +46,5 @@ int			shell_actiondispatcher(t_shell *shell, long buf)
 			return (tmp_action->handler(shell));
 		tmp_action++;
 	}
-	return (action_basic(shell->line, buf));
+	return (action_basic(shell, buf));
 }

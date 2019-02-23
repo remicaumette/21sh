@@ -13,7 +13,7 @@
 
 #include "shell.h"
 
-static int		multi_line(t_line *line)
+static int		multi_line(t_shell *shell)
 {
 	int		i;
 
@@ -22,10 +22,10 @@ static int		multi_line(t_line *line)
 		return (FAIL);
 	if (action_str(TC_CLEAR_TO_END) != SUCCESS)
 		return (FAIL);
-	action_putstr(line, &(line->content[line->cursor - 1]));
-	while (++i <= (line->size - line->cursor))
+	action_putstr(shell, &(shell->line->content[shell->line->cursor - 1]));
+	while (++i <= (shell->line->size - shell->line->cursor))
 	{
-		if (action_move_left(line) != SUCCESS)
+		if (action_move_left(shell) != SUCCESS)
 			return (FAIL);
 	}
 	if (action_str(TC_INSER_START) != SUCCESS)
@@ -38,7 +38,7 @@ int		action_backdel(t_shell *shell)
 	if (shell->line->cursor > 1)
 	{
 		line_backdel(shell->line);
-		if (action_move_left(shell->line) != SUCCESS)
+		if (action_move_left(shell) != SUCCESS)
 			return (FAIL);
 		if (shell->line->cur_pos.ws_col >= shell->line->window.ws_col)
 		{
@@ -52,7 +52,7 @@ int		action_backdel(t_shell *shell)
 		}
 		if (((shell->line->size + 2) / shell->line->window.ws_col) > ((shell->line->cursor + 2) / shell->line->window.ws_col))
 		{
-			if (multi_line(shell->line) != SUCCESS)
+			if (multi_line(shell) != SUCCESS)
 				return (FAIL);
 		}
 	}

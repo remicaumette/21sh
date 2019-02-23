@@ -34,11 +34,11 @@
 #  define LINUX				0
 # endif
 
-# define IS_BEGINLINE		(line->cur_pos.ws_col == 1)
-# define IS_FIRSTLINE		(line->cur_pos.ws_row == 1)
+# define IS_BEGINLINE		(shell->line->cur_pos.ws_col == 1)
+# define IS_FIRSTLINE		(shell->line->cur_pos.ws_row == 1)
 
-# define IS_ENDLINE			(line->cur_pos.ws_col >= line->window.ws_col)
-# define IS_LASTLINE		(line->cur_pos.ws_row >= line->window.ws_row)
+# define IS_ENDLINE			(shell->line->cur_pos.ws_col >= shell->line->window.ws_col)
+# define IS_LASTLINE		(shell->line->cur_pos.ws_row >= shell->line->window.ws_row)
 
 typedef struct s_shell		t_shell;
 typedef struct s_action		t_action;
@@ -128,14 +128,13 @@ int							line_debug(t_line *line);
 int							action_debug(t_shell *shell);
 
 int							action_str(char *cap);
-void						action_putchar(t_line *line, char buf);
-void						action_putstr(t_line *line, char *str);
-int							action_goto(t_line *line, int col, int row);
+void						action_putchar(t_shell *shell, char buf);
+void						action_putstr(t_shell *shell, char *str);
 
-int							action_move_left(t_line *line);
-int							action_move_right(t_line *line);
+int							action_move_left(t_shell *shell);
+int							action_move_right(t_shell *shell);
 
-int							action_basic(t_line *line, long buf);
+int							action_basic(t_shell *shell, long buf);
 int							action_return(t_shell *shell);
 int							action_clear(t_shell *shell);
 int							action_clear_to_end(t_shell *shell);

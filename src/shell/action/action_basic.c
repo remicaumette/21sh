@@ -13,17 +13,17 @@
 
 #include "shell.h"
 
-static int		multi_line(t_line *line)
+static int		multi_line(t_shell *shell)
 {
 	int		i;
 
 	i = -1;
 	if (action_str(TC_INSER_STOP) != SUCCESS)
 		return (FAIL);
-	action_putstr(line, &(line->content[line->cursor - 2]));
-	while (++i <= (line->size - line->cursor))
+	action_putstr(shell, &(shell->line->content[shell->line->cursor - 2]));
+	while (++i <= (shell->line->size - shell->line->cursor))
 	{
-		if (action_move_left(line) != SUCCESS)
+		if (action_move_left(shell) != SUCCESS)
 			return (FAIL);
 	}
 	if (action_str(TC_INSER_START) != SUCCESS)
@@ -31,17 +31,17 @@ static int		multi_line(t_line *line)
 	return (SUCCESS);
 }
 
-int				action_basic(t_line *line, long buf)
+int				action_basic(t_shell *shell, long buf)
 {
-	if (line_inser(line, (char)buf) != SUCCESS)
+	if (line_inser(shell->line, (char)buf) != SUCCESS)
 		return (FAIL);
-	if ((((line->size + 2) >= line->window.ws_col) && (line->size + 2 / line->window.ws_col) > (line->cursor + 2 / line->window.ws_col)))
+	if ((((shell->line->size + 2) >= shell->line->window.ws_col) && (shell->line->size + 2 / shell->line->window.ws_col) > (shell->line->cursor + 2 / shell->line->window.ws_col)))
 	{
-		if (multi_line(line) != SUCCESS)
+		if (multi_line(shell) != SUCCESS)
 			return (FAIL);
 	}
 	else
-		action_putchar(line, (char)buf);
+		action_putchar(shell, (char)buf);
 	return (SUCCESS);
 }
 

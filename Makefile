@@ -179,7 +179,7 @@ TMP_NAME	:= line
 
 TMP_LST		:= line_backdel.c line_create.c line_deltoend.c line_destroy.c \
 				line_inser.c line_replace.c line_reset.c \
-				line_curpp.c line_debug.c
+				line_debug.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 TMP_SRC		:= $(addprefix $(TMP_DAD)/, $(TMP_SRC))

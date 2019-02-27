@@ -18,11 +18,11 @@ int		action_move_next_word(t_shell *shell)
 	char	*tmp;
 
 	tmp = shell->line->content;
-	if (shell->line->size > 0 && (shell->line->size > shell->line->cursor))
+	if (shell->line->size > 0 && (shell->line->size > CURSOR))
 	{
-		while (tmp[shell->line->cursor - 1] && tmp[shell->line->cursor - 1] != ' ')
+		while (tmp[CURSOR - 1] && tmp[CURSOR - 1] != ' ')
 			action_arrow_right(shell);
-		while (tmp[shell->line->cursor - 1] && tmp[shell->line->cursor - 1] == ' ')
+		while (tmp[CURSOR - 1] && tmp[CURSOR - 1] == ' ')
 			action_arrow_right(shell);
 	}
 	return (SUCCESS);
@@ -33,13 +33,12 @@ int		action_move_prev_word(t_shell *shell)
 	char	*tmp;
 
 	tmp = shell->line->content;
-	if (shell->line->cursor > 1)
+	if (CURSOR > 1)
 	{
 		action_arrow_left(shell);
-		while (shell->line->cursor > 1 && tmp[shell->line->cursor - 1] == ' ')
+		while (CURSOR > 1 && tmp[CURSOR - 1] == ' ')
 			action_arrow_left(shell);
-		while (shell->line->cursor > 1
-				&& tmp[shell->line->cursor - 2] != ' ')
+		while (CURSOR > 1 && tmp[CURSOR - 2] != ' ')
 			action_arrow_left(shell);
 	}
 	return (SUCCESS);

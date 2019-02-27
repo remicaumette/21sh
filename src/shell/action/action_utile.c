@@ -30,11 +30,11 @@ void		action_putchar(t_shell *shell, char buf)
 	{
 		ft_putchar('\n');
 		if (!IS_LASTLINE)
-			shell->line->cur_pos.ws_row++;
-		shell->line->cur_pos.ws_col = 1;
+			CURENT_ROW++;
+		CURENT_COL = 1;
 	}
 	else
-		shell->line->cur_pos.ws_col++;
+		CURENT_COL++;
 }
 
 void		action_putstr(t_shell *shell, char *str)

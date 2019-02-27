@@ -15,7 +15,7 @@
 
 int	action_home(t_shell *shell)
 {
-	while (shell->line->cursor != 1)
+	while (CURSOR > 1)
 		action_arrow_left(shell);
 	return (SUCCESS);
 }

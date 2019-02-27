@@ -15,7 +15,7 @@
 
 int		action_stop(t_shell *shell)
 {
-	if (!shell->line->size)
+	if (shell->line->size <= 0)
 	{
 		ft_putstr("\n");
 		return (FAIL); // replace by exit

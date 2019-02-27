@@ -34,11 +34,15 @@
 #  define LINUX				0
 # endif
 
-# define IS_BEGINLINE		(shell->line->cur_pos.ws_col == 1)
-# define IS_FIRSTLINE		(shell->line->cur_pos.ws_row == 1)
+# define CURSOR				shell->line->cursor
+# define CURENT_COL			shell->line->cur_pos.ws_col
+# define CURENT_ROW			shell->line->cur_pos.ws_row
 
-# define IS_ENDLINE			(shell->line->cur_pos.ws_col >= shell->line->window.ws_col)
-# define IS_LASTLINE		(shell->line->cur_pos.ws_row >= shell->line->window.ws_row)
+# define MAX_COL			shell->line->window.ws_col
+# define MAX_ROW			shell->line->window.ws_row
+
+# define IS_ENDLINE			(CURENT_COL >= MAX_COL)
+# define IS_LASTLINE		(CURENT_ROW >= MAX_ROW)
 
 typedef struct s_shell		t_shell;
 typedef struct s_action		t_action;
@@ -147,6 +151,8 @@ int							action_home(t_shell *shell);
 int							action_end(t_shell *shell);
 int							action_move_next_word(t_shell *shell);
 int							action_move_prev_word(t_shell *shell);
+int							action_ctrl_up(t_shell *shell);
+int							action_ctrl_down(t_shell *shell);
 int							action_stop(t_shell *shell);
 
 void						print_token(t_token *token);

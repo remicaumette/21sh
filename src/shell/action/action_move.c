@@ -18,23 +18,23 @@ int		action_move_left(t_shell *shell)
 	int		i;
 
 	i = -1;
-	if (IS_BEGINLINE)
+	if (CURENT_COL == 1)
 	{
 		if (action_str(TC_MOVE_UP) != SUCCESS)
 			return (FAIL);
-		shell->line->cur_pos.ws_row--;
-		while (++i < shell->line->window.ws_col)
+		CURENT_ROW--;
+		while (++i < MAX_COL)
 		{
 			if (action_str(TC_MOVE_RIGHT) != SUCCESS)
 				return (FAIL);
 		}
-		shell->line->cur_pos.ws_col = shell->line->window.ws_col;
+		CURENT_COL = MAX_COL;
 	}
 	else
 	{
 		if (action_str(TC_MOVE_LEFT) != SUCCESS)
 			return (FAIL);
-		shell->line->cur_pos.ws_col--;
+		CURENT_COL--;
 	}
 	return (SUCCESS);
 }
@@ -48,19 +48,19 @@ int		action_move_right(t_shell *shell)
 	{
 		if (action_str(TC_MOVE_DOWN) != SUCCESS)
 			return (FAIL);
-		shell->line->cur_pos.ws_row++;
-		while (LINUX && ++i < shell->line->window.ws_col)
+		CURENT_ROW++;
+		while (LINUX && ++i < MAX_COL)
 		{
 			if (action_str(TC_MOVE_LEFT) != SUCCESS)
 				return (FAIL);
 		}
-		shell->line->cur_pos.ws_col = 1;
+		CURENT_COL = 1;
 	}
 	else
 	{
 		if (action_str(TC_MOVE_RIGHT) != SUCCESS)
 			return (FAIL);
-		shell->line->cur_pos.ws_col++;
+		CURENT_COL++;
 	}
 	return (SUCCESS);
 }

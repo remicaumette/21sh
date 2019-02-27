@@ -17,7 +17,7 @@ static int	reset_printed_line(t_shell *shell)
 {
 	int				tmp_cursor;
 
-	tmp_cursor = shell->line->cursor;
+	tmp_cursor = CURSOR;
 	while (tmp_cursor > 1)
 	{
 		if (action_move_left(shell) != SUCCESS)
@@ -29,7 +29,7 @@ static int	reset_printed_line(t_shell *shell)
 	ft_putstr(shell->line->content);
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &(shell->line->window));
 	window_getcurentpos(&(shell->line->cur_pos));
-	tmp_cursor = shell->line->size - shell->line->cursor;
+	tmp_cursor = shell->line->size - CURSOR;
 	while(tmp_cursor > 1)
 	{
 		if (action_move_left(shell) != SUCCESS)

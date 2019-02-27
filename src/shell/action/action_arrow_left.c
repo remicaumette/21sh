@@ -15,16 +15,16 @@
 
 int	action_arrow_left(t_shell *shell)
 {
-	if (shell->line->cursor > 1)
+	if (CURSOR > 1)
 	{
 		if (action_move_left(shell) != SUCCESS)
 			return (FAIL);
-		if (shell->line->cursor > shell->line->size)
+		if (CURSOR > shell->line->size)
 		{
 			if (action_str(TC_INSER_START) != SUCCESS)
 				return (FAIL);
 		}
-		shell->line->cursor--;
+		CURSOR--;
 	}
 	return (SUCCESS);
 }

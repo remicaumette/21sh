@@ -22,8 +22,8 @@ static int		multi_line(t_shell *shell)
 		return (FAIL);
 	if (action_str(TC_CLEAR_TO_END) != SUCCESS)
 		return (FAIL);
-	action_putstr(shell, &(shell->line->content[shell->line->cursor - 1]));
-	while (++i <= (shell->line->size - shell->line->cursor))
+	action_putstr(shell, &(shell->line->content[CURSOR - 1]));
+	while (++i <= (shell->line->size - CURSOR))
 	{
 		if (action_move_left(shell) != SUCCESS)
 			return (FAIL);
@@ -40,7 +40,7 @@ int		action_backdel(t_shell *shell)
 		line_backdel(shell->line);
 		if (action_move_left(shell) != SUCCESS)
 			return (FAIL);
-		if (shell->line->cur_pos.ws_col >= shell->line->window.ws_col)
+		if (CURENT_COL >= MAX_COL)
 		{
 			if (action_str(TC_CLEAR_END_LINE) != SUCCESS)
 				return (FAIL);
@@ -50,7 +50,7 @@ int		action_backdel(t_shell *shell)
 			if (action_str(TC_DEL) != SUCCESS)
 				return (FAIL);
 		}
-		if (((shell->line->size + 2) / shell->line->window.ws_col) > ((shell->line->cursor + 2) / shell->line->window.ws_col))
+		if (((shell->line->size + 2) / MAX_COL) > ((CURSOR + 2) / MAX_COL))
 		{
 			if (multi_line(shell) != SUCCESS)
 				return (FAIL);

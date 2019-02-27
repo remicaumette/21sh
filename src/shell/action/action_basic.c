@@ -20,8 +20,8 @@ static int		multi_line(t_shell *shell)
 	i = -1;
 	if (action_str(TC_INSER_STOP) != SUCCESS)
 		return (FAIL);
-	action_putstr(shell, &(shell->line->content[shell->line->cursor - 2]));
-	while (++i <= (shell->line->size - shell->line->cursor))
+	action_putstr(shell, &(shell->line->content[CURSOR - 2]));
+	while (++i <= (shell->line->size - CURSOR))
 	{
 		if (action_move_left(shell) != SUCCESS)
 			return (FAIL);
@@ -35,7 +35,7 @@ int				action_basic(t_shell *shell, long buf)
 {
 	if (line_inser(shell->line, (char)buf) != SUCCESS)
 		return (FAIL);
-	if ((((shell->line->size + 2) >= shell->line->window.ws_col) && (shell->line->size + 2 / shell->line->window.ws_col) > (shell->line->cursor + 2 / shell->line->window.ws_col)))
+	if ((((shell->line->size + 2) >= MAX_COL) && (shell->line->size + 2 / MAX_COL) > (shell->line->cursor + 2 / MAX_COL)))
 	{
 		if (multi_line(shell) != SUCCESS)
 			return (FAIL);

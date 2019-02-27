@@ -24,9 +24,9 @@ int		action_clear(t_shell *shell)
 		return (FAIL);
 	action_putstr(shell ,shell->line->content);
 	i = shell->line->size + 1;
-	if (shell->line->cursor < i)
+	if (CURSOR < i)
 	{
-		while (i > shell->line->cursor)
+		while (i > CURSOR)
 		{
 			if (action_move_left(shell) != SUCCESS)
 				return (FAIL);
@@ -40,7 +40,7 @@ int		action_clear(t_shell *shell)
 
 int		action_clear_to_end(t_shell *shell)
 {
-	if (shell->line->cursor < (shell->line->size + 1))
+	if (CURSOR < (shell->line->size + 1))
 	{
 		if (action_str(TC_CLEAR_TO_END) != SUCCESS)
 			return (FAIL);

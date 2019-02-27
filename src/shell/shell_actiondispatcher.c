@@ -32,6 +32,8 @@ t_action	g_actions[] = {
 #endif
 	{TC_CTRL_LEFT, action_move_prev_word},
 	{TC_CTRL_RIGHT, action_move_next_word},
+	{TC_CTRL_UP, action_ctrl_up},
+	{TC_CTRL_DOWN, action_ctrl_down},
 	{0, NULL}
 };
 

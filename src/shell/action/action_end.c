@@ -15,7 +15,7 @@
 
 int	action_end(t_shell *shell)
 {
-	while (shell->line->cursor <= shell->line->size)
+	while (CURSOR <= shell->line->size)
 		action_arrow_right(shell);
 	return (SUCCESS);
 }

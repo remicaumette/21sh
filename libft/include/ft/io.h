@@ -34,4 +34,5 @@ void			ft_putstr_fd(char const *s, int fd);
 void			ft_putstr(char const *s);
 void			ft_print_memory_fd(void *mem, size_t len, int fd);
 void			ft_print_memory(void *mem, size_t len);
+void			ft_putarr_str(char **arr);
 #endif

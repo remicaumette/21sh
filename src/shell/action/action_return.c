@@ -25,7 +25,11 @@ int	action_return(t_shell *shell)
 		if (shell->lexer->begin)
 		{
 			if (shell->missing_token == -1)
+			{
+				term_row_stop(shell);
 				printf("shell_processline: %d\n", shell_processline(shell));
+				term_row_start(shell);
+			}
 			lexer_cleanup(shell->lexer);
 			parser_cleanup(shell->parser);
 		}
@@ -35,7 +39,7 @@ int	action_return(t_shell *shell)
 	}
 	if (shell_prompt(shell) != SUCCESS)
 		return (FAIL);
-	if (window_getcurentpos(&(shell->line->cur_pos)) != SUCCESS)
+	if (term_getcurentpos(&(shell->line->cur_pos)) != SUCCESS)
 		return (FAIL);
 	return (SUCCESS);
 }

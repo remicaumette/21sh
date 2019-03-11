@@ -12,7 +12,7 @@
 /* ************************************************************************** */
 
 #include "shell.h"
-
+/*
 static void	debug(t_shell *shell)
 {
 	printf("=== TOKEN\n");
@@ -20,9 +20,9 @@ static void	debug(t_shell *shell)
 	printf("=== PARSER\n");
 	printf("parser_parse = %d\n", parser_parse(shell->parser));
 	print_node(shell->parser->root);
-}
+}*/
 
-static char	**generate_env(t_command *command)
+static char	**generate_argv(t_command *command)
 {
 	int		i;
 	char	**tmp;
@@ -39,20 +39,27 @@ static char	**generate_env(t_command *command)
 int			shell_processline(t_shell *shell)
 {
 	t_process	*process;
-	char		**env;
+	char		**argv;
+	char		*bin;
 
-	debug(shell);
-	if (!(env = generate_env(shell->parser->root->command)))
-		return (1);
+//	debug(shell);
+	if (parser_parse(shell->parser) != SUCCESS)
+		return (FAIL);
 	if (shell->parser->root)
 	{
-		if (!(process = process_create(shell->parser->root->command->name,
-			shell->parser->root->command->arguments, env)))
-			return (1);
+		if (!(bin = shell_getbin(shell->parser->root->command->name, shell)))
+			return (FAIL);
+		if (!(argv = generate_argv(shell->parser->root->command)))
+			return (FAIL);
+		if (!(process = process_create(bin, argv, shell->environment)))
+			return (FAIL);
+		ft_strdel(&bin);
+		ft_strarr_del(argv);
+		if (process_iodefault(process) != SUCCESS)
+			return (FAIL);
 		if (process_run(process))
-			return (1);
+			return (FAIL);
 		process_destroy(process);
-		ft_strarr_del(env);
 	}
-	return (0);
+	return (SUCCESS);
 }

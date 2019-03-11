@@ -29,9 +29,10 @@ t_shell	*shell_create(char **environment)
 	shell->parser = NULL;
 	if (shell_envinit(shell, environment) ||
 		!(shell->line = line_create()) ||
+		!(shell->term = term_create(shell)) ||
+		!(shell->history = history_create()) ||
 		!(shell->lexer = lexer_create()) ||
-		!(shell->parser = parser_create(shell)) ||
-		!(shell->history = history_create()))
+		!(shell->parser = parser_create(shell)))
 		return (NULL);
 	return (shell);
 }

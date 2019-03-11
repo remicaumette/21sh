@@ -20,7 +20,7 @@ int		action_clear(t_shell *shell)
 	if (action_str(TC_CLEAR) != SUCCESS)
 		return (FAIL);
 	shell_prompt(shell);
-	if (window_getcurentpos(&(shell->line->cur_pos)) != SUCCESS)
+	if (term_getcurentpos(&(shell->line->cur_pos)) != SUCCESS)
 		return (FAIL);
 	action_putstr(shell ,shell->line->content);
 	i = shell->line->size + 1;

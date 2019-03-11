@@ -28,7 +28,7 @@ static int	reset_printed_line(t_shell *shell)
 		return (FAIL);
 	ft_putstr(shell->line->content);
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &(shell->line->window));
-	window_getcurentpos(&(shell->line->cur_pos));
+	term_getcurentpos(&(shell->line->cur_pos));
 	tmp_cursor = shell->line->size - CURSOR;
 	while(tmp_cursor > 1)
 	{
@@ -39,7 +39,7 @@ static int	reset_printed_line(t_shell *shell)
 	return (SUCCESS);
 }
 
-int			window_getcurentpos(t_winsize *curent_pos)
+int			term_getcurentpos(t_winsize *curent_pos)
 {
 	char	buf[10 + 1];
 	int		ret;
@@ -62,7 +62,7 @@ int			window_getcurentpos(t_winsize *curent_pos)
 	return (SUCCESS);
 }
 
-void		window_resize(t_shell *shell)
+void		term_resize(t_shell *shell)
 {
 	static	t_shell		*shell_save = NULL;
 	static int			lock = 0;

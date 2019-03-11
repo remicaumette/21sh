@@ -27,7 +27,7 @@ static void		signale_handl(int sig)
 		exit(1);
 	}
 	if (sig == SIGWINCH)
-		window_resize(NULL);
+		term_resize(NULL);
 }
 
 void			init_signal(void)

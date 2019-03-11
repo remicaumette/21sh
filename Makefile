@@ -114,7 +114,6 @@ TMP_LST		:= command_create.c command_destroy.c command_parse.c \
 				node_create.c node_destroy.c node_insert.c parser_cleanup.c \
 				parser_create.c parser_destroy.c parser_expandword.c \
 				parser_parse.c redirection_create.c redirection_destroy.c \
-				utils.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/,$(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)
@@ -124,7 +123,8 @@ SRC_LST		:= $(SRC_LST) $(TMP_SRC)
 
 TMP_NAME	:= process
 
-TMP_LST		:= process_create.c process_destroy.c process_run.c
+TMP_LST		:= process_create.c process_destroy.c process_run.c \
+				process_debug.c process_iodefault.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)
@@ -136,7 +136,7 @@ TMP_NAME	:= shell
 
 TMP_LST		:= shell_create.c shell_destroy.c shell_actiondispatcher.c \
 				shell_processline.c shell_start.c utils.c \
-				shell_prompt.c window.c
+				shell_prompt.c shell_getbin.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)
@@ -198,6 +198,21 @@ TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 TMP_SRC		:= $(addprefix $(TMP_DAD)/, $(TMP_SRC))
 SUB_LST		:= $(SUB_LST) $(addprefix $(TMP_DAD)/, $(TMP_NAME))
 SRC_LST		:= $(SRC_LST) $(TMP_SRC)
+
+#			Terminal
+
+TMP_DAD		:= shell
+TMP_NAME	:= term
+
+TMP_LST		:= term_create.c term_row.c term_size.c
+
+TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
+TMP_SRC		:= $(addprefix $(TMP_DAD)/, $(TMP_SRC))
+SUB_LST		:= $(SUB_LST) $(addprefix $(TMP_DAD)/, $(TMP_NAME))
+SRC_LST		:= $(SRC_LST) $(TMP_SRC)
+
+
+
 
 # **************************************************************************** #
 #								VAR                                            #

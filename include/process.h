@@ -40,4 +40,7 @@ t_process					*process_create(char *file, char **args,
 	char **env);
 void						process_destroy(t_process *process);
 int							process_run(t_process *process);
+
+int							process_iodefault(t_process *process);
+void						process_debug(t_process *process, const char *str);
 #endif

@@ -13,8 +13,25 @@
 
 #include "shell.h"
 
+static void	close_pipe(t_process *process)
+{
+	if (process->pid)
+	{
+		close(process->stdin[1]);
+		close(process->stdout[0]);
+		close(process->stderr[0]);
+	}
+	else
+	{
+		close(process->stdin[0]);
+		close(process->stdout[1]);
+		close(process->stderr[1]);
+	}
+}
+
 static int	handle_main_process(t_process *process)
 {
+	close_pipe(process);
 	if (wait(&process->pid) == -1)
 		return (1);
 	process->status = WEXITSTATUS(process->pid);
@@ -24,9 +41,14 @@ static int	handle_main_process(t_process *process)
 static int	handle_child_process(t_process *process)
 {
 	if (dup2(process->stdin[0], STDIN_FILENO) == -1 ||
-		dup2(process->stderr[1], STDERR_FILENO) == -1 ||
 		dup2(process->stdout[1], STDOUT_FILENO) == -1 ||
-		execve(process->file, process->args, process->env) == -1)
+		dup2(process->stderr[1], STDERR_FILENO) == -1)
+	{
+		process->error = 1;
+		exit(1);
+	}
+	close_pipe(process);
+	if (execve(process->file, process->args, process->env) == -1)
 	{
 		process->error = 1;
 		exit(1);

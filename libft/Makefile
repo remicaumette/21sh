@@ -13,7 +13,7 @@
 
 NAME		:= libft.a
 
-#DEBUG		:="no" uncomtant this line to force status
+DEBUG		:="no" # uncomtant this line to force status
 # **************************************************************************** #
 #									PATH                                       #
 # **************************************************************************** #
@@ -66,7 +66,8 @@ TMP_NAME	:= io
 
 TMP_LST		:= ft_print_memory.c ft_print_memory_fd.c ft_putchar.c \
 				ft_putchar_fd.c ft_putendl.c ft_putendl_fd.c ft_putnbr.c \
-				ft_putnbr_fd.c ft_putstr.c ft_putstr_fd.c get_next_line.c
+				ft_putnbr_fd.c ft_putstr.c ft_putstr_fd.c get_next_line.c \
+				ft_putarr_str.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)
@@ -77,7 +78,7 @@ SRC_LST		:= $(SRC_LST) $(TMP_SRC)
 TMP_NAME	:= std
 
 TMP_LST		:= ft_bzero.c ft_memalloc.c ft_memccpy.c ft_memchr.c ft_memcmp.c \
-				ft_memcpy.c ft_memdel.c ft_memmove.c ft_memset.c
+				ft_memcpy.c ft_memdel.c ft_memmove.c ft_memset.c ft_memdup.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)
@@ -108,7 +109,7 @@ TMP_LST		:= ft_strarr_add.c ft_strarr_clone.c ft_strarr_del.c \
 				ft_strlen.c ft_strmap.c ft_strmapi.c ft_strncat.c ft_strncmp.c \
 				ft_strncpy.c ft_strnequ.c ft_strnew.c ft_strnstr.c \
 				ft_strrchr.c ft_strsplit.c ft_strstr.c ft_strsub.c \
-				ft_strtrim.c ft_strndup.c
+				ft_strtrim.c ft_strndup.c ft_strjoinfree.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)

@@ -19,6 +19,8 @@
 # include <fcntl.h>
 # include <sys/ioctl.h>
 # include <sys/stat.h>
+# include <sys/types.h>
+# include <dirent.h>
 
 # include "debug.h"
 # include "libft.h"
@@ -50,6 +52,7 @@ typedef struct s_line		t_line;
 typedef struct s_history	t_history;
 typedef struct s_histentry	t_histentry;
 typedef struct winsize		t_winsize;
+typedef struct s_term		t_term;
 typedef int					(*t_actionhandler)(t_shell *);
 
 struct						s_shell
@@ -60,6 +63,7 @@ struct						s_shell
 	t_history	*history;
 	t_lexer		*lexer;
 	t_parser	*parser;
+	t_term		*term;
 };
 
 struct						s_action
@@ -92,6 +96,12 @@ struct						s_histentry
 	t_histentry	*next;
 };
 
+struct						s_term
+{
+	struct termios		*my;
+	struct termios		*save;
+};
+
 extern t_action				g_actions[];
 t_shell						*g_shell;
 
@@ -109,9 +119,8 @@ char						**shell_setenv(t_shell *shell, char *name,
 	char *value);
 char						**shell_unsetenv(t_shell *shell, char *name);
 char						*shell_gethome(t_shell *shell);
+char						*shell_getbin(const char *name, t_shell *shell);
 
-void						window_resize(t_shell *shell);
-int							window_getcurentpos(t_winsize *curent_pos);
 
 t_history					*history_create(void);
 void						history_destroy(t_history *history);
@@ -157,4 +166,11 @@ int							action_stop(t_shell *shell);
 
 void						print_token(t_token *token);
 void						print_node(t_node *node);
+
+t_term						*term_create(t_shell *shell);
+int							term_row_start(t_shell *shell);
+int							term_row_stop(t_shell *shell);
+
+void						term_resize(t_shell *shell);
+int							term_getcurentpos(t_winsize *curent_pos);
 #endif

@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "process.h"
 
 static int	main_process(t_process *process)
 {

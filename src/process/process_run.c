@@ -11,7 +11,7 @@
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include "process.h"
 
 static int	handle_main_process(t_process *process)
 {

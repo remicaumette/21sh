@@ -15,15 +15,23 @@
 # define PROCESS_H
 
 # include <stdio.h>
-# include <sys/types.h>
 # include <unistd.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 
 #include "libft.h"
-#include "shell.h"
+#include "debug.h"
+
 
 # ifdef __linux__
 # include <sys/types.h>
 # include <sys/wait.h>
+# endif
+
+# ifndef SUCCESS
+#  define SUCCESS			0
+#  define FAIL				1
 # endif
 
 # define BUFF_READ_SIZE		1024

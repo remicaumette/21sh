@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "process.h"
 
 int		process_stdin_file(const char *file, t_process *process)
 {

@@ -11,7 +11,7 @@
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include "process.h"
 
 t_process	*process_create(char *file, char **args, char **env)
 {

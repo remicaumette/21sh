@@ -11,7 +11,7 @@
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include "process.h"
 
 void	process_destroy(t_process *process)
 {

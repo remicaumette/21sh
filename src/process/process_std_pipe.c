@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "process.h"
 
 int		process_stdout_pipe(t_process *src_out, t_process *dst_in)
 {

@@ -16,7 +16,6 @@
 int	action_return(t_shell *shell)
 {
 	write(1, "\n", 1);
-	printf("line: %s\n", shell->line->content);
 	if (shell->line->content)
 	{
 		if (lexer_tokenize(shell->lexer, shell->line->content))
@@ -27,7 +26,8 @@ int	action_return(t_shell *shell)
 			if (shell->missing_token == -1)
 			{
 				term_row_stop(shell);
-				printf("shell_processline: %d\n", shell_processline(shell));
+				if (shell_processline(shell) != SUCCESS)
+					return (FAIL);
 				term_row_start(shell);
 			}
 			lexer_cleanup(shell->lexer);

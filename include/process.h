@@ -13,12 +13,20 @@
 
 #ifndef PROCESS_H
 # define PROCESS_H
+
 # include <stdio.h>
+# include <sys/types.h>
+# include <unistd.h>
+
+#include "libft.h"
+#include "shell.h"
 
 # ifdef __linux__
 # include <sys/types.h>
 # include <sys/wait.h>
 # endif
+
+# define BUFF_READ_SIZE		1024
 
 typedef struct s_process	t_process;
 
@@ -41,6 +49,19 @@ t_process					*process_create(char *file, char **args,
 void						process_destroy(t_process *process);
 int							process_run(t_process *process);
 
+int							process_start(t_process *process);
+int							process_wait(t_process *process);
+
+
+int							process_stdin_default(t_process *process);
+int							process_stdout_default(t_process *process);
+int							process_stderr_default(t_process *process);
 int							process_iodefault(t_process *process);
+
+int							process_stdin_file(const char *file, t_process *process);
+int							process_stdout_file(const char *file, int flag, t_process *process);
+
+int							process_stdout_pipe(t_process *src, t_process *dst);
+
 void						process_debug(t_process *process, const char *str);
 #endif

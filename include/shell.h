@@ -27,6 +27,7 @@
 # include "lexer.h"
 # include "parser.h"
 # include "process.h"
+# include "eval.h"
 # include "utils.h"
 # include "tc_key.h"
 
@@ -168,6 +169,7 @@ void						print_token(t_token *token);
 void						print_node(t_node *node);
 
 t_term						*term_create(t_shell *shell);
+void						term_destroy(t_term **term);
 int							term_row_start(t_shell *shell);
 int							term_row_stop(t_shell *shell);
 

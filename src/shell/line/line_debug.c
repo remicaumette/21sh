@@ -20,7 +20,7 @@ int		line_debug(t_line *line)
 	dprintf(g_fd_debug, "\t<WS_COL>%d</WS_COL>\n", line->window.ws_col);
 	dprintf(g_fd_debug, "</WINDOW>\n");
 
-	if (window_getcurentpos(&tmp) != SUCCESS)
+	if (term_getcurentpos(&tmp) != SUCCESS)
 		dprintf(g_fd_debug, "Fail get curent pos\n");
 	else
 	{

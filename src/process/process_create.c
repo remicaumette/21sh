@@ -28,5 +28,8 @@ t_process	*process_create(char *file, char **args, char **env)
 	process->error = 0;
 	process->status = -1;
 	process->pid = -1;
+	# ifdef USE_DEBUG
+	process_debug(process, NULL);
+	#endif
 	return (process);
 }

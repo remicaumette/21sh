@@ -27,6 +27,8 @@ void	shell_destroy(t_shell *shell)
 			parser_destroy(shell->parser);
 		if (shell->line)
 			line_destroy(&shell->line);
+		if (shell->term)
+			term_destroy(&shell->term);
 		ft_memdel((void **)&shell);
 	}
 }

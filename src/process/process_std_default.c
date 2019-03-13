@@ -24,7 +24,7 @@ int		process_stderr_default(t_process *process)
 	return (SUCCESS);
 }
 
-int		process_iodefault(t_process *process)
+int		process_stdall_default(t_process *process)
 {
 	if (process_stdin_default(process) != SUCCESS ||
 		process_stdout_default(process) != SUCCESS ||

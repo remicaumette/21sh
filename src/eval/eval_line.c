@@ -1,49 +1,33 @@
 #include "shell.h"
 
-static char	**generate_argv(t_command *command)
+t_process	*eval_make_process(t_command *command, t_shell *shell)
 {
-	int		i;
-	char	**tmp;
+	t_process	*process;
+	char		*bin;
+	char		**argv;
 
-	i = -1;
-	if (!(tmp = ft_strarr_add(NULL, command->name)))
+	if (!(bin = eval_getbin(command->name, shell)))
 		return (NULL);
-	while (command->arguments && command->arguments[++i])
-		if (!(tmp = ft_strarr_add(tmp, command->arguments[i])))
-			return (NULL);
-	return (tmp);
+	if (!(argv = eval_genargv(command)))
+		return (NULL);
+	if (!(process = process_create(bin, argv, shell->environment)))
+		return (NULL);
+	ft_strdel(&bin);
+	ft_strarr_del(argv);
+	return (process);
 }
 
 int			eval_line(t_shell *shell)
 {
-	t_process	*process1;
-	t_process	*process2;
-	char		**argv;
-	char		*bin;
+	t_process	*process;
 
-	if (!(bin = shell_getbin(shell->parser->root->command->name, shell)))
+	if (!(process = eval_make_process(shell->parser->root->command, shell)))
 		return (FAIL);
-	if (!(argv = generate_argv(shell->parser->root->command)))
+	process_stdall_default(process); // stdin[0] = FILENO
+	if (process_start(process))
 		return (FAIL);
-	if (!(process1 = process_create("./write_test.bin", argv, shell->environment)))
+	if (process_wait(process) != SUCCESS)
 		return (FAIL);
-	if (!(process2 = process_create("./read_test.bin", argv, shell->environment)))
-		return (FAIL);
-	process_stdin_default(process1); // stdin[0] = FILENO
-	if (process_stdout_pipe(process1, process2) != SUCCESS)
-		return (FAIL);
-	process_stdout_default(process2); // stdout[1] = FILENO
-	ft_strdel(&bin);
-	ft_strarr_del(argv);
-	if (process_start(process1))
-		return (FAIL);
-	if (process_start(process2))
-		return (FAIL);
-	if (process_wait(process1) != SUCCESS)
-		return (FAIL);
-	if (process_wait(process2) != SUCCESS)
-		return (FAIL);
-	process_destroy(process1);
-	process_destroy(process2);
+	process_destroy(process);
 	return (SUCCESS);
 }

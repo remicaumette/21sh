@@ -120,7 +120,6 @@ char						**shell_setenv(t_shell *shell, char *name,
 	char *value);
 char						**shell_unsetenv(t_shell *shell, char *name);
 char						*shell_gethome(t_shell *shell);
-char						*shell_getbin(const char *name, t_shell *shell);
 
 
 t_history					*history_create(void);

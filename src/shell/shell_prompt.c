@@ -17,6 +17,7 @@ int		shell_prompt(t_shell *shell)
 {
 	char	*pwd;
 
+	write(1, "\n", 1);
 	if ((pwd = shell_getenv(shell, "PWD")))
 		ft_putendl(pwd);
 	ft_putstr("$ ");

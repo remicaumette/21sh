@@ -1,18 +1,4 @@
-#include "shell.h"
-
-static char	**generate_argv(t_command *command)
-{
-	int		i;
-	char	**tmp;
-
-	i = -1;
-	if (!(tmp = ft_strarr_add(NULL, command->name)))
-		return (NULL);
-	while (command->arguments && command->arguments[++i])
-		if (!(tmp = ft_strarr_add(tmp, command->arguments[i])))
-			return (NULL);
-	return (tmp);
-}
+#include "eval.h"
 
 int			eval_line(t_shell *shell)
 {
@@ -23,7 +9,7 @@ int			eval_line(t_shell *shell)
 
 	if (!(bin = shell_getbin(shell->parser->root->command->name, shell)))
 		return (FAIL);
-	if (!(argv = generate_argv(shell->parser->root->command)))
+	if (!(argv = eval_genargv(shell->parser->root->command)))
 		return (FAIL);
 	if (!(process1 = process_create("./write_test.bin", argv, shell->environment)))
 		return (FAIL);

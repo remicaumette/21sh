@@ -49,4 +49,5 @@ char			**ft_strarr_add(char **arr, char *elem);
 void			ft_strarr_sort(char **arr, int reverse);
 char			**ft_strarr_clone(char **arr);
 char			*ft_strarr_join(char **arr, char *with);
+char			**ft_strarr_new(size_t size);
 #endif

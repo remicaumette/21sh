@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "eval.h"
 
 static int	is_indir(const char *name, const char *path)
 {
@@ -19,7 +19,7 @@ static int	is_indir(const char *name, const char *path)
 	return (FAIL);
 }
 
-char	*shell_getbin(const char *name, t_shell *shell)
+char	*eval_getbin(const char *name, t_shell *shell)
 {
 	int			i;
 	char		*tmp;

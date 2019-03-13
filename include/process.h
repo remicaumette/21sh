@@ -64,7 +64,7 @@ int							process_wait(t_process *process);
 int							process_stdin_default(t_process *process);
 int							process_stdout_default(t_process *process);
 int							process_stderr_default(t_process *process);
-int							process_iodefault(t_process *process);
+int							process_stdall_default(t_process *process);
 
 int							process_stdin_file(const char *file, t_process *process);
 int							process_stdout_file(const char *file, int flag, t_process *process);

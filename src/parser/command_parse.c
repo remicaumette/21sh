@@ -11,7 +11,7 @@
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include "parser.h"
 
 t_command	*command_parse(t_parser *parser)
 {
@@ -29,5 +29,10 @@ t_command	*command_parse(t_parser *parser)
 		curr = curr->next;
 	}
 	parser->curr = curr;
+	if (curr && parser_istoken_redirection(curr->type))
+	{
+		if (redirection_parse(&cmd->redirection, parser) != SUCCESS)
+			return (NULL);
+	}
 	return (cmd);
 }

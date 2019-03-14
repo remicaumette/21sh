@@ -23,7 +23,7 @@ static void	debug(t_shell *shell)
 
 int			shell_processline(t_shell *shell)
 {
-	if (parser_parse(shell->parser) != SUCCESS)
+	if (parser_parse(shell->parser, shell->lexer) != SUCCESS)
 		return (FAIL);
 	debug(shell);
 	if (shell->parser->root)

@@ -32,7 +32,7 @@ t_shell	*shell_create(char **environment)
 		!(shell->term = term_create(shell)) ||
 		!(shell->history = history_create()) ||
 		!(shell->lexer = lexer_create()) ||
-		!(shell->parser = parser_create(shell)))
+		!(shell->parser = parser_create()))
 		return (NULL);
 	return (shell);
 }

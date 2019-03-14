@@ -11,7 +11,7 @@
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include "parser.h"
 
 void	redirection_destroy(t_redirection *redirection)
 {

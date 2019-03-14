@@ -11,7 +11,7 @@
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include "parser.h"
 
 void	node_insert(t_node **root, t_node *node)
 {

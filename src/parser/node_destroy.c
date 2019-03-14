@@ -11,7 +11,7 @@
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include "parser.h"
 
 void	node_destroy(t_node *node)
 {

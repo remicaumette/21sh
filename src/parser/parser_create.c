@@ -11,15 +11,14 @@
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include "parser.h"
 
-t_parser	*parser_create(t_shell *shell)
+t_parser	*parser_create(void)
 {
 	t_parser	*parser;
 
 	if (!(parser = ft_memalloc(sizeof(t_parser))))
 		return (NULL);
-	parser->shell = shell;
 	parser->root = NULL;
 	parser->curr = NULL;
 	return (parser);

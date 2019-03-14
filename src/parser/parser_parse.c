@@ -11,15 +11,15 @@
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include "parser.h"
 
-int	parser_parse(t_parser *parser)
+int		parser_parse(t_parser *parser, t_lexer *lexer)
 {
 	t_command	*cmd;
 	t_token		*curr;
 	t_node		*node;
 
-	parser->curr = parser->shell->lexer->begin;
+	parser->curr = lexer->begin;
 	while (parser->curr)
 	{
 		cmd = NULL;

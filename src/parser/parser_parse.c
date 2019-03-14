@@ -24,12 +24,12 @@ int	parser_parse(t_parser *parser)
 	{
 		cmd = NULL;
 		curr = parser->curr;
-		if (curr->type == T_WORD && !(cmd = command_parse(parser)))
+		if (curr->type == TOKEN_WORD && !(cmd = command_parse(parser)))
 			return (1);
 		if (!(node = node_create(curr->type, cmd)))
 			return (1);
 		node_insert(&parser->root, node);
-		parser->curr = curr->type == T_WORD ? parser->curr : curr->next;
+		parser->curr = curr->type == TOKEN_WORD ? parser->curr : curr->next;
 	}
 	return (0);
 }

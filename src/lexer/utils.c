@@ -14,19 +14,21 @@
 #include "shell.h"
 
 t_tokeninfo	g_tokens[] = {
-	{"<<-", T_DLESSDASH, 3},
-	{"&&", T_ANDIF, 2},
-	{"||", T_ORIF, 2},
-	{";;", T_DSEMI, 2},
-	{"<<", T_DLESS, 2},
-	{">>", T_DGREAT, 2},
-	{"<&", T_LESSAND, 2},
-	{">&", T_GREATAND, 2},
-	{"<>", T_LESSGREAT, 2},
-	{">|", T_CLOBBER, 2},
-	{"|", T_PIPE, 1},
-	{";", T_NEWLINE, 1},
-	{"\n", T_NEWLINE, 1},
+	{"<<-", TOKEN_DLESSDASH, 3},
+	{"&&", TOKEN_ANDIF, 2},
+	{"||", TOKEN_ORIF, 2},
+	{";;", TOKEN_DSEMI, 2},
+	{"<<", TOKEN_DLESS, 2},
+	{">>", TOKEN_DGREAT, 2},
+	{"<&", TOKEN_LESSAND, 2},
+	{">&", TOKEN_GREATAND, 2},
+	{"<>", TOKEN_LESSGREAT, 2},
+	{">|", TOKEN_CLOBBER, 2},
+	{"|", TOKEN_PIPE, 1},
+	{">", TOKEN_GREAT, 1},
+	{"<", TOKEN_LESS, 1},
+	{";", TOKEN_NEWLINE, 1},
+	{"\n", TOKEN_NEWLINE, 1},
 };
 
 t_tokentype	lexer_gettype(char *str)
@@ -37,7 +39,7 @@ t_tokentype	lexer_gettype(char *str)
 	while (++i < 13)
 		if (ft_strnequ(str, g_tokens[i].format, g_tokens[i].len))
 			return (g_tokens[i].type);
-	return (T_WORD);
+	return (TOKEN_WORD);
 }
 
 char		lexer_getmissingtoken(t_lexer *lexer)
@@ -51,11 +53,11 @@ char		lexer_getmissingtoken(t_lexer *lexer)
 	last = NULL;
 	while (curr)
 	{
-		if (curr->type != T_NEWLINE)
+		if (curr->type != TOKEN_NEWLINE)
 			last = curr;
 		curr = curr->next;
 	}
-	if (last && last->type == T_PIPE)
+	if (last && last->type == TOKEN_PIPE)
 		return ('|');
 	return (-1);
 }

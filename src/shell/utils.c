@@ -14,19 +14,21 @@
 #include "shell.h"
 
 static const char	*g_type[] = {
-	"T_WORD",
-	"T_NEWLINE",
-	"T_PIPE",
-	"T_ANDIF",
-	"T_ORIF",
-	"T_DSEMI",
-	"T_DLESS",
-	"T_DGREAT",
-	"T_LESSAND",
-	"T_GREATAND",
-	"T_LESSGREAT",
-	"T_DLESSDASH",
-	"T_CLOBBER",
+	"TOKEN_WORD",
+	"TOKEN_NEWLINE",
+	"TOKEN_PIPE",
+	"TOKEN_GREAT",
+	"TOKEN_LESS",
+	"TOKEN_ANDIF",
+	"TOKEN_ORIF",
+	"TOKEN_DSEMI",
+	"TOKEN_DLESS",
+	"TOKEN_DGREAT",
+	"TOKEN_LESSAND",
+	"TOKEN_GREATAND",
+	"TOKEN_LESSGREAT",
+	"TOKEN_DLESSDASH",
+	"TOKEN_CLOBBER",
 };
 
 void				print_token(t_token *token)

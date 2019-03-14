@@ -23,7 +23,7 @@ int			eval_line(t_shell *shell)
 
 	if (!(process = eval_make_process(shell->parser->root->command, shell)))
 		return (FAIL);
-	process_stdall_default(process); // stdin[0] = FILENO
+	process_stdall_default(process);
 	if (process_start(process))
 		return (FAIL);
 	if (process_wait(process) != SUCCESS)

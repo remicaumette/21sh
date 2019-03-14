@@ -18,11 +18,11 @@ t_command	*command_parse(t_parser *parser)
 	t_token		*curr;
 	t_command	*cmd;
 
-	if (!(curr = parser->curr) || curr->type != T_WORD ||
+	if (!(curr = parser->curr) || curr->type != TOKEN_WORD ||
 		!(cmd = command_create(curr->content)))
 		return (NULL);
 	curr = curr->next;
-	while (curr && curr->type == T_WORD)
+	while (curr && curr->type == TOKEN_WORD)
 	{
 		if (!(cmd->arguments = ft_strarr_add(cmd->arguments, curr->content)))
 			return (NULL);

@@ -39,12 +39,12 @@ static char		*lexer_addwordtoken(t_lexer *lexer, char *str)
 	char	*join;
 
 	tmp = str - 1;
-	if (lexer->quote != -1 && lexer->end && lexer->end->type == T_WORD)
+	if (lexer->quote != -1 && lexer->end && lexer->end->type == TOKEN_WORD)
 		token = lexer->end;
-	else if (!(token = lexer_addtoken(lexer, T_WORD, NULL)))
+	else if (!(token = lexer_addtoken(lexer, TOKEN_WORD, NULL)))
 		return (NULL);
 	while (*++tmp && !((*tmp == '\t' || *tmp == ' ' ||
-		lexer_gettype(tmp) != T_WORD) && lexer->quote == -1))
+		lexer_gettype(tmp) != TOKEN_WORD) && lexer->quote == -1))
 		if ((*tmp == '\'' || *tmp == '"') && lexer->quote == -1)
 			lexer->quote = *tmp;
 		else if (*tmp == lexer->quote)
@@ -71,10 +71,10 @@ int				lexer_tokenize(t_lexer *lexer, char *str)
 		if (*tmp == ' ' || *tmp == '\t')
 			continue ;
 		type = lexer_gettype(tmp);
-		if ((type == T_WORD || lexer->quote != -1) &&
+		if ((type == TOKEN_WORD || lexer->quote != -1) &&
 			!(tmp = lexer_addwordtoken(lexer, tmp)))
 			return (1);
-		else if (!(type == T_WORD || lexer->quote != -1) &&
+		else if (!(type == TOKEN_WORD || lexer->quote != -1) &&
 			!(tmp = lexer_addsimpletoken(lexer, type, tmp)))
 			return (1);
 	}

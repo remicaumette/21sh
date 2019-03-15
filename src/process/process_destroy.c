@@ -13,8 +13,11 @@
 
 #include "process.h"
 
-void	process_destroy(t_process *process)
+void	process_destroy(t_process **as)
 {
+	t_process	*process;
+
+	process = *as;
 	if (process)
 	{
 		if (process->file)
@@ -31,6 +34,6 @@ void	process_destroy(t_process *process)
 		close(process->stdout[1]);
 		close(process->stderr[0]);
 		close(process->stderr[1]);
-		ft_memdel((void **)&process);
+		ft_memdel((void **)as);
 	}
 }

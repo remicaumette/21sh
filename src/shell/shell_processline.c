@@ -28,7 +28,7 @@ int			shell_processline(t_shell *shell)
 	debug(shell);
 	if (shell->parser->root)
 	{
-		if (eval_line(shell) != SUCCESS)
+		if (eval_all(shell) != SUCCESS)
 			return (FAIL);
 	}
 	return (SUCCESS);

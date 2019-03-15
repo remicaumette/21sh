@@ -54,7 +54,7 @@ struct						s_process
 
 t_process					*process_create(char *file, char **args,
 	char **env);
-void						process_destroy(t_process *process);
+void						process_destroy(t_process **as);
 int							process_run(t_process *process);
 
 int							process_start(t_process *process);
@@ -69,7 +69,7 @@ int							process_stdall_default(t_process *process);
 int							process_stdin_file(const char *file, t_process *process);
 int							process_stdout_file(const char *file, int flag, t_process *process);
 
-int							process_stdout_pipe(t_process *src, t_process *dst);
+int							process_pipe(t_process *src, t_process *dst);
 
 void						process_debug(t_process *process, const char *str);
 #endif

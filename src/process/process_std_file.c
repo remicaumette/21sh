@@ -15,7 +15,7 @@ int		process_stdout_file(const char *file, int flag, t_process *process)
 {
 	int		fd;
 
-	if ((fd = open(file, flag | O_WRONLY | O_CREAT, 0755)) == -1)
+	if ((fd = open(file, flag | O_WRONLY | O_CREAT, 0644)) == -1)
 		return (FAIL);
 	dup2(fd, process->stdout[1]);
 	close(fd);
@@ -26,7 +26,7 @@ int		process_stderr_file(const char *file, int flag, t_process *process)
 {
 	int		fd;
 
-	if ((fd = open(file, flag | O_WRONLY | O_CREAT, 0755)) == -1)
+	if ((fd = open(file, flag | O_WRONLY | O_CREAT, 0644)) == -1)
 		return (FAIL);
 	dup2(fd, process->stderr[1]);
 	close(fd);

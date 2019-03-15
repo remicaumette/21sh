@@ -137,7 +137,8 @@ SRC_LST		:= $(SRC_LST) $(TMP_SRC)
 
 TMP_NAME	:= eval
 
-TMP_LST		:= eval_line.c eval_genargv.c eval_getbin.c \
+TMP_LST		:= eval_create.c eval_destroy.c eval_all.c eval_line.c \
+				eval_command.c eval_redirection.c eval_genargv.c eval_getbin.c \
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)

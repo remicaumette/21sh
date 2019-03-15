@@ -22,13 +22,13 @@ t_redirection	*redirection_create(t_tokentype type, char *file)
 		return (NULL);
 	redirection->type = type;
 	redirection->next = NULL;
-	if (type == TOKEN_LESS || type == TOKEN_DLESS || type == TOKEN_LESSAND)
-		redirection->in = 1;
-	else
-		redirection->in = 0;
 	if (type == TOKEN_GREAT || type == TOKEN_DGREAT || type == TOKEN_GREATAND)
 		redirection->out = 1;
 	else
 		redirection->out = 0;
+	if (type == TOKEN_LESS || type == TOKEN_DLESS || type == TOKEN_LESSAND)
+		redirection->in = 1;
+	else
+		redirection->in = 0;
 	return (redirection);
 }

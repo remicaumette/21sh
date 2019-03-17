@@ -27,14 +27,11 @@ int			eval_line(t_node *curr, t_shell *shell)
 {
 	int			pipe;
 	t_eval		*tmp;
-	t_eval		*line;
+	t_eval		line;
 
 	pipe = 0;
-	line = NULL;
-	if (eval_command(curr, &line, shell) != SUCCESS)
-		return (FAIL);
-	tmp = line;
-	curr = curr->next;
+	line.process = NULL;
+	tmp = &line;
 	while (curr && curr->type != TOKEN_NEWLINE)
 	{
 		if (curr->type == TOKEN_WORD)
@@ -49,5 +46,5 @@ int			eval_line(t_node *curr, t_shell *shell)
 			pipe = 1;
 		curr = curr->next;
 	}
-	return (run_eval(line));
+	return (run_eval(line.next));
 }

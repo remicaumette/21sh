@@ -37,6 +37,8 @@
 #  define LINUX				0
 # endif
 
+# define SHELL_NAME			"21sh"
+
 # define CURSOR				shell->line->cursor
 # define CURENT_COL			shell->line->cur_pos.ws_col
 # define CURENT_ROW			shell->line->cur_pos.ws_row

@@ -6,7 +6,10 @@ static int	make_process(t_command *command, t_process **process, t_shell * shell
 	char	**argv;
 
 	if (!(bin = eval_getbin(command->name, shell)))
+	{
+		printf("%s: command not found: %s\n", SHELL_NAME, command->name);
 		return (FAIL);
+	}
 	if (!(argv = eval_genargv(command)))
 		return (FAIL);
 	if (!(*process = process_create(bin, argv, shell->environment)))

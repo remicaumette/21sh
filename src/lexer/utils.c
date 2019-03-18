@@ -29,6 +29,7 @@ t_tokeninfo	g_tokens[] = {
 	{"<", TOKEN_LESS, 1},
 	{";", TOKEN_NEWLINE, 1},
 	{"\n", TOKEN_NEWLINE, 1},
+	{NULL, TOKEN_WORD, 0}
 };
 
 t_tokentype	lexer_gettype(char *str)
@@ -36,7 +37,7 @@ t_tokentype	lexer_gettype(char *str)
 	int	i;
 
 	i = -1;
-	while (++i < 13)
+	while (g_tokens[++i].len)
 		if (ft_strnequ(str, g_tokens[i].format, g_tokens[i].len))
 			return (g_tokens[i].type);
 	return (TOKEN_WORD);

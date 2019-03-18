@@ -1,6 +1,6 @@
 #include "shell.h"
 
-int		action_ctrl_up(t_shell *shell)
+t_ret		action_ctrl_up(t_shell *shell)
 {
 	int		i;
 
@@ -10,15 +10,15 @@ int		action_ctrl_up(t_shell *shell)
 		while (i)
 		{
 			if (action_move_left(shell) != SUCCESS)
-				return (FAIL);
+				return (RET_FAIL);
 			i--;
 		}
 		CURSOR -= MAX_COL;
 	}
-	return (SUCCESS);
+	return (RET_SUCCESS);
 }
 
-int		action_ctrl_down(t_shell *shell)
+t_ret		action_ctrl_down(t_shell *shell)
 {
 	int		i;
 
@@ -28,10 +28,10 @@ int		action_ctrl_down(t_shell *shell)
 		while (i)
 		{
 			if (action_move_right(shell) != SUCCESS)
-				return (FAIL);
+				return (RET_FAIL);
 			i--;
 		}
 		CURSOR += MAX_COL;
 	}
-	return (SUCCESS);
+	return (RET_SUCCESS);
 }

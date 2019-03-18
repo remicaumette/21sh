@@ -13,15 +13,16 @@
 
 #include "shell.h"
 
-int		action_clear(t_shell *shell)
+t_ret		action_clear(t_shell *shell)
 {
 	int		i;
 
 	if (action_str(TC_CLEAR) != SUCCESS)
-		return (FAIL);
-	shell_prompt(shell);
+		return (RET_FAIL);
+	if (shell_prompt(shell) != SUCCESS)
+		return (RET_FAIL);
 	if (term_getcurentpos(&(shell->line->cur_pos)) != SUCCESS)
-		return (FAIL);
+		return (RET_FAIL);
 	action_putstr(shell ,shell->line->content);
 	i = shell->line->size + 1;
 	if (CURSOR < i)
@@ -29,22 +30,22 @@ int		action_clear(t_shell *shell)
 		while (i > CURSOR)
 		{
 			if (action_move_left(shell) != SUCCESS)
-				return (FAIL);
+				return (RET_FAIL);
 			i--;
 		}
 		if (action_str(TC_INSER_START) != SUCCESS)
-			return (FAIL);
+			return (RET_FAIL);
 	}
-	return (SUCCESS);
+	return (RET_EGAIN);
 }
 
-int		action_clear_to_end(t_shell *shell)
+t_ret		action_clear_to_end(t_shell *shell)
 {
 	if (CURSOR < (shell->line->size + 1))
 	{
 		if (action_str(TC_CLEAR_TO_END) != SUCCESS)
-			return (FAIL);
+			return (RET_FAIL);
 		line_deltoend(shell->line);
 	}
-	return (SUCCESS);
+	return (RET_EGAIN);
 }

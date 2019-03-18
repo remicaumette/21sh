@@ -56,7 +56,16 @@ typedef struct s_history	t_history;
 typedef struct s_histentry	t_histentry;
 typedef struct winsize		t_winsize;
 typedef struct s_term		t_term;
-typedef int					(*t_actionhandler)(t_shell *);
+typedef enum e_ret			t_ret;
+typedef t_ret				(*t_actionhandler)(t_shell *);
+
+enum						e_ret
+{
+	RET_SUCCESS,
+	RET_STOP,
+	RET_EGAIN,
+	RET_FAIL,
+};
 
 struct						s_shell
 {
@@ -113,7 +122,6 @@ void						init_signal(void);
 t_shell						*shell_create(char **environment);
 void						shell_destroy(t_shell *shell);
 int							shell_start(t_shell *shell);
-int							shell_actiondispatcher(t_shell *shell, long buf);
 int							shell_processline(t_shell *shell);
 int							shell_prompt(t_shell *shell);
 int							shell_envinit(t_shell *shell, char **default_env);
@@ -121,7 +129,7 @@ char						*shell_getenv(t_shell *shell, char *name);
 char						**shell_setenv(t_shell *shell, char *name,
 	char *value);
 char						**shell_unsetenv(t_shell *shell, char *name);
-char						*shell_gethome(t_shell *shell);
+t_ret						shell_getline(t_shell *shell);
 
 
 t_history					*history_create(void);
@@ -140,7 +148,9 @@ void						line_replace(t_line *line, char *src);
 int							line_curpp(t_line *line, int n);
 int							line_debug(t_line *line);
 
-int							action_debug(t_shell *shell);
+
+t_ret						action_dispatcher(t_shell *shell, long buf);
+t_ret						action_debug(t_shell *shell);
 
 int							action_str(char *cap);
 void						action_putchar(t_shell *shell, char buf);
@@ -149,22 +159,22 @@ void						action_putstr(t_shell *shell, char *str);
 int							action_move_left(t_shell *shell);
 int							action_move_right(t_shell *shell);
 
-int							action_basic(t_shell *shell, long buf);
-int							action_return(t_shell *shell);
-int							action_clear(t_shell *shell);
-int							action_clear_to_end(t_shell *shell);
-int							action_backdel(t_shell *shell);
-int							action_arrow_up(t_shell *shell);
-int							action_arrow_down(t_shell *shell);
-int							action_arrow_left(t_shell *shell);
-int							action_arrow_right(t_shell *shell);
-int							action_home(t_shell *shell);
-int							action_end(t_shell *shell);
-int							action_move_next_word(t_shell *shell);
-int							action_move_prev_word(t_shell *shell);
-int							action_ctrl_up(t_shell *shell);
-int							action_ctrl_down(t_shell *shell);
-int							action_stop(t_shell *shell);
+t_ret						action_basic(t_shell *shell, long buf);
+t_ret						action_return(t_shell *shell);
+t_ret						action_clear(t_shell *shell);
+t_ret						action_clear_to_end(t_shell *shell);
+t_ret						action_backdel(t_shell *shell);
+t_ret						action_arrow_up(t_shell *shell);
+t_ret						action_arrow_down(t_shell *shell);
+t_ret						action_arrow_left(t_shell *shell);
+t_ret						action_arrow_right(t_shell *shell);
+t_ret						action_home(t_shell *shell);
+t_ret						action_end(t_shell *shell);
+t_ret						action_move_next_word(t_shell *shell);
+t_ret						action_move_prev_word(t_shell *shell);
+t_ret						action_ctrl_up(t_shell *shell);
+t_ret						action_ctrl_down(t_shell *shell);
+t_ret						action_stop(t_shell *shell);
 
 void						print_token(t_token *token);
 void						print_node(t_node *node);

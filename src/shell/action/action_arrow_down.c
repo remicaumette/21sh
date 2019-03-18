@@ -13,7 +13,7 @@
 
 #include "shell.h"
 
-int	action_arrow_down(t_shell *shell)
+t_ret	action_arrow_down(t_shell *shell)
 {
 	t_histentry *entry;
 
@@ -21,11 +21,11 @@ int	action_arrow_down(t_shell *shell)
 	{
 		shell->history->curr = entry->prev;
 		if (action_home(shell) != SUCCESS)
-			return (FAIL);
+			return (RET_FAIL);
 		if (action_str(TC_CLEAR_TO_END) != SUCCESS)
-			return (FAIL);
+			return (RET_FAIL);
 		line_replace(shell->line, ft_strdup(entry->content));
 		action_putstr(shell, entry->content);
 	}
-	return (SUCCESS);
+	return (RET_EGAIN);
 }

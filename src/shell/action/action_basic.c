@@ -13,42 +13,43 @@
 
 #include "shell.h"
 
-static int		multi_line(t_shell *shell)
+
+static t_ret		multi_line(t_shell *shell)
 {
 	int		i;
 
 	i = -1;
 	if (action_str(TC_INSER_STOP) != SUCCESS)
-		return (FAIL);
+		return (RET_FAIL);
 	action_putstr(shell, &(shell->line->content[CURSOR - 2]));
 	while (++i <= (shell->line->size - CURSOR))
 	{
 		if (action_move_left(shell) != SUCCESS)
-			return (FAIL);
+			return (RET_FAIL);
 	}
 	if (action_str(TC_INSER_START) != SUCCESS)
-		return (FAIL);
-	return (SUCCESS);
+		return (RET_FAIL);
+	return (RET_EGAIN);
 }
 
-int				action_basic(t_shell *shell, long buf)
+t_ret				action_basic(t_shell *shell, long buf)
 {
 	if (line_inser(shell->line, (char)buf) != SUCCESS)
-		return (FAIL);
+		return (RET_FAIL);
 	if ((((shell->line->size + 2) >= MAX_COL) && (shell->line->size + 2 / MAX_COL) > (shell->line->cursor + 2 / MAX_COL)))
 	{
-		if (multi_line(shell) != SUCCESS)
-			return (FAIL);
+		if (multi_line(shell) != RET_EGAIN)
+			return (RET_FAIL);
 	}
 	else
 		action_putchar(shell, (char)buf);
-	return (SUCCESS);
+	return (RET_EGAIN);
 }
 
 /*
-int		action_basic(t_line *line, long buf, int readed)
+t_ret		action_basic(t_shell *shell, long buf)
 {
-	(void)line;
-	dprintf(1, "buf:%ld\nreaded:%d\n", buf, readed);
-	return (SUCCESS);
+	(void)shell;
+	dprintf(1, "buf:%ld\n\n", buf);
+	return (RET_EGAIN);
 }*/

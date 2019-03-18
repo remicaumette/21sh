@@ -149,9 +149,8 @@ SRC_LST		:= $(SRC_LST) $(TMP_SRC)
 
 TMP_NAME	:= shell
 
-TMP_LST		:= shell_create.c shell_destroy.c shell_actiondispatcher.c \
-				shell_processline.c shell_start.c utils.c \
-				shell_prompt.c
+TMP_LST		:= shell_create.c shell_destroy.c shell_processline.c \
+				shell_start.c utils.c shell_prompt.c shell_getline.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)
@@ -162,7 +161,7 @@ SRC_LST		:= $(SRC_LST) $(TMP_SRC)
 TMP_DAD		:= shell
 TMP_NAME	:= action
 
-TMP_LST		:= action_basic.c action_clear.c action_del.c \
+TMP_LST		:= action_dispatcher.c action_basic.c action_clear.c action_del.c \
 				action_arrow_up.c action_arrow_down.c action_arrow_left.c \
 				action_arrow_right.c action_end.c action_home.c \
 				action_stop.c action_return.c action_utile.c action_move.c \

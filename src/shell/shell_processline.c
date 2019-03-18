@@ -13,6 +13,7 @@
 
 #include "shell.h"
 
+/*
 static void	debug(t_shell *shell)
 {
 	printf("=== TOKEN\n");
@@ -20,16 +21,32 @@ static void	debug(t_shell *shell)
 	printf("=== PARSER\n");
 	print_node(shell->parser->root);
 }
+*/
 
 int			shell_processline(t_shell *shell)
 {
-	if (parser_parse(shell->parser, shell->lexer) != SUCCESS)
-		return (FAIL);
-	debug(shell);
-	if (shell->parser->root)
+	if (lexer_tokenize(shell->lexer, shell->line->content))
+		return (!!shell->line->content);
+	shell->missing_token = lexer_getmissingtoken(shell->lexer);
+	if (shell->lexer->begin)
 	{
-		if (eval_all(shell) != SUCCESS)
-			return (FAIL);
+		if (shell->missing_token == -1)
+		{
+			if (parser_parse(shell->parser, shell->lexer) != SUCCESS)
+				return (FAIL);
+			if (shell->parser->root)
+			{
+				if (eval_all(shell) != SUCCESS)
+					return (FAIL);
+			}
+			term_row_stop(shell);
+			term_row_start(shell);
+		}
+		lexer_cleanup(shell->lexer);
+		parser_cleanup(shell->parser);
 	}
+	if (!(history_insert(shell->history, shell->line->content)))
+		return (FAIL);
+	line_reset(shell->line);
 	return (SUCCESS);
 }

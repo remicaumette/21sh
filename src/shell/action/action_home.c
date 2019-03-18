@@ -13,9 +13,9 @@
 
 #include "shell.h"
 
-int	action_home(t_shell *shell)
+t_ret		action_home(t_shell *shell)
 {
 	while (CURSOR > 1)
 		action_arrow_left(shell);
-	return (SUCCESS);
+	return (RET_EGAIN);
 }

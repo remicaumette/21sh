@@ -13,7 +13,7 @@
 
 #include "shell.h"
 
-int		action_move_next_word(t_shell *shell)
+t_ret			action_move_next_word(t_shell *shell)
 {
 	char	*tmp;
 
@@ -25,10 +25,10 @@ int		action_move_next_word(t_shell *shell)
 		while (tmp[CURSOR - 1] && tmp[CURSOR - 1] == ' ')
 			action_arrow_right(shell);
 	}
-	return (SUCCESS);
+	return (RET_EGAIN);
 }
 
-int		action_move_prev_word(t_shell *shell)
+t_ret			action_move_prev_word(t_shell *shell)
 {
 	char	*tmp;
 
@@ -41,5 +41,5 @@ int		action_move_prev_word(t_shell *shell)
 		while (CURSOR > 1 && tmp[CURSOR - 2] != ' ')
 			action_arrow_left(shell);
 	}
-	return (SUCCESS);
+	return (RET_EGAIN);
 }

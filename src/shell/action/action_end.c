@@ -13,9 +13,9 @@
 
 #include "shell.h"
 
-int	action_end(t_shell *shell)
+t_ret		action_end(t_shell *shell)
 {
 	while (CURSOR <= shell->line->size)
 		action_arrow_right(shell);
-	return (SUCCESS);
+	return (RET_EGAIN);
 }

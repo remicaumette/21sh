@@ -2,9 +2,9 @@
 
 # ifdef USE_DEBUG
 
-int		action_debug(t_shell *shell)
+t_ret		action_debug(t_shell *shell)
 {
 	line_debug(shell->line);
-	return (SUCCESS);
+	return (RET_EGAIN);
 }
 #endif

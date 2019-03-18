@@ -13,32 +13,9 @@
 
 #include "shell.h"
 
-int	action_return(t_shell *shell)
+t_ret		action_return(t_shell *shell)
 {
-				write(1, "\n", 1);
-	if (shell->line->content)
-	{
-		if (lexer_tokenize(shell->lexer, shell->line->content))
-			return (!!shell->line->content);
-		shell->missing_token = lexer_getmissingtoken(shell->lexer);
-		if (shell->lexer->begin)
-		{
-			if (shell->missing_token == -1)
-			{
-				term_row_stop(shell);
-				shell_processline(shell); // gestion d'erreur a revoir
-				term_row_start(shell);
-			}
-			lexer_cleanup(shell->lexer);
-			parser_cleanup(shell->parser);
-		}
-		if (!(history_insert(shell->history, shell->line->content)))
-			return (FAIL);
-		line_reset(shell->line);
-	}
-	if (shell_prompt(shell) != SUCCESS)
-		return (FAIL);
-	if (term_getcurentpos(&(shell->line->cur_pos)) != SUCCESS)
-		return (FAIL);
-	return (SUCCESS);
+	(void)shell;
+	write(1, "\n", 1);
+	return (RET_SUCCESS);
 }

@@ -11,3 +11,7 @@ and_if:
 
 or_if:
 	<command> || <command>
+
+redirection:
+	<command> > <file_name>
+	<command> >> <file_name>

@@ -19,23 +19,27 @@ static int	shell_stop(t_shell *shell, int status)
 	return (status);
 }
 
-static int	shell_readline(t_shell *shell)
+static int	shell_loop(t_shell *shell)
 {
-	int		readed;
-	long	buf;
+	t_ret	ret;
 
-	buf = 0;
-	if (shell_prompt(shell) != SUCCESS)
-		return (shell_stop(shell, 1));
-	if (term_getcurentpos(&(shell->line->cur_pos)) != SUCCESS)
-		return (shell_stop(shell, 1));
-	while ((readed = read(0, &buf, sizeof(buf))) > 0)
+	while (101)
 	{
-		if (shell_actiondispatcher(shell, buf))
-			return (shell_stop(shell, 1));
-		buf = 0;
+		if (shell_prompt(shell) != SUCCESS)
+			return (shell_stop(shell, FAIL));
+		if (term_getcurentpos(&(shell->line->cur_pos)) != SUCCESS)
+			return (shell_stop(shell, FAIL));
+		ret = shell_getline(shell);
+		if (ret != RET_SUCCESS)
+		{
+			if (ret == RET_STOP)
+				return (shell_stop(shell, SUCCESS));
+			if (ret == RET_FAIL)
+				return (shell_stop(shell, FAIL));
+		}
+		shell_processline(shell);
 	}
-	return (shell_stop(shell, 0));
+	return (shell_stop(shell, 3));
 }
 
 int			shell_start(t_shell *shell)
@@ -44,5 +48,5 @@ int			shell_start(t_shell *shell)
 		return(FAIL);
 	term_resize(shell);
 	init_signal();
-	return (shell_readline(shell));
+	return (shell_loop(shell));
 }

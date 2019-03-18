@@ -13,18 +13,18 @@
 
 #include "shell.h"
 
-int		action_arrow_right(t_shell *shell)
+t_ret		action_arrow_right(t_shell *shell)
 {
 	if (CURSOR <= shell->line->size)
 	{
 		if (action_move_right(shell) != SUCCESS)
-			return (FAIL);
+			return (RET_FAIL);
 		if (CURSOR == shell->line->size)
 		{
 			if (action_str(TC_INSER_STOP) != SUCCESS)
-				return (FAIL);
+				return (RET_FAIL);
 		}
 		CURSOR++;
 	}
-	return (SUCCESS);
+	return (RET_EGAIN);
 }

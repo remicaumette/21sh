@@ -28,7 +28,7 @@ int		eval_command(t_node *node, t_eval **eval, t_shell *shell)
 		return (FAIL);
 	if (make_process(node->command, &process, shell) != SUCCESS)
 		return (FAIL);
-	if (eval_redirection(node->command, process) != SUCCESS)
+	if (eval_redirection(node->command, process, shell) != SUCCESS)
 		return (FAIL);
 	if (!(*eval = eval_create(process)))
 		return (FAIL);

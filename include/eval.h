@@ -20,8 +20,9 @@ void		eval_destroy(t_eval **eval);
 int			eval_all(t_shell *shell);
 int			eval_line(t_node *curr, t_shell *shell);
 int			eval_command(t_node *node, t_eval **eval, t_shell *shell);
-int			eval_redirection(t_command *command, t_process *process);
+int			eval_redirection(t_command *command, t_process *process, t_shell *shell);
 char		**eval_genargv(t_command *command);
 
+int			eval_heredoc(t_redirection *redirection, t_process *process, t_shell *shell);
 char		*eval_getbin(const char *name, t_shell *shell);
 #endif

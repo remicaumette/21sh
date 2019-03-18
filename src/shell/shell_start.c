@@ -13,12 +13,6 @@
 
 #include "shell.h"
 
-static int	shell_stop(t_shell *shell, int status)
-{
-	term_row_stop(shell);
-	return (status);
-}
-
 static int	shell_loop(t_shell *shell)
 {
 	t_ret	ret;
@@ -26,27 +20,25 @@ static int	shell_loop(t_shell *shell)
 	while (101)
 	{
 		if (shell_prompt(shell) != SUCCESS)
-			return (shell_stop(shell, FAIL));
-		if (term_getcurentpos(&(shell->line->cur_pos)) != SUCCESS)
-			return (shell_stop(shell, FAIL));
+			return (FAIL);
 		ret = shell_getline(shell);
 		if (ret != RET_SUCCESS)
 		{
 			if (ret == RET_STOP)
-				return (shell_stop(shell, SUCCESS));
+				return (SUCCESS);
 			if (ret == RET_FAIL)
-				return (shell_stop(shell, FAIL));
+				return (FAIL);
 		}
 		shell_processline(shell);
 	}
-	return (shell_stop(shell, 3));
+	return (FAIL);
 }
 
 int			shell_start(t_shell *shell)
 {
-	if (term_row_start(shell) != SUCCESS)
-		return(FAIL);
+	term_row_start(shell);
 	term_resize(shell);
 	init_signal();
+	term_row_stop(shell);
 	return (shell_loop(shell));
 }

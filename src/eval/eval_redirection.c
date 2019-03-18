@@ -1,12 +1,12 @@
 #include "eval.h"
 
 
-static int	input_redirection(t_redirection *redirection, t_process *process)
+static int	input_redirection(t_redirection *redirection, t_process *process, t_shell *shell)
 {
 	if (redirection->type == TOKEN_LESS)
 		process_stdin_file(redirection->file, process);
 	if (redirection->type == TOKEN_DLESS)
-		dprintf(1, "TOKEN_DLESS: todo\n");
+		eval_heredoc(redirection, process, shell);
 	if (redirection->type == TOKEN_LESSAND)
 		dprintf(1, "TOKEN_LESSAND: todo\n");
 	return (SUCCESS);
@@ -28,7 +28,7 @@ static int	output_redirection(t_redirection *redirection, t_process *process)
 }
 
 
-int			eval_redirection(t_command *command, t_process *process)
+int			eval_redirection(t_command *command, t_process *process, t_shell *shell)
 {
 	int					set_in;
 	int					set_out;
@@ -42,7 +42,7 @@ int			eval_redirection(t_command *command, t_process *process)
 		if (tmp->in)
 		{
 			set_in = 1;
-			input_redirection(tmp, process);
+			input_redirection(tmp, process, shell);
 		}
 		if (tmp->out)
 		{

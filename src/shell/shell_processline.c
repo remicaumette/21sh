@@ -13,40 +13,40 @@
 
 #include "shell.h"
 
-/*
-static void	debug(t_shell *shell)
+
+/*static void	debug(t_shell *shell)
 {
 	printf("=== TOKEN\n");
 	print_token(shell->lexer->begin);
 	printf("=== PARSER\n");
 	print_node(shell->parser->root);
-}
-*/
+}*/
 
 int			shell_processline(t_shell *shell)
 {
+	int		out;
+
+	out = 1;
 	if (lexer_tokenize(shell->lexer, shell->line->content))
-		return (!!shell->line->content);
+		out = 0;
 	shell->missing_token = lexer_getmissingtoken(shell->lexer);
-	if (shell->lexer->begin)
+	if (out && shell->lexer->begin)
 	{
-		if (shell->missing_token == -1)
+		if (out && shell->missing_token == -1)
 		{
 			if (parser_parse(shell->parser, shell->lexer) != SUCCESS)
-				return (FAIL);
-			if (shell->parser->root)
+				out = 0;
+			if (out && shell->parser->root)
 			{
 				if (eval_all(shell) != SUCCESS)
-					return (FAIL);
+					out = 0;
 			}
-			term_row_stop(shell);
-			term_row_start(shell);
 		}
 		lexer_cleanup(shell->lexer);
 		parser_cleanup(shell->parser);
 	}
-	if (!(history_insert(shell->history, shell->line->content)))
-		return (FAIL);
+	if (out && !(history_insert(shell->history, shell->line->content)))
+		out = 0;
 	line_reset(shell->line);
-	return (SUCCESS);
+	return (out) ? SUCCESS : FAIL;
 }

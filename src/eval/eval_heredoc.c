@@ -1,6 +1,20 @@
+/* ************************************************************************** */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   eval_heredoc.c                                   .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2019/03/20 18:18:26 by timfuzea     #+#   ##    ##    #+#       */
+/*   Updated: 2019/03/20 18:19:04 by timfuzea    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
+/* ************************************************************************** */
+
 #include "eval.h"
 
-int			eval_heredoc(t_redirection *redirection, t_process *process, t_shell *shell)
+int			eval_heredoc(t_redirection *redirection, t_process *process,
+		t_shell *shell)
 {
 	t_line		*save;
 
@@ -16,7 +30,7 @@ int			eval_heredoc(t_redirection *redirection, t_process *process, t_shell *shel
 			return (FAIL);
 		}
 		if (ft_strequ(shell->line->content, redirection->file) == 1)
-			break;
+			break ;
 		ft_putendl_fd(shell->line->content, process->stdin[1]);
 		line_reset(shell->line);
 	}

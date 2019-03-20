@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/14 08:08:55 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/15 17:06:52 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/20 17:29:35 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -131,7 +131,6 @@ char						**shell_setenv(t_shell *shell, char *name,
 char						**shell_unsetenv(t_shell *shell, char *name);
 t_ret						shell_getline(t_shell *shell);
 
-
 t_history					*history_create(void);
 void						history_destroy(t_history *history);
 t_histentry					*histentry_create(char *content);
@@ -147,7 +146,6 @@ int							line_backdel(t_line *line);
 void						line_replace(t_line *line, char *src);
 int							line_curpp(t_line *line, int n);
 int							line_debug(t_line *line);
-
 
 t_ret						action_dispatcher(t_shell *shell, long buf);
 t_ret						action_debug(t_shell *shell);

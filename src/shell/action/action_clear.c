@@ -6,7 +6,7 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/28 16:48:33 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/15 17:14:21 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/20 16:25:44 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,7 +23,7 @@ t_ret		action_clear(t_shell *shell)
 		return (RET_FAIL);
 	if (term_getcurentpos(&(shell->line->cur_pos)) != SUCCESS)
 		return (RET_FAIL);
-	action_putstr(shell ,shell->line->content);
+	action_putstr(shell, shell->line->content);
 	i = shell->line->size + 1;
 	if (CURSOR < i)
 	{

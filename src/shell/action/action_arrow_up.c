@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/28 16:48:33 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/20 18:08:59 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/20 16:20:53 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,10 +17,10 @@ t_ret		action_arrow_up(t_shell *shell)
 {
 	t_histentry *entry;
 
-	if ((entry = shell->history->curr ? shell->history->curr : shell->history->begin))
+	if ((entry = shell->history->curr
+				? shell->history->curr : shell->history->begin))
 	{
 		shell->history->curr = entry->next;
-
 		if (action_home(shell) != RET_EGAIN)
 			return (RET_FAIL);
 		if (action_str(TC_CLEAR_TO_END) != SUCCESS)

@@ -1,3 +1,16 @@
+/* ************************************************************************** */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   process_start.c                                  .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2019/03/20 16:35:00 by timfuzea     #+#   ##    ##    #+#       */
+/*   Updated: 2019/03/20 16:35:13 by timfuzea    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
+/* ************************************************************************** */
+
 #include "process.h"
 
 static int	main_process(t_process *process)
@@ -17,9 +30,6 @@ static void	child_process(t_process *process)
 		process->error = 1;
 		exit(1);
 	}
-//	dprintf(g_fd_debug, "Child, process->stdin[0]:%d -> STDIN_FILENO\n", process->stdin[0]);
-//	dprintf(g_fd_debug, "Child, process->stdout[1]:%d -> STDOUT_FILENO\n", process->stdout[1]);
-//	dprintf(g_fd_debug, "Child, process->stderr[1]:%d -> STDERR_FILENO\n", process->stderr[1]);
 	close(process->stdin[0]);
 	close(process->stdout[1]);
 	close(process->stderr[1]);

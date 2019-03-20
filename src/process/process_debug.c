@@ -1,3 +1,16 @@
+/* ************************************************************************** */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   process_debug.c                                  .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2019/03/20 16:34:21 by timfuzea     #+#   ##    ##    #+#       */
+/*   Updated: 2019/03/20 16:34:45 by timfuzea    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
+/* ************************************************************************** */
+
 #include "process.h"
 
 # ifdef USE_DEBUG
@@ -28,9 +41,9 @@ void		process_debug(t_process *process, const char *str)
 	dprintf(g_fd_debug, "<ARGS>\n");
 	print_arr(process->args);
 	dprintf(g_fd_debug, "</ARGS>\n");
-//	dprintf(g_fd_debug, "<ENV>\n");
-//	print_arr(process->env);
-//	dprintf(g_fd_debug, "</ENV>\n");
+	dprintf(g_fd_debug, "<ENV>\n");
+	print_arr(process->env);
+	dprintf(g_fd_debug, "</ENV>\n");
 	dprintf(g_fd_debug, "<STATUS>%d</STATUS>\n", process->status);
 	dprintf(g_fd_debug, "<ERROR>%d</ERROR>\n", process->error);
 	dprintf(g_fd_debug, "<STDIN>%d ; %d</STDIN>\n", process->stdin[0], process->stdin[1]);

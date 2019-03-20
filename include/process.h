@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/10 12:55:39 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/15 13:38:36 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/20 16:52:17 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,13 +20,12 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
-#include "libft.h"
-#include "debug.h"
-
+# include "libft.h"
+# include "debug.h"
 
 # ifdef __linux__
-# include <sys/types.h>
-# include <sys/wait.h>
+#  include <sys/types.h>
+#  include <sys/wait.h>
 # endif
 
 # ifndef SUCCESS
@@ -60,14 +59,15 @@ int							process_run(t_process *process);
 int							process_start(t_process *process);
 int							process_wait(t_process *process);
 
-
 int							process_stdin_default(t_process *process);
 int							process_stdout_default(t_process *process);
 int							process_stderr_default(t_process *process);
 int							process_stdall_default(t_process *process);
 
-int							process_stdin_file(const char *file, t_process *process);
-int							process_stdout_file(const char *file, int flag, t_process *process);
+int							process_stdin_file(const char *file,
+												t_process *process);
+int							process_stdout_file(const char *file, int flag,
+												t_process *process);
 
 int							process_pipe(t_process *src, t_process *dst);
 

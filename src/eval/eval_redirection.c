@@ -1,7 +1,20 @@
+/* ************************************************************************** */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   eval_redirection.c                               .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2019/03/20 18:18:35 by timfuzea     #+#   ##    ##    #+#       */
+/*   Updated: 2019/03/20 18:21:40 by timfuzea    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
+/* ************************************************************************** */
+
 #include "eval.h"
 
-
-static int	input_redirection(t_redirection *redirection, t_process *process, t_shell *shell)
+static int	input_redirection(t_redirection *redirection, t_process *process,
+		t_shell *shell)
 {
 	if (redirection->type == TOKEN_LESS)
 		process_stdin_file(redirection->file, process);
@@ -24,11 +37,10 @@ static int	output_redirection(t_redirection *redirection, t_process *process)
 	if (redirection->type == TOKEN_GREATAND)
 		dprintf(1, "TOKEN_GREATAND: todo\n");
 	return (process_stdout_file(redirection->file, flag, process));
-
 }
 
-
-int			eval_redirection(t_command *command, t_process *process, t_shell *shell)
+int			eval_redirection(t_command *command, t_process *process,
+		t_shell *shell)
 {
 	int					set_in;
 	int					set_out;

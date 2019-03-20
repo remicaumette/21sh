@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/12 17:18:37 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/17 14:50:46 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/20 16:40:35 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,9 +19,6 @@ t_shell	*shell_create(char **environment)
 
 	if (!(shell = ft_memalloc(sizeof(t_shell))))
 		return (NULL);
-# ifdef USE_DEBUG
-	DEBUG_INIT("debug.log");
-# endif 
 	shell->environment = NULL;
 	shell->history = NULL;
 	shell->line = NULL;

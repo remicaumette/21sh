@@ -1,3 +1,16 @@
+/* ************************************************************************** */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   action_dispatcher.c                              .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2019/03/20 16:25:50 by timfuzea     #+#   ##    ##    #+#       */
+/*   Updated: 2019/03/20 16:26:07 by timfuzea    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
+/* ************************************************************************** */
+
 #include "shell.h"
 
 t_action	g_actions[] = {
@@ -14,9 +27,6 @@ t_action	g_actions[] = {
 	{TC_KEY_RIGHT, action_arrow_right},
 	{TC_KEY_HOME, action_home},
 	{TC_KEY_END, action_end},
-# ifdef USE_DEBUG
-	{TC_CTRL_R, action_debug},
-#endif
 	{TC_CTRL_LEFT, action_move_prev_word},
 	{TC_CTRL_RIGHT, action_move_next_word},
 	{TC_CTRL_UP, action_ctrl_up},

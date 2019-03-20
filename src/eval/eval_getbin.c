@@ -1,3 +1,16 @@
+/* ************************************************************************** */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   eval_getbin.c                                    .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2019/03/20 18:18:22 by timfuzea     #+#   ##    ##    #+#       */
+/*   Updated: 2019/03/20 18:20:16 by timfuzea    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
+/* ************************************************************************** */
+
 #include "eval.h"
 
 static int	is_indir(const char *name, const char *path)
@@ -19,7 +32,7 @@ static int	is_indir(const char *name, const char *path)
 	return (FAIL);
 }
 
-char	*eval_getbin(const char *name, t_shell *shell)
+char		*eval_getbin(const char *name, t_shell *shell)
 {
 	int			i;
 	char		*tmp;
@@ -47,4 +60,3 @@ char	*eval_getbin(const char *name, t_shell *shell)
 	ft_strarr_del(all_path);
 	return (out == NULL) ? NULL : out;
 }
-

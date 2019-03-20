@@ -6,13 +6,12 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/14 00:26:38 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/15 17:11:30 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/20 16:23:32 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "shell.h"
-
 
 static t_ret		multi_line(t_shell *shell)
 {
@@ -36,7 +35,9 @@ t_ret				action_basic(t_shell *shell, long buf)
 {
 	if (line_inser(shell->line, (char)buf) != SUCCESS)
 		return (RET_FAIL);
-	if ((((shell->line->size + 2) >= MAX_COL) && (shell->line->size + 2 / MAX_COL) > (shell->line->cursor + 2 / MAX_COL)))
+	if ((((shell->line->size + 2) >= MAX_COL)
+				&& (shell->line->size + 2 / MAX_COL)
+				> (shell->line->cursor + 2 / MAX_COL)))
 	{
 		if (multi_line(shell) != RET_EGAIN)
 			return (RET_FAIL);
@@ -45,11 +46,3 @@ t_ret				action_basic(t_shell *shell, long buf)
 		action_putchar(shell, (char)buf);
 	return (RET_EGAIN);
 }
-
-/*
-t_ret		action_basic(t_shell *shell, long buf)
-{
-	(void)shell;
-	dprintf(1, "buf:%ld\n\n", buf);
-	return (RET_EGAIN);
-}*/

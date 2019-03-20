@@ -1,6 +1,20 @@
+/* ************************************************************************** */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   eval_command.c                                   .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2019/03/20 18:19:14 by timfuzea     #+#   ##    ##    #+#       */
+/*   Updated: 2019/03/20 18:19:49 by timfuzea    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
+/* ************************************************************************** */
+
 #include "eval.h"
 
-static int	make_process(t_command *command, t_process **process, t_shell * shell)
+static int	make_process(t_command *command, t_process **process,
+		t_shell *shell)
 {
 	char	*bin;
 	char	**argv;
@@ -19,7 +33,7 @@ static int	make_process(t_command *command, t_process **process, t_shell * shell
 	return (SUCCESS);
 }
 
-int		eval_command(t_node *node, t_eval **eval, t_shell *shell)
+int			eval_command(t_node *node, t_eval **eval, t_shell *shell)
 {
 	t_process	*process;
 

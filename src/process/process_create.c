@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/15 12:51:03 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/17 13:50:33 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/20 16:33:43 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,8 +28,5 @@ t_process	*process_create(char *file, char **args, char **env)
 	process->error = 0;
 	process->status = -1;
 	process->pid = -1;
-	# ifdef USE_DEBUG
-	process_debug(process, NULL);
-	#endif
 	return (process);
 }

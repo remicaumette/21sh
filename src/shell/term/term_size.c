@@ -6,7 +6,7 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/18 13:25:21 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/15 15:23:10 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/20 16:40:03 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -30,7 +30,7 @@ static int	reset_printed_line(t_shell *shell)
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &(shell->line->window));
 	term_getcurentpos(&(shell->line->cur_pos));
 	tmp_cursor = shell->line->size - CURSOR;
-	while(tmp_cursor > 1)
+	while (tmp_cursor > 1)
 	{
 		if (action_move_left(shell) != SUCCESS)
 			return (FAIL);

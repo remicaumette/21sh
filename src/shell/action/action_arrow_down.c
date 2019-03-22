@@ -21,7 +21,7 @@ t_ret	action_arrow_down(t_shell *shell)
 				? shell->history->curr : shell->history->end))
 	{
 		shell->history->curr = entry->prev;
-		if (action_home(shell) != SUCCESS)
+		if (action_home(shell) != RET_EGAIN)
 			return (RET_FAIL);
 		if (action_str(TC_CLEAR_TO_END) != SUCCESS)
 			return (RET_FAIL);

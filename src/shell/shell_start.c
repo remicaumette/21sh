@@ -29,7 +29,8 @@ static int	shell_loop(t_shell *shell)
 			if (ret == RET_FAIL)
 				return (FAIL);
 		}
-		shell_processline(shell);
+		if (shell->line->content)
+			shell_processline(shell);
 	}
 	return (FAIL);
 }

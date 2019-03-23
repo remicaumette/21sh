@@ -11,7 +11,7 @@
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include "lexer.h"
 
 t_token	*lexer_addtoken(t_lexer *lexer, t_tokentype type,
 	char *content)

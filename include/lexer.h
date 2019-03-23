@@ -14,6 +14,13 @@
 #ifndef LEXER_H
 # define LEXER_H
 
+#include "libft.h"
+
+# ifndef SUCCESS
+#  define SUCCESS	0
+#  define FAIL		1
+# endif
+
 typedef enum e_tokentype	t_tokentype;
 typedef struct s_lexer		t_lexer;
 typedef struct s_token		t_token;
@@ -36,6 +43,8 @@ enum						e_tokentype
 	TOKEN_LESSGREAT,
 	TOKEN_DLESSDASH,
 	TOKEN_CLOBBER,
+	TOKEN_GREATAND_3,
+	TOKEN_GREATAND_4,
 };
 
 struct						s_lexer

@@ -29,6 +29,8 @@ static const char	*g_type[] = {
 	"TOKEN_LESSGREAT",
 	"TOKEN_DLESSDASH",
 	"TOKEN_CLOBBER",
+	"TOKEN_GREATAND_3",
+	"TOKEN_GREATAND_4",
 };
 
 void				print_token(t_token *token)

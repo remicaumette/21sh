@@ -11,23 +11,27 @@
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include "lexer.h"
 
 static char		*lexer_addsimpletoken(t_lexer *lexer, t_tokentype type,
 	char *str)
 {
 	t_tokeninfo	info;
 	int			i;
+	char		*tmp;
 
 	i = -1;
-	while (++i < 15)
+	while (g_tokens[++i].len)
 		if (g_tokens[i].type == type)
 		{
 			info = g_tokens[i];
 			break ;
 		}
-	if (!(lexer_addtoken(lexer, type, NULL)))
+	if (!(tmp = ft_strndup(str, info.len)))
 		return (NULL);
+	if (!(lexer_addtoken(lexer, type, tmp)))
+		return (NULL);
+	ft_strdel(&tmp);
 	return (str + info.len - 1);
 }
 

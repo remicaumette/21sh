@@ -11,7 +11,7 @@
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include "lexer.h"
 
 void	lexer_deltoken(t_token *token)
 {

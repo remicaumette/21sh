@@ -1,38 +1,47 @@
-/* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   redirection_parse.c                              .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/03/20 16:32:19 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/20 16:32:36 by timfuzea    ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
-/* ************************************************************************** */
-
 #include "parser.h"
-
-int			redirection_parse(t_redirection **redirection, t_parser *parser)
+#include <stdio.h>
+t_redirection	*get_redir(t_token **ref)
 {
 	t_token			*curr;
 	t_redirection	*tmp;
 
-	curr = parser->curr;
-	if (!(curr->next) || curr->next->type != TOKEN_WORD)
-		return (FAIL);
-	if (!(tmp = redirection_create(curr->type, curr->next->content)))
-		return (FAIL);
-	*redirection = tmp;
-	curr = curr->next->next;
-	while (curr && parser_istoken_redirection(curr->type))
+	curr = *ref;
+	if (curr->type == TOKEN_GREATAND_4 || curr->type == TOKEN_GREATAND_3_TIP)
 	{
-		if (!(curr->next) || curr->next->type != TOKEN_WORD)
-			return (FAIL);
-		if (!(tmp->next = redirection_create(curr->type, curr->next->content)))
-			return (FAIL);
-		curr = curr->next->next;
+		if ((tmp = redirection_create(curr->type, curr->content)) == NULL)
+			return (NULL);
+		*ref = curr->next;
+		return (tmp);
 	}
-	parser->curr = curr;
+	else
+	{
+		if (curr->next == NULL)
+			printf("%s: parse error near '%s'\n", "21sh", "\\n");
+		else if (curr->next->type != TOKEN_WORD)
+			printf("%s: parse error near '%s'\n", "21sh", curr->next->content);
+		else
+		{
+			if (!(tmp = redirection_create(curr->type, curr->next->content)))
+				return (NULL);
+			*ref = curr->next->next;
+			return (tmp);
+		}
+		return (NULL);
+	}
+}
+
+int		redirection_parse(t_redirection **redirection, t_parser *parse)
+{
+	t_redirection	*tmp;
+
+	if ((*redirection = get_redir(&parse->curr)) == NULL)
+		return (FAIL);
+	tmp = *redirection;
+	while (parse->curr && parser_istoken_redirection(parse->curr->type))
+	{
+		if ((tmp->next = get_redir(&parse->curr)) == NULL)
+			return (FAIL);
+		tmp = tmp->next;
+	}
 	return (SUCCESS);
 }

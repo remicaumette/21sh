@@ -30,6 +30,7 @@ static const char	*g_type[] = {
 	"TOKEN_DLESSDASH",
 	"TOKEN_CLOBBER",
 	"TOKEN_GREATAND_3",
+	"TOKEN_GREATAND_3_TIP",
 	"TOKEN_GREATAND_4",
 };
 

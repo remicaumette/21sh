@@ -35,6 +35,7 @@ int			eval_heredoc(t_redirection *redirection, t_process *process,
 		line_reset(shell->line);
 	}
 	close(process->stdin[1]);
+	process->isset[0] = 1;
 	line_destroy(&shell->line);
 	shell->line = save;
 	return (SUCCESS);

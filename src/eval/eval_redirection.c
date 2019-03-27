@@ -59,6 +59,7 @@ int			eval_redirection(t_command *command, t_process *process, t_shell *shell)
 			eval_heredoc(tmp, process, shell);
 		if (tmp->type == TOKEN_LESS)
 			process_stdin_file(tmp->file, process);
+		tmp = tmp->next;
 	}
 	return (SUCCESS);
 }

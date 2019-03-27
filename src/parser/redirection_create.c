@@ -13,7 +13,7 @@
 
 #include "parser.h"
 
-t_redirection	*redirection_create(t_tokentype type, char *file, char *symbols)
+t_redirection	*redirection_create(t_tokentype type, char *symbols, char *file)
 {
 	t_redirection	*redirection;
 

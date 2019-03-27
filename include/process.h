@@ -64,6 +64,7 @@ int							process_stdin_default(t_process *process);
 int							process_stdout_default(t_process *process);
 int							process_stderr_default(t_process *process);
 int							process_stdall_default(t_process *process);
+int							process_stdall_default_isset(t_process *process);
 
 int							process_stdin_file(const char *file,
 												t_process *process);

@@ -15,18 +15,20 @@
 
 int		token_isredirection(t_tokentype type)
 {
-	if (type == TOKEN_GREAT || type == TOKEN_DGREAT || type == TOKEN_GREATAND
-		|| type == TOKEN_LESS || type == TOKEN_DLESS || type == TOKEN_LESSAND
-		|| type == TOKEN_LESSGREAT || type ==TOKEN_GREATAND_3 
-		|| type == TOKEN_GREATAND_4)
+	if (type == TOKEN_LESS || type == TOKEN_GREAT || type == TOKEN_GREATAND 
+	|| type == TOKEN_LESSAND || type == TOKEN_DGREAT || type == TOKEN_DLESS
+	|| type == TOKEN_GREAT_2 || type == TOKEN_DGREAT_3
+	|| type == TOKEN_GREATAND_3 || type == TOKEN_GREATAND_3_TIP
+	|| type == TOKEN_GREATAND_4 || type == TOKEN_GREATAND_4_TIP)
 		return (1);
 	return (0);
 }
 
 int		token_isfile_redir(t_tokentype type)
 {
-	if (type == TOKEN_GREAT || type == TOKEN_DGREAT || 
-			type == TOKEN_GREAT_2 || type == TOKEN_GREATAND_3)
+	if (type == TOKEN_GREAT || type == TOKEN_LESS || type == TOKEN_GREATAND 
+		|| type == TOKEN_DGREAT || type == TOKEN_GREAT_2 
+		|| type == TOKEN_DGREAT_3 || type == TOKEN_GREATAND_3)
 		return (1);
 	return (0);
 }

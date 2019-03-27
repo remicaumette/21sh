@@ -7,14 +7,7 @@ t_redirection	*get_redir(t_token **ref)
 	t_redirection	*tmp;
 
 	curr = *ref;
-	if (curr->type == TOKEN_GREATAND_4 || curr->type == TOKEN_GREATAND_3_TIP)
-	{
-		if ((tmp = redirection_create(curr->type, curr->content, NULL)) == NULL)
-			return (NULL);
-		*ref = curr->next;
-		return (tmp);
-	}
-	else
+	if (token_isfile_redir(curr->type))
 	{
 		if (curr->next == NULL)
 			printf("%s: parse error near '%s'\n", "21sh", "\\n");
@@ -28,6 +21,13 @@ t_redirection	*get_redir(t_token **ref)
 			return (tmp);
 		}
 		return (NULL);
+	}
+	else
+	{
+		if ((tmp = redirection_create(curr->type, curr->content, NULL)) == NULL)
+			return (NULL);
+		*ref = curr->next;
+		return (tmp);
 	}
 }
 

@@ -19,6 +19,8 @@ void	redirection_destroy(t_redirection *redirection)
 	{
 		if (redirection->file)
 			ft_strdel(&redirection->file);
+		if (redirection->symbols)
+			ft_strdel(&redirection->symbols);
 		ft_memdel((void **)&redirection);
 	}
 }

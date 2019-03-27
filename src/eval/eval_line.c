@@ -36,6 +36,17 @@ static int	run_eval(t_eval *eval)
 	return (SUCCESS);
 }
 
+static int	eval_stddefault(t_eval *eval)
+{
+	while (eval) 
+	{
+		if (process_stdall_default_isset(eval->process) != SUCCESS)
+			return (FAIL);
+		eval = eval->next;
+	}
+	return (SUCCESS);
+}
+
 int			eval_line(t_node *curr, t_shell *shell)
 {
 	int			pipe;
@@ -59,5 +70,6 @@ int			eval_line(t_node *curr, t_shell *shell)
 			pipe = 1;
 		curr = curr->next;
 	}
+	eval_stddefault(line.next);
 	return (run_eval(line.next));
 }

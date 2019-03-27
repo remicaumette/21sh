@@ -1,0 +1,13 @@
+#include "eval.h"
+
+int			eval_redirection(t_command *command, t_process *process, t_shell *shell)
+{
+	t_redirection		*tmp;
+
+	tmp = command->redirection;
+	while (tmp)
+	{
+		if (tmp->type == TOKEN_GREAT || tmp->type == TOKEN_DGREAT)
+			
+	}
+}

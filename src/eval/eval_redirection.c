@@ -36,6 +36,10 @@ static int	output_redirection(t_redirection *redirection, t_process *process)
 		flag = O_APPEND;
 	if (redirection->type == TOKEN_GREATAND)
 		dprintf(1, "TOKEN_GREATAND: todo\n");
+	if (redirection->type == TOKEN_GREATAND_3)
+		dprintf(1, "TOKEN_GREATAND_3: todo\n");
+	if (redirection->type == >TOKEN_GREATAND_4)
+		dprintf(1, "TOKEN_GREATAND_4: todo\n");
 	return (process_stdout_file(redirection->file, flag, process));
 }
 

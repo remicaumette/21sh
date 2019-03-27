@@ -15,12 +15,15 @@
 
 t_tokeninfo	g_tokens[] = {
 	{"2>&1", TOKEN_GREATAND_4, 4},
+	{"1>&2", TOKEN_GREATAND_4, 4},
 	{"2>&-", TOKEN_GREATAND_4, 4},
 	{"1>&-", TOKEN_GREATAND_4, 4},
 	{"0>&-", TOKEN_GREATAND_4, 4},
 	{">&-", TOKEN_GREATAND_3_TIP, 3},
 	{"2>&", TOKEN_GREATAND_3, 3},
 	{"<<-", TOKEN_DLESSDASH, 3},
+	{"2>", TOKEN_GREAT_2, 2},
+	{"1>", TOKEN_GREAT_2, 2},
 	{"&&", TOKEN_ANDIF, 2},
 	{"||", TOKEN_ORIF, 2},
 	{";;", TOKEN_DSEMI, 2},

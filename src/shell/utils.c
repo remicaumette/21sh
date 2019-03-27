@@ -34,6 +34,18 @@ static const char	*g_type[] = {
 	"TOKEN_GREATAND_4",
 };
 
+void				print_redirection(t_redirection *redirection, int i)
+{
+	printf("\tredirection num: %d\n", i);
+	printf("redirection->type: %s\n", g_type[redirection->type]);
+	printf("redirection->file: %s\n", redirection->file);
+	printf("redirection->in: %d\n", redirection->in);
+	printf("redirection->out: %d\n", redirection->out);
+	printf("redirection->next: %p\n", redirection->next);
+	if (redirection->next)
+		print_redirection(redirection->next, i + 1);
+}
+
 void				print_token(t_token *token)
 {
 	printf("token->type: %s\n", g_type[token->type]);
@@ -57,6 +69,8 @@ void				print_node(t_node *node)
 		while (node->command->arguments && node->command->arguments[++i])
 			printf("  - %s\n", node->command->arguments[i]);
 		printf("node->command->redirection: %p\n", node->command->redirection);
+		if (node->command->redirection)
+			print_redirection(node->command->redirection, 0);
 	}
 	printf("node->next: %p\n\n", node->next);
 	if (node->next)

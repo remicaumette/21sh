@@ -51,9 +51,8 @@ struct							s_command
 struct							s_redirection
 {
 	t_tokentype		type;
+	char			*symbols;
 	char			*file;
-	unsigned int	in;
-	unsigned int	out;
 	t_redirection	*next;
 };
 
@@ -72,8 +71,7 @@ t_command						*command_create(char *name);
 void							command_destroy(t_command *command);
 t_command						*command_parse(t_parser *parser);
 
-t_redirection					*redirection_create(t_tokentype type,
-														char *file);
+t_redirection					*redirection_create(t_tokentype type, char *symbols, char *file);
 void							redirection_destroy(t_redirection *redirection);
 int								redirection_parse(t_redirection **redirection,
 													t_parser *parser);

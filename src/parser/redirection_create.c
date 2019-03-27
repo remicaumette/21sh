@@ -13,22 +13,17 @@
 
 #include "parser.h"
 
-t_redirection	*redirection_create(t_tokentype type, char *file)
+t_redirection	*redirection_create(t_tokentype type, char *file, char *symbols)
 {
 	t_redirection	*redirection;
 
-	if (!(redirection = ft_memalloc(sizeof(t_redirection))) ||
-		!(redirection->file = ft_strdup(file)))
+	if (!(redirection = ft_memalloc(sizeof(t_redirection))))
+		return (NULL);
+	if (!(redirection->file = ft_strdup(file)))
+		return (NULL);
+	if (!(redirection->symbols = ft_strdup(symbols)))
 		return (NULL);
 	redirection->type = type;
 	redirection->next = NULL;
-	if (type == TOKEN_GREAT || type == TOKEN_DGREAT || type == TOKEN_GREATAND)
-		redirection->out = 1;
-	else
-		redirection->out = 0;
-	if (type == TOKEN_LESS || type == TOKEN_DLESS || type == TOKEN_LESSAND)
-		redirection->in = 1;
-	else
-		redirection->in = 0;
 	return (redirection);
 }

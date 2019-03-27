@@ -1,5 +1,6 @@
 #include "parser.h"
 #include <stdio.h>
+
 t_redirection	*get_redir(t_token **ref)
 {
 	t_token			*curr;
@@ -8,7 +9,7 @@ t_redirection	*get_redir(t_token **ref)
 	curr = *ref;
 	if (curr->type == TOKEN_GREATAND_4 || curr->type == TOKEN_GREATAND_3_TIP)
 	{
-		if ((tmp = redirection_create(curr->type, curr->content)) == NULL)
+		if ((tmp = redirection_create(curr->type, curr->content, NULL)) == NULL)
 			return (NULL);
 		*ref = curr->next;
 		return (tmp);
@@ -21,7 +22,7 @@ t_redirection	*get_redir(t_token **ref)
 			printf("%s: parse error near '%s'\n", "21sh", curr->next->content);
 		else
 		{
-			if (!(tmp = redirection_create(curr->type, curr->next->content)))
+			if (!(tmp = redirection_create(curr->type, curr->content, curr->next->content)))
 				return (NULL);
 			*ref = curr->next->next;
 			return (tmp);

@@ -13,13 +13,13 @@
 
 #include "shell.h"
 
-/*static void	debug(t_shell *shell)
+static void	debug(t_shell *shell)
 {
 	printf("=== TOKEN\n");
 	print_token(shell->lexer->begin);
 	printf("=== PARSER\n");
 	print_node(shell->parser->root);
-}*/
+}
 
 int			shell_processline(t_shell *shell)
 {
@@ -35,6 +35,8 @@ int			shell_processline(t_shell *shell)
 		{
 			if (parser_parse(shell->parser, shell->lexer) != SUCCESS)
 				out = 0;
+			if (out)
+				debug(shell);
 			if (out && shell->parser->root)
 			{
 				if (eval_all(shell) != SUCCESS)

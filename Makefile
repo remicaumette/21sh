@@ -6,7 +6,7 @@
 #    By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/01/22 16:11:35 by timfuzea     #+#   ##    ##    #+#        #
-#    Updated: 2019/01/25 21:29:42 by timfuzea    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/03/27 15:32:55 by timfuzea    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -115,7 +115,7 @@ TMP_LST		:= command_create.c command_destroy.c command_parse.c \
 				redirection_create.c redirection_destroy.c redirection_parse.c \
 				node_create.c node_destroy.c node_insert.c \
 				parser_cleanup.c parser_create.c parser_destroy.c \
-				parser_parse.c parser_istoken_type.c
+				parser_parse.c token_istype.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/,$(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)
@@ -127,7 +127,8 @@ TMP_NAME	:= process
 
 TMP_LST		:= process_create.c process_destroy.c process_run.c \
 				process_debug.c process_std_default.c process_std_file.c \
-				process_pipe.c process_start.c process_wait.c
+				process_pipe.c process_start.c process_wait.c \
+				process_std_close.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)

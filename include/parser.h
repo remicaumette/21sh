@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/14 08:35:27 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/20 17:29:57 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/27 15:44:33 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -59,7 +59,6 @@ struct							s_redirection
 t_parser						*parser_create(void);
 void							parser_destroy(t_parser *parser);
 void							parser_cleanup(t_parser *parser);
-int								parser_istoken_redirection(t_tokentype type);
 int								parser_parse(t_parser *parser, t_lexer *lexer);
 
 t_node							*node_create(t_tokentype type,
@@ -75,5 +74,9 @@ t_redirection					*redirection_create(t_tokentype type, char *symbols, char *fil
 void							redirection_destroy(t_redirection *redirection);
 int								redirection_parse(t_redirection **redirection,
 													t_parser *parser);
+
+
+int								token_isredirection(t_tokentype type);
+int								token_isfile_redir(t_tokentype type);
 
 #endif

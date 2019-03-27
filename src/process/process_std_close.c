@@ -1,50 +1,35 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   process_std_file.c                               .::    .:/ .      .::   */
+/*   process_std_close.c                              .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/03/20 16:36:10 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/27 16:04:17 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/03/27 15:29:49 by timfuzea     #+#   ##    ##    #+#       */
+/*   Updated: 2019/03/27 15:59:02 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "process.h"
 
-int		process_stdin_file(const char *file, t_process *process)
+int		process_stdin_close(t_process *process)
 {
-	int		fd;
-
-	if ((fd = open(file, O_RDONLY)) == -1)
-		return (FAIL);
-	dup2(fd, process->stdin[0]);
-	close(fd);
+	close(process->stdin[0]);
 	process->isset[0] = 1;
 	return (SUCCESS);
 }
 
-int		process_stdout_file(const char *file, int flag, t_process *process)
+int		process_stdout_close(t_process *process)
 {
-	int		fd;
-
-	if ((fd = open(file, flag | O_WRONLY | O_CREAT, 0644)) == -1)
-		return (FAIL);
-	dup2(fd, process->stdout[1]);
-	close(fd);
+	close(process->stdout[1]);
 	process->isset[1] = 1;
 	return (SUCCESS);
 }
 
-int		process_stderr_file(const char *file, int flag, t_process *process)
+int		process_stderr_close(t_process *process)
 {
-	int		fd;
-
-	if ((fd = open(file, flag | O_WRONLY | O_CREAT, 0644)) == -1)
-		return (FAIL);
-	dup2(fd, process->stderr[1]);
-	close(fd);
+	close(process->stderr[1]);
 	process->isset[2] = 1;
 	return (SUCCESS);
 }

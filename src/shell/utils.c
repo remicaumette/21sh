@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/12 15:16:46 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/12 15:17:35 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/27 15:43:14 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,18 +29,19 @@ static const char	*g_type[] = {
 	"TOKEN_LESSGREAT",
 	"TOKEN_DLESSDASH",
 	"TOKEN_CLOBBER",
+	"TOKEN_GREAT_2",
+	"TOKEN_DGREAT_3",
 	"TOKEN_GREATAND_3",
 	"TOKEN_GREATAND_3_TIP",
 	"TOKEN_GREATAND_4",
+	"TOKEN_GREATAND_4_TIP",
 };
-
 void				print_redirection(t_redirection *redirection, int i)
 {
 	printf("\tredirection num: %d\n", i);
 	printf("redirection->type: %s\n", g_type[redirection->type]);
+	printf("redirection->symbols: %s\n", redirection->symbols);
 	printf("redirection->file: %s\n", redirection->file);
-	printf("redirection->in: %d\n", redirection->in);
-	printf("redirection->out: %d\n", redirection->out);
 	printf("redirection->next: %p\n", redirection->next);
 	if (redirection->next)
 		print_redirection(redirection->next, i + 1);

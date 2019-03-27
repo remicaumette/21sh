@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/12 18:09:55 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/12 18:09:56 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/27 15:45:09 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,7 +29,7 @@ t_command	*command_parse(t_parser *parser)
 		curr = curr->next;
 	}
 	parser->curr = curr;
-	if (curr && parser_istoken_redirection(curr->type))
+	if (curr && token_isredirection(curr->type))
 	{
 		if (redirection_parse(&cmd->redirection, parser) != SUCCESS)
 			return (NULL);

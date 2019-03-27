@@ -38,7 +38,7 @@ int		redirection_parse(t_redirection **redirection, t_parser *parse)
 	if ((*redirection = get_redir(&parse->curr)) == NULL)
 		return (FAIL);
 	tmp = *redirection;
-	while (parse->curr && parser_istoken_redirection(parse->curr->type))
+	while (parse->curr && token_isredirection(parse->curr->type))
 	{
 		if ((tmp->next = get_redir(&parse->curr)) == NULL)
 			return (FAIL);

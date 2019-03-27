@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/15 12:51:03 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/20 16:33:43 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/27 15:54:07 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,5 +28,6 @@ t_process	*process_create(char *file, char **args, char **env)
 	process->error = 0;
 	process->status = -1;
 	process->pid = -1;
+	ft_bzero((void *)process->isset, sizeof(int [3]));
 	return (process);
 }

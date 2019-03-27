@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/14 08:35:27 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/12 15:03:14 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/27 15:25:00 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -44,9 +44,11 @@ enum						e_tokentype
 	TOKEN_DLESSDASH,
 	TOKEN_CLOBBER,
 	TOKEN_GREAT_2,
+	TOKEN_DGREAT_3,
 	TOKEN_GREATAND_3,
 	TOKEN_GREATAND_3_TIP,
 	TOKEN_GREATAND_4,
+	TOKEN_GREATAND_4_TIP,
 };
 
 struct						s_lexer

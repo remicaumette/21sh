@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/10 12:55:39 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/20 16:52:17 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/27 15:50:34 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -46,6 +46,7 @@ struct						s_process
 	pid_t	pid;
 	int		status;
 	int		error;
+	int		isset[3];
 	int		stdin[2];
 	int		stdout[2];
 	int		stderr[2];
@@ -68,6 +69,12 @@ int							process_stdin_file(const char *file,
 												t_process *process);
 int							process_stdout_file(const char *file, int flag,
 												t_process *process);
+int							process_stderr_file(const char *file, int flag,
+												t_process *process);
+
+int							process_stdin_close(t_process *process);
+int							process_stdout_close(t_process *process);
+int							process_stderr_close(t_process *process);
 
 int							process_pipe(t_process *src, t_process *dst);
 

@@ -6,7 +6,7 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/20 16:49:53 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/20 16:51:18 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/27 15:35:37 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,6 +15,7 @@
 # define EVAL_H
 
 # include "libft.h"
+# include "parser.h"
 # include "process.h"
 # include "shell.h"
 

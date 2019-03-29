@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   eval_all.c                                       .::    .:/ .      .::   */
+/*   ft_strequ_2d.c                                   .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/03/20 18:17:51 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/29 16:59:58 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Created: 2017/12/06 21:18:56 by timfuzea     #+#   ##    ##    #+#       */
+/*   Updated: 2017/12/06 21:18:56 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "eval.h"
+#include "libft.h"
 
-int		eval_all(t_shell *shell)
+int			ft_strequ_2d(const char **s1, const char **s2)
 {
-	t_node		*curr;
-
-	curr = shell->parser->root;
-	while (curr)
+	while (*s1 && *s2)
 	{
-		if (eval_line(curr, shell) != SUCCESS)
-		{
-			shell->eval->next = NULL;
-			return (FAIL);
-		}
-		shell->eval->next = NULL;
-		while (curr && curr->type != TOKEN_NEWLINE)
-			curr = curr->next;
-		if (curr)
-			curr = curr->next;
+		if (ft_strequ(*s1, *s2) != 1)
+			return (0);
+		s1++;
+		s2++;
 	}
-	return (SUCCESS);
+	if (*s1 == NULL && *s2 == NULL)
+		return (1);
+	return (0);
 }

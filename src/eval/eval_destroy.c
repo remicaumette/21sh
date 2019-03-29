@@ -6,7 +6,7 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/20 18:18:02 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/20 18:18:03 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/29 16:56:06 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,6 +21,8 @@ void		eval_destroy(t_eval **eval)
 	tmp = *eval;
 	while (tmp)
 	{
+		dprintf(1, "tmp->builtin: %p\n", &tmp->builtin);
+		builtin_destroy(&tmp->builtin);
 		process_destroy(&tmp->process);
 		tmp_next = tmp->next;
 		free(tmp);

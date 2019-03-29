@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   eval_all.c                                       .::    .:/ .      .::   */
+/*   ft_strlen_2d.c                                   .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/03/20 18:17:51 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/29 16:59:58 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Created: 2017/12/06 21:18:58 by timfuzea     #+#   ##    ##    #+#       */
+/*   Updated: 2019/03/29 15:32:47 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "eval.h"
+#include "libft.h"
 
-int		eval_all(t_shell *shell)
+size_t		ft_strlen_2d(const char **str)
 {
-	t_node		*curr;
+	size_t		i;
 
-	curr = shell->parser->root;
-	while (curr)
+	i = 0;
+	if (str)
 	{
-		if (eval_line(curr, shell) != SUCCESS)
-		{
-			shell->eval->next = NULL;
-			return (FAIL);
-		}
-		shell->eval->next = NULL;
-		while (curr && curr->type != TOKEN_NEWLINE)
-			curr = curr->next;
-		if (curr)
-			curr = curr->next;
+		while (*str++)
+			i++;
 	}
-	return (SUCCESS);
+	return (i);
 }

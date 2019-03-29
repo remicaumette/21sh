@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/12 17:18:37 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/20 16:40:35 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/29 16:42:32 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,7 +29,9 @@ t_shell	*shell_create(char **environment)
 		!(shell->term = term_create(shell)) ||
 		!(shell->history = history_create()) ||
 		!(shell->lexer = lexer_create()) ||
-		!(shell->parser = parser_create()))
+		!(shell->parser = parser_create()) ||
+		!(shell->eval = eval_create(NULL, NULL)))
 		return (NULL);
+
 	return (shell);
 }

@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   eval_all.c                                       .::    .:/ .      .::   */
+/*   builtins_exit.c                                  .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/03/20 18:17:51 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/29 16:59:58 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/03/29 10:40:09 by timfuzea     #+#   ##    ##    #+#       */
+/*   Updated: 2019/03/29 16:30:15 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "eval.h"
+#include "shell.h"
 
-int		eval_all(t_shell *shell)
+void		builtin_exit(char **argv, t_shell *shell)
 {
-	t_node		*curr;
+	int		status;
 
-	curr = shell->parser->root;
-	while (curr)
+	status = 0;
+	if (argv[0] && argv[1])
 	{
-		if (eval_line(curr, shell) != SUCCESS)
-		{
-			shell->eval->next = NULL;
-			return (FAIL);
-		}
-		shell->eval->next = NULL;
-		while (curr && curr->type != TOKEN_NEWLINE)
-			curr = curr->next;
-		if (curr)
-			curr = curr->next;
+		ft_putstr_fd("21sh: exitL Too many arguments\n", STDERR_FILENO);
+		return ;
 	}
-	return (SUCCESS);
+	else if (argv[0])
+		status = ft_atoi(argv[0]);
+	shell_destroy(shell);
+	exit(status);
 }

@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   eval_all.c                                       .::    .:/ .      .::   */
+/*   ft_strnew_2d.c                                   .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/03/20 18:17:51 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/29 16:59:58 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Created: 2017/12/06 21:19:00 by timfuzea     #+#   ##    ##    #+#       */
+/*   Updated: 2017/12/06 21:19:00 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "eval.h"
+#include "libft.h"
 
-int		eval_all(t_shell *shell)
+char	**ft_strnew_2d(size_t size)
 {
-	t_node		*curr;
+	char	**out;
+	char	**pt_out;
 
-	curr = shell->parser->root;
-	while (curr)
+	if ((out = malloc(sizeof(char *) * (size + 1))) == NULL)
+		return (NULL);
+	pt_out = out;
+	while (size)
 	{
-		if (eval_line(curr, shell) != SUCCESS)
-		{
-			shell->eval->next = NULL;
-			return (FAIL);
-		}
-		shell->eval->next = NULL;
-		while (curr && curr->type != TOKEN_NEWLINE)
-			curr = curr->next;
-		if (curr)
-			curr = curr->next;
+		*pt_out = NULL;
+		pt_out++;
+		size--;
 	}
-	return (SUCCESS);
+	*pt_out = NULL;
+	return (out);
 }

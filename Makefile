@@ -6,7 +6,7 @@
 #    By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/01/22 16:11:35 by timfuzea     #+#   ##    ##    #+#        #
-#    Updated: 2019/03/29 10:08:54 by timfuzea    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/03/29 15:30:54 by timfuzea    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -89,8 +89,8 @@ SRC_LST		:= $(MAIN_LST)
 
 #			Builtins
 
-TMP_NAME	:= builtins
-TMP_LST		:=
+TMP_NAME	:= builtin
+TMP_LST		:= builtin_exit.c builtin_create.c builtin_destroy.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/,$(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)
@@ -140,7 +140,7 @@ TMP_NAME	:= eval
 
 TMP_LST		:= eval_create.c eval_destroy.c eval_all.c eval_line.c \
 				eval_command.c eval_redirection.c eval_genargv.c eval_getbin.c \
-				eval_heredoc.c
+				eval_heredoc.c run_eval.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)

@@ -6,7 +6,7 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/20 16:49:53 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/27 15:35:37 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/29 16:23:32 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,18 +19,13 @@
 # include "process.h"
 # include "shell.h"
 
-typedef struct s_shell	t_shell;
-typedef struct s_eval	t_eval;
+typedef struct s_builtin	t_builtin;
+typedef struct s_shell		t_shell;
 
-struct					s_eval
-{
-	t_process			*process;
-	t_eval				*next;
-};
-
-t_eval					*eval_create(t_process *process);
+t_eval					*eval_create(t_builtin *builtin, t_process *process);
 void					eval_destroy(t_eval **eval);
 
+int						run_eval(t_eval *eval, t_shell *shell);
 int						eval_all(t_shell *shell);
 int						eval_line(t_node *curr, t_shell *shell);
 int						eval_command(t_node *node,

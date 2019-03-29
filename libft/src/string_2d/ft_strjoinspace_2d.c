@@ -1,35 +1,49 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   eval_all.c                                       .::    .:/ .      .::   */
+/*   ft_strjoinspace_2d.c                             .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/03/20 18:17:51 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/29 16:59:58 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/02/27 10:57:47 by timfuzea     #+#   ##    ##    #+#       */
+/*   Updated: 2018/02/27 10:57:47 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "eval.h"
+#include "libft.h"
 
-int		eval_all(t_shell *shell)
+static size_t		lenjoin(const char **str)
 {
-	t_node		*curr;
+	size_t		len;
 
-	curr = shell->parser->root;
-	while (curr)
+	len = 0;
+	while (*str)
 	{
-		if (eval_line(curr, shell) != SUCCESS)
-		{
-			shell->eval->next = NULL;
-			return (FAIL);
-		}
-		shell->eval->next = NULL;
-		while (curr && curr->type != TOKEN_NEWLINE)
-			curr = curr->next;
-		if (curr)
-			curr = curr->next;
+		len += ft_strlen(*str) + 1;
+		str++;
 	}
-	return (SUCCESS);
+	return (len);
+}
+
+char				*ft_strjoinspace_2d(const char **str)
+{
+	char		*out;
+	char		*pt_out;
+	size_t		len;
+
+	len = lenjoin(str);
+	if ((out = ft_strnew(len)) == NULL)
+		return (NULL);
+	pt_out = out;
+	while (*str)
+	{
+		ft_strcpy(pt_out, *str);
+		pt_out += ft_strlen(*str);
+		str++;
+		*pt_out = ' ';
+		pt_out++;
+	}
+	*(pt_out - 1) = '\0';
+	return (out);
 }

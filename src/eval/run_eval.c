@@ -6,53 +6,45 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/20 18:18:31 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/29 16:41:55 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/29 15:26:36 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-static int	eval_stddefault(t_eval *eval)
+static int	wait_all(t_eval *eval)
 {
 	while (eval)
 	{
-		if (eval->process)
-			if (process_stdall_default_isset(eval->process) != SUCCESS)
-				return (FAIL);
+		if (process_wait(eval->process) != SUCCESS)
+			return (FAIL);
+		process_destroy(&eval->process);
 		eval = eval->next;
 	}
 	return (SUCCESS);
 }
 
-static int	eval_pipe(t_eval *e1, t_eval *e2)
+int			run_eval(t_eval *eval, t_shell *shell)
 {
-	if (e1->process && e2->process)
-		process_pipe(e1->process, e2->process);
-	return (SUCCESS);
-}
-
-int			eval_line(t_node *curr, t_shell *shell)
-{
-	int			pipe;
 	t_eval		*tmp;
 
-	pipe = 0;
-	tmp = shell->eval;
-	while (curr && curr->type != TOKEN_NEWLINE)
+	tmp = eval;
+	while (tmp)
 	{
-		if (curr->type == TOKEN_WORD)
+		if (tmp->builtin)
 		{
-			if (eval_command(curr, &tmp->next, shell) != SUCCESS)
-				return (FAIL);
-			if (pipe)
-				eval_pipe(tmp, tmp->next);
-			tmp = tmp->next;
+			tmp->builtin->func(tmp->builtin->argv, shell);
 		}
-		else if (curr->type == TOKEN_PIPE)
-			pipe = 1;
-		curr = curr->next;
+		else if (tmp->process)
+		{
+			if (process_start(tmp->process))
+				return (FAIL);
+		}
+		tmp = tmp->next;
 	}
-	eval_stddefault(shell->eval->next);
-	return (run_eval(shell->eval->next, shell));
+	if (wait_all(eval) != SUCCESS)
+		return (FAIL);
+	eval_destroy(&eval);
+	return (SUCCESS);
 }

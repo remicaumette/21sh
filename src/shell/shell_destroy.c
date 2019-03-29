@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/12 17:18:55 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/22 14:43:04 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/29 16:43:09 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,6 +29,8 @@ void	shell_destroy(t_shell *shell)
 			line_destroy(&shell->line);
 		if (shell->term)
 			term_destroy(&shell->term);
+		if (shell->eval)
+			eval_destroy(&shell->eval);
 		ft_memdel((void **)&shell);
 	}
 }

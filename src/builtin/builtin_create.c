@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   eval_all.c                                       .::    .:/ .      .::   */
+/*   builtin_create.c                                 .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/03/20 18:17:51 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/29 16:59:58 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/03/29 14:02:39 by timfuzea     #+#   ##    ##    #+#       */
+/*   Updated: 2019/03/29 16:22:10 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "eval.h"
+#include "shell.h"
 
-int		eval_all(t_shell *shell)
+t_builtin		*builtin_create(char **argv, t_func_builtin func)
 {
-	t_node		*curr;
+	t_builtin		*tmp;
 
-	curr = shell->parser->root;
-	while (curr)
-	{
-		if (eval_line(curr, shell) != SUCCESS)
-		{
-			shell->eval->next = NULL;
-			return (FAIL);
-		}
-		shell->eval->next = NULL;
-		while (curr && curr->type != TOKEN_NEWLINE)
-			curr = curr->next;
-		if (curr)
-			curr = curr->next;
-	}
-	return (SUCCESS);
+	if (!(tmp = ft_memalloc(sizeof(t_builtin))))
+		return (NULL);
+	if (!(tmp->argv = ft_strdup_2d((const char **)argv)))
+		return (NULL);
+	tmp->func = func;
+	return (tmp);
 }

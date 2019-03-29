@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   eval_all.c                                       .::    .:/ .      .::   */
+/*   builtin_destroy.c                                .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/03/20 18:17:51 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/29 16:59:58 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/03/29 15:28:28 by timfuzea     #+#   ##    ##    #+#       */
+/*   Updated: 2019/03/29 16:52:22 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "eval.h"
+#include "shell.h"
 
-int		eval_all(t_shell *shell)
+void		builtin_destroy(t_builtin **as)
 {
-	t_node		*curr;
+	t_builtin	*builtin;
 
-	curr = shell->parser->root;
-	while (curr)
+	builtin = *as;
+	if (builtin)
 	{
-		if (eval_line(curr, shell) != SUCCESS)
-		{
-			shell->eval->next = NULL;
-			return (FAIL);
-		}
-		shell->eval->next = NULL;
-		while (curr && curr->type != TOKEN_NEWLINE)
-			curr = curr->next;
-		if (curr)
-			curr = curr->next;
+		ft_strdel_2d(&builtin->argv);
 	}
-	return (SUCCESS);
+	free(*as);
+	*as = NULL;
 }

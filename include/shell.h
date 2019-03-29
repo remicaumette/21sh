@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/14 08:08:55 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/29 10:07:41 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/29 16:40:37 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,7 +27,6 @@
 # include "lexer.h"
 # include "parser.h"
 # include "process.h"
-# include "eval.h"
 # include "utils.h"
 # include "tc_key.h"
 
@@ -55,7 +54,11 @@ typedef struct s_line		t_line;
 typedef struct s_history	t_history;
 typedef struct s_histentry	t_histentry;
 typedef struct winsize		t_winsize;
+typedef struct s_eval		t_eval;
 typedef struct s_term		t_term;
+typedef struct s_builtin	t_builtin;
+typedef void				(*t_func_builtin)(char **argv, t_shell *shell);
+typedef struct s_buil_tab	t_buil_tab;
 typedef enum e_ret			t_ret;
 typedef t_ret				(*t_actionhandler)(t_shell *);
 
@@ -67,15 +70,10 @@ enum						e_ret
 	RET_FAIL,
 };
 
-struct						s_shell
+struct						s_builtin
 {
-	char		**environment;
-	char		missing_token;
-	t_line		*line;
-	t_history	*history;
-	t_lexer		*lexer;
-	t_parser	*parser;
-	t_term		*term;
+	char				**argv;
+	t_func_builtin		func;
 };
 
 struct						s_action
@@ -91,6 +89,12 @@ struct						s_line
 	int			cursor;
 	t_winsize	cur_pos;
 	t_winsize	window;
+};
+
+struct						s_buil_tab
+{
+	char				*str;
+	t_func_builtin		func;
 };
 
 struct						s_history
@@ -113,6 +117,26 @@ struct						s_term
 	struct termios		*my;
 	struct termios		*save;
 };
+
+struct						s_eval
+{
+	t_builtin			*builtin;
+	t_process			*process;
+	t_eval				*next;
+};
+
+struct						s_shell
+{
+	char		**environment;
+	char		missing_token;
+	t_line		*line;
+	t_history	*history;
+	t_lexer		*lexer;
+	t_parser	*parser;
+	t_eval		*eval;
+	t_term		*term;
+};
+
 
 extern t_action				g_actions[];
 t_shell						*g_shell;
@@ -185,4 +209,25 @@ int							term_row_stop(t_shell *shell);
 
 void						term_resize(t_shell *shell);
 int							term_getcurentpos(t_winsize *curent_pos);
+
+t_builtin					*builtin_create(char **argv, t_func_builtin func);
+void						builtin_destroy(t_builtin **as);
+void						builtin_exit(char **argv, t_shell *shell);
+
+
+t_eval					*eval_create(t_builtin *builtin, t_process *process);
+void					eval_destroy(t_eval **eval);
+
+int						run_eval(t_eval *eval, t_shell *shell);
+int						eval_all(t_shell *shell);
+int						eval_line(t_node *curr, t_shell *shell);
+int						eval_command(t_node *node,
+										t_eval **eval, t_shell *shell);
+int						eval_redirection(t_command *command,
+										t_process *process, t_shell *shell);
+char					**eval_genargv(t_command *command);
+
+int						eval_heredoc(t_redirection *redirection,
+										t_process *process, t_shell *shell);
+char					*eval_getbin(const char *name, t_shell *shell);
 #endif

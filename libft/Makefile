@@ -6,7 +6,7 @@
 #    By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/01/12 18:55:30 by timfuzea     #+#   ##    ##    #+#        #
-#    Updated: 2019/01/17 16:08:58 by rcaumett    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/03/29 14:27:16 by timfuzea    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -42,7 +42,7 @@ INC_LST		:= $(addprefix $(INC_PATH)/, libft.h)
 
 TMP_NAME	:= ft
 
-TMP_LST		:= io.h std.h strconv.h string.h type.h
+TMP_LST		:= io.h std.h strconv.h string.h type.h string_2d.h
 
 TMP_SRC		:= $(addprefix ft/, $(TMP_LST))
 SUB_INC		:= $(SUB_INC) $(addprefix $(INC_PATH)/, $(TMP_NAME))
@@ -114,6 +114,19 @@ TMP_LST		:= ft_strarr_add.c ft_strarr_clone.c ft_strarr_del.c \
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)
 SRC_LST		:= $(SRC_LST) $(TMP_SRC)
+
+#			String_2d
+
+TMP_NAME	:= string_2d
+
+TMP_LST		:= ft_strdel_2d.c ft_strdup_2d.c ft_strequ_2d.c \
+				ft_strjoinspace_2d.c ft_strlen_2d.c ft_strnew_2d.c
+
+
+TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
+SUB_LST		:= $(SUB_LST) $(TMP_NAME)
+SRC_LST		:= $(SRC_LST) $(TMP_SRC)
+
 
 
 #			type

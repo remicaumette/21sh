@@ -11,7 +11,7 @@
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "eval.h"
+#include "shell.h"
 
 int			eval_heredoc(t_redirection *redirection, t_process *process,
 		t_shell *shell)

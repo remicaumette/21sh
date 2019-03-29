@@ -13,18 +13,22 @@
 
 #include "shell.h"
 
-void		builtin_exit(char **argv, t_shell *shell)
+static int	print_usage(void)
+{
+	ft_putstr_fd("21sh: exit: Too many arguments\n", STDERR_FILENO);
+	return (FAIL);
+}
+
+int			builtin_exit(int argc, char **argv, t_shell *shell)
 {
 	int		status;
 
 	status = 0;
-	if (argv[0] && argv[1])
-	{
-		ft_putstr_fd("21sh: exitL Too many arguments\n", STDERR_FILENO);
-		return ;
-	}
-	else if (argv[0])
-		status = ft_atoi(argv[0]);
+	if (argc > 2)
+		return (print_usage());
+	else if (argv[1])
+		status = ft_atoi(argv[1]);
 	shell_destroy(shell);
 	exit(status);
+	return (SUCCESS);
 }

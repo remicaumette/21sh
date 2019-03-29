@@ -11,7 +11,7 @@
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "eval.h"
+#include "shell.h"
 
 void		eval_destroy(t_eval **eval)
 {
@@ -21,7 +21,6 @@ void		eval_destroy(t_eval **eval)
 	tmp = *eval;
 	while (tmp)
 	{
-		dprintf(1, "tmp->builtin: %p\n", &tmp->builtin);
 		builtin_destroy(&tmp->builtin);
 		process_destroy(&tmp->process);
 		tmp_next = tmp->next;
@@ -29,4 +28,14 @@ void		eval_destroy(t_eval **eval)
 		tmp = tmp_next;
 	}
 	*eval = NULL;
+}
+
+int			eval_reset(t_eval *eval)
+{
+	t_eval		*tmp;
+
+	tmp = eval->next;
+	eval_destroy(&tmp);
+	eval->next = NULL;
+	return (FAIL);
 }

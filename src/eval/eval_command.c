@@ -11,10 +11,11 @@
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "eval.h"
+#include "shell.h"
 
 t_buil_tab		g_builtin_tab[] = {
 	{"exit", builtin_exit},
+	{"setenv", builtin_setenv},
 	{NULL, NULL}
 };
 
@@ -40,6 +41,7 @@ static int	make_process(t_command *command, t_process **process,
 
 static int	make_builtin(t_command *command, t_builtin **builtin)
 {
+	char			**argv;
 	t_buil_tab		*tab_buil;
 
 	tab_buil = g_builtin_tab;
@@ -47,8 +49,11 @@ static int	make_builtin(t_command *command, t_builtin **builtin)
 	{
 		if (ft_strequ(tab_buil->str, command->name))
 		{
-			if (!(*builtin = builtin_create(command->arguments, tab_buil->func)))
+			if (!(argv = eval_genargv(command)))
 				return (-1);
+			if (!(*builtin = builtin_create(argv, tab_buil->func)))
+				return (-1);
+			ft_strarr_del(argv);
 			return (1);
 		}
 		tab_buil++;

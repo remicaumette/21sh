@@ -11,7 +11,7 @@
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "eval.h"
+#include "shell.h"
 
 char		**eval_genargv(t_command *command)
 {

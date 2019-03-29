@@ -25,6 +25,11 @@ static int	wait_all(t_eval *eval)
 	return (SUCCESS);
 }
 
+static int	run_builtin(t_builtin *builtin, t_shell *shell)
+{
+	return (builtin->func(ft_strlen_2d((const char **)builtin->argv), builtin->argv, shell));
+}
+
 int			run_eval(t_eval *eval, t_shell *shell)
 {
 	t_eval		*tmp;
@@ -34,17 +39,17 @@ int			run_eval(t_eval *eval, t_shell *shell)
 	{
 		if (tmp->builtin)
 		{
-			tmp->builtin->func(tmp->builtin->argv, shell);
+			run_builtin(tmp->builtin, shell);
 		}
 		else if (tmp->process)
 		{
 			if (process_start(tmp->process))
-				return (FAIL);
+				return (eval_reset(eval));
 		}
 		tmp = tmp->next;
 	}
 	if (wait_all(eval) != SUCCESS)
-		return (FAIL);
-	eval_destroy(&eval);
+		return (eval_reset(eval));
+	eval_reset(eval);
 	return (SUCCESS);
 }

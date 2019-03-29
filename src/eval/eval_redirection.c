@@ -11,8 +11,7 @@
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "eval.h"
-#include <stdio.h>
+#include "shell.h"
 
 static int	file_redirection(t_redirection *redir, t_process *process)
 {

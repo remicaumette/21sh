@@ -11,7 +11,7 @@
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "eval.h"
+#include "shell.h"
 
 t_eval		*eval_create(t_builtin *builtin, t_process *process)
 {

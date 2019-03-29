@@ -57,7 +57,7 @@ typedef struct winsize		t_winsize;
 typedef struct s_eval		t_eval;
 typedef struct s_term		t_term;
 typedef struct s_builtin	t_builtin;
-typedef void				(*t_func_builtin)(char **argv, t_shell *shell);
+typedef int					(*t_func_builtin)(int argc, char **argv, t_shell *shell);
 typedef struct s_buil_tab	t_buil_tab;
 typedef enum e_ret			t_ret;
 typedef t_ret				(*t_actionhandler)(t_shell *);
@@ -153,6 +153,7 @@ char						*shell_getenv(t_shell *shell, char *name);
 char						**shell_setenv(t_shell *shell, char *name,
 	char *value);
 char						**shell_unsetenv(t_shell *shell, char *name);
+int							env_setall(char *all, t_shell *shell);
 t_ret						shell_getline(t_shell *shell);
 
 t_history					*history_create(void);
@@ -212,11 +213,12 @@ int							term_getcurentpos(t_winsize *curent_pos);
 
 t_builtin					*builtin_create(char **argv, t_func_builtin func);
 void						builtin_destroy(t_builtin **as);
-void						builtin_exit(char **argv, t_shell *shell);
-
+int							builtin_exit(int argc, char **argv, t_shell *shell);
+int							builtin_setenv(int argc, char **argv, t_shell *shell);
 
 t_eval					*eval_create(t_builtin *builtin, t_process *process);
 void					eval_destroy(t_eval **eval);
+int						eval_reset(t_eval *eval);
 
 int						run_eval(t_eval *eval, t_shell *shell);
 int						eval_all(t_shell *shell);

@@ -49,7 +49,6 @@ INC_LST		:=\
 	include/debug.h				\
 	include/lexer.h				\
 	include/parser.h			\
-	include/eval.h				\
 	include/shell.h				\
 	include/utils.h				\
 	include/tc_key.h			\
@@ -90,7 +89,8 @@ SRC_LST		:= $(MAIN_LST)
 #			Builtins
 
 TMP_NAME	:= builtin
-TMP_LST		:= builtin_exit.c builtin_create.c builtin_destroy.c
+TMP_LST		:= builtin_exit.c builtin_create.c builtin_destroy.c \
+				builtin_setenv.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/,$(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)
@@ -180,7 +180,7 @@ TMP_DAD		:= shell
 TMP_NAME	:= env
 
 TMP_LST		:= shell_envinit.c shell_getenv.c shell_gethome.c shell_setenv.c \
-				shell_unsetenv.c
+				shell_unsetenv.c env_setall.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 TMP_SRC		:= $(addprefix $(TMP_DAD)/, $(TMP_SRC))

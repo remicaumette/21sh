@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/14 08:08:55 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/20 17:29:35 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/29 10:07:41 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -173,6 +173,7 @@ t_ret						action_move_prev_word(t_shell *shell);
 t_ret						action_ctrl_up(t_shell *shell);
 t_ret						action_ctrl_down(t_shell *shell);
 t_ret						action_stop(t_shell *shell);
+t_ret						action_tab(t_shell *shell);
 
 void						print_token(t_token *token);
 void						print_node(t_node *node);

@@ -6,7 +6,7 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/20 16:25:50 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/20 16:26:07 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/29 10:07:01 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,6 +20,7 @@ t_action	g_actions[] = {
 	{TC_CTRL_E, action_end},
 	{TC_CTRL_K, action_clear_to_end},
 	{TC_CTRL_L, action_clear},
+	{TC_KEY_TAB, action_tab},
 	{TC_KEY_BACKDEL, action_backdel},
 	{TC_KEY_UP, action_arrow_up},
 	{TC_KEY_DOWN, action_arrow_down},

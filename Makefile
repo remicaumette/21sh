@@ -6,7 +6,7 @@
 #    By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/01/22 16:11:35 by timfuzea     #+#   ##    ##    #+#        #
-#    Updated: 2019/03/27 15:32:55 by timfuzea    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/03/29 10:08:54 by timfuzea    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -167,7 +167,7 @@ TMP_LST		:= action_dispatcher.c action_basic.c action_clear.c action_del.c \
 				action_arrow_up.c action_arrow_down.c action_arrow_left.c \
 				action_arrow_right.c action_end.c action_home.c \
 				action_stop.c action_return.c action_utile.c action_move.c \
-				action_debug.c action_move_word.c action_ctrl.c
+				action_debug.c action_move_word.c action_ctrl.c action_tab.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 TMP_SRC		:= $(addprefix $(TMP_DAD)/, $(TMP_SRC))

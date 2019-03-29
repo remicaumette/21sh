@@ -16,6 +16,7 @@
 t_buil_tab		g_builtin_tab[] = {
 	{"exit", builtin_exit},
 	{"setenv", builtin_setenv},
+	{"unsetenv", builtin_unsetenv},
 	{NULL, NULL}
 };
 

@@ -215,6 +215,7 @@ t_builtin					*builtin_create(char **argv, t_func_builtin func);
 void						builtin_destroy(t_builtin **as);
 int							builtin_exit(int argc, char **argv, t_shell *shell);
 int							builtin_setenv(int argc, char **argv, t_shell *shell);
+int							builtin_unsetenv(int argc, char **argv, t_shell *shell);
 
 t_eval					*eval_create(t_builtin *builtin, t_process *process);
 void					eval_destroy(t_eval **eval);

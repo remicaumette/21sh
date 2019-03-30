@@ -90,7 +90,8 @@ SRC_LST		:= $(MAIN_LST)
 
 TMP_NAME	:= builtin
 TMP_LST		:= builtin_exit.c builtin_create.c builtin_destroy.c \
-				builtin_setenv.c builtin_unsetenv.c builtin_env.c
+				builtin_setenv.c builtin_unsetenv.c builtin_env.c \
+				builtin_cd.c builtin_cd2.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/,$(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)

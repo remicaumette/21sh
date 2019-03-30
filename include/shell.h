@@ -48,6 +48,8 @@
 # define IS_ENDLINE			(CURENT_COL >= MAX_COL)
 # define IS_LASTLINE		(CURENT_ROW >= MAX_ROW)
 
+# define BUFF_PWD			64
+
 typedef struct s_shell		t_shell;
 typedef struct s_action		t_action;
 typedef struct s_line		t_line;
@@ -217,6 +219,11 @@ int							builtin_exit(int argc, char **argv, t_shell *shell);
 int							builtin_env(int argc, char **argv, t_shell *shell);
 int							builtin_setenv(int argc, char **argv, t_shell *shell);
 int							builtin_unsetenv(int argc, char **argv, t_shell *shell);
+int							builtin_cd(int argc, char **argv, t_shell *shell);
+int							cd_home(t_shell *shell);
+int							cd_oldpwd(t_shell *shell);
+int							cd_tild(t_shell *shell, char *path);
+int							cd_path(char *path);
 
 t_eval					*eval_create(t_builtin *builtin, t_process *process);
 void					eval_destroy(t_eval **eval);

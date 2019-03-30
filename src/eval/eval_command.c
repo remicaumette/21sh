@@ -14,10 +14,11 @@
 #include "shell.h"
 
 t_buil_tab		g_builtin_tab[] = {
-	{"exit", builtin_exit},
+	{"cd", builtin_cd},
 	{"env", builtin_env},
 	{"setenv", builtin_setenv},
 	{"unsetenv", builtin_unsetenv},
+	{"exit", builtin_exit},
 	{NULL, NULL}
 };
 

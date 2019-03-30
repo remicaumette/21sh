@@ -220,6 +220,7 @@ int							builtin_env(int argc, char **argv, t_shell *shell);
 int							builtin_setenv(int argc, char **argv, t_shell *shell);
 int							builtin_unsetenv(int argc, char **argv, t_shell *shell);
 int							builtin_cd(int argc, char **argv, t_shell *shell);
+int							builtin_echo(int argc, char **argv, t_shell *shell);
 int							cd_home(t_shell *shell);
 int							cd_oldpwd(t_shell *shell);
 int							cd_tild(t_shell *shell, char *path);

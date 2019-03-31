@@ -13,7 +13,6 @@
 
 #include "shell.h"
 
-#ifdef USE_DEBUG
 static void	debug(t_shell *shell)
 {
 	printf("=== TOKEN\n");
@@ -21,7 +20,6 @@ static void	debug(t_shell *shell)
 	printf("=== PARSER\n");
 	print_node(shell->parser->root);
 }
-#endif
 
 static void	clean_thing(t_shell *shell)
 {
@@ -40,6 +38,7 @@ static int	lexer_parser(t_shell *shell)
 		if (parser_parse(shell->parser, shell->lexer) != SUCCESS)
 			return (FAIL);
 	}
+	debug(shell);
 	return (SUCCESS);
 }
 

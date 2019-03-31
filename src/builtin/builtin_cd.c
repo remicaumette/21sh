@@ -38,10 +38,15 @@ int				builtin_cd(int argc, char **argv, t_shell *shell)
 	if (!(pwd = get_pwd(64)))
 		return (FAIL);
 	if (parser(argc, argv, shell) != SUCCESS)
+	{
+		ft_strdel(&pwd);
 		return (FAIL);
+	}
 	shell_setenv(shell, "OLDPWD", pwd);
+	ft_strdel(&pwd);
 	if (!(pwd = get_pwd(64)))
 		return (FAIL);
 	shell_setenv(shell, "PWD", pwd);
+	ft_strdel(&pwd);
 	return (SUCCESS);
 }

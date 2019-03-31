@@ -24,10 +24,7 @@ int				cd_home(t_shell *shell)
 	if ((home = shell_getenv(shell, "HOME")) == NULL)
 		return (FAIL);
 	if (ft_chdir(home) != SUCCESS)
-	{
-		dprintf(1, "fail chdir\n");
 		return (FAIL);
-	}
 	return (SUCCESS);
 }
 
@@ -50,6 +47,7 @@ int				cd_tild(t_shell *shell, char *path)
 		dprintf(1, "fail chdir\n");
 		return (FAIL);
 	}
+	ft_strdel(&tmp);
 	return (SUCCESS);
 }
 

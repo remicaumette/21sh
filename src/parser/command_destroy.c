@@ -11,7 +11,7 @@
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "shell.h"
 
 void	command_destroy(t_command *command)
 {
@@ -20,6 +20,7 @@ void	command_destroy(t_command *command)
 
 	if (command)
 	{
+		printf("command: %p\n", command);
 		if (command->name)
 			ft_strdel(&command->name);
 		if (command->arguments)

@@ -11,16 +11,21 @@
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "shell.h"
 
 void	node_destroy(t_node *node)
 {
-	if (node)
+	t_node	*curr;
+	t_node	*next;
+
+	next = node;
+	while (next)
 	{
-		if (node->command)
-			command_destroy(node->command);
-		if (node->next)
-			node_destroy(node->next);
-		ft_memdel((void **)&node);
+		curr = next;
+		next = curr->next;
+		printf("node: %p\n", curr);
+		if (curr->command)
+			command_destroy(curr->command);
+		ft_memdel((void **)&curr);
 	}
 }

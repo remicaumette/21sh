@@ -34,7 +34,7 @@ OBJ_PATH	:= $(PWD)/obj
 
 CC			:= /usr/bin/gcc
 CMD_NORME	:= norminette
-DEBUG		:="valgrind"
+DEBUG		:="yes"
 
 export CMD_NORME
 export DEBUG

@@ -3,10 +3,10 @@
 #                                                               /              #
 #    Makefile                                         .::    .:/ .      .::    #
 #                                                  +:+:+   +:    +:  +:+:+     #
-#    By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+      #
+#    By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/01/22 16:11:35 by timfuzea     #+#   ##    ##    #+#        #
-#    Updated: 2019/03/29 15:30:54 by timfuzea    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/04/01 15:02:49 by rcaumett    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -116,7 +116,7 @@ TMP_LST		:= command_create.c command_destroy.c command_parse.c \
 				redirection_create.c redirection_destroy.c redirection_parse.c \
 				node_create.c node_destroy.c node_insert.c \
 				parser_cleanup.c parser_create.c parser_destroy.c \
-				parser_parse.c token_istype.c
+				parser_parse.c token_istype.c parser_expand.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/,$(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)

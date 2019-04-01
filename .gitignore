@@ -1,6 +1,7 @@
 21sh
 /21sh.dSYM
 /obj
+/.vscode
 *.o
 *.a
 *.log

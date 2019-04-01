@@ -6,30 +6,32 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/12 18:12:30 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/12 18:12:38 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/01 15:00:26 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "shell.h"
 
-int		parser_parse(t_parser *parser, t_lexer *lexer)
+int		parser_parse(t_shell *shell)
 {
 	t_command	*cmd;
 	t_token		*curr;
 	t_node		*node;
 
-	parser->curr = lexer->begin;
-	while (parser->curr)
+	shell->parser->curr = shell->lexer->begin;
+	if (parser_expand(shell))
+		return (1);
+	while (shell->parser->curr)
 	{
-		cmd = NULL;
-		curr = parser->curr;
-		if (curr->type == TOKEN_WORD && !(cmd = command_parse(parser)))
+		curr = shell->parser->curr;
+		if (curr->type == TOKEN_WORD && !(cmd = command_parse(shell->parser)))
 			return (1);
 		if (!(node = node_create(curr->type, cmd)))
 			return (1);
-		node_insert(&parser->root, node);
-		parser->curr = curr->type == TOKEN_WORD ? parser->curr : curr->next;
+		node_insert(&shell->parser->root, node);
+		shell->parser->curr = curr->type == TOKEN_WORD ?
+			shell->parser->curr : curr->next;
 	}
 	return (0);
 }

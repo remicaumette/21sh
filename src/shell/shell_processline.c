@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/10 13:06:27 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/29 12:19:07 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/01 15:01:49 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,9 +16,11 @@
 static void	debug(t_shell *shell)
 {
 	printf("=== TOKEN\n");
-	print_token(shell->lexer->begin);
+	if (shell->lexer->begin)
+		print_token(shell->lexer->begin);
 	printf("=== PARSER\n");
-	print_node(shell->parser->root);
+	if (shell->parser->root)
+		print_node(shell->parser->root);
 }
 
 static void	clean_thing(t_shell *shell)
@@ -35,7 +37,7 @@ static int	lexer_parser(t_shell *shell)
 	shell->missing_token = lexer_getmissingtoken(shell->lexer);
 	if (shell->lexer->begin && shell->missing_token == -1)
 	{
-		if (parser_parse(shell->parser, shell->lexer) != SUCCESS)
+		if (parser_parse(shell) != SUCCESS)
 			return (FAIL);
 	}
 	debug(shell);

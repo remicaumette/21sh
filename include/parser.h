@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/14 08:35:27 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/27 15:44:33 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/01 15:01:15 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,6 +27,7 @@ typedef struct s_parser			t_parser;
 typedef struct s_node			t_node;
 typedef struct s_command		t_command;
 typedef struct s_redirection	t_redirection;
+typedef struct s_shell			t_shell;
 
 struct							s_parser
 {
@@ -59,7 +60,8 @@ struct							s_redirection
 t_parser						*parser_create(void);
 void							parser_destroy(t_parser *parser);
 void							parser_cleanup(t_parser *parser);
-int								parser_parse(t_parser *parser, t_lexer *lexer);
+int								parser_parse(t_shell *shell);
+int								parser_expand(t_shell *shell);
 
 t_node							*node_create(t_tokentype type,
 												t_command *command);

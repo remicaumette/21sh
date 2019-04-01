@@ -7,7 +7,7 @@ t_redirection	*get_redir(t_token **ref)
 	t_redirection	*tmp;
 
 	curr = *ref;
-	if (token_isfile_redir(curr->type))
+	if (token_isfile_redir(curr->type) || curr->type == TOKEN_DLESS)
 	{
 		if (curr->next == NULL)
 			ft_putstr_fd("21sh: parse error near '\\n'\n", STDERR_FILENO);

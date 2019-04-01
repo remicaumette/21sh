@@ -27,7 +27,7 @@ int		token_isredirection(t_tokentype type)
 int		token_isfile_redir(t_tokentype type)
 {
 	if (type == TOKEN_GREAT || type == TOKEN_LESS || type == TOKEN_GREATAND 
-		|| type == TOKEN_DGREAT || type == TOKEN_GREAT_2 || type == TOKEN_DLESS
+		|| type == TOKEN_DGREAT || type == TOKEN_GREAT_2
 		|| type == TOKEN_DGREAT_3 || type == TOKEN_GREATAND_3)
 		return (1);
 	return (0);

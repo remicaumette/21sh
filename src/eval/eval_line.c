@@ -53,6 +53,8 @@ int			eval_line(t_node *curr, t_shell *shell)
 			pipe = 1;
 		curr = curr->next;
 	}
-	eval_stddefault(shell->eval->next);
-	return (run_eval(shell->eval->next, shell));
+	tmp = shell->eval->next;
+	shell->eval->next = NULL;
+	eval_stddefault(tmp);
+	return (run_eval(tmp, shell));
 }

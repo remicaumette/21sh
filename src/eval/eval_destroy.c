@@ -13,7 +13,7 @@
 
 #include "shell.h"
 
-void		eval_destroy(t_eval **eval)
+int			eval_destroy(t_eval **eval)
 {
 	t_eval		*tmp;
 	t_eval		*tmp_next;
@@ -28,14 +28,5 @@ void		eval_destroy(t_eval **eval)
 		tmp = tmp_next;
 	}
 	*eval = NULL;
-}
-
-int			eval_reset(t_eval *eval)
-{
-	t_eval		*tmp;
-
-	tmp = eval->next;
-	eval_destroy(&tmp);
-	eval->next = NULL;
 	return (FAIL);
 }

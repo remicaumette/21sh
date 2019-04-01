@@ -38,18 +38,16 @@ int			run_eval(t_eval *eval, t_shell *shell)
 	while (tmp)
 	{
 		if (tmp->builtin)
-		{
 			run_builtin(tmp->builtin, shell);
-		}
 		else if (tmp->process)
 		{
 			if (process_start(tmp->process))
-				return (eval_reset(eval));
+				return (eval_destroy(&eval));
 		}
 		tmp = tmp->next;
 	}
 	if (wait_all(eval) != SUCCESS)
-		return (eval_reset(eval));
-	eval_reset(eval);
+		return (eval_destroy(&eval));
+	eval_destroy(&eval);
 	return (SUCCESS);
 }

@@ -226,20 +226,19 @@ int							cd_oldpwd(t_shell *shell);
 int							cd_tild(t_shell *shell, char *path);
 int							cd_path(char *path);
 
-t_eval					*eval_create(t_builtin *builtin, t_process *process);
-void					eval_destroy(t_eval **eval);
-int						eval_reset(t_eval *eval);
+t_eval						*eval_create(t_builtin *builtin, t_process *process);
+int							eval_destroy(t_eval **eval);
 
-int						run_eval(t_eval *eval, t_shell *shell);
-int						eval_all(t_shell *shell);
-int						eval_line(t_node *curr, t_shell *shell);
-int						eval_command(t_node *node,
-										t_eval **eval, t_shell *shell);
-int						eval_redirection(t_command *command,
+int							run_eval(t_eval *eval, t_shell *shell);
+int							eval_all(t_shell *shell);
+int							eval_line(t_node *curr, t_shell *shell);
+int							eval_command(t_node *node,
+											t_eval **eval, t_shell *shell);
+int							eval_redirection(t_command *command,
 										t_process *process, t_shell *shell);
-char					**eval_genargv(t_command *command);
+char						**eval_genargv(t_command *command);
 
-int						eval_heredoc(t_redirection *redirection,
+int							eval_heredoc(t_redirection *redirection,
 										t_process *process, t_shell *shell);
-char					*eval_getbin(const char *name, t_shell *shell);
+char						*eval_getbin(const char *name, t_shell *shell);
 #endif

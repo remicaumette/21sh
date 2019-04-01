@@ -23,21 +23,17 @@ static int	main_process(t_process *process)
 
 static void	child_process(t_process *process)
 {
-	if (dup2(process->stdin[0], STDIN_FILENO) == -1 ||
-		dup2(process->stdout[1], STDOUT_FILENO) == -1 ||
-		dup2(process->stderr[1], STDERR_FILENO) == -1)
-	{
-		process->error = 1;
-		exit(1);
-	}
+	if (dup2(process->stdin[0], STDIN_FILENO) == -1)
+		close(STDIN_FILENO);
+	if (dup2(process->stdout[1], STDOUT_FILENO) == -1)
+		close(STDOUT_FILENO);
+	if (dup2(process->stderr[1], STDERR_FILENO) == -1)
+		close(STDERR_FILENO);
 	close(process->stdin[0]);
 	close(process->stdout[1]);
 	close(process->stderr[1]);
 	if (execve(process->file, process->args, process->env) == -1)
-	{
-		process->error = 1;
 		exit(1);
-	}
 	exit(0);
 }
 

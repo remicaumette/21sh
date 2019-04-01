@@ -54,5 +54,5 @@ int			eval_line(t_node *curr, t_shell *shell)
 		curr = curr->next;
 	}
 	eval_stddefault(shell->eval->next);
-	return (run_eval(shell->eval, shell));
+	return (run_eval(shell->eval->next, shell));
 }

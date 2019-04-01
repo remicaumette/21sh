@@ -44,7 +44,7 @@ static void	child_process(t_process *process)
 int			process_start(t_process *process)
 {
 	if ((process->pid = fork()) == -1)
-		return (1);
+		return (FAIL);
 	if (process->pid == 0)
 		child_process(process);
 	main_process(process);

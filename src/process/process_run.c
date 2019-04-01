@@ -21,7 +21,7 @@ static int	handle_main_process(t_process *process)
 	if (wait(&process->pid) == -1)
 		return (1);
 	process->status = WEXITSTATUS(process->pid);
-	return (process->error);
+	return (process->status);
 }
 
 static int	handle_child_process(t_process *process)

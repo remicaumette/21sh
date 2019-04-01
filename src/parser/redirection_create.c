@@ -19,8 +19,13 @@ t_redirection	*redirection_create(t_tokentype type, char *symbols, char *file)
 
 	if (!(redirection = ft_memalloc(sizeof(t_redirection))))
 		return (NULL);
-	if (!(redirection->file = ft_strdup(file)))
-		return (NULL);
+	if (file)
+	{
+		if (!(redirection->file = ft_strdup(file)))
+			return (NULL);
+	}
+	else
+		file = NULL;
 	if (!(redirection->symbols = ft_strdup(symbols)))
 		return (NULL);
 	redirection->type = type;

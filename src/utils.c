@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/10 12:54:55 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/10 12:55:03 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/01 15:30:37 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,8 +20,9 @@ char	*ft_strjoinc(char **word, char c)
 
 	m[0] = c;
 	m[1] = 0;
-	if (!(tmp = ft_strjoin(*word, m)))
+	if (!(tmp = *word ? ft_strjoin(*word, m) : ft_strdup(m)))
 		return (NULL);
-	ft_strdel(word);
+	if (*word)
+		ft_strdel(word);
 	return (*word = tmp);
 }

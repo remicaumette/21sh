@@ -57,7 +57,7 @@ int			shell_processline(t_shell *shell)
 		if (eval_all(shell) != SUCCESS)
 			out = 1;
 	}
-	if (!out && !(history_insert(shell->history, shell->line->content)))
+	if (!(history_insert(shell->history, shell->line->content)))
 		out = 1;
 	clean_thing(shell);
 	return (out) ? FAIL : SUCCESS;

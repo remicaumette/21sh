@@ -6,7 +6,7 @@
 #    By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/01/22 16:11:35 by timfuzea     #+#   ##    ##    #+#        #
-#    Updated: 2019/04/01 17:17:18 by rcaumett    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/04/01 17:23:17 by rcaumett    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -34,7 +34,7 @@ OBJ_PATH	:= $(PWD)/obj
 
 CC			:= /usr/bin/gcc
 CMD_NORME	:= norminette
-DEBUG		:="no"
+DEBUG		:="valgrind"
 
 export CMD_NORME
 export DEBUG
@@ -282,7 +282,11 @@ ifndef CC_FLAGS
 	ifeq ($(DEBUG),"yes")
 		CC_FLAGS		+= -g -fsanitize=address # -ferror-limit=-1
 	else
-		CC_FLAGS		+= -Ofast
+		ifeq ($(DEBUG),"valgrind")
+			CC_FLAGS		+= -g # -ferror-limit=-1
+		else
+			CC_FLAGS		+= -Ofast
+		endif
 	endif
 endif
 

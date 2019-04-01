@@ -10,9 +10,12 @@ t_redirection	*get_redir(t_token **ref)
 	if (token_isfile_redir(curr->type))
 	{
 		if (curr->next == NULL)
-			printf("%s: parse error near '%s'\n", "21sh", "\\n");
+			ft_putstr_fd("21sh: parse error near '\\n'\n", STDERR_FILENO);
 		else if (curr->next->type != TOKEN_WORD)
-			printf("%s: parse error near '%s'\n", "21sh", curr->next->content);
+		{
+			ft_putstr_fd("21sh: parse error near ",STDERR_FILENO);
+			ft_putendl_fd(curr->next->content, STDERR_FILENO);
+		}
 		else
 		{
 			if (!(tmp = redirection_create(curr->type, curr->content, curr->next->content)))

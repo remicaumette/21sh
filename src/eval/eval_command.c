@@ -30,7 +30,8 @@ static int	make_process(t_command *command, t_process **process,
 
 	if (!(bin = eval_getbin(command->name, shell)))
 	{
-		printf("%s: command not found: %s\n", SHELL_NAME, command->name);
+		ft_putstr_fd("21sh: command not found: ", STDERR_FILENO);
+		ft_putendl_fd((const char *)command->name, STDERR_FILENO);
 		return (FAIL);
 	}
 	if (!(argv = eval_genargv(command)))

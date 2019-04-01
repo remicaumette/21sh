@@ -6,7 +6,7 @@
 #    By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/01/22 16:11:35 by timfuzea     #+#   ##    ##    #+#        #
-#    Updated: 2019/04/01 15:02:49 by rcaumett    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/04/01 17:17:18 by rcaumett    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -34,7 +34,7 @@ OBJ_PATH	:= $(PWD)/obj
 
 CC			:= /usr/bin/gcc
 CMD_NORME	:= norminette
-DEBUG		:="yes"
+DEBUG		:="no"
 
 export CMD_NORME
 export DEBUG

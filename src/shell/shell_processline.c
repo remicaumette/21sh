@@ -24,7 +24,7 @@ static void	debug(t_shell *shell)
 	// 	print_node(shell->parser->root);
 }
 
-static void	clean_thing(t_shell *shell)
+static void	shell_cleanup(t_shell *shell)
 {
 	lexer_cleanup(shell->lexer);
 	parser_cleanup(shell->parser);
@@ -59,6 +59,6 @@ int			shell_processline(t_shell *shell)
 	}
 	if (!(history_insert(shell->history, shell->line->content)))
 		out = 1;
-	clean_thing(shell);
+	shell_cleanup(shell);
 	return (out) ? FAIL : SUCCESS;
 }

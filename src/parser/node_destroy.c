@@ -23,7 +23,6 @@ void	node_destroy(t_node *node)
 	{
 		curr = next;
 		next = curr->next;
-		printf("node: %p\n", curr);
 		if (curr->command)
 			command_destroy(curr->command);
 		ft_memdel((void **)&curr);

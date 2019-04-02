@@ -50,6 +50,10 @@
 
 # define BUFF_PWD			64
 
+# define STDIN				0
+# define STDOUT				1
+# define STDERR				2
+
 typedef struct s_shell		t_shell;
 typedef struct s_action		t_action;
 typedef struct s_line		t_line;
@@ -59,7 +63,7 @@ typedef struct winsize		t_winsize;
 typedef struct s_eval		t_eval;
 typedef struct s_term		t_term;
 typedef struct s_builtin	t_builtin;
-typedef int					(*t_func_builtin)(int argc, char **argv, t_shell *shell);
+typedef int					(*t_func_builtin)(int argc, char **argv, int std[3], t_shell *shell);
 typedef struct s_buil_tab	t_buil_tab;
 typedef enum e_ret			t_ret;
 typedef t_ret				(*t_actionhandler)(t_shell *);
@@ -75,6 +79,7 @@ enum						e_ret
 struct						s_builtin
 {
 	char				**argv;
+	int					std[3];
 	t_func_builtin		func;
 };
 
@@ -215,16 +220,16 @@ int							term_getcurentpos(t_winsize *curent_pos);
 
 t_builtin					*builtin_create(char **argv, t_func_builtin func);
 void						builtin_destroy(t_builtin **as);
-int							builtin_exit(int argc, char **argv, t_shell *shell);
-int							builtin_env(int argc, char **argv, t_shell *shell);
-int							builtin_setenv(int argc, char **argv, t_shell *shell);
-int							builtin_unsetenv(int argc, char **argv, t_shell *shell);
-int							builtin_cd(int argc, char **argv, t_shell *shell);
-int							builtin_echo(int argc, char **argv, t_shell *shell);
-int							cd_home(t_shell *shell);
-int							cd_oldpwd(t_shell *shell);
-int							cd_tild(t_shell *shell, char *path);
-int							ft_chdir(char *path);
+int							builtin_exit(int argc, char **argv, int std[3], t_shell *shell);
+int							builtin_env(int argc, char **argv, int std[3], t_shell *shell);
+int							builtin_setenv(int argc, char **argv, int std[3], t_shell *shell);
+int							builtin_unsetenv(int argc, char **argv, int std[3], t_shell *shell);
+int							builtin_cd(int argc, char **argv, int std[3] ,t_shell *shell);
+int							builtin_echo(int argc, char **argv, int std[3], t_shell *shell);
+int							cd_home(t_shell *shell, int std[3]);
+int							cd_oldpwd(t_shell *shell, int std[3]);
+int							cd_tild(t_shell *shell, char *path, int std[3]);
+int							ft_chdir(char *path, int str[3]);
 
 t_eval						*eval_create(t_builtin *builtin, t_process *process);
 int							eval_destroy(t_eval **eval);

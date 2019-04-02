@@ -15,6 +15,7 @@
 
 t_buil_tab		g_builtin_tab[] = {
 	{"cd", builtin_cd},
+	{"echo", builtin_echo},
 	{"env", builtin_env},
 	{"setenv", builtin_setenv},
 	{"unsetenv", builtin_unsetenv},

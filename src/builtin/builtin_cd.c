@@ -15,29 +15,29 @@ static char		*get_pwd(int buf_size)
 	return (buf);
 }
 
-static int		parser(int argc, char **argv, t_shell *shell)
+static int		parser(int argc, char **argv, int std[3], t_shell *shell)
 {
 	if (argc == 1)
-		return (cd_home(shell));
+		return (cd_home(shell, std));
 	if (argv[1][0] == '~')
-		return (cd_tild(shell, argv[1]));
+		return (cd_tild(shell, argv[1], std));
 	if (argv[1][0] == '-' && argv[1][1] == '\0')
-		return (cd_oldpwd(shell));
-	return (ft_chdir(argv[1]));
+		return (cd_oldpwd(shell, std));
+	return (ft_chdir(argv[1], std));
 }
 
-int				builtin_cd(int argc, char **argv, t_shell *shell)
+int				builtin_cd(int argc, char **argv, int std[3], t_shell *shell)
 {
 	char	*pwd;
 
 	if (argc > 2)
 	{
-		ft_putstr_fd("cd: Too many arguments\n", STDERR_FILENO);
+		ft_putstr_fd("cd: Too many arguments\n", std[STDERR]);
 		return (FAIL);
 	}
 	if (!(pwd = get_pwd(64)))
 		return (FAIL);
-	if (parser(argc, argv, shell) != SUCCESS)
+	if (parser(argc, argv, std, shell) != SUCCESS)
 	{
 		ft_strdel(&pwd);
 		return (FAIL);

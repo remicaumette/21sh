@@ -19,7 +19,7 @@ static int	save_env(t_shell *shell, int ret)
 	}
 }
 
-static int	parser(int *argc, char **argv, t_shell *shell)
+static int	parser(int *argc, char **argv, int std[3],t_shell *shell)
 {
 	int i;
 
@@ -35,7 +35,7 @@ static int	parser(int *argc, char **argv, t_shell *shell)
 			else
 			{
 				ft_putstr_fd("env: option requires an argument -- \'u\'\n",
-					STDERR_FILENO);
+					std[STDERR]);
 				return (FAIL);
 			}
 		}
@@ -48,25 +48,25 @@ static int	parser(int *argc, char **argv, t_shell *shell)
 	return (SUCCESS);
 }
 
-static int	make_process(char **argv, t_process **process, t_shell *shell)
+static int	make_process(char **argv, t_process **process, int std[3], t_shell *shell)
 {
 	char	*bin;
 
 	if (!(bin = eval_getbin(argv[0], shell)))
 	{
-		ft_putstr_fd("env: \'", STDERR_FILENO);
-		ft_putstr_fd(argv[0], STDERR_FILENO);
-		ft_putstr_fd("\': No such file or directory\n", STDERR_FILENO);
+		ft_putstr_fd("env: \'", std[STDERR]);
+		ft_putstr_fd(argv[0], std[STDERR]);
+		ft_putstr_fd("\': No such file or directory\n", std[STDERR]);
 		return (FAIL);
 	}
 	if (!(*process = process_create(bin, argv, shell->environment)))
 		return (FAIL);
 	ft_strdel(&bin);
-	process_stdall_default(*process);
+	process_stdall_dup(std, *process);
 	return (SUCCESS);
 }
 
-int			builtin_env(int argc, char **argv, t_shell *shell)
+int			builtin_env(int argc, char **argv, int std[3], t_shell *shell)
 {
 	int			i;
 	t_process	*process;
@@ -75,14 +75,14 @@ int			builtin_env(int argc, char **argv, t_shell *shell)
 	i = 0;
 	if (save_env(shell, 0) != SUCCESS)
 		return (FAIL);
-	if (parser(&i, argv,shell) != SUCCESS)
+	if (parser(&i, argv, std, shell) != SUCCESS)
 		return (save_env(shell, FAIL));
 	if (!argv[i])
 	{
-		ft_putarr_str(shell->environment);
+		ft_putstr_2dfd(shell->environment, std[STDOUT]);
 		return (save_env(shell, SUCCESS));
 	}
-	if (make_process(&argv[i], &process, shell) != SUCCESS)
+	if (make_process(&argv[i], &process, std, shell) != SUCCESS)
 		return (save_env(shell, FAIL));
 	if (process_run(process) != SUCCESS)
 		return (save_env(shell, FAIL));

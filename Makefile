@@ -91,7 +91,7 @@ SRC_LST		:= $(MAIN_LST)
 TMP_NAME	:= builtin
 TMP_LST		:= builtin_exit.c builtin_create.c builtin_destroy.c \
 				builtin_setenv.c builtin_unsetenv.c builtin_env.c \
-				builtin_cd.c builtin_cd2.c
+				builtin_cd.c builtin_cd2.c builtin_echo.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/,$(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)
@@ -129,7 +129,7 @@ TMP_NAME	:= process
 TMP_LST		:= process_create.c process_destroy.c process_run.c \
 				process_debug.c process_std_default.c process_std_file.c \
 				process_pipe.c process_start.c process_wait.c \
-				process_std_close.c
+				process_std_close.c process_std_dup.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)

@@ -21,6 +21,12 @@ void		builtin_destroy(t_builtin **as)
 	if (builtin)
 	{
 		ft_strdel_2d(&builtin->argv);
+		if (builtin->std[STDIN] != -1)
+			close(builtin->std[STDIN]);
+		if (builtin->std[STDOUT] != -1)
+			close(builtin->std[STDOUT]);
+		if (builtin->std[STDERR] != -1)
+			close(builtin->std[STDERR]);
 	}
 	free(*as);
 	*as = NULL;

@@ -66,6 +66,12 @@ int							process_stderr_default(t_process *process);
 int							process_stdall_default(t_process *process);
 int							process_stdall_default_isset(t_process *process);
 
+int							process_stdin_dup(int stdin, t_process *process);
+int							process_stdout_dup(int stdout, t_process *process);
+int							process_stderr_dup(int stderr, t_process *process);
+int							process_stdall_dup(int std[3], t_process *process);
+
+
 int							process_stdin_file(const char *file,
 												t_process *process);
 int							process_stdout_file(const char *file, int flag,

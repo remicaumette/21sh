@@ -67,7 +67,7 @@ TMP_NAME	:= io
 TMP_LST		:= ft_print_memory.c ft_print_memory_fd.c ft_putchar.c \
 				ft_putchar_fd.c ft_putendl.c ft_putendl_fd.c ft_putnbr.c \
 				ft_putnbr_fd.c ft_putstr.c ft_putstr_fd.c get_next_line.c \
-				ft_putarr_str.c
+				ft_putarr_str.c ft_putstr_2dfd.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)

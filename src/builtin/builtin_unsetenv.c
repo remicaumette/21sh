@@ -1,9 +1,10 @@
 #include "shell.h"
 
-int		builtin_unsetenv(int argc, char **argv, t_shell *shell)
+int		builtin_unsetenv(int argc, char **argv, int std[3], t_shell *shell)
 {
 	int		i;
 
+	(void)std;
 	i = 0;
 	while (++i < argc)
 	{

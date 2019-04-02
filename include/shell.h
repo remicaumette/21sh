@@ -224,7 +224,7 @@ int							builtin_echo(int argc, char **argv, t_shell *shell);
 int							cd_home(t_shell *shell);
 int							cd_oldpwd(t_shell *shell);
 int							cd_tild(t_shell *shell, char *path);
-int							cd_path(char *path);
+int							ft_chdir(char *path);
 
 t_eval						*eval_create(t_builtin *builtin, t_process *process);
 int							eval_destroy(t_eval **eval);

@@ -17,9 +17,12 @@ static int	wait_all(t_eval *eval)
 {
 	while (eval)
 	{
-		if (process_wait(eval->process) != SUCCESS)
-			return (FAIL);
-		process_destroy(&eval->process);
+		if (eval->process)
+		{
+			if (process_wait(eval->process) != SUCCESS)
+				return (FAIL);
+			process_destroy(&eval->process);
+		}
 		eval = eval->next;
 	}
 	return (SUCCESS);
@@ -27,7 +30,11 @@ static int	wait_all(t_eval *eval)
 
 static int	run_builtin(t_builtin *builtin, t_shell *shell)
 {
-	return (builtin->func(ft_strlen_2d((const char **)builtin->argv), builtin->argv, shell));
+	int		ret;
+
+	ret = 0;
+	ret = builtin->func(ft_strlen_2d((const char **)builtin->argv), builtin->argv, shell);
+	return (ret);
 }
 
 int			run_eval(t_eval *eval, t_shell *shell)

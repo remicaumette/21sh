@@ -23,7 +23,7 @@ static int		parser(int argc, char **argv, t_shell *shell)
 		return (cd_tild(shell, argv[1]));
 	if (argv[1][0] == '-' && argv[1][1] == '\0')
 		return (cd_oldpwd(shell));
-	return (cd_path(argv[1]));
+	return (ft_chdir(argv[1]));
 }
 
 int				builtin_cd(int argc, char **argv, t_shell *shell)

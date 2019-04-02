@@ -1,17 +1,22 @@
 #include "shell.h"
 
-static int		ft_chdir(char *path)
+static int		print_error(char *path, char *err_msg)
 {
-	if (access(path, F_OK))
-	{
 		ft_putstr_fd("cd: ", STDERR_FILENO);
 		ft_putstr_fd(path, STDERR_FILENO);
-		ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);
+		ft_putstr_fd(": ", STDERR_FILENO);
+		ft_putstr_fd(err_msg, STDERR_FILENO);
 		return (FAIL);
-	}
+}
+
+int				ft_chdir(char *path)
+{
+	if (access(path, F_OK))
+		return (print_error(path, "No such file or directory\n"));
 	if (chdir(path) == -1)
 	{
-		dprintf(1, "Fail todo whi\n");
+		if (access(path, R_OK))
+			print_error(path, "Permission denide\n");
 		return (FAIL);
 	}
 	return (SUCCESS);
@@ -43,10 +48,7 @@ int				cd_tild(t_shell *shell, char *path)
 	else
 		tmp = home;
 	if (ft_chdir(tmp) != SUCCESS)
-	{
-		dprintf(1, "fail chdir\n");
 		return (FAIL);
-	}
 	ft_strdel(&tmp);
 	return (SUCCESS);
 }
@@ -59,15 +61,5 @@ int				cd_oldpwd(t_shell *shell)
 		return (FAIL);
 	if (ft_chdir(new_path) != SUCCESS)
 		return (FAIL);
-	return (SUCCESS);
-}
-
-int				cd_path(char *path)
-{
-	if (ft_chdir(path) != SUCCESS)
-	{
-		dprintf(1, "fail chdir\n");
-		return (FAIL);
-	}
 	return (SUCCESS);
 }

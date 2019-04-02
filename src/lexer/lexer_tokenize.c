@@ -16,23 +16,24 @@
 static char		*lexer_addsimpletoken(t_lexer *lexer, t_tokentype type,
 	char *str)
 {
-	t_tokeninfo	info;
+	t_tokeninfo	*info;
 	int			i;
 	char		*tmp;
 
 	i = -1;
+	info = NULL;
 	while (g_tokens[++i].len)
 		if (g_tokens[i].type == type)
 		{
-			info = g_tokens[i];
+			info = &g_tokens[i];
 			break ;
 		}
-	if (!(tmp = ft_strndup(str, info.len)))
+	if (!(tmp = ft_strndup(str, info->len)))
 		return (NULL);
 	if (!(lexer_addtoken(lexer, type, tmp)))
 		return (NULL);
 	ft_strdel(&tmp);
-	return (str + info.len - 1);
+	return (str + info->len - 1);
 }
 
 static char		*lexer_addwordtoken(t_lexer *lexer, char *str)

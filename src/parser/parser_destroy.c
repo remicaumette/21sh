@@ -13,11 +13,15 @@
 
 #include "parser.h"
 
-void	parser_destroy(t_parser *parser)
+void	parser_destroy(t_parser **as)
 {
+	t_parser	*parser;
+
+	parser = *as;
 	if (parser)
 	{
 		parser_cleanup(parser);
-		ft_memdel((void **)&parser);
+		ft_memdel((void **)as);
+		*as = NULL;
 	}
 }

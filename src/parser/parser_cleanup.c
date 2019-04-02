@@ -12,13 +12,14 @@
 /* ************************************************************************** */
 
 #include "parser.h"
+#include <stdio.h>
 
 void	parser_cleanup(t_parser *parser)
 {
 	if (parser)
 	{
 		if (parser->root)
-			node_destroy(parser->root);
+			node_destroy(&parser->root);
 		parser->root = NULL;
 		parser->curr = NULL;
 	}

@@ -13,17 +13,19 @@
 
 #include "shell.h"
 
-void	command_destroy(t_command *command)
+void	command_destroy(t_command **as)
 {
 	t_redirection	*tmp;
 	t_redirection	*curr;
+	t_command		*command;
 
+	command = *as;
 	if (command)
 	{
 		if (command->name)
 			ft_strdel(&command->name);
 		if (command->arguments)
-			ft_strarr_del(command->arguments);
+			ft_strdel_2d(&command->arguments);
 		if (command->redirection)
 		{
 			curr = command->redirection;
@@ -31,9 +33,10 @@ void	command_destroy(t_command *command)
 			{
 				tmp = curr;
 				curr = curr->next;
-				redirection_destroy(tmp);
+				redirection_destroy(&tmp);
 			}
 		}
-		ft_memdel((void **)&command);
+		ft_memdel((void **)as);
+		*as = NULL;
 	}
 }

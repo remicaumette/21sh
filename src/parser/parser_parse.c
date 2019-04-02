@@ -19,6 +19,7 @@ int		parser_parse(t_shell *shell)
 	t_token		*curr;
 	t_node		*node;
 
+	cmd = NULL;
 	shell->parser->curr = shell->lexer->begin;
 	if (parser_expand(shell))
 		return (1);
@@ -26,6 +27,7 @@ int		parser_parse(t_shell *shell)
 	{
 		cmd = NULL;
 		curr = shell->parser->curr;
+		cmd = NULL;
 		if (curr->type == TOKEN_WORD && !(cmd = command_parse(shell->parser)))
 			return (1);
 		if (!(node = node_create(curr->type, cmd)))

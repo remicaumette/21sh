@@ -58,22 +58,22 @@ struct							s_redirection
 };
 
 t_parser						*parser_create(void);
-void							parser_destroy(t_parser *parser);
+void							parser_destroy(t_parser **as);
 void							parser_cleanup(t_parser *parser);
 int								parser_parse(t_shell *shell);
 int								parser_expand(t_shell *shell);
 
 t_node							*node_create(t_tokentype type,
 												t_command *command);
-void							node_destroy(t_node *node);
+void							node_destroy(t_node **as);
 void							node_insert(t_node **root, t_node *node);
 
 t_command						*command_create(char *name);
-void							command_destroy(t_command *command);
+void							command_destroy(t_command **as);
 t_command						*command_parse(t_parser *parser);
 
 t_redirection					*redirection_create(t_tokentype type, char *symbols, char *file);
-void							redirection_destroy(t_redirection *redirection);
+void							redirection_destroy(t_redirection **as);
 int								redirection_parse(t_redirection **redirection,
 													t_parser *parser);
 

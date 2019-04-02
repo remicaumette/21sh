@@ -13,14 +13,18 @@
 
 #include "parser.h"
 
-void	redirection_destroy(t_redirection *redirection)
+void	redirection_destroy(t_redirection **as)
 {
+	t_redirection		*redirection;
+
+	redirection = *as;
 	if (redirection)
 	{
 		if (redirection->file)
 			ft_strdel(&redirection->file);
 		if (redirection->symbols)
 			ft_strdel(&redirection->symbols);
-		ft_memdel((void **)&redirection);
+		ft_memdel((void **)as);
+		*as = NULL;
 	}
 }

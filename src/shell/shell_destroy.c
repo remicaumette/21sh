@@ -24,7 +24,7 @@ void	shell_destroy(t_shell *shell)
 		if (shell->lexer)
 			lexer_destroy(shell->lexer);
 		if (shell->parser)
-			parser_destroy(shell->parser);
+			parser_destroy(&shell->parser);
 		if (shell->line)
 			line_destroy(&shell->line);
 		if (shell->term)

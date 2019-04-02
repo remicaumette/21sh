@@ -13,18 +13,19 @@
 
 #include "shell.h"
 
-void	node_destroy(t_node *node)
+void	node_destroy(t_node **as)
 {
 	t_node	*curr;
 	t_node	*next;
 
-	next = node;
+	next = *as;
 	while (next)
 	{
 		curr = next;
 		next = curr->next;
 		if (curr->command)
-			command_destroy(curr->command);
+			command_destroy(&curr->command);
 		ft_memdel((void **)&curr);
 	}
+	*as = NULL;
 }

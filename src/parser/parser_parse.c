@@ -24,6 +24,7 @@ int		parser_parse(t_shell *shell)
 		return (1);
 	while (shell->parser->curr)
 	{
+		cmd = NULL;
 		curr = shell->parser->curr;
 		if (curr->type == TOKEN_WORD && !(cmd = command_parse(shell->parser)))
 			return (1);

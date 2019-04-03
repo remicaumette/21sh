@@ -11,40 +11,55 @@
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "process.h"
+#include "shell.h"
 
 int		process_stdin_file(const char *file, t_process *process)
 {
+	int		ret;
 	int		fd;
 
+	ret = SUCCESS;
 	if ((fd = open(file, O_RDONLY)) == -1)
-		return (FAIL);
+	{
+		ret = FAIL;
+		error_access(file, O_RDONLY);
+	}
 	dup2(fd, process->stdin[0]);
 	close(fd);
 	process->isset[0] = 1;
-	return (SUCCESS);
+	return (ret);
 }
 
 int		process_stdout_file(const char *file, int flag, t_process *process)
 {
+	int		ret;
 	int		fd;
 
+	ret = FAIL;
 	if ((fd = open(file, flag | O_WRONLY | O_CREAT, 0644)) == -1)
-		return (FAIL);
+	{
+		ret = FAIL;
+		error_access(file, O_WRONLY);
+	}
 	dup2(fd, process->stdout[1]);
 	close(fd);
 	process->isset[1] = 1;
-	return (SUCCESS);
+	return (ret);
 }
 
 int		process_stderr_file(const char *file, int flag, t_process *process)
 {
+	int		ret;
 	int		fd;
 
+	ret = SUCCESS;
 	if ((fd = open(file, flag | O_WRONLY | O_CREAT, 0644)) == -1)
-		return (FAIL);
+	{
+		ret = FAIL;
+		error_access(file, O_WRONLY);
+	}
 	dup2(fd, process->stderr[1]);
 	close(fd);
 	process->isset[2] = 1;
-	return (SUCCESS);
+	return (ret);
 }

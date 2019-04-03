@@ -26,3 +26,39 @@ char	*ft_strjoinc(char **word, char c)
 		ft_strdel(word);
 	return (*word = tmp);
 }
+
+static int	print_error(const char *path, const char *err_msg)
+{
+	ft_putstr_fd("21sh: ", STDERR_FILENO);
+	ft_putstr_fd(path, STDERR_FILENO);
+	ft_putstr_fd(": ", STDERR_FILENO);
+	ft_putstr_fd(err_msg, STDERR_FILENO);
+	return (FAIL);
+}
+
+int			error_access(const char *path, int right)
+{
+	if (right & O_RDONLY)
+	{
+		if (access(path, F_OK))
+			return (print_error(path, "No such file or directory\n"));
+		else if (access(path, R_OK))
+			return (print_error(path, "Permission denide\n"));
+		else
+			return (print_error(path, "Unexpected error\n"));
+	}
+	else if (right & O_WRONLY)
+	{
+		if (access(path, F_OK))
+			return (print_error(path, "No such file or directory\n"));
+		else if (access(path, W_OK))
+			return (print_error(path, "Permission denide\n"));
+		else if (!access(path, F_OK))
+			return (print_error(path, "Is not a file\n"));
+		else
+			return (print_error(path, "Unexpected error\n"));
+	}
+	else
+		return (print_error(path, "Unexpected error\n"));
+	return (FAIL);
+}

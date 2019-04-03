@@ -271,4 +271,6 @@ int							eval_process_heredoc(t_redirection *redirection,
 int							eval_builtin_heredoc(t_redirection *redirection,
 										t_builtin *builtin, t_shell *shell);
 char						*eval_getbin(const char *name, t_shell *shell);
+
+int							error_access(const char *path, int right);
 #endif

@@ -40,9 +40,13 @@ int		process_stdout_file(const char *file, int flag, t_process *process)
 	{
 		ret = FAIL;
 		error_access(file, O_WRONLY);
+		close(process->stdout[1]);
 	}
-	dup2(fd, process->stdout[1]);
-	close(fd);
+	else
+	{
+		dup2(fd, process->stdout[1]);
+		close(fd);
+	}
 	process->isset[1] = 1;
 	return (ret);
 }
@@ -57,9 +61,13 @@ int		process_stderr_file(const char *file, int flag, t_process *process)
 	{
 		ret = FAIL;
 		error_access(file, O_WRONLY);
+		close(process->stderr[1]);
 	}
-	dup2(fd, process->stderr[1]);
-	close(fd);
+	else
+	{
+		dup2(fd, process->stderr[1]);
+		close(fd);
+	}
 	process->isset[2] = 1;
 	return (ret);
 }

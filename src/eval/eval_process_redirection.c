@@ -43,7 +43,7 @@ static int	close_redirection(t_redirection *redir, t_process *process)
 	return (FAIL);
 }
 
-int			eval_redirection(t_command *command, t_process *process, t_shell *shell)
+int			eval_process_redirection(t_command *command, t_process *process, t_shell *shell)
 {
 	t_redirection		*tmp;
 
@@ -55,7 +55,7 @@ int			eval_redirection(t_command *command, t_process *process, t_shell *shell)
 		if (tmp->type == TOKEN_GREATAND_4 || tmp->type == TOKEN_GREATAND_3_TIP)
 			close_redirection(tmp, process);
 		if (tmp->type == TOKEN_DLESS)
-			eval_heredoc(tmp, process, shell);
+			eval_process_heredoc(tmp, process, shell);
 		if (tmp->type == TOKEN_LESS)
 			process_stdin_file(tmp->file, process);
 		tmp = tmp->next;

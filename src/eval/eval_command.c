@@ -41,10 +41,12 @@ static int	make_process(t_command *command, t_process **process,
 		return (FAIL);
 	ft_strdel(&bin);
 	ft_strarr_del(argv);
+	if (eval_process_redirection(command, *process, shell) != SUCCESS)
+		return (FAIL);
 	return (SUCCESS);
 }
 
-static int	make_builtin(t_command *command, t_builtin **builtin)
+static int	make_builtin(t_command *command, t_builtin **builtin, t_shell *shell)
 {
 	char			**argv;
 	t_buil_tab		*tab_buil;
@@ -59,6 +61,8 @@ static int	make_builtin(t_command *command, t_builtin **builtin)
 			if (!(*builtin = builtin_create(argv, tab_buil->func)))
 				return (-1);
 			ft_strarr_del(argv);
+			if (eval_builtin_redirection(command, *builtin, shell) != SUCCESS)
+				return (-1);
 			return (1);
 		}
 		tab_buil++;
@@ -77,11 +81,9 @@ int			eval_command(t_node *node, t_eval **eval, t_shell *shell)
 	process = NULL;
 	if (node->command == NULL)
 		return (FAIL);
-	if ((ret = make_builtin(node->command, &builtin)) == -1)
+	if ((ret = make_builtin(node->command, &builtin, shell)) == -1)
 		return (FAIL);
 	if (!ret && make_process(node->command, &process, shell) != SUCCESS)
-		return (FAIL);
-	if (!ret && eval_redirection(node->command, process, shell) != SUCCESS)
 		return (FAIL);
 	if (!(*eval = eval_create(builtin, process)))
 		return (FAIL);

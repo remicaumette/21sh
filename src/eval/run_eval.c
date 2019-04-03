@@ -33,7 +33,8 @@ static int	run_builtin(t_builtin *builtin, t_shell *shell)
 	int		ret;
 
 	ret = 0;
-	ret = builtin->func(ft_strlen_2d((const char **)builtin->argv), builtin->argv, shell);
+	ret = builtin->func(ft_strlen_2d((const char **)builtin->argv),
+		builtin->argv, builtin->std, shell);
 	return (ret);
 }
 

@@ -24,6 +24,9 @@ t_builtin		*builtin_create(char **argv, t_func_builtin func)
 	tmp->std[STDIN] = -1;
 	tmp->std[STDOUT] = -1;
 	tmp->std[STDERR] = -1;
+	tmp->isset[STDIN] = 0;
+	tmp->isset[STDOUT] = 0;
+	tmp->isset[STDERR] = 0;
 	tmp->func = func;
 	return (tmp);
 }

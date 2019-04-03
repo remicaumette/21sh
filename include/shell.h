@@ -80,6 +80,7 @@ struct						s_builtin
 {
 	char				**argv;
 	int					std[3];
+	int					isset[3];
 	t_func_builtin		func;
 };
 
@@ -224,12 +225,32 @@ int							builtin_exit(int argc, char **argv, int std[3], t_shell *shell);
 int							builtin_env(int argc, char **argv, int std[3], t_shell *shell);
 int							builtin_setenv(int argc, char **argv, int std[3], t_shell *shell);
 int							builtin_unsetenv(int argc, char **argv, int std[3], t_shell *shell);
-int							builtin_cd(int argc, char **argv, int std[3] ,t_shell *shell);
 int							builtin_echo(int argc, char **argv, int std[3], t_shell *shell);
 int							cd_home(t_shell *shell, int std[3]);
+int							builtin_cd(int argc, char **argv, int std[3] ,t_shell *shell);
 int							cd_oldpwd(t_shell *shell, int std[3]);
 int							cd_tild(t_shell *shell, char *path, int std[3]);
 int							ft_chdir(char *path, int str[3]);
+
+int							builtin_stdin_close(t_builtin *builtin);
+int							builtin_stdout_close(t_builtin *builtin);
+int							builtin_stderr_close(t_builtin *builtin);
+
+int							builtin_stdin_default(t_builtin *builtin);
+int							builtin_stdout_default(t_builtin *builtin);
+int							builtin_stderr_default(t_builtin *builtin);
+int							builtin_stdall_default(t_builtin *builtin);
+int							builtin_stdall_default_isset(t_builtin *builtin);
+
+int							builtin_stdin_dup(int stdin, t_builtin *builtin);
+int							builtin_stdout_dup(int stdout, t_builtin *builtin);
+int							builtin_stderr_dup(int stderr, t_builtin *builtin);
+int							builtin_stdall_dup(int std[3], t_builtin *builtin);
+
+int							builtin_stdin_file(const char *file, t_builtin *builtin);
+
+int							builtin_stdout_file(const char *file, int flag, t_builtin *builtin);
+int							builtin_stderr_file(const char *file, int flag, t_builtin *builtin);
 
 t_eval						*eval_create(t_builtin *builtin, t_process *process);
 int							eval_destroy(t_eval **eval);
@@ -239,11 +260,15 @@ int							eval_all(t_shell *shell);
 int							eval_line(t_node *curr, t_shell *shell);
 int							eval_command(t_node *node,
 											t_eval **eval, t_shell *shell);
-int							eval_redirection(t_command *command,
+int							eval_process_redirection(t_command *command,
 										t_process *process, t_shell *shell);
+int							eval_builtin_redirection(t_command *command,
+										t_builtin *builtin, t_shell *shell);
 char						**eval_genargv(t_command *command);
 
-int							eval_heredoc(t_redirection *redirection,
+int							eval_process_heredoc(t_redirection *redirection,
 										t_process *process, t_shell *shell);
+int							eval_builtin_heredoc(t_redirection *redirection,
+										t_builtin *builtin, t_shell *shell);
 char						*eval_getbin(const char *name, t_shell *shell);
 #endif

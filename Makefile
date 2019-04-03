@@ -91,7 +91,10 @@ SRC_LST		:= $(MAIN_LST)
 TMP_NAME	:= builtin
 TMP_LST		:= builtin_exit.c builtin_create.c builtin_destroy.c \
 				builtin_setenv.c builtin_unsetenv.c builtin_env.c \
-				builtin_cd.c builtin_cd2.c builtin_echo.c
+				builtin_cd.c builtin_cd2.c builtin_echo.c \
+				builtin_std_close.c builtin_std_default.c builtin_std_dup.c \
+				builtin_std_file.c
+
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/,$(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)
@@ -140,9 +143,9 @@ SRC_LST		:= $(SRC_LST) $(TMP_SRC)
 TMP_NAME	:= eval
 
 TMP_LST		:= eval_create.c eval_destroy.c eval_all.c eval_line.c \
-				eval_command.c eval_redirection.c eval_genargv.c eval_getbin.c \
-				eval_heredoc.c run_eval.c
-
+				eval_command.c  eval_genargv.c eval_getbin.c \
+				eval_heredoc.c run_eval.c eval_process_redirection.c \
+				eval_builtin_redirection.c
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)
 SRC_LST		:= $(SRC_LST) $(TMP_SRC)

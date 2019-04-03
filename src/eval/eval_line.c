@@ -20,6 +20,9 @@ static int	eval_stddefault(t_eval *eval)
 		if (eval->process)
 			if (process_stdall_default_isset(eval->process) != SUCCESS)
 				return (FAIL);
+		if (eval->builtin)
+			if (builtin_stdall_default_isset(eval->builtin) != SUCCESS)
+				return (FAIL);
 		eval = eval->next;
 	}
 	return (SUCCESS);

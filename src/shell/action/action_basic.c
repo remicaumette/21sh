@@ -33,6 +33,11 @@ static t_ret		multi_line(t_shell *shell)
 
 t_ret				action_basic(t_shell *shell, long buf)
 {
+	if (MAX_COL == 0)
+	{
+		ft_putstr_fd("\n21sh: unexpeted error\n", STDERR_FILENO);
+		return (RET_FAIL);
+	}
 	if (line_inser(shell->line, (char)buf) != SUCCESS)
 		return (RET_FAIL);
 	if ((((shell->line->size + 2) >= MAX_COL)

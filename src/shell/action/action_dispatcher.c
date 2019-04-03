@@ -21,6 +21,7 @@ t_action	g_actions[] = {
 	{TC_CTRL_K, action_clear_to_end},
 	{TC_CTRL_L, action_clear},
 	{TC_KEY_TAB, action_tab},
+	{TC_KEY_DEL, action_del},
 	{TC_KEY_BACKDEL, action_backdel},
 	{TC_KEY_UP, action_arrow_up},
 	{TC_KEY_DOWN, action_arrow_down},

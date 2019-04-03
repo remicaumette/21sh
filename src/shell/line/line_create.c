@@ -24,5 +24,7 @@ t_line		*line_create(void)
 	line->cursor = 1;
 	line->cur_pos.ws_row = 0;
 	line->cur_pos.ws_col = 0;
+	line->window.ws_row = 0;
+	line->window.ws_col = 0;
 	return (line);
 }

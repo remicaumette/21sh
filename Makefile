@@ -171,7 +171,8 @@ TMP_LST		:= action_dispatcher.c action_basic.c action_clear.c action_del.c \
 				action_arrow_up.c action_arrow_down.c action_arrow_left.c \
 				action_arrow_right.c action_end.c action_home.c \
 				action_stop.c action_return.c action_utile.c action_move.c \
-				action_debug.c action_move_word.c action_ctrl.c action_tab.c
+				action_debug.c action_move_word.c action_ctrl.c action_tab.c \
+				action_backdel.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 TMP_SRC		:= $(addprefix $(TMP_DAD)/, $(TMP_SRC))
@@ -199,7 +200,7 @@ TMP_NAME	:= line
 
 TMP_LST		:= line_backdel.c line_create.c line_deltoend.c line_destroy.c \
 				line_inser.c line_replace.c line_reset.c \
-				line_debug.c
+				line_debug.c line_del.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 TMP_SRC		:= $(addprefix $(TMP_DAD)/, $(TMP_SRC))

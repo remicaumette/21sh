@@ -15,8 +15,13 @@
 
 int		line_deltoend(t_line *line)
 {
-	if (!(line->content = ft_strndup(line->content, (line->cursor - 1))))
+	char	*tmp;
+
+	tmp = NULL;
+	if (!(tmp = ft_strndup(line->content, (line->cursor - 1))))
 		return (FAIL);
+	ft_strdel(&line->content);
+	line->content = tmp;
 	line->size = line->cursor - 1;
 	return (SUCCESS);
 }

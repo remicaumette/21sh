@@ -33,11 +33,13 @@ static t_ret		multi_line(t_shell *shell)
 	return (RET_EGAIN);
 }
 
-t_ret				action_del(t_shell *shell)
+t_ret				action_backdel(t_shell *shell)
 {
 	if (shell->line->cursor > 1)
 	{
-		line_del(shell->line);
+		line_backdel(shell->line);
+		if (action_move_left(shell) != SUCCESS)
+			return (RET_FAIL);
 		if (CURENT_COL >= MAX_COL)
 		{
 			if (action_str(TC_CLEAR_END_LINE) != SUCCESS)

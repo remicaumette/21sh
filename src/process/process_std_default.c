@@ -15,25 +15,25 @@
 
 int		process_stdin_default(t_process *process)
 {
-	if (dup2(STDIN_FILENO, process->stdin[0]) == -1)
+	if ((process_stdin_dup(STDIN_FILENO, process)) != SUCCESS)
 		return (FAIL);
-	process->isset[0] = 1;
+	process->isset[STDIN] = 1;
 	return (SUCCESS);
 }
 
 int		process_stdout_default(t_process *process)
 {
-	if (dup2(STDOUT_FILENO, process->stdout[1]) == -1)
+	if ((process_stdout_dup(STDOUT_FILENO, process)) != SUCCESS)
 		return (FAIL);
-	process->isset[1] = 1;
+	process->isset[STDOUT] = 1;
 	return (SUCCESS);
 }
 
 int		process_stderr_default(t_process *process)
 {
-	if (dup2(STDERR_FILENO, process->stderr[1]) == -1)
+	if ((process_stderr_dup(STDERR_FILENO, process)) == -1)
 		return (FAIL);
-	process->isset[2] = 1;
+	process->isset[STDERR] = 1;
 	return (SUCCESS);
 }
 
@@ -48,11 +48,11 @@ int		process_stdall_default(t_process *process)
 
 int		process_stdall_default_isset(t_process *process)
 {
-	if (!process->isset[0])
+	if (!process->isset[STDIN])
 		process_stdin_default(process);
-	if (!process->isset[1])
+	if (!process->isset[STDOUT])
 		process_stdout_default(process);
-	if (!process->isset[2])
+	if (!process->isset[STDERR])
 		process_stderr_default(process);
 	return (SUCCESS);
 }

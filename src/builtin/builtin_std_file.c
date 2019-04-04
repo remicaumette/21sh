@@ -14,8 +14,9 @@ int			builtin_stdin_file(const char *file, t_builtin *builtin)
 	}
 	else
 	{
-		if ((builtin->std[STDIN] = dup(fd)) == -1)
+		if (builtin_stdin_dup(fd, builtin) != SUCCESS)
 			ret = FAIL;
+		close(fd);
 	}
 	builtin->isset[STDIN] = 1;
 	return (ret);
@@ -35,8 +36,9 @@ int		builtin_stdout_file(const char *file, int flag, t_builtin *builtin)
 	}
 	else
 	{
-		if ((builtin->std[STDOUT] = dup(fd)) == -1)
+		if (builtin_stdout_dup(fd, builtin) != SUCCESS)
 			ret = FAIL;
+		close(fd);
 	}
 	builtin->isset[STDOUT] = 1;
 	return (ret);
@@ -56,8 +58,9 @@ int		builtin_stderr_file(const char *file, int flag, t_builtin *builtin)
 	}
 	else
 	{
-		if ((builtin->std[STDERR] = dup(fd)) == -1)
+		if (builtin_stderr_dup(fd, builtin) != SUCCESS)
 			ret = FAIL;
+		close(fd);
 	}
 	builtin->isset[STDERR] = 1;
 	return (ret);

@@ -35,6 +35,7 @@ static int	run_builtin(t_builtin *builtin, t_shell *shell)
 	ret = 0;
 	ret = builtin->func(ft_strlen_2d((const char **)builtin->argv),
 		builtin->argv, builtin->std, shell);
+	builtin_stdall_close(builtin);
 	return (ret);
 }
 

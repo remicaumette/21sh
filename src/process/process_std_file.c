@@ -23,10 +23,15 @@ int		process_stdin_file(const char *file, t_process *process)
 	{
 		ret = FAIL;
 		error_access(file, O_RDONLY);
+		close(process->std[STDIN]);
 	}
-	dup2(fd, process->stdin[0]);
-	close(fd);
-	process->isset[0] = 1;
+	else
+	{
+		if (process_stdin_dup(fd, process) == -1)
+			ret = FAIL;
+		close(fd);
+	}
+	process->isset[STDIN] = 1;
 	return (ret);
 }
 
@@ -40,14 +45,15 @@ int		process_stdout_file(const char *file, int flag, t_process *process)
 	{
 		ret = FAIL;
 		error_access(file, O_WRONLY);
-		close(process->stdout[1]);
+		close(process->std[STDOUT]);
 	}
 	else
 	{
-		dup2(fd, process->stdout[1]);
+		if (process_stdout_dup(fd, process) == -1)
+			ret = FAIL;
 		close(fd);
 	}
-	process->isset[1] = 1;
+	process->isset[STDOUT] = 1;
 	return (ret);
 }
 
@@ -61,13 +67,14 @@ int		process_stderr_file(const char *file, int flag, t_process *process)
 	{
 		ret = FAIL;
 		error_access(file, O_WRONLY);
-		close(process->stderr[1]);
+		close(process->std[STDERR]);
 	}
 	else
 	{
-		dup2(fd, process->stderr[1]);
+		if (process_stderr_dup(fd, process) == -1)
+			ret = FAIL;
 		close(fd);
 	}
-	process->isset[2] = 1;
+	process->isset[STDERR] = 1;
 	return (ret);
 }

@@ -33,6 +33,10 @@
 #  define FAIL				1
 # endif
 
+# define STDIN				0
+# define STDOUT				1
+# define STDERR				2
+
 # define BUFF_READ_SIZE		1024
 
 typedef struct s_process	t_process;
@@ -46,10 +50,8 @@ struct						s_process
 	pid_t	pid;
 	int		status;
 	int		error;
+	int		std[3];
 	int		isset[3];
-	int		stdin[2];
-	int		stdout[2];
-	int		stderr[2];
 };
 
 t_process					*process_create(char *file, char **args,

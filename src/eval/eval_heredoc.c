@@ -30,11 +30,11 @@ int			eval_process_heredoc(t_redirection *redirection, t_process *process,
 		}
 		if (ft_strequ(shell->line->content, redirection->file) == 1)
 			break ;
-		ft_putendl_fd(shell->line->content, process->stdin[1]);
+		ft_putendl_fd(shell->line->content, process->std[STDIN]);
 	}
 	line_reset(shell->line);
-	close(process->stdin[1]);
-	process->isset[0] = 1;
+	close(process->std[STDIN]);
+	process->isset[STDIN] = 1;
 	return (ret);
 }
 

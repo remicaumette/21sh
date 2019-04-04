@@ -239,6 +239,7 @@ int							ft_chdir(char *path, int str[3]);
 int							builtin_stdin_close(t_builtin *builtin);
 int							builtin_stdout_close(t_builtin *builtin);
 int							builtin_stderr_close(t_builtin *builtin);
+int							builtin_stdall_close(t_builtin *builtin);
 
 int							builtin_stdin_default(t_builtin *builtin);
 int							builtin_stdout_default(t_builtin *builtin);

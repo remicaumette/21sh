@@ -30,8 +30,20 @@ static int	eval_stddefault(t_eval *eval)
 
 static int	eval_pipe(t_eval *e1, t_eval *e2)
 {
-	if (e1->process && e2->process)
-		process_pipe(e1->process, e2->process);
+	int		fdpipe[2];
+
+	if (pipe(fdpipe) == -1)
+		return (FAIL);
+	if (e1->process)
+		process_stdout_dup(fdpipe[1], e1->process);
+	else
+		builtin_stdout_dup(fdpipe[1], e1->builtin);
+	if (e2->process)
+		process_stdin_dup(fdpipe[0], e2->process);
+	else
+		builtin_stdin_dup(fdpipe[0], e2->builtin);
+	close(fdpipe[0]);
+	close(fdpipe[1]);
 	return (SUCCESS);
 }
 

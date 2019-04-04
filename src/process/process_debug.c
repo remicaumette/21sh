@@ -41,13 +41,13 @@ void		process_debug(t_process *process, const char *str)
 	dprintf(g_fd_debug, "<ARGS>\n");
 	print_arr(process->args);
 	dprintf(g_fd_debug, "</ARGS>\n");
-	dprintf(g_fd_debug, "<ENV>\n");
-	print_arr(process->env);
-	dprintf(g_fd_debug, "</ENV>\n");
+//	dprintf(g_fd_debug, "<ENV>\n");
+//	print_arr(process->env);
+//	dprintf(g_fd_debug, "</ENV>\n");
 	dprintf(g_fd_debug, "<STATUS>%d</STATUS>\n", process->status);
 	dprintf(g_fd_debug, "<ERROR>%d</ERROR>\n", process->error);
-	dprintf(g_fd_debug, "<STDIN>%d ; %d</STDIN>\n", process->stdin[0], process->stdin[1]);
-	dprintf(g_fd_debug, "<STDOUT>%d ; %d</STDOUT>\n", process->stdout[0], process->stdout[1]);
-	dprintf(g_fd_debug, "<STDERR>%d ; %d</STDERR>\n", process->stderr[0], process->stderr[1]);
+	dprintf(g_fd_debug, "<STDIN>%d</STDIN>\n", process->std[STDIN]);
+	dprintf(g_fd_debug, "<STDOUT>%d</STDOUT>\n", process->std[STDERR]);
+	dprintf(g_fd_debug, "<STDERR>%d</STDERR>\n", process->std[STDERR]);
 }
 #endif

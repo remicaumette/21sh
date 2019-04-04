@@ -15,21 +15,21 @@
 
 int		process_stdin_close(t_process *process)
 {
-	close(process->stdin[0]);
-	process->isset[0] = 1;
+	close(process->std[STDIN]);
+	process->isset[STDIN] = 1;
 	return (SUCCESS);
 }
 
 int		process_stdout_close(t_process *process)
 {
-	close(process->stdout[1]);
-	process->isset[1] = 1;
+	close(process->std[STDOUT]);
+	process->isset[STDOUT] = 1;
 	return (SUCCESS);
 }
 
 int		process_stderr_close(t_process *process)
 {
-	close(process->stderr[1]);
-	process->isset[2] = 1;
+	close(process->std[STDERR]);
+	process->isset[STDERR] = 1;
 	return (SUCCESS);
 }

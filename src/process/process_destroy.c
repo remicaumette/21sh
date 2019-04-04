@@ -28,12 +28,9 @@ void	process_destroy(t_process **as)
 			ft_strarr_del(process->args);
 		if (process->env)
 			ft_strarr_del(process->env);
-		close(process->stdin[0]);
-		close(process->stdin[1]);
-		close(process->stdout[0]);
-		close(process->stdout[1]);
-		close(process->stderr[0]);
-		close(process->stderr[1]);
+		close(process->std[STDIN]);
+		close(process->std[STDOUT]);
+		close(process->std[STDERR]);
 		ft_memdel((void **)as);
 	}
 }

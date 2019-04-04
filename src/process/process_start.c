@@ -15,23 +15,23 @@
 
 static int	main_process(t_process *process)
 {
-	close(process->stdin[1]);
-	close(process->stdout[0]);
-	close(process->stderr[0]);
+	close(process->std[STDIN]);
+	close(process->std[STDOUT]);
+	close(process->std[STDERR]);
 	return (SUCCESS);
 }
 
 static void	child_process(t_process *process)
 {
-	if (dup2(process->stdin[0], STDIN_FILENO) == -1)
+	if (dup2(process->std[STDIN], STDIN_FILENO) == -1)
 		close(STDIN_FILENO);
-	if (dup2(process->stdout[1], STDOUT_FILENO) == -1)
+	if (dup2(process->std[STDOUT], STDOUT_FILENO) == -1)
 		close(STDOUT_FILENO);
-	if (dup2(process->stderr[1], STDERR_FILENO) == -1)
+	if (dup2(process->std[STDERR], STDERR_FILENO) == -1)
 		close(STDERR_FILENO);
-	close(process->stdin[0]);
-	close(process->stdout[1]);
-	close(process->stderr[1]);
+	close(process->std[STDIN]);
+	close(process->std[STDOUT]);
+	close(process->std[STDERR]);
 	if (execve(process->file, process->args, process->env) == -1)
 		exit(1);
 	exit(0);

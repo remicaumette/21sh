@@ -2,7 +2,7 @@
 
 int		builtin_stdin_default(t_builtin *builtin)
 {
-	if ((builtin->std[STDIN] = dup(STDIN_FILENO)) == -1)
+	if ((builtin_stdin_dup(STDIN_FILENO, builtin)) == -1)
 		return (FAIL);
 	builtin->isset[STDIN] = 1;
 	return (SUCCESS);
@@ -10,7 +10,7 @@ int		builtin_stdin_default(t_builtin *builtin)
 
 int		builtin_stdout_default(t_builtin *builtin)
 {
-	if ((builtin->std[STDOUT] = dup(STDOUT_FILENO)) == -1)
+	if ((builtin_stdout_dup(STDOUT_FILENO, builtin)) == -1)
 		return (FAIL);
 	builtin->isset[STDOUT] = 1;
 	return (SUCCESS);
@@ -18,7 +18,7 @@ int		builtin_stdout_default(t_builtin *builtin)
 
 int		builtin_stderr_default(t_builtin *builtin)
 {
-	if ((builtin->std[STDERR] = dup(STDERR_FILENO)) == -1)
+	if ((builtin_stderr_dup(STDERR_FILENO, builtin)) == -1)
 		return (FAIL);
 	builtin->isset[STDERR] = 1;
 	return (SUCCESS);

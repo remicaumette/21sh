@@ -6,7 +6,7 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/20 16:25:50 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/04 15:33:49 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/04 15:42:27 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -47,7 +47,7 @@ t_ret			action_dispatcher(t_shell *shell, long buf)
 			return (tmp_action->handler(shell));
 		tmp_action++;
 	}
-	if (buf >= 32 && buf < 126)
+	if (buf >= 32 && buf <= 126)
 		return (action_basic(shell, buf));
 	return (RET_EGAIN);
 }

@@ -24,7 +24,7 @@ static void	debug(t_shell *shell)
 	// 	print_node(shell->parser->root);
 }
 
-static void	shell_cleanup(t_shell *shell)
+void		shell_cleanup(t_shell *shell)
 {
 	lexer_cleanup(shell->lexer);
 	parser_cleanup(shell->parser);
@@ -33,14 +33,10 @@ static void	shell_cleanup(t_shell *shell)
 
 static int	lexer_parser(t_shell *shell)
 {
-	if (lexer_tokenize(shell->lexer, shell->line->content))
+	if (lexer(shell) != SUCCESS)
 		return (FAIL);
-	shell->missing_token = lexer_getmissingtoken(shell->lexer);
-	if (shell->lexer->begin && shell->missing_token == -1)
-	{
-		if (parser_parse(shell) != SUCCESS)
+	if (parser_parse(shell) != SUCCESS)
 			return (FAIL);
-	}
 	debug(shell);
 	return (SUCCESS);
 }

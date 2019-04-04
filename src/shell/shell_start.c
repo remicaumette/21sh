@@ -19,6 +19,7 @@ static int	shell_loop(t_shell *shell)
 
 	while (101)
 	{
+		line_reset(shell->line);
 		if (shell_prompt(shell) != SUCCESS)
 			return (FAIL);
 		ret = shell_getline(shell);

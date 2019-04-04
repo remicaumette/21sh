@@ -104,7 +104,7 @@ SRC_LST		:= $(SRC_LST) $(TMP_SRC)
 
 TMP_NAME	:= lexer
 
-TMP_LST		:= lexer_addtoken.c lexer_cleanup.c lexer_create.c \
+TMP_LST		:= lexer_addtoken.c lexer_cleanup.c lexer_create.c lexer.c \
 				lexer_deltoken.c lexer_destroy.c lexer_tokenize.c utils.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))

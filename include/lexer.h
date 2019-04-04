@@ -22,6 +22,7 @@
 # endif
 
 typedef enum e_tokentype	t_tokentype;
+typedef struct s_shell		t_shell;
 typedef struct s_lexer		t_lexer;
 typedef struct s_token		t_token;
 typedef struct s_tokeninfo	t_tokeninfo;
@@ -75,6 +76,7 @@ struct						s_tokeninfo
 
 extern t_tokeninfo			g_tokens[];
 
+int							lexer(t_shell *shell);
 t_lexer						*lexer_create(void);
 void						lexer_cleanup(t_lexer *lexer);
 void						lexer_destroy(t_lexer *lexer);

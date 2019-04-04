@@ -41,6 +41,8 @@ t_ret			action_dispatcher(t_shell *shell, long buf)
 	t_action	*tmp_action;
 
 	tmp_action = g_actions;
+	if (shell->kill == 1)
+		return (RET_FAIL);
 	while (tmp_action->handler != NULL)
 	{
 		if (tmp_action->key == buf)

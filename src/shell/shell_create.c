@@ -19,6 +19,7 @@ t_shell	*shell_create(char **environment)
 
 	if (!(shell = ft_memalloc(sizeof(t_shell))))
 		return (NULL);
+	shell->kill = 0;
 	shell->environment = NULL;
 	shell->history = NULL;
 	shell->line = NULL;

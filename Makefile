@@ -156,7 +156,8 @@ SRC_LST		:= $(SRC_LST) $(TMP_SRC)
 TMP_NAME	:= shell
 
 TMP_LST		:= shell_create.c shell_destroy.c shell_processline.c \
-				shell_start.c utils.c shell_prompt.c shell_getline.c
+				shell_start.c utils.c shell_prompt.c shell_getline.c \
+				shell_kill.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)

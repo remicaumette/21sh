@@ -52,13 +52,13 @@ int			shell_processline(t_shell *shell)
 	out = 0;
 	if (lexer_parser(shell) != SUCCESS)
 		out = 1;
+	if (!(history_insert(shell->history, shell->line->content)))
+		out = 1;
 	if (!out && shell->parser->root)
 	{
 		if (eval_all(shell) != SUCCESS)
 			out = 1;
 	}
-	if (!(history_insert(shell->history, shell->line->content)))
-		out = 1;
 	shell_cleanup(shell);
 	return (out) ? FAIL : SUCCESS;
 }

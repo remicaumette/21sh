@@ -20,6 +20,8 @@ int		eval_all(t_shell *shell)
 	curr = shell->parser->root;
 	while (curr)
 	{
+		if (shell->kill == 1)
+			return (FAIL);
 		eval_line(curr, shell);
 		while (curr && curr->type != TOKEN_NEWLINE)
 			curr = curr->next;

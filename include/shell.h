@@ -137,6 +137,7 @@ struct						s_shell
 {
 	char		**environment;
 	char		missing_token;
+	int			kill;
 	t_line		*line;
 	t_history	*history;
 	t_lexer		*lexer;
@@ -163,6 +164,7 @@ char						**shell_setenv(t_shell *shell, char *name,
 char						**shell_unsetenv(t_shell *shell, char *name);
 int							env_setall(char *all, t_shell *shell);
 t_ret						shell_getline(t_shell *shell);
+void						shell_kill(t_shell *shell);
 
 t_history					*history_create(void);
 void						history_destroy(t_history *history);

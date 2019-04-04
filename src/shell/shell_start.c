@@ -19,11 +19,14 @@ static int	shell_loop(t_shell *shell)
 
 	while (101)
 	{
+		shell->kill = 0;
 		if (shell_prompt(shell) != SUCCESS)
 			return (FAIL);
 		ret = shell_getline(shell);
 		if (ret != RET_SUCCESS)
 		{
+			if (shell->kill == 1)
+				continue ;
 			if (ret == RET_STOP)
 				return (SUCCESS);
 			if (ret == RET_FAIL)
@@ -41,5 +44,6 @@ int			shell_start(t_shell *shell)
 	term_resize(shell);
 	init_signal();
 	term_row_stop(shell);
+	shell_kill(shell);
 	return (shell_loop(shell));
 }

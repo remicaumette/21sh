@@ -24,6 +24,7 @@ static void		signale_handl(int sig)
 	if (sig == SIGINT)
 	{
 		ft_putstr("SIG_INT recu\n");
+		shell_kill(NULL);
 	}
 	if (sig == SIGWINCH)
 		term_resize(NULL);

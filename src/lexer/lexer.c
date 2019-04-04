@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   lexer.c                                          .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
+/*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/04 11:34:37 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/04 11:34:38 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/04 14:13:02 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,11 +17,11 @@ static int	get_quote(t_shell *shell)
 {
 	t_ret	ret;
 
-	line_inser(shell->line, '\n');
-	if (shell->missing_token == '"')
-		ft_putstr("dquote> ");
-	else if (shell->missing_token == '\\')
-		ft_putstr("quote> ");
+	// line_inser(shell->line, '\n');
+	if (shell->missing_token == '"' ||
+		shell->missing_token == '\'')
+		ft_putstr(shell->missing_token == '"' ? "dquote" : "quote");
+	ft_putstr("> ");
 	while ((ret = shell_getline(shell)) == RET_STOP)
 		;
 	if (ret == RET_SUCCESS)

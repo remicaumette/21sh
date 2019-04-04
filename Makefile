@@ -6,7 +6,7 @@
 #    By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/01/22 16:11:35 by timfuzea     #+#   ##    ##    #+#        #
-#    Updated: 2019/04/04 14:45:25 by timfuzea    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/04/04 15:31:51 by timfuzea    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -155,8 +155,7 @@ SRC_LST		:= $(SRC_LST) $(TMP_SRC)
 TMP_NAME	:= shell
 
 TMP_LST		:= shell_create.c shell_destroy.c shell_processline.c \
-				shell_start.c utils.c shell_prompt.c shell_getline.c \
-				shell_kill.c
+				shell_start.c utils.c shell_prompt.c shell_getline.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)

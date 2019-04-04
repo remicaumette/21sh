@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/14 14:54:24 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/01 14:32:20 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/04 15:32:34 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,18 +21,12 @@
 
 static void		signale_handl(int sig)
 {
-	if (sig == SIGINT)
-	{
-		ft_putstr("SIG_INT recu\n");
-		shell_kill(NULL);
-	}
 	if (sig == SIGWINCH)
 		term_resize(NULL);
 }
 
 void			init_signal(void)
 {
-	signal(SIGINT, signale_handl);
 	signal(SIGWINCH, signale_handl);
 	signal(SIGTSTP, SIG_IGN);
 	signal(SIGQUIT, SIG_IGN);

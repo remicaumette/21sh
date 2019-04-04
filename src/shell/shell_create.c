@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/12 17:18:37 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/04 11:41:39 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/04 15:33:09 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,7 +19,6 @@ t_shell	*shell_create(char **environment)
 
 	if (!(shell = ft_memalloc(sizeof(t_shell))))
 		return (NULL);
-	shell->kill = 0;
 	shell->environment = NULL;
 	shell->history = NULL;
 	shell->line = NULL;

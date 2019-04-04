@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/14 08:08:55 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/04 11:48:36 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/04 15:31:04 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -137,7 +137,6 @@ struct						s_shell
 {
 	char		**environment;
 	char		missing_token;
-	int			kill;
 	t_line		*line;
 	t_history	*history;
 	t_lexer		*lexer;
@@ -163,7 +162,6 @@ char						**shell_setenv(t_shell *shell, char *name,
 char						**shell_unsetenv(t_shell *shell, char *name);
 int							env_setall(char *all, t_shell *shell);
 t_ret						shell_getline(t_shell *shell);
-void						shell_kill(t_shell *shell);
 
 t_history					*history_create(void);
 void						history_destroy(t_history *history);

@@ -6,7 +6,7 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/20 16:25:50 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/04 15:05:40 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/04 15:33:49 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -41,8 +41,6 @@ t_ret			action_dispatcher(t_shell *shell, long buf)
 	t_action	*tmp_action;
 
 	tmp_action = g_actions;
-	if (shell->kill == 1)
-		return (RET_FAIL);
 	while (tmp_action->handler != NULL)
 	{
 		if (tmp_action->key == buf)

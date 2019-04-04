@@ -6,7 +6,7 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/20 18:17:51 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/29 16:59:58 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/04 15:32:58 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,8 +20,6 @@ int		eval_all(t_shell *shell)
 	curr = shell->parser->root;
 	while (curr)
 	{
-		if (shell->kill == 1)
-			return (FAIL);
 		eval_line(curr, shell);
 		while (curr && curr->type != TOKEN_NEWLINE)
 			curr = curr->next;

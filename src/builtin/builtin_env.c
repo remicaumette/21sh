@@ -1,3 +1,16 @@
+/* ************************************************************************** */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   builtin_env.c                                    .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2019/04/04 11:31:55 by timfuzea     #+#   ##    ##    #+#       */
+/*   Updated: 2019/04/04 11:32:32 by timfuzea    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
+/* ************************************************************************** */
+
 #include "shell.h"
 
 static int	save_env(t_shell *shell, int ret)
@@ -19,7 +32,7 @@ static int	save_env(t_shell *shell, int ret)
 	}
 }
 
-static int	parser(int *argc, char **argv, int std[3],t_shell *shell)
+static int	parser(int *argc, char **argv, int std[3], t_shell *shell)
 {
 	int i;
 
@@ -42,13 +55,14 @@ static int	parser(int *argc, char **argv, int std[3],t_shell *shell)
 		else if (ft_strchr(argv[i], '='))
 			env_setall(argv[i], shell);
 		else
-			break;
+			break ;
 	}
 	*argc = i;
 	return (SUCCESS);
 }
 
-static int	make_process(char **argv, t_process **process, int std[3], t_shell *shell)
+static int	make_process(char **argv, t_process **process, int std[3],
+		t_shell *shell)
 {
 	char	*bin;
 

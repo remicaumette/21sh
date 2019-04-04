@@ -6,23 +6,12 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/10 13:06:27 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/01 17:18:02 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/04 11:49:14 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "shell.h"
-
-static void	debug(t_shell *shell)
-{
-	(void)shell;
-	// printf("=== TOKEN\n");
-	// if (shell->lexer->begin)
-	// 	print_token(shell->lexer->begin);
-	// printf("=== PARSER\n");
-	// if (shell->parser->root)
-	// 	print_node(shell->parser->root);
-}
 
 void		shell_cleanup(t_shell *shell)
 {
@@ -36,8 +25,7 @@ static int	lexer_parser(t_shell *shell)
 	if (lexer(shell) != SUCCESS)
 		return (FAIL);
 	if (parser_parse(shell) != SUCCESS)
-			return (FAIL);
-	debug(shell);
+		return (FAIL);
 	return (SUCCESS);
 }
 

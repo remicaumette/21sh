@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/10 12:55:39 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/01 14:46:32 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/04 11:48:48 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,7 +21,6 @@
 # include <fcntl.h>
 
 # include "libft.h"
-# include "debug.h"
 
 # ifdef __linux__
 #  include <sys/types.h>
@@ -72,7 +71,6 @@ int							process_stdin_dup(int stdin, t_process *process);
 int							process_stdout_dup(int stdout, t_process *process);
 int							process_stderr_dup(int stderr, t_process *process);
 int							process_stdall_dup(int std[3], t_process *process);
-
 
 int							process_stdin_file(const char *file,
 												t_process *process);

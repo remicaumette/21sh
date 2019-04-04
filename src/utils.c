@@ -6,14 +6,14 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/10 12:54:55 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/01 15:30:37 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/04 11:43:19 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-char	*ft_strjoinc(char **word, char c)
+char		*ft_strjoinc(char **word, char c)
 {
 	char	*tmp;
 	char	m[2];

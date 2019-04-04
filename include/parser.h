@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/14 08:35:27 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/01 15:01:15 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/04 11:45:28 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -72,11 +72,11 @@ t_command						*command_create(char *name);
 void							command_destroy(t_command **as);
 t_command						*command_parse(t_parser *parser);
 
-t_redirection					*redirection_create(t_tokentype type, char *symbols, char *file);
+t_redirection					*redirection_create(t_tokentype type,
+													char *symbols, char *file);
 void							redirection_destroy(t_redirection **as);
 int								redirection_parse(t_redirection **redirection,
 													t_parser *parser);
-
 
 int								token_isredirection(t_tokentype type);
 int								token_isfile_redir(t_tokentype type);

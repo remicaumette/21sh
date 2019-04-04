@@ -1,8 +1,21 @@
+/* ************************************************************************** */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   builtin_setenv.c                                 .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2019/04/04 11:30:04 by timfuzea     #+#   ##    ##    #+#       */
+/*   Updated: 2019/04/04 11:30:50 by timfuzea    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
+/* ************************************************************************** */
+
 #include "shell.h"
 
 static int	print_usage(int std[3])
 {
-	ft_putstr_fd("21sh: setenv: Usage: setenv \"TOTO=tata\" | TOTO tata\n", 
+	ft_putstr_fd("21sh: setenv: Usage: setenv \"TOTO=tata\" | TOTO tata\n",
 			std[STDERR]);
 	return (FAIL);
 }

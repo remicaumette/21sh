@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/12 15:16:46 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/27 15:43:14 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/04 11:42:22 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -36,6 +36,7 @@ static const char	*g_type[] = {
 	"TOKEN_GREATAND_4",
 	"TOKEN_GREATAND_4_TIP",
 };
+
 void				print_redirection(t_redirection *redirection, int i)
 {
 	printf("\tredirection num: %d\n", i);

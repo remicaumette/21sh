@@ -1,12 +1,25 @@
+/* ************************************************************************** */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   builtin_cd2.c                                    .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2019/04/04 11:30:16 by timfuzea     #+#   ##    ##    #+#       */
+/*   Updated: 2019/04/04 11:30:28 by timfuzea    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
+/* ************************************************************************** */
+
 #include "shell.h"
 
 static int		print_error(char *path, char *err_msg, int std[3])
 {
-		ft_putstr_fd("cd: ", std[STDERR]);
-		ft_putstr_fd(path, std[STDERR]);
-		ft_putstr_fd(": ", std[STDERR]);
-		ft_putstr_fd(err_msg, std[STDERR]);
-		return (FAIL);
+	ft_putstr_fd("cd: ", std[STDERR]);
+	ft_putstr_fd(path, std[STDERR]);
+	ft_putstr_fd(": ", std[STDERR]);
+	ft_putstr_fd(err_msg, std[STDERR]);
+	return (FAIL);
 }
 
 int				ft_chdir(char *path, int std[3])

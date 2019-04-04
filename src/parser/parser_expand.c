@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/01 14:50:43 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/01 17:13:13 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/04 11:37:41 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -39,7 +39,7 @@ char		*expand_home(t_shell *shell, char **str)
 {
 	char	*home;
 	char	*tmp;
-	
+
 	home = shell_getenv(shell, "HOME");
 	if (!(tmp = ft_strjoin(*str, home)))
 		return (NULL);
@@ -58,7 +58,8 @@ static char	*expand_token(t_shell *shell, char *token)
 	i = -1;
 	while (token[++i])
 	{
-		if ((token[i] == '"' || token[i] == '\'') && (quote == -1 || token[i] == quote))
+		if ((token[i] == '"' || token[i] == '\'')
+				&& (quote == -1 || token[i] == quote))
 			quote = quote == -1 ? token[i] : -1;
 		else if (token[i] == '$' && quote != '\'')
 		{
@@ -83,7 +84,7 @@ int			parser_expand(t_shell *shell)
 {
 	t_token	*token;
 	char	*prev;
-	
+
 	token = shell->lexer->begin;
 	while (token)
 	{

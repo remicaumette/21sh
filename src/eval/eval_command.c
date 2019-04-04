@@ -6,7 +6,7 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/20 18:19:14 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/29 15:26:21 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/04 11:33:51 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -46,7 +46,8 @@ static int	make_process(t_command *command, t_process **process,
 	return (SUCCESS);
 }
 
-static int	make_builtin(t_command *command, t_builtin **builtin, t_shell *shell)
+static int	make_builtin(t_command *command, t_builtin **builtin,
+		t_shell *shell)
 {
 	char			**argv;
 	t_buil_tab		*tab_buil;

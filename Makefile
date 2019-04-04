@@ -6,7 +6,7 @@
 #    By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/01/22 16:11:35 by timfuzea     #+#   ##    ##    #+#        #
-#    Updated: 2019/04/01 17:23:17 by rcaumett    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/04/04 11:48:16 by timfuzea    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -46,7 +46,6 @@ export DEBUG
 LIB_NAME	:= libft
 LIB_SYS		:= -lncurses
 INC_LST		:=\
-	include/debug.h				\
 	include/lexer.h				\
 	include/parser.h			\
 	include/shell.h				\
@@ -130,7 +129,7 @@ SRC_LST		:= $(SRC_LST) $(TMP_SRC)
 TMP_NAME	:= process
 
 TMP_LST		:= process_create.c process_destroy.c process_run.c \
-				process_debug.c process_std_default.c process_std_file.c \
+				process_std_default.c process_std_file.c \
 				process_start.c process_wait.c \
 				process_std_close.c process_std_dup.c
 
@@ -201,7 +200,7 @@ TMP_NAME	:= line
 
 TMP_LST		:= line_backdel.c line_create.c line_deltoend.c line_destroy.c \
 				line_inser.c line_replace.c line_reset.c \
-				line_debug.c line_del.c
+				line_del.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 TMP_SRC		:= $(addprefix $(TMP_DAD)/, $(TMP_SRC))

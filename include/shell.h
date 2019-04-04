@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/14 08:08:55 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/29 16:40:37 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/04 11:48:36 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,7 +22,6 @@
 # include <sys/types.h>
 # include <dirent.h>
 
-# include "debug.h"
 # include "libft.h"
 # include "lexer.h"
 # include "parser.h"
@@ -63,7 +62,8 @@ typedef struct winsize		t_winsize;
 typedef struct s_eval		t_eval;
 typedef struct s_term		t_term;
 typedef struct s_builtin	t_builtin;
-typedef int					(*t_func_builtin)(int argc, char **argv, int std[3], t_shell *shell);
+typedef int					(*t_func_builtin)(int argc, char **argv,
+								int std[3], t_shell *shell);
 typedef struct s_buil_tab	t_buil_tab;
 typedef enum e_ret			t_ret;
 typedef t_ret				(*t_actionhandler)(t_shell *);
@@ -146,7 +146,6 @@ struct						s_shell
 	t_term		*term;
 };
 
-
 extern t_action				g_actions[];
 t_shell						*g_shell;
 
@@ -225,13 +224,19 @@ int							term_getcurentpos(t_winsize *curent_pos);
 
 t_builtin					*builtin_create(char **argv, t_func_builtin func);
 void						builtin_destroy(t_builtin **as);
-int							builtin_exit(int argc, char **argv, int std[3], t_shell *shell);
-int							builtin_env(int argc, char **argv, int std[3], t_shell *shell);
-int							builtin_setenv(int argc, char **argv, int std[3], t_shell *shell);
-int							builtin_unsetenv(int argc, char **argv, int std[3], t_shell *shell);
-int							builtin_echo(int argc, char **argv, int std[3], t_shell *shell);
+int							builtin_exit(int argc, char **argv, int std[3],
+											t_shell *shell);
+int							builtin_env(int argc, char **argv, int std[3],
+											t_shell *shell);
+int							builtin_setenv(int argc, char **argv, int std[3],
+											t_shell *shell);
+int							builtin_unsetenv(int argc, char **argv, int std[3],
+											t_shell *shell);
+int							builtin_echo(int argc, char **argv, int std[3],
+											t_shell *shell);
 int							cd_home(t_shell *shell, int std[3]);
-int							builtin_cd(int argc, char **argv, int std[3] ,t_shell *shell);
+int							builtin_cd(int argc, char **argv, int std[3],
+											t_shell *shell);
 int							cd_oldpwd(t_shell *shell, int std[3]);
 int							cd_tild(t_shell *shell, char *path, int std[3]);
 int							ft_chdir(char *path, int str[3]);
@@ -252,12 +257,16 @@ int							builtin_stdout_dup(int stdout, t_builtin *builtin);
 int							builtin_stderr_dup(int stderr, t_builtin *builtin);
 int							builtin_stdall_dup(int std[3], t_builtin *builtin);
 
-int							builtin_stdin_file(const char *file, t_builtin *builtin);
+int							builtin_stdin_file(const char *file,
+												t_builtin *builtin);
 
-int							builtin_stdout_file(const char *file, int flag, t_builtin *builtin);
-int							builtin_stderr_file(const char *file, int flag, t_builtin *builtin);
+int							builtin_stdout_file(const char *file, int flag,
+													t_builtin *builtin);
+int							builtin_stderr_file(const char *file, int flag,
+													t_builtin *builtin);
 
-t_eval						*eval_create(t_builtin *builtin, t_process *process);
+t_eval						*eval_create(t_builtin *builtin,
+										t_process *process);
 int							eval_destroy(t_eval **eval);
 
 int							run_eval(t_eval *eval, t_shell *shell);

@@ -1,6 +1,19 @@
+/* ************************************************************************** */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   builtin_std_file.c                               .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2019/04/04 11:31:34 by timfuzea     #+#   ##    ##    #+#       */
+/*   Updated: 2019/04/04 11:31:47 by timfuzea    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
+/* ************************************************************************** */
+
 #include "shell.h"
 
-int			builtin_stdin_file(const char *file, t_builtin *builtin)
+int		builtin_stdin_file(const char *file, t_builtin *builtin)
 {
 	int		ret;
 	int		fd;

@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/15 15:07:37 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/15 15:07:54 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/04 11:53:44 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -34,6 +34,5 @@ void			ft_putstr_fd(char const *s, int fd);
 void			ft_putstr(char const *s);
 void			ft_print_memory_fd(void *mem, size_t len, int fd);
 void			ft_print_memory(void *mem, size_t len);
-void			ft_putarr_str(char **arr);
 void			ft_putstr_2dfd(char **str, int fd);
 #endif

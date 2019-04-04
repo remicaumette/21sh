@@ -6,7 +6,7 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/29 14:14:44 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/29 14:18:53 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/04 11:51:38 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -14,10 +14,9 @@
 #ifndef STRING_2D_H
 # define STRING_2D_H
 
+# include <stdlib.h>
 
-#include <stdlib.h>
-
-#include "libft.h"
+# include "libft.h"
 
 char		**ft_strnew_2d(size_t size);
 void		ft_strdel_2d(char ***as);

@@ -6,7 +6,7 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/27 15:36:06 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/27 15:38:52 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/04 11:34:13 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,8 +25,6 @@ static int	file_redirection(t_redirection *redir, t_process *process)
 		return (process_stdout_file(redir->file, O_APPEND, process));
 	if (redir->type == TOKEN_DGREAT_3 && redir->symbols[0] == '2')
 		return (process_stderr_file(redir->file, O_APPEND, process));
-	else
-		dprintf(1, "Debug redirection=>type: %d\n", redir->type);
 	return (FAIL);
 }
 
@@ -38,12 +36,11 @@ static int	close_redirection(t_redirection *redir, t_process *process)
 		return (process_stdout_close(process));
 	if (redir->symbols[0] == '2')
 		return (process_stderr_close(process));
-	else
-		dprintf(1, "Debug redirection=>type: %d\n", redir->type);
 	return (FAIL);
 }
 
-int			eval_process_redirection(t_command *command, t_process *process, t_shell *shell)
+int			eval_process_redirection(t_command *command, t_process *process,
+		t_shell *shell)
 {
 	t_redirection		*tmp;
 

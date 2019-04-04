@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   line_window.c                                    .::    .:/ .      .::   */
+/*   term_size.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/01/18 13:25:21 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/20 16:40:03 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/04/04 11:40:50 by timfuzea     #+#   ##    ##    #+#       */
+/*   Updated: 2019/04/04 11:40:54 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -54,10 +54,7 @@ int			term_getcurentpos(t_winsize *curent_pos)
 	while (buf[i] && buf[i] != ';')
 		i++;
 	if (!buf[i])
-	{
-		dprintf(1, "fail de conseption need rewite sone code\n"); // remove after many many test
 		return (FAIL);
-	}
 	curent_pos->ws_col = ft_atous(&buf[++i]);
 	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/14 08:35:27 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/27 15:25:00 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/04 11:43:44 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -14,7 +14,7 @@
 #ifndef LEXER_H
 # define LEXER_H
 
-#include "libft.h"
+# include "libft.h"
 
 # ifndef SUCCESS
 #  define SUCCESS	0

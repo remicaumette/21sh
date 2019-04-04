@@ -6,7 +6,7 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/20 16:35:00 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/04 14:48:25 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/04 16:05:04 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,14 +23,11 @@ static int	main_process(t_process *process)
 
 static void	child_process(t_process *process)
 {
-	if (process->std[STDIN] != -1 &&
-			dup2(process->std[STDIN], STDIN_FILENO) == -1)
+	if (dup2(process->std[STDIN], STDIN_FILENO) == -1)
 		close(STDIN_FILENO);
-	if (process->std[STDOUT] != -1 &&
-			dup2(process->std[STDOUT], STDOUT_FILENO) == -1)
+	if (dup2(process->std[STDOUT], STDOUT_FILENO) == -1)
 		close(STDOUT_FILENO);
-	if (process->std[STDERR] != -1 &&
-			dup2(process->std[STDERR], STDERR_FILENO) == -1)
+	if (dup2(process->std[STDERR], STDERR_FILENO) == -1)
 		close(STDERR_FILENO);
 	process_stdin_close(process);
 	process_stdout_close(process);

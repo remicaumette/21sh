@@ -6,7 +6,7 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/12 14:27:00 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/20 18:42:21 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/04 15:02:01 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -35,7 +35,7 @@ static t_ret		multi_line(t_shell *shell)
 
 t_ret				action_del(t_shell *shell)
 {
-	if (shell->line->cursor > 1)
+	if (CURSOR <= shell->line->size)
 	{
 		line_del(shell->line);
 		if (CURENT_COL >= MAX_COL)

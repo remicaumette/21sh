@@ -6,7 +6,7 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/20 16:35:25 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/04 14:24:50 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/04 15:01:36 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -53,9 +53,6 @@ int		process_stdall_default_isset(t_process *process)
 	if (!process->isset[STDOUT])
 		process_stdout_default(process);
 	if (!process->isset[STDERR])
-	{
-		dprintf(1, "dup stderr\n");
 		process_stderr_default(process);
-	}
 	return (SUCCESS);
 }

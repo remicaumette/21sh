@@ -6,7 +6,7 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/04 11:29:56 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/04 11:29:57 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/04 14:43:08 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,7 +15,8 @@
 
 int		builtin_stdin_close(t_builtin *builtin)
 {
-	close(builtin->std[STDIN]);
+	if (builtin->std[STDIN] != -1)
+		close(builtin->std[STDIN]);
 	builtin->std[STDIN] = -1;
 	builtin->isset[STDIN] = 1;
 	return (SUCCESS);
@@ -23,7 +24,8 @@ int		builtin_stdin_close(t_builtin *builtin)
 
 int		builtin_stdout_close(t_builtin *builtin)
 {
-	close(builtin->std[STDOUT]);
+	if (builtin->std[STDOUT] != -1)
+		close(builtin->std[STDOUT]);
 	builtin->std[STDOUT] = -1;
 	builtin->isset[STDOUT] = 1;
 	return (SUCCESS);
@@ -31,7 +33,8 @@ int		builtin_stdout_close(t_builtin *builtin)
 
 int		builtin_stderr_close(t_builtin *builtin)
 {
-	close(builtin->std[STDERR]);
+	if (builtin->std[STDERR] != -1)
+		close(builtin->std[STDERR]);
 	builtin->std[STDERR] = -1;
 	builtin->isset[STDERR] = 1;
 	return (SUCCESS);

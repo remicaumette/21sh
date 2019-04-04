@@ -6,7 +6,7 @@
 #    By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/01/22 16:11:35 by timfuzea     #+#   ##    ##    #+#        #
-#    Updated: 2019/04/04 14:07:32 by rcaumett    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/04/04 14:45:25 by timfuzea    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -128,7 +128,7 @@ SRC_LST		:= $(SRC_LST) $(TMP_SRC)
 
 TMP_NAME	:= process
 
-TMP_LST		:= process_create.c process_destroy.c process_run.c \
+TMP_LST		:= process_create.c process_destroy.c \
 				process_std_default.c process_std_file.c \
 				process_start.c process_wait.c \
 				process_std_close.c process_std_dup.c

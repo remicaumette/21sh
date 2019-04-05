@@ -17,8 +17,12 @@ int			eval_process_heredoc(t_redirection *redirection, t_process *process,
 		t_shell *shell)
 {
 	int			ret;
+	int			fdpipe[2];
 
+	if (pipe(fdpipe) != 0)
+		return (FAIL);
 	ret = SUCCESS;
+	process->std[STDIN] = fdpipe[STDIN];
 	while (101)
 	{
 		line_reset(shell->line);
@@ -30,10 +34,10 @@ int			eval_process_heredoc(t_redirection *redirection, t_process *process,
 		}
 		if (ft_strequ(shell->line->content, redirection->file) == 1)
 			break ;
-		ft_putendl_fd(shell->line->content, process->std[STDIN]);
+		ft_putendl_fd(shell->line->content, fdpipe[STDOUT]);
 	}
 	line_reset(shell->line);
-	close(process->std[STDIN]);
+	close(fdpipe[STDOUT]);
 	process->isset[STDIN] = 1;
 	return (ret);
 }
@@ -42,8 +46,12 @@ int			eval_builtin_heredoc(t_redirection *redirection, t_builtin *builtin,
 		t_shell *shell)
 {
 	int			ret;
+	int			fdpipe[2];
 
+	if (pipe(fdpipe) != 0)
+		return (FAIL);
 	ret = SUCCESS;
+	builtin->std[STDIN] = fdpipe[STDIN];
 	while (101)
 	{
 		line_reset(shell->line);
@@ -55,10 +63,10 @@ int			eval_builtin_heredoc(t_redirection *redirection, t_builtin *builtin,
 		}
 		if (ft_strequ(shell->line->content, redirection->file) == 1)
 			break ;
-		ft_putendl_fd(shell->line->content, builtin->std[STDIN]);
+		ft_putendl_fd(shell->line->content, fdpipe[STDOUT]);
 	}
 	line_reset(shell->line);
-	close(builtin->std[STDIN]);
+	close(fdpipe[STDOUT]);
 	builtin->isset[STDIN] = 1;
 	return (ret);
 }

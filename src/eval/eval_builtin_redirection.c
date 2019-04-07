@@ -28,6 +28,16 @@ static int	file_redirection(t_redirection *redir, t_builtin *builtin)
 	return (FAIL);
 }
 
+static int	dup_redirection(t_redirection *redir, t_builtin *builtin)
+{
+	if (redir->symbols[0] == '2')
+		return (builtin_stderr_dup(builtin->std[STDOUT], builtin));
+	if (redir->symbols[0] == '1')
+		return (builtin_stdout_dup(builtin->std[STDERR], builtin));
+	return (FAIL);
+}
+
+
 static int	close_redirection(t_redirection *redir, t_builtin *builtin)
 {
 	if (redir->symbols[0] == '0')
@@ -55,6 +65,8 @@ int			eval_builtin_redirection(t_command *command, t_builtin *builtin,
 			eval_builtin_heredoc(tmp, builtin, shell);
 		if (tmp->type == TOKEN_LESS)
 			builtin_stdin_file(tmp->file, builtin);
+		if (tmp->type == TOKEN_GREATAND_4_TIP)
+			dup_redirection(tmp, builtin);
 		tmp = tmp->next;
 	}
 	return (SUCCESS);

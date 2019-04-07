@@ -27,6 +27,14 @@ static int	file_redirection(t_redirection *redir, t_process *process)
 		return (process_stderr_file(redir->file, O_APPEND, process));
 	return (FAIL);
 }
+static int	dup_redirection(t_redirection *redir, t_process *process)
+{
+	if (redir->symbols[0] == '2')
+		return (process_stderr_dup(process->std[STDOUT], process));
+	if (redir->symbols[0] == '1')
+		return (process_stdout_dup(process->std[STDERR], process));
+	return (FAIL);
+}
 
 static int	close_redirection(t_redirection *redir, t_process *process)
 {
@@ -55,6 +63,8 @@ int			eval_process_redirection(t_command *command, t_process *process,
 			eval_process_heredoc(tmp, process, shell);
 		if (tmp->type == TOKEN_LESS)
 			process_stdin_file(tmp->file, process);
+		if (tmp->type == TOKEN_GREATAND_4_TIP)
+			dup_redirection(tmp, process);
 		tmp = tmp->next;
 	}
 	return (SUCCESS);

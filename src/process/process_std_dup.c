@@ -47,7 +47,7 @@ int		process_stdout_dup(int stdout, t_process *process)
 
 int		process_stderr_dup(int stderr, t_process *process)
 {
-	if (process->std[STDOUT] == -1)
+	if (process->std[STDERR] == -1)
 	{
 		if ((process->std[STDERR] = dup(stderr)) == -1)
 			return (FAIL);

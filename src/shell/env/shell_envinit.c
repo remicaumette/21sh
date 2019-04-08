@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/12 16:53:00 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/19 14:33:31 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/08 14:51:57 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -41,9 +41,15 @@ int			shell_envinit(t_shell *shell, char **env)
 	int	i;
 
 	i = -1;
-	while (env[++i])
-		if (!(shell->environment = ft_strarr_add(shell->environment, env[i])))
-			return (1);
+	if (env)
+	{
+		while (env[++i])
+			if (!(shell->environment =
+						ft_strarr_add(shell->environment, env[i])))
+				return (1);
+	}
+	if (!(shell_getenv(shell, "TERM")))
+		shell_setenv(shell, "TERM", "xterm-256color");
 	if (!(shell_getenv(shell, "PATH")) && init_path(shell))
 		return (1);
 	return (0);

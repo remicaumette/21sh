@@ -6,7 +6,7 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/27 15:36:06 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/04 11:34:13 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/08 12:11:05 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,6 +27,7 @@ static int	file_redirection(t_redirection *redir, t_process *process)
 		return (process_stderr_file(redir->file, O_APPEND, process));
 	return (FAIL);
 }
+
 static int	dup_redirection(t_redirection *redir, t_process *process)
 {
 	if (redir->symbols[0] == '2')

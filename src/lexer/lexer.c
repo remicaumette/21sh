@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/04 11:34:37 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/04 15:24:39 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/08 12:15:14 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,7 +20,7 @@ static int	get_quote(t_shell *shell)
 	t_ret	ret;
 
 	new_line = NULL;
-;	if ((save_line = ft_strdup(shell->line->content)) == NULL)
+	if ((save_line = ft_strdup(shell->line->content)) == NULL)
 		return (FAIL);
 	line_reset(shell->line);
 	if (shell->missing_token == '"' ||

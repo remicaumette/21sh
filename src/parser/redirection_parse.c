@@ -6,12 +6,28 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/04 11:35:13 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/04 11:36:28 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/08 12:23:07 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "parser.h"
+
+static int		check_error(t_token *curr)
+{
+	if (curr->next == NULL)
+	{
+		ft_putstr_fd("21sh: parse error near '\\n'\n", STDERR_FILENO);
+		return (1);
+	}
+	if (curr->next->type != TOKEN_WORD)
+	{
+		ft_putstr_fd("21sh: parse error near ", STDERR_FILENO);
+		ft_putendl_fd(curr->next->content, STDERR_FILENO);
+		return (1);
+	}
+	return (0);
+}
 
 t_redirection	*get_redir(t_token **ref)
 {
@@ -21,13 +37,8 @@ t_redirection	*get_redir(t_token **ref)
 	curr = *ref;
 	if (token_isfile_redir(curr->type) || curr->type == TOKEN_DLESS)
 	{
-		if (curr->next == NULL)
-			ft_putstr_fd("21sh: parse error near '\\n'\n", STDERR_FILENO);
-		else if (curr->next->type != TOKEN_WORD)
-		{
-			ft_putstr_fd("21sh: parse error near ", STDERR_FILENO);
-			ft_putendl_fd(curr->next->content, STDERR_FILENO);
-		}
+		if (check_error(curr))
+			return (NULL);
 		else
 		{
 			if (!(tmp = redirection_create(curr->type, curr->content,
@@ -36,7 +47,6 @@ t_redirection	*get_redir(t_token **ref)
 			*ref = curr->next->next;
 			return (tmp);
 		}
-		return (NULL);
 	}
 	else
 	{

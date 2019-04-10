@@ -39,7 +39,7 @@ int			shell_envinit(t_shell *shell, char **env)
 	}
 	if (!(shell_getenv(shell, "TERM")))
 		shell_setenv(shell, "TERM", "xterm-256color");
-	if (!(shell_getenv(shell, "PATH")) && set_path(shell))
-		return (1);
+	if (!shell_getenv(shell, "PATH"))
+		set_path(shell);
 	return (0);
 }

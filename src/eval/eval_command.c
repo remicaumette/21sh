@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/20 18:19:14 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/08 15:28:46 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/10 19:11:03 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,16 +23,31 @@ t_buil_tab		g_builtin_tab[] = {
 	{NULL, NULL}
 };
 
+static int	check_bin(char *path, char *name)
+{
+	t_stat		stat;
+
+	if (!path)
+		return (print_error(name, "Command not found"));
+	if (access(path, F_OK))
+		return (print_error(path, "Command not found"));
+	if (access(path, X_OK))
+		return (print_error(path, "Permission denide"));
+	if (lstat(path, &stat) == -1 || S_ISDIR(stat.st_mode))
+		return (print_error(path, "Is a directory"));
+	return (SUCCESS);
+}
+
 static int	make_process(t_command *command, t_process **process,
 		t_shell *shell)
 {
 	char	*bin;
 	char	**argv;
 
-	if (!(bin = eval_getbin(command->name, shell)))
+	bin = eval_getbin(command->name, shell);
+	if (check_bin(bin, command->name) != SUCCESS)
 	{
-		ft_putstr_fd("21sh: command not found: ", STDERR_FILENO);
-		ft_putendl_fd((const char *)command->name, STDERR_FILENO);
+		ft_strdel(&bin);
 		return (FAIL);
 	}
 	if (!(argv = eval_genargv(command)))

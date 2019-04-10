@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/14 08:08:55 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/04 15:31:04 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/10 21:35:15 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -53,6 +53,7 @@
 # define STDOUT				1
 # define STDERR				2
 
+typedef struct stat			t_stat;
 typedef struct s_shell		t_shell;
 typedef struct s_action		t_action;
 typedef struct s_line		t_line;
@@ -162,6 +163,7 @@ char						**shell_setenv(t_shell *shell, char *name,
 char						**shell_unsetenv(t_shell *shell, char *name);
 int							env_setall(char *all, t_shell *shell);
 t_ret						shell_getline(t_shell *shell);
+int							env_default_path(char **path);
 
 t_history					*history_create(void);
 void						history_destroy(t_history *history);
@@ -284,5 +286,6 @@ int							eval_builtin_heredoc(t_redirection *redirection,
 										t_builtin *builtin, t_shell *shell);
 char						*eval_getbin(const char *name, t_shell *shell);
 
+int							print_error(const char *path, const char *msg);
 int							error_access(const char *path, int right);
 #endif

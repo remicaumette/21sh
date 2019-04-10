@@ -6,34 +6,23 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/12 16:53:00 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/08 14:51:57 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/10 21:33:31 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-static int	init_path(t_shell *shell)
+static int	set_path(t_shell *shell)
 {
-	int		fd;
-	char	*line;
-	char	**paths;
+	char	*path;
 
-	paths = NULL;
-	if ((fd = open("/etc/paths", O_RDONLY)) == -1)
-		return (1);
-	while (get_next_line(fd, &line) > 0)
-	{
-		if (!(paths = ft_strarr_add(paths, line)))
-			return (1);
-		ft_strdel(&line);
-	}
-	if (!paths || !(line = ft_strarr_join(paths, ":")))
-		return (1);
-	shell_setenv(shell, "PATH", line);
-	ft_strdel(&line);
-	ft_strarr_del(paths);
-	return (0);
+	path = NULL;
+	if (env_default_path(&path) != SUCCESS)
+		return (FAIL);
+	shell_setenv(shell, "PATH", path);
+	ft_strdel(&path);
+	return (SUCCESS);
 }
 
 int			shell_envinit(t_shell *shell, char **env)
@@ -45,12 +34,12 @@ int			shell_envinit(t_shell *shell, char **env)
 	{
 		while (env[++i])
 			if (!(shell->environment =
-						ft_strarr_add(shell->environment, env[i])))
+						ft_straddfree_2d(&shell->environment, &env[i], 1)))
 				return (1);
 	}
 	if (!(shell_getenv(shell, "TERM")))
 		shell_setenv(shell, "TERM", "xterm-256color");
-	if (!(shell_getenv(shell, "PATH")) && init_path(shell))
+	if (!(shell_getenv(shell, "PATH")) && set_path(shell))
 		return (1);
 	return (0);
 }

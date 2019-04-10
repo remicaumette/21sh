@@ -1,32 +1,47 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   string_2d.c                                      .::    .:/ .      .::   */
+/*   ft_strjoinspace_2d.c                             .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/03/29 14:14:44 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/08 20:25:54 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/02/27 10:57:47 by timfuzea     #+#   ##    ##    #+#       */
+/*   Updated: 2019/04/08 20:24:27 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#ifndef STRING_2D_H
-# define STRING_2D_H
+#include "libft.h"
 
-# include <stdlib.h>
+static size_t		lenjoin(const char **str)
+{
+	size_t		len;
 
-# include "libft.h"
+	len = 0;
+	while (*str)
+	{
+		len += ft_strlen(*str);
+		str++;
+	}
+	return (len);
+}
 
-char		**ft_strnew_2d(size_t size);
-void		ft_strdel_2d(char ***as);
-size_t		ft_strlen_2d(const char **str);
+char				*ft_strjoin_2d(const char **str)
+{
+	char		*out;
+	char		*pt_out;
+	size_t		len;
 
-char		**ft_strdup_2d(const char **str);
-int			ft_strequ_2d(const char **s1, const char **s2);
-char		*ft_strjoinspace_2d(const char **str);
-char		**ft_stradd_2d(const char **ref, const char *new);
-char		**ft_straddfree_2d(char ***ref, char**str, int i);
-char		*ft_strjoin_2d(const char **ref);
-
-#endif
+	len = lenjoin(str);
+	if ((out = ft_strnew(len)) == NULL)
+		return (NULL);
+	pt_out = out;
+	while (*str)
+	{
+		ft_strcpy(pt_out, *str);
+		pt_out += ft_strlen(*str);
+		str++;
+	}
+	*pt_out = '\0';
+	return (out);
+}

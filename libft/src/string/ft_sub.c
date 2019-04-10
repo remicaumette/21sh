@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_strarr_join.c                                 .::    .:/ .      .::   */
+/*   ft_sub.c                                         .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/01/12 16:25:59 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/08 20:33:37 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/03/13 14:13:22 by timfuzea     #+#   ##    ##    #+#       */
+/*   Updated: 2018/03/13 14:13:27 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strarr_join(char **arr, char *with)
+void		ft_sub(const char ref, const char new, char *str)
 {
-	char	*tmp;
-	char	*out;
-
-	if ((tmp = ft_strjoin_2d((const char **)arr)) == NULL)
-		return (NULL);
-	if ((out = ft_strjoinfree(&tmp, &with, 1)) == NULL)
-		return (NULL);
-	return (out);
+	while (*str)
+	{
+		if (*str == ref)
+			*str = new;
+		str++;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/15 15:07:45 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/04 11:57:11 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/10 21:42:15 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -50,4 +50,6 @@ void			ft_strarr_sort(char **arr, int reverse);
 char			**ft_strarr_clone(char **arr);
 char			*ft_strarr_join(char **arr, char *with);
 char			**ft_strarr_new(size_t size);
+void			ft_sub(char ref, char new, char *str);
+
 #endif

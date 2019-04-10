@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/10 12:54:55 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/04 11:43:19 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/10 19:12:09 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,12 +27,12 @@ char		*ft_strjoinc(char **word, char c)
 	return (*word = tmp);
 }
 
-static int	print_error(const char *path, const char *err_msg)
+int			print_error(const char *path, const char *err_msg)
 {
 	ft_putstr_fd("21sh: ", STDERR_FILENO);
-	ft_putstr_fd(path, STDERR_FILENO);
-	ft_putstr_fd(": ", STDERR_FILENO);
 	ft_putstr_fd(err_msg, STDERR_FILENO);
+	ft_putstr_fd(": ", STDERR_FILENO);
+	ft_putendl_fd(path, STDERR_FILENO);
 	return (FAIL);
 }
 
@@ -41,24 +41,24 @@ int			error_access(const char *path, int right)
 	if (right & O_RDONLY)
 	{
 		if (access(path, F_OK))
-			return (print_error(path, "No such file or directory\n"));
+			return (print_error(path, "No such file or directory"));
 		else if (access(path, R_OK))
-			return (print_error(path, "Permission denide\n"));
+			return (print_error(path, "Permission denide"));
 		else
-			return (print_error(path, "Unexpected error\n"));
+			return (print_error(path, "Unexpected error"));
 	}
 	else if (right & O_WRONLY)
 	{
 		if (access(path, F_OK))
-			return (print_error(path, "No such file or directory\n"));
+			return (print_error(path, "No such file or directory"));
 		else if (access(path, W_OK))
-			return (print_error(path, "Permission denide\n"));
+			return (print_error(path, "Permission denide"));
 		else if (!access(path, F_OK))
-			return (print_error(path, "Is not a file\n"));
+			return (print_error(path, "Is not a file"));
 		else
-			return (print_error(path, "Unexpected error\n"));
+			return (print_error(path, "Unexpected error"));
 	}
 	else
-		return (print_error(path, "Unexpected error\n"));
+		return (print_error(path, "Unexpected error"));
 	return (FAIL);
 }

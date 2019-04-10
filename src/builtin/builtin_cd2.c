@@ -6,14 +6,14 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/04 11:30:16 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/04 11:30:28 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/10 18:54:27 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-static int		print_error(char *path, char *err_msg, int std[3])
+static int		print_cd_error(char *path, char *err_msg, int std[3])
 {
 	ft_putstr_fd("cd: ", std[STDERR]);
 	ft_putstr_fd(path, std[STDERR]);
@@ -25,11 +25,11 @@ static int		print_error(char *path, char *err_msg, int std[3])
 int				ft_chdir(char *path, int std[3])
 {
 	if (access(path, F_OK))
-		return (print_error(path, "No such file or directory\n", std));
+		return (print_cd_error(path, "No such file or directory\n", std));
 	if (chdir(path) == -1)
 	{
 		if (access(path, R_OK))
-			print_error(path, "Permission denide\n", std);
+			print_cd_error(path, "Permission denide\n", std);
 		return (FAIL);
 	}
 	return (SUCCESS);

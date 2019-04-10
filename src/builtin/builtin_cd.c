@@ -6,14 +6,14 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/04 11:29:38 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/04 11:29:40 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/10 23:16:48 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-static char		*get_pwd(int buf_size)
+char			*get_pwd(int buf_size)
 {
 	char	*buf;
 

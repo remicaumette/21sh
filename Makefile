@@ -6,7 +6,7 @@
 #    By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/01/22 16:11:35 by timfuzea     #+#   ##    ##    #+#        #
-#    Updated: 2019/04/10 22:04:17 by timfuzea    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/04/10 23:27:45 by timfuzea    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -184,7 +184,8 @@ TMP_DAD		:= shell
 TMP_NAME	:= env
 
 TMP_LST		:= shell_envinit.c shell_getenv.c shell_gethome.c shell_setenv.c \
-				shell_unsetenv.c env_setall.c utils.c
+				shell_unsetenv.c env_setall.c utils.c setvar_name1.c \
+				setvar_name2.c 
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 TMP_SRC		:= $(addprefix $(TMP_DAD)/, $(TMP_SRC))

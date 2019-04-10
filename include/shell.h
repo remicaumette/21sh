@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/14 08:08:55 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/10 21:35:15 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/10 23:31:33 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,6 +20,8 @@
 # include <sys/ioctl.h>
 # include <sys/stat.h>
 # include <sys/types.h>
+# include <uuid/uuid.h>
+# include <pwd.h>
 # include <dirent.h>
 
 # include "libft.h"
@@ -54,6 +56,7 @@
 # define STDERR				2
 
 typedef struct stat			t_stat;
+typedef struct passwd		t_passwd;
 typedef struct s_shell		t_shell;
 typedef struct s_action		t_action;
 typedef struct s_line		t_line;
@@ -164,6 +167,7 @@ char						**shell_unsetenv(t_shell *shell, char *name);
 int							env_setall(char *all, t_shell *shell);
 t_ret						shell_getline(t_shell *shell);
 int							env_default_path(char **path);
+int							env_getpw(t_passwd **pw);
 
 t_history					*history_create(void);
 void						history_destroy(t_history *history);
@@ -240,6 +244,7 @@ int							builtin_cd(int argc, char **argv, int std[3],
 int							cd_oldpwd(t_shell *shell, int std[3]);
 int							cd_tild(t_shell *shell, char *path, int std[3]);
 int							ft_chdir(char *path, int str[3]);
+char						*get_pwd(int buf_size);
 
 int							builtin_stdin_close(t_builtin *builtin);
 int							builtin_stdout_close(t_builtin *builtin);
@@ -288,4 +293,11 @@ char						*eval_getbin(const char *name, t_shell *shell);
 
 int							print_error(const char *path, const char *msg);
 int							error_access(const char *path, int right);
+
+int							setvar_shell(t_shell *shell);
+int							setvar_user(t_shell *shell);
+int							setvar_home(t_shell *shell);
+int							setvar_shlvl(t_shell *shell);
+int							setvar_path(t_shell *shell);
+int							setvar_pwd(t_shell *shell);
 #endif

@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/15 15:07:45 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/10 21:42:15 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/10 23:25:35 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -51,5 +51,7 @@ char			**ft_strarr_clone(char **arr);
 char			*ft_strarr_join(char **arr, char *with);
 char			**ft_strarr_new(size_t size);
 void			ft_sub(char ref, char new, char *str);
+char			*ft_strpp(char **str);
+int				ft_str_isdigit(const char *str);
 
 #endif

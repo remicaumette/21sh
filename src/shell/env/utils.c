@@ -6,7 +6,7 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/10 21:30:49 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/10 21:45:01 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/10 22:40:18 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -35,5 +35,15 @@ int			env_default_path(char **path)
 	}
 	close(fd);
 	ft_sub('\n', ':', *path);
+	return (SUCCESS);
+}
+
+int			env_getpw(t_passwd **pw)
+{
+	uid_t		uid;
+
+	uid = getuid();
+	if ((*pw = getpwuid(uid)) == NULL)
+		return (FAIL);
 	return (SUCCESS);
 }

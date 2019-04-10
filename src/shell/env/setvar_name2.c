@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_isdigit.c                                     .::    .:/ .      .::   */
+/*   setvar_name2.c                                   .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/01 14:38:18 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/10 23:26:04 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/01/12 16:41:09 by timfuzea     #+#   ##    ##    #+#       */
+/*   Updated: 2019/04/10 23:42:26 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-int	ft_isdigit(int c)
-{
-	return (c >= '0' && c <= '9');
-}
+#include "shell.h"
 
-int	ft_str_isdigit(const char *str)
+int		setvar_pwd(t_shell *shell)
 {
-	while (*str >= '0' && *str <= '9')
-		str++;
-	if (*str != '\0')
-		return (1);
-	return (0);
+	char	*pwd;
+
+	pwd = NULL;
+	if ((pwd = get_pwd(64)) == NULL)
+		return (FAIL);
+	shell_setenv(shell, "PWD", pwd);
+	ft_strdel(&pwd);
+	return (SUCCESS);
 }

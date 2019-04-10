@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/12 16:53:00 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/10 21:33:31 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/10 23:40:11 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,6 +25,29 @@ static int	set_path(t_shell *shell)
 	return (SUCCESS);
 }
 
+static int	set_default(t_shell *shell)
+{
+	char	*tmp;
+
+	tmp = NULL;
+	setvar_shell(shell);
+	if (!shell_getenv(shell, "USER"))
+		setvar_user(shell);
+	if (!shell_getenv(shell, "HOME"))
+		setvar_home(shell);
+	if ((tmp = shell_getenv(shell, "SHLVL")) == NULL)
+		setvar_shell(shell);
+	else
+		ft_strpp(&tmp);
+	if (!shell_getenv(shell, "PATH"))
+		set_path(shell);
+	if (!(shell_getenv(shell, "TERM")))
+		shell_setenv(shell, "TERM", "xterm-256color");
+	if (!(shell_getenv(shell, "PWD")))
+		setvar_pwd(shell);
+	return (SUCCESS);
+}
+
 int			shell_envinit(t_shell *shell, char **env)
 {
 	int	i;
@@ -37,9 +60,6 @@ int			shell_envinit(t_shell *shell, char **env)
 						ft_straddfree_2d(&shell->environment, &env[i], 1)))
 				return (1);
 	}
-	if (!(shell_getenv(shell, "TERM")))
-		shell_setenv(shell, "TERM", "xterm-256color");
-	if (!shell_getenv(shell, "PATH"))
-		set_path(shell);
+	set_default(shell);
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/01/12 18:55:30 by timfuzea     #+#   ##    ##    #+#        #
-#    Updated: 2019/04/10 21:40:58 by timfuzea    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/04/10 23:19:39 by timfuzea    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -109,7 +109,7 @@ TMP_LST		:= ft_strarr_add.c ft_strarr_clone.c ft_strarr_del.c \
 				ft_strlen.c ft_strmap.c ft_strmapi.c ft_strncat.c ft_strncmp.c \
 				ft_strncpy.c ft_strnequ.c ft_strnew.c ft_strnstr.c \
 				ft_strrchr.c ft_strsplit.c ft_strstr.c ft_strsub.c \
-				ft_strtrim.c ft_strndup.c ft_strjoinfree.c ft_sub.c
+				ft_strtrim.c ft_strndup.c ft_strjoinfree.c ft_sub.c ft_strpp.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)

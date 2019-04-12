@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/28 16:48:33 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/04 15:50:24 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/12 13:56:48 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -39,7 +39,7 @@ static t_ret	restor_line(t_shell *shell)
 	return (RET_EGAIN);
 }
 
-t_ret	action_arrow_down(t_shell *shell)
+t_ret			action_arrow_down(t_shell *shell)
 {
 	t_histentry *entry;
 

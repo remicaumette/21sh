@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/10 12:55:39 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/04 11:48:48 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/12 13:54:00 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <sys/types.h>
 # include <sys/stat.h>
+# include <signal.h>
 # include <fcntl.h>
 
 # include "libft.h"

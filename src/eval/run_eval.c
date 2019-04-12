@@ -13,17 +13,42 @@
 
 #include "shell.h"
 
+static void	sighup_befor(t_eval *ref, t_eval *stop)
+{
+	while (ref != stop)
+	{
+		if (ref->process)
+		{
+			kill(ref->process->pid, SIGHUP);
+			break ;
+		}
+		ref = ref->next;
+	}
+}
+
 static int	wait_all(t_eval *eval)
 {
-	while (eval)
+	pid_t		ret_pid;
+	t_eval		*tmp;
+
+	ret_pid = 0;
+	tmp = NULL;
+	while ((ret_pid = wait(NULL)) > 0)
 	{
-		if (eval->process)
+		tmp = eval;
+		while (tmp)
 		{
-			if (process_wait(eval->process) != SUCCESS)
-				return (FAIL);
-			process_destroy(&eval->process);
+			if (tmp->process)
+			{
+				if (tmp->process->pid == ret_pid)
+				{
+					process_destroy(&tmp->process);
+					sighup_befor(eval, tmp);
+					break ;
+				}
+			}
+			tmp = tmp->next;
 		}
-		eval = eval->next;
 	}
 	return (SUCCESS);
 }

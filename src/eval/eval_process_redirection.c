@@ -6,7 +6,7 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/27 15:36:06 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/08 12:11:05 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/12 14:51:43 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -31,9 +31,17 @@ static int	file_redirection(t_redirection *redir, t_process *process)
 static int	dup_redirection(t_redirection *redir, t_process *process)
 {
 	if (redir->symbols[0] == '2')
-		return (process_stderr_dup(process->std[STDOUT], process));
+	{
+		process_stderr_close(process);
+		process->std[STDERR] = process->std[STDOUT];
+		return (SUCCESS);
+	}
 	if (redir->symbols[0] == '1')
-		return (process_stdout_dup(process->std[STDERR], process));
+	{
+		process_stdout_close(process);
+		process->std[STDOUT] = process->std[STDERR];
+		return (SUCCESS);
+	}
 	return (FAIL);
 }
 
@@ -54,6 +62,7 @@ int			eval_process_redirection(t_command *command, t_process *process,
 	t_redirection		*tmp;
 
 	tmp = command->redirection;
+	process_stdall_default(process);
 	while (tmp)
 	{
 		if (token_isfile_redir(tmp->type))

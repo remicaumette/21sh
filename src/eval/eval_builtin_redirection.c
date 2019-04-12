@@ -6,7 +6,7 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/04 11:33:00 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/08 12:10:49 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/12 14:54:31 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -31,9 +31,17 @@ static int	file_redirection(t_redirection *redir, t_builtin *builtin)
 static int	dup_redirection(t_redirection *redir, t_builtin *builtin)
 {
 	if (redir->symbols[0] == '2')
-		return (builtin_stderr_dup(builtin->std[STDOUT], builtin));
+	{
+		builtin_stderr_close(builtin);
+		builtin->std[STDERR] = builtin->std[STDOUT];
+		return (SUCCESS);
+	}
 	if (redir->symbols[0] == '1')
-		return (builtin_stdout_dup(builtin->std[STDERR], builtin));
+	{
+		builtin_stdout_close(builtin);
+		builtin->std[STDOUT] = builtin->std[STDERR];
+		return (SUCCESS);
+	}
 	return (FAIL);
 }
 

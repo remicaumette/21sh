@@ -28,7 +28,7 @@ t_ret		action_ctrl_up(t_shell *shell)
 		}
 		CURSOR -= MAX_COL;
 	}
-	return (RET_SUCCESS);
+	return (RET_EGAIN);
 }
 
 t_ret		action_ctrl_down(t_shell *shell)
@@ -46,5 +46,5 @@ t_ret		action_ctrl_down(t_shell *shell)
 		}
 		CURSOR += MAX_COL;
 	}
-	return (RET_SUCCESS);
+	return (RET_EGAIN);
 }

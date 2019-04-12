@@ -13,22 +13,52 @@
 
 #include "shell.h"
 
-t_ret		action_arrow_up(t_shell *shell)
+static	int		save_line(t_shell *shell)
+{
+	if (shell->line->content)
+	{
+		if (shell->history->tmp)
+			ft_strdel(&shell->history->tmp);
+		if ((shell->history->tmp = ft_strdup(shell->line->content)) == NULL)
+			return (FAIL);
+	}
+	else
+		shell->history->tmp = NULL;
+	return (SUCCESS);
+}
+
+static t_ret	restor_line(t_shell *shell)
+{
+	shell->history->curr = shell->history->begin;
+	if (shell->history->tmp)
+	{
+		line_replace(shell->line, ft_strdup(shell->history->tmp));
+		action_putstr(shell, shell->history->tmp);
+	}
+	else
+		line_replace(shell->line, NULL);
+	return (RET_EGAIN);
+}
+
+t_ret			action_arrow_up(t_shell *shell)
 {
 	t_histentry *entry;
 
-	if ((entry = shell->history->curr
-					? shell->history->curr
-					: shell->history->begin) &&
-		shell->missing_token == -1)
+	if (action_home(shell) != RET_EGAIN)
+		return (RET_FAIL);
+	if (action_str(TC_CLEAR_TO_END) != SUCCESS)
+		return (RET_FAIL);
+	if (shell->history->curr == NULL)
 	{
-		shell->history->curr = entry->next;
-		if (action_home(shell) != RET_EGAIN)
-			return (RET_FAIL);
-		if (action_str(TC_CLEAR_TO_END) != SUCCESS)
-			return (RET_FAIL);
-		line_replace(shell->line, ft_strdup(entry->content));
-		action_putstr(shell, entry->content);
+		save_line(shell);
+		shell->history->curr = shell->history->begin;
 	}
+	else
+		shell->history->curr = shell->history->curr->next;
+	entry = shell->history->curr;
+	if (entry == NULL)
+		return (restor_line(shell));
+	line_replace(shell->line, ft_strdup(entry->content));
+	action_putstr(shell, entry->content);
 	return (RET_EGAIN);
 }

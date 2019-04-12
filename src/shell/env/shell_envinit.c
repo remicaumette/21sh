@@ -42,6 +42,7 @@ static int	set_default(t_shell *shell)
 		tmp = ft_strdup(tmp);
 		tmp = ft_strpp(&tmp);
 		shell_setenv(shell, "SHLVL", tmp);
+		ft_strdel(&tmp);
 	}
 	if (!shell_getenv(shell, "PATH"))
 		set_path(shell);

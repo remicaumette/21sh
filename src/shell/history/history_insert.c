@@ -17,15 +17,17 @@ t_histentry	*history_insert(t_history *history, char *content)
 {
 	t_histentry	*entry;
 
+	ft_strdel(&history->tmp);
 	if (!(entry = histentry_create(content)))
 		return (NULL);
+	if (history->begin)
+		history->begin->prev = entry;
 	entry->next = history->begin;
-	entry->prev = history->end;
+	entry->prev = NULL;
 	history->size++;
 	history->begin = entry;
-	if (history->end)
-		history->end->next = entry;
-	else
+	if (!history->end)
 		history->end = entry;
+	history->curr = NULL;
 	return (entry);
 }

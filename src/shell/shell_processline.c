@@ -38,7 +38,6 @@ int			shell_processline(t_shell *shell)
 		out = 1;
 	if (!(history_insert(shell->history, shell->line->content)))
 		out = 1;
-	shell->history->curr = shell->history->begin;
 	if (!out && shell->parser->root)
 	{
 		if (eval_all(shell) != SUCCESS)

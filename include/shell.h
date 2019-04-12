@@ -112,6 +112,7 @@ struct						s_buil_tab
 struct						s_history
 {
 	int			size;
+	char		*tmp;
 	t_histentry	*begin;
 	t_histentry	*curr;
 	t_histentry	*end;

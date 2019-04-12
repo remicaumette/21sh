@@ -23,6 +23,7 @@ void	history_destroy(t_history *history)
 	{
 		i = 0;
 		next = history->begin;
+		ft_strdel(&history->tmp);
 		while (next)
 		{
 			curr = next;

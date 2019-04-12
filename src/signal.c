@@ -28,6 +28,7 @@ static void		signale_handl(int sig)
 void			init_signal(void)
 {
 	signal(SIGWINCH, signale_handl);
+	signal(SIGINT, signale_handl);
 	signal(SIGTSTP, SIG_IGN);
 	signal(SIGQUIT, SIG_IGN);
 }

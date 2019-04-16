@@ -27,11 +27,10 @@ int			eval_process_heredoc(t_redirection *redirection, t_process *process,
 	{
 		line_reset(shell->line);
 		ft_putstr("heredoc> ");
-		if (shell_getline(shell) == RET_FAIL)
-		{
-			ret = FAIL;
+		while ((ret = shell_getline(shell)) == RET_STOP)
+			;
+		if (ret == FAIL)
 			break ;
-		}
 		if (ft_strequ(shell->line->content, redirection->file) == 1)
 			break ;
 		ft_putendl_fd(shell->line->content, fdpipe[STDOUT]);
@@ -56,11 +55,10 @@ int			eval_builtin_heredoc(t_redirection *redirection, t_builtin *builtin,
 	{
 		line_reset(shell->line);
 		ft_putstr("heredoc> ");
-		if (shell_getline(shell) == RET_FAIL)
-		{
-			ret = FAIL;
+		while ((ret = shell_getline(shell)) == RET_STOP)
+			;
+		if (ret == FAIL)
 			break ;
-		}
 		if (ft_strequ(shell->line->content, redirection->file) == 1)
 			break ;
 		ft_putendl_fd(shell->line->content, fdpipe[STDOUT]);

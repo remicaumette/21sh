@@ -25,7 +25,10 @@ static int	shell_loop(t_shell *shell)
 		if (ret != RET_SUCCESS)
 		{
 			if (ret == RET_STOP)
+			{
+				ft_putchar('\n');
 				return (SUCCESS);
+			}
 			if (ret == RET_FAIL)
 				return (FAIL);
 		}

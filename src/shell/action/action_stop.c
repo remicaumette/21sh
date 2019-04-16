@@ -16,9 +16,6 @@
 t_ret			action_stop(t_shell *shell)
 {
 	if (shell->line->size <= 0)
-	{
-		ft_putstr("\n");
 		return (RET_STOP);
-	}
 	return (RET_EGAIN);
 }

@@ -23,7 +23,7 @@ int		process_stdin_file(const char *file, t_process *process)
 	{
 		ret = FAIL;
 		error_access(file, O_RDONLY);
-		close(process->std[STDIN]);
+		close(process->STDIN);
 	}
 	else
 	{
@@ -31,7 +31,6 @@ int		process_stdin_file(const char *file, t_process *process)
 			ret = FAIL;
 		close(fd);
 	}
-	process->isset[STDIN] = 1;
 	return (ret);
 }
 
@@ -45,7 +44,7 @@ int		process_stdout_file(const char *file, int flag, t_process *process)
 	{
 		ret = FAIL;
 		error_access(file, O_WRONLY);
-		close(process->std[STDOUT]);
+		close(process->STDOUT);
 	}
 	else
 	{
@@ -53,7 +52,6 @@ int		process_stdout_file(const char *file, int flag, t_process *process)
 			ret = FAIL;
 		close(fd);
 	}
-	process->isset[STDOUT] = 1;
 	return (ret);
 }
 
@@ -67,7 +65,7 @@ int		process_stderr_file(const char *file, int flag, t_process *process)
 	{
 		ret = FAIL;
 		error_access(file, O_WRONLY);
-		close(process->std[STDERR]);
+		close(process->STDERR);
 	}
 	else
 	{
@@ -75,6 +73,5 @@ int		process_stderr_file(const char *file, int flag, t_process *process)
 			ret = FAIL;
 		close(fd);
 	}
-	process->isset[STDERR] = 1;
 	return (ret);
 }

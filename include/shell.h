@@ -51,9 +51,9 @@
 
 # define BUFF_PWD			64
 
-# define STDIN				0
-# define STDOUT				1
-# define STDERR				2
+# define STDIN				std[0]
+# define STDOUT				std[1]
+# define STDERR				std[2]
 
 typedef struct stat			t_stat;
 typedef struct passwd		t_passwd;

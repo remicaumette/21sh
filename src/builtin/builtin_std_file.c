@@ -23,7 +23,7 @@ int		builtin_stdin_file(const char *file, t_builtin *builtin)
 	{
 		ret = FAIL;
 		error_access(file, O_RDONLY);
-		close(builtin->std[STDIN]);
+		close(builtin->STDIN);
 	}
 	else
 	{
@@ -31,7 +31,6 @@ int		builtin_stdin_file(const char *file, t_builtin *builtin)
 			ret = FAIL;
 		close(fd);
 	}
-	builtin->isset[STDIN] = 1;
 	return (ret);
 }
 
@@ -45,7 +44,7 @@ int		builtin_stdout_file(const char *file, int flag, t_builtin *builtin)
 	{
 		ret = FAIL;
 		error_access(file, O_WRONLY);
-		close(builtin->std[STDOUT]);
+		close(builtin->STDOUT);
 	}
 	else
 	{
@@ -53,7 +52,6 @@ int		builtin_stdout_file(const char *file, int flag, t_builtin *builtin)
 			ret = FAIL;
 		close(fd);
 	}
-	builtin->isset[STDOUT] = 1;
 	return (ret);
 }
 
@@ -67,7 +65,7 @@ int		builtin_stderr_file(const char *file, int flag, t_builtin *builtin)
 	{
 		ret = FAIL;
 		error_access(file, O_WRONLY);
-		close(builtin->std[STDERR]);
+		close(builtin->STDERR);
 	}
 	else
 	{
@@ -75,6 +73,5 @@ int		builtin_stderr_file(const char *file, int flag, t_builtin *builtin)
 			ret = FAIL;
 		close(fd);
 	}
-	builtin->isset[STDERR] = 1;
 	return (ret);
 }

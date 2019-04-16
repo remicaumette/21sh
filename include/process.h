@@ -33,9 +33,9 @@
 #  define FAIL				1
 # endif
 
-# define STDIN				0
-# define STDOUT				1
-# define STDERR				2
+# define STDIN				std[0]
+# define STDOUT				std[1]
+# define STDERR				std[2]
 
 # define BUFF_READ_SIZE		1024
 
@@ -51,7 +51,6 @@ struct						s_process
 	int		status;
 	int		error;
 	int		std[3];
-	int		isset[3];
 };
 
 t_process					*process_create(char *file, char **args,

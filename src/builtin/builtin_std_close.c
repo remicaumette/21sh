@@ -15,28 +15,25 @@
 
 int		builtin_stdin_close(t_builtin *builtin)
 {
-	if (builtin->std[STDIN] != -1)
-		close(builtin->std[STDIN]);
-	builtin->std[STDIN] = -1;
-	builtin->isset[STDIN] = 1;
+	if (builtin->STDIN != -1)
+		close(builtin->STDIN);
+	builtin->STDIN = -1;
 	return (SUCCESS);
 }
 
 int		builtin_stdout_close(t_builtin *builtin)
 {
-	if (builtin->std[STDOUT] != -1)
-		close(builtin->std[STDOUT]);
-	builtin->std[STDOUT] = -1;
-	builtin->isset[STDOUT] = 1;
+	if (builtin->STDOUT != -1)
+		close(builtin->STDOUT);
+	builtin->STDOUT = -1;
 	return (SUCCESS);
 }
 
 int		builtin_stderr_close(t_builtin *builtin)
 {
-	if (builtin->std[STDERR] != -1)
-		close(builtin->std[STDERR]);
-	builtin->std[STDERR] = -1;
-	builtin->isset[STDERR] = 1;
+	if (builtin->STDERR != -1)
+		close(builtin->STDERR);
+	builtin->STDERR = -1;
 	return (SUCCESS);
 }
 

@@ -13,21 +13,6 @@
 
 #include "shell.h"
 
-static int	eval_stddefault(t_eval *eval)
-{
-	while (eval)
-	{
-		if (eval->process)
-			if (process_stdall_default_isset(eval->process) != SUCCESS)
-				return (FAIL);
-		if (eval->builtin)
-			if (builtin_stdall_default_isset(eval->builtin) != SUCCESS)
-				return (FAIL);
-		eval = eval->next;
-	}
-	return (SUCCESS);
-}
-
 static int	eval_pipe(t_eval *e1, t_eval *e2)
 {
 	int		fdpipe[2];
@@ -59,7 +44,10 @@ int			eval_line(t_node *curr, t_shell *shell)
 		if (curr->type == TOKEN_WORD)
 		{
 			if (eval_command(curr, &tmp->next, shell) != SUCCESS)
+			{
+				eval_destroy(&shell->eval->next);
 				return (FAIL);
+			}
 			if (pipe)
 				eval_pipe(tmp, tmp->next);
 			tmp = tmp->next;
@@ -70,6 +58,5 @@ int			eval_line(t_node *curr, t_shell *shell)
 	}
 	tmp = shell->eval->next;
 	shell->eval->next = NULL;
-	eval_stddefault(tmp);
 	return (run_eval(tmp, shell));
 }

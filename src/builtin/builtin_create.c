@@ -21,12 +21,9 @@ t_builtin		*builtin_create(char **argv, t_func_builtin func)
 		return (NULL);
 	if (!(tmp->argv = ft_strdup_2d((const char **)argv)))
 		return (NULL);
-	tmp->std[STDIN] = -1;
-	tmp->std[STDOUT] = -1;
-	tmp->std[STDERR] = -1;
-	tmp->isset[STDIN] = 0;
-	tmp->isset[STDOUT] = 0;
-	tmp->isset[STDERR] = 0;
+	tmp->STDIN = -1;
+	tmp->STDOUT = -1;
+	tmp->STDERR = -1;
 	tmp->func = func;
 	return (tmp);
 }

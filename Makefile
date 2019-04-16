@@ -34,7 +34,7 @@ OBJ_PATH	:= $(PWD)/obj
 
 CC			:= /usr/bin/gcc
 CMD_NORME	:= norminette
-DEBUG		:="no"
+DEBUG		:="yes"
 
 export CMD_NORME
 export DEBUG
@@ -50,6 +50,7 @@ INC_LST		:=\
 	include/parser.h			\
 	include/shell.h				\
 	include/utils.h				\
+	include/process.h			\
 	include/tc_key.h			\
 	libft/include/libft.h		\
 	libft/include/ft/io.h		\

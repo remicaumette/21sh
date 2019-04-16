@@ -33,13 +33,13 @@ static int	dup_redirection(t_redirection *redir, t_process *process)
 	if (redir->symbols[0] == '2')
 	{
 		process_stderr_close(process);
-		process->std[STDERR] = process->std[STDOUT];
+		process->STDERR = process->STDOUT;
 		return (SUCCESS);
 	}
 	if (redir->symbols[0] == '1')
 	{
 		process_stdout_close(process);
-		process->std[STDOUT] = process->std[STDERR];
+		process->STDOUT = process->STDERR;
 		return (SUCCESS);
 	}
 	return (FAIL);
@@ -62,7 +62,6 @@ int			eval_process_redirection(t_command *command, t_process *process,
 	t_redirection		*tmp;
 
 	tmp = command->redirection;
-	process_stdall_default(process);
 	while (tmp)
 	{
 		if (token_isfile_redir(tmp->type))

@@ -33,13 +33,13 @@ static int	dup_redirection(t_redirection *redir, t_builtin *builtin)
 	if (redir->symbols[0] == '2')
 	{
 		builtin_stderr_close(builtin);
-		builtin->std[STDERR] = builtin->std[STDOUT];
+		builtin->STDERR = builtin->STDOUT;
 		return (SUCCESS);
 	}
 	if (redir->symbols[0] == '1')
 	{
 		builtin_stdout_close(builtin);
-		builtin->std[STDOUT] = builtin->std[STDERR];
+		builtin->STDOUT = builtin->STDERR;
 		return (SUCCESS);
 	}
 	return (FAIL);

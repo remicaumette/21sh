@@ -18,6 +18,11 @@ int		eval_all(t_shell *shell)
 	t_node		*curr;
 
 	curr = shell->parser->root;
+	if (curr->type)
+	{
+		printf("syntax error: unexpected token\n");
+		return (SUCCESS);
+	}
 	while (curr)
 	{
 		eval_line(curr, shell);

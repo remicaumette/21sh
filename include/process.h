@@ -49,7 +49,7 @@ struct						s_process
 	char	**env;
 	pid_t	pid;
 	int		status;
-	int		error;
+	int		out_to_err;
 	int		std[3];
 };
 

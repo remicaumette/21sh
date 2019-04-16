@@ -32,14 +32,14 @@ static int	dup_redirection(t_redirection *redir, t_process *process)
 {
 	if (redir->symbols[0] == '2')
 	{
-		process_stderr_close(process);
-		process->STDERR = process->STDOUT;
+		process_stderr_dup(process->STDOUT, process);
+		process->out_to_err = 0;
 		return (SUCCESS);
 	}
 	if (redir->symbols[0] == '1')
 	{
-		process_stdout_close(process);
-		process->STDOUT = process->STDERR;
+		process_stdout_dup(process->STDERR, process);
+		process->out_to_err = 1;
 		return (SUCCESS);
 	}
 	return (FAIL);

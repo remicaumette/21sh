@@ -15,49 +15,23 @@
 
 int		process_stdin_dup(int stdin, t_process *process)
 {
-	if (process->std[STDIN] == -1)
-	{
-		if ((process->std[STDIN] = dup(stdin)) == -1)
-			return (FAIL);
-	}
-	else
-	{
-		if ((dup2(stdin, process->std[STDIN])) == -1)
-			return (FAIL);
-	}
-	process->isset[STDIN] = 1;
+	if (dup2(stdin, process->STDIN) == -1)
+		return (FAIL);
 	return (SUCCESS);
 }
 
 int		process_stdout_dup(int stdout, t_process *process)
 {
-	if (process->std[STDOUT] == -1)
-	{
-		if ((process->std[STDOUT] = dup(stdout)) == -1)
-			return (FAIL);
-	}
-	else
-	{
-		if ((dup2(stdout, process->std[STDOUT])) == -1)
-			return (FAIL);
-	}
-	process->isset[STDOUT] = 1;
+	if (dup2(stdout, process->STDOUT) == -1)
+		return (FAIL);
+	process->out_to_err = 0;
 	return (SUCCESS);
 }
 
 int		process_stderr_dup(int stderr, t_process *process)
 {
-	if (process->std[STDERR] == -1)
-	{
-		if ((process->std[STDERR] = dup(stderr)) == -1)
-			return (FAIL);
-	}
-	else
-	{
-		if ((dup2(stderr, process->std[STDERR])) == -1)
-			return (FAIL);
-	}
-	process->isset[STDERR] = 1;
+	if (dup2(stderr, process->STDERR) == -1)
+		return (FAIL);
 	return (SUCCESS);
 }
 

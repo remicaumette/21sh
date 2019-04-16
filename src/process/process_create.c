@@ -23,14 +23,11 @@ t_process	*process_create(char *file, char **args, char **env)
 		return (NULL);
 	process->args = ft_strarr_clone(args);
 	process->env = ft_strarr_clone(env);
-	process->error = 0;
+	process->out_to_err = 0;
 	process->status = -1;
 	process->pid = -1;
-	process->std[STDIN] = -1;
-	process->std[STDOUT] = -1;
-	process->std[STDERR] = -1;
-	process->isset[STDIN] = 0;
-	process->isset[STDOUT] = 0;
-	process->isset[STDERR] = 0;
+	process->STDIN = dup(STDIN_FILENO);
+	process->STDOUT = dup(STDOUT_FILENO);
+	process->STDERR = dup(STDERR_FILENO);
 	return (process);
 }

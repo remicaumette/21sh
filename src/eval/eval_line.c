@@ -19,9 +19,9 @@ static int	eval_pipe(t_eval *e1, t_eval *e2)
 
 	if (pipe(fdpipe) == -1)
 		return (FAIL);
-	if (e1->process)
+	if (e1->process && !e1->process->out_to_err)
 		process_stdout_dup(fdpipe[1], e1->process);
-	else
+	else if (e1->builtin)
 		builtin_stdout_dup(fdpipe[1], e1->builtin);
 	if (e2->process)
 		process_stdin_dup(fdpipe[0], e2->process);

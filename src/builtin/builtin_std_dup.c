@@ -15,56 +15,33 @@
 
 int		builtin_stdin_dup(int stdin, t_builtin *builtin)
 {
-	if (builtin->STDIN == -1)
-	{
-		if ((builtin->STDIN = dup(stdin)) == -1)
-			return (FAIL);
-	}
-	else
-	{
-		if (dup2(stdin, builtin->STDIN) == -1)
-			return (FAIL);
-	}
+	if (dup2(stdin, builtin->STDIN) == -1)
+		return (FAIL);
 	return (SUCCESS);
 }
 
 int		builtin_stdout_dup(int stdout, t_builtin *builtin)
 {
-	if (builtin->STDOUT == -1)
-	{
-		if ((builtin->STDOUT = dup(stdout)) == -1)
-			return (FAIL);
-	}
-	else
-	{
-		if (dup2(builtin->STDOUT, stdout) == -1)
-			return (FAIL);
-	}
+	if (dup2(stdout, builtin->STDOUT) == -1)
+		return (FAIL);
+	builtin->out_to_err = 0;
 	return (SUCCESS);
 }
 
 int		builtin_stderr_dup(int stderr, t_builtin *builtin)
 {
-	if (builtin->STDERR == -1)
-	{
-		if ((builtin->STDERR = dup(stderr)) == -1)
-			return (FAIL);
-	}
-	else
-	{
-		if (dup2(stderr, builtin->STDERR) == -1)
-			return (FAIL);
-	}
+	if (dup2(stderr, builtin->STDERR) == -1)
+		return (FAIL);
 	return (SUCCESS);
 }
 
 int		builtin_stdall_dup(int std[3], t_builtin *builtin)
 {
-	if (builtin_stdin_dup(STDIN, builtin) != SUCCESS)
+	if (builtin_stdin_dup(std[0], builtin) != SUCCESS)
 		builtin_stdin_close(builtin);
-	if (builtin_stdout_dup(STDOUT, builtin) != SUCCESS)
+	if (builtin_stdout_dup(std[1], builtin) != SUCCESS)
 		builtin_stdout_close(builtin);
-	if (builtin_stderr_dup(STDERR, builtin) != SUCCESS)
+	if (builtin_stderr_dup(std[2], builtin) != SUCCESS)
 		builtin_stderr_close(builtin);
 	return (SUCCESS);
 }

@@ -84,7 +84,7 @@ struct						s_builtin
 {
 	char				**argv;
 	int					std[3];
-	int					isset[3];
+	int					out_to_err;
 	t_func_builtin		func;
 };
 

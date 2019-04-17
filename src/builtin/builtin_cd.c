@@ -45,7 +45,7 @@ int				builtin_cd(int argc, char **argv, int std[3], t_shell *shell)
 
 	if (argc > 2)
 	{
-		ft_putstr_fd("cd: Too many arguments\n", std[STDERR]);
+		ft_putstr_fd("cd: Too many arguments\n", STDERR);
 		return (FAIL);
 	}
 	if (!(pwd = get_pwd(64)))

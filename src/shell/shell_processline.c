@@ -29,25 +29,6 @@ static int	lexer_parser(t_shell *shell)
 	return (SUCCESS);
 }
 
-static void	debug_parser(t_node *node)
-{
-	for (int i = 0; i < 21; i++) {
-		if (g_tokens[i].type == node->type) {
-			printf("node->type: %s\n", g_tokens[i].format);
-			break;
-		}
-	}
-	if (node->command) {
-		printf("node->command->name: %s\n", node->command->name);
-		for (int i = 0; i < ft_strarr_len(node->command->arguments); i++) {
-			printf("node->command->arguments[%d]: %s\n", i, node->command->arguments[i]);
-		}
-	}
-	printf("======\n");
-	if (node->next)
-		debug_parser(node->next);
-}
-
 int			shell_processline(t_shell *shell)
 {
 	int		out;
@@ -59,7 +40,6 @@ int			shell_processline(t_shell *shell)
 		out = 1;
 	if (!out && shell->parser->root)
 	{
-		debug_parser(shell->parser->root);
 		if (eval_all(shell) != SUCCESS)
 			out = 1;
 	}

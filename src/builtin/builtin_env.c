@@ -48,7 +48,7 @@ static int	parser(int *argc, char **argv, int std[3], t_shell *shell)
 			else
 			{
 				ft_putstr_fd("env: option requires an argument -- \'u\'\n",
-					std[STDERR]);
+					STDERR);
 				return (FAIL);
 			}
 		}
@@ -68,9 +68,9 @@ static int	make_process(char **argv, t_process **process, int std[3],
 
 	if (!(bin = eval_getbin(argv[0], shell)))
 	{
-		ft_putstr_fd("env: \'", std[STDERR]);
-		ft_putstr_fd(argv[0], std[STDERR]);
-		ft_putstr_fd("\': No such file or directory\n", std[STDERR]);
+		ft_putstr_fd("env: \'", STDERR);
+		ft_putstr_fd(argv[0], STDERR);
+		ft_putstr_fd("\': No such file or directory\n", STDERR);
 		return (FAIL);
 	}
 	if (!(*process = process_create(bin, argv, shell->environment)))
@@ -93,7 +93,7 @@ int			builtin_env(int argc, char **argv, int std[3], t_shell *shell)
 		return (save_env(shell, FAIL));
 	if (!argv[i])
 	{
-		ft_putstr_2dfd(shell->environment, std[STDOUT]);
+		ft_putstr_2dfd(shell->environment, STDOUT);
 		return (save_env(shell, SUCCESS));
 	}
 	if (make_process(&argv[i], &process, std, shell) != SUCCESS)

@@ -16,7 +16,7 @@
 static int	print_usage(int std[3])
 {
 	ft_putstr_fd("21sh: setenv: Usage: setenv \"TOTO=tata\" | TOTO tata\n",
-			std[STDERR]);
+			STDERR);
 	return (FAIL);
 }
 
@@ -24,7 +24,7 @@ int			builtin_setenv(int argc, char **argv, int std[3], t_shell *shell)
 {
 	if (argc > 3)
 	{
-		ft_putstr_fd("21sh: setenv: Too many arguments\n", std[STDERR]);
+		ft_putstr_fd("21sh: setenv: Too many arguments\n", STDERR);
 		return (FAIL);
 	}
 	if (argc == 2)

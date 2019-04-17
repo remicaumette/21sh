@@ -15,10 +15,10 @@
 
 static int		print_cd_error(char *path, char *err_msg, int std[3])
 {
-	ft_putstr_fd("cd: ", std[STDERR]);
-	ft_putstr_fd(path, std[STDERR]);
-	ft_putstr_fd(": ", std[STDERR]);
-	ft_putstr_fd(err_msg, std[STDERR]);
+	ft_putstr_fd("cd: ", STDERR);
+	ft_putstr_fd(path, STDERR);
+	ft_putstr_fd(": ", STDERR);
+	ft_putstr_fd(err_msg, STDERR);
 	return (FAIL);
 }
 

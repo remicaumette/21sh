@@ -17,23 +17,24 @@ int			builtin_echo(int argc, char **argv, int std[3], t_shell *shell)
 {
 	char		*tmp;
 
+	dprintf(1, "stdin: %d\nstdout: %d\nstderr: %d\n", STDIN, STDOUT, STDERR);
 	(void)shell;
 	if (argc == 1)
 	{
-		ft_putchar_fd('\n', std[STDOUT]);
+		ft_putchar_fd('\n', STDOUT);
 		return (SUCCESS);
 	}
 	if (ft_strequ(argv[1], "-n"))
 	{
 		if ((tmp = ft_strjoinspace_2d((const char **)&argv[2])) == NULL)
 			return (FAIL);
-		ft_putstr_fd(tmp, std[STDOUT]);
+		ft_putstr_fd(tmp, STDOUT);
 	}
 	else
 	{
 		if ((tmp = ft_strjoinspace_2d((const char **)&argv[1])) == NULL)
 			return (FAIL);
-		ft_putendl_fd(tmp, std[STDOUT]);
+		ft_putendl_fd(tmp, STDOUT);
 	}
 	ft_strdel(&tmp);
 	return (SUCCESS);

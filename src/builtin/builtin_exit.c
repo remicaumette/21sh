@@ -15,7 +15,7 @@
 
 static int	print_usage(int std[3])
 {
-	ft_putstr_fd("21sh: exit: Too many arguments\n", std[STDERR]);
+	ft_putstr_fd("21sh: exit: Too many arguments\n", STDERR);
 	return (FAIL);
 }
 

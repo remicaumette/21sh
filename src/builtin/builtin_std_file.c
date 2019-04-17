@@ -27,7 +27,7 @@ int		builtin_stdin_file(const char *file, t_builtin *builtin)
 	}
 	else
 	{
-		if (builtin_stdin_dup(fd, builtin) != SUCCESS)
+		if (builtin_stdin_dup(fd, builtin) == -1)
 			ret = FAIL;
 		close(fd);
 	}
@@ -39,7 +39,7 @@ int		builtin_stdout_file(const char *file, int flag, t_builtin *builtin)
 	int		ret;
 	int		fd;
 
-	ret = SUCCESS;
+	ret = FAIL;
 	if ((fd = open(file, flag | O_WRONLY | O_CREAT, 0644)) == -1)
 	{
 		ret = FAIL;
@@ -48,7 +48,7 @@ int		builtin_stdout_file(const char *file, int flag, t_builtin *builtin)
 	}
 	else
 	{
-		if (builtin_stdout_dup(fd, builtin) != SUCCESS)
+		if (builtin_stdout_dup(fd, builtin) == -1)
 			ret = FAIL;
 		close(fd);
 	}
@@ -69,7 +69,7 @@ int		builtin_stderr_file(const char *file, int flag, t_builtin *builtin)
 	}
 	else
 	{
-		if (builtin_stderr_dup(fd, builtin) != SUCCESS)
+		if (builtin_stderr_dup(fd, builtin) == -1)
 			ret = FAIL;
 		close(fd);
 	}

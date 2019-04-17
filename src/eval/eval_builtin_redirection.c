@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   eval_builtin_redirection.c                       .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/04/04 11:33:00 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/12 14:54:31 by timfuzea    ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
-/* ************************************************************************** */
 
 #include "shell.h"
 
@@ -32,14 +20,14 @@ static int	dup_redirection(t_redirection *redir, t_builtin *builtin)
 {
 	if (redir->symbols[0] == '2')
 	{
-		builtin_stderr_close(builtin);
-		builtin->STDERR = builtin->STDOUT;
+		builtin_stderr_dup(builtin->STDOUT, builtin);
+		builtin->out_to_err = 0;
 		return (SUCCESS);
 	}
 	if (redir->symbols[0] == '1')
 	{
-		builtin_stdout_close(builtin);
-		builtin->STDOUT = builtin->STDERR;
+		builtin_stdout_dup(builtin->STDERR, builtin);
+		builtin->out_to_err = 1;
 		return (SUCCESS);
 	}
 	return (FAIL);
@@ -57,18 +45,18 @@ static int	close_redirection(t_redirection *redir, t_builtin *builtin)
 }
 
 int			eval_builtin_redirection(t_command *command, t_builtin *builtin,
-			t_shell *shell)
+		t_shell *shell)
 {
 	int					ret;
 	t_redirection		*tmp;
 
 	tmp = command->redirection;
-	while (tmp && !shell->kill)
+	while (tmp)
 	{
 		if (token_isfile_redir(tmp->type))
 			ret = file_redirection(tmp, builtin);
 		if (tmp->type == TOKEN_GREATAND_4 || tmp->type == TOKEN_GREATAND_3_TIP)
-			close_redirection(tmp, builtin);
+			ret = close_redirection(tmp, builtin);
 		if (tmp->type == TOKEN_DLESS)
 			ret = eval_builtin_heredoc(tmp, builtin, shell);
 		if (tmp->type == TOKEN_LESS)

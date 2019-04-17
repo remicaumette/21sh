@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/12 18:10:15 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/12 18:10:15 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/17 10:53:43 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,7 +25,7 @@ void	command_destroy(t_command **as)
 		if (command->name)
 			ft_strdel(&command->name);
 		if (command->arguments)
-			ft_strdel_2d(&command->arguments);
+			ft_strarr_del(command->arguments);
 		if (command->redirection)
 		{
 			curr = command->redirection;

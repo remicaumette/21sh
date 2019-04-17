@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   builtin_env.c                                    .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
+/*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/04 11:31:55 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/04 14:48:33 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/17 14:54:49 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -32,26 +32,27 @@ static int	save_env(t_shell *shell, int ret)
 	}
 }
 
+static int	check_iflag(char *s)
+{
+	int	ok;
+
+	ok = *s == '-' && *(s + 1) == 'i';
+	while (ok && *++s)
+		if (*s != 'i')
+			return (0);
+	return (ok);
+}
+
 static int	parser(int *argc, char **argv, int std[3], t_shell *shell)
 {
-	int i;
+	int	i;
 
+	(void)std;
 	i = 0;
 	while (argv[++i])
 	{
-		if (ft_strequ(argv[i], "-i"))
+		if (check_iflag(argv[i]))
 			ft_strdel_2d(&shell->environment);
-		else if (ft_strequ(argv[i], "-u"))
-		{
-			if (argv[++i])
-				shell_unsetenv(shell, argv[++i]);
-			else
-			{
-				ft_putstr_fd("env: option requires an argument -- \'u\'\n",
-					STDERR);
-				return (FAIL);
-			}
-		}
 		else if (ft_strchr(argv[i], '='))
 			env_setall(argv[i], shell);
 		else

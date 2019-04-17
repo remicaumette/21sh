@@ -13,8 +13,10 @@
 
 #include "shell.h"
 
-static int	kill_save(t_shell *shell)
+static int	kill_save(char *save_line, t_shell *shell)
 {
+	if (save_line)
+		ft_strdel(&save_line);
 	shell->kill_str = ft_strdup(shell->line->content);
 	return (FAIL);
 }
@@ -36,7 +38,7 @@ static int	get_quote(t_shell *shell)
 	while ((ret = shell_getline(shell)) == RET_STOP && !shell->kill)
 		;
 	if (shell->kill)
-		return (kill_save(shell));
+		return (kill_save(save_line, shell));
 	if (ret == RET_SUCCESS)
 	{
 		if ((new_line = ft_strjoinc(&save_line, '\n')) == NULL)

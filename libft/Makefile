@@ -13,7 +13,7 @@
 
 NAME		:= libft.a
 
-DEBUG		:="no" # uncomtant this line to force status
+DEBUG		:="yes" # uncomtant this line to force status
 # **************************************************************************** #
 #									PATH                                       #
 # **************************************************************************** #

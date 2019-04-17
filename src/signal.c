@@ -19,16 +19,22 @@
 **	SIGWINCH = window resize
 */
 
-static void		signale_handl(int sig)
+static void signale_handle(int sig)
 {
 	if (sig == SIGWINCH)
 		term_resize(NULL);
+	if (sig == SIGINT)
+	{
+		ft_putstr("^C\n");
+		line_reset(g_shell->line);
+		shell_prompt(g_shell);
+	}
 }
 
-void			init_signal(void)
+void init_signal(void)
 {
-	signal(SIGWINCH, signale_handl);
-	signal(SIGINT, signale_handl);
+	signal(SIGWINCH, signale_handle);
+	signal(SIGINT, signale_handle);
 	signal(SIGTSTP, SIG_IGN);
 	signal(SIGQUIT, SIG_IGN);
 }

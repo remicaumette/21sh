@@ -33,6 +33,7 @@ static int	dup_redirection(t_redirection *redir, t_process *process)
 	if (redir->symbols[0] == '2')
 	{
 		process_stderr_dup(process->STDOUT, process);
+		process->err_to_out = 1;
 		process->out_to_err = 0;
 		return (SUCCESS);
 	}
@@ -40,6 +41,7 @@ static int	dup_redirection(t_redirection *redir, t_process *process)
 	{
 		process_stdout_dup(process->STDERR, process);
 		process->out_to_err = 1;
+		process->err_to_out = 0;
 		return (SUCCESS);
 	}
 	return (FAIL);

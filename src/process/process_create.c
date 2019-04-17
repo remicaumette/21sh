@@ -24,6 +24,7 @@ t_process	*process_create(char *file, char **args, char **env)
 	process->args = ft_strarr_clone(args);
 	process->env = ft_strarr_clone(env);
 	process->out_to_err = 0;
+	process->err_to_out = 0;
 	process->status = -1;
 	process->pid = -1;
 	process->STDIN = dup(STDIN_FILENO);

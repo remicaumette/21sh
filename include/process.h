@@ -50,6 +50,7 @@ struct						s_process
 	pid_t	pid;
 	int		status;
 	int		out_to_err;
+	int		err_to_out;
 	int		std[3];
 };
 

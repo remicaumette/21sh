@@ -6,7 +6,7 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/04 11:31:34 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/04 14:43:45 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/17 16:08:50 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -39,7 +39,7 @@ int		builtin_stdout_file(const char *file, int flag, t_builtin *builtin)
 	int		ret;
 	int		fd;
 
-	ret = FAIL;
+	ret = SUCCESS;
 	if ((fd = open(file, flag | O_WRONLY | O_CREAT, 0644)) == -1)
 	{
 		ret = FAIL;

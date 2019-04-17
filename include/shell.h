@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/14 08:08:55 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/10 23:31:33 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/17 09:57:14 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -285,6 +285,7 @@ int							eval_process_redirection(t_command *command,
 int							eval_builtin_redirection(t_command *command,
 										t_builtin *builtin, t_shell *shell);
 char						**eval_genargv(t_command *command);
+int							expand_command(t_shell *shell, t_command *cmd);
 
 int							eval_process_heredoc(t_redirection *redirection,
 										t_process *process, t_shell *shell);

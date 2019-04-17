@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   parser_expand.c                                  .::    .:/ .      .::   */
+/*   expand_command.c                                 .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/01 14:50:43 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/08 15:13:00 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/17 10:09:30 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -87,22 +87,22 @@ static char	*expand_token(t_shell *shell, char *token)
 	return (v.str);
 }
 
-int			parser_expand(t_shell *shell)
+int			expand_command(t_shell *shell, t_command *cmd)
 {
-	t_token	*token;
 	char	*prev;
+	int		i;
 
-	token = shell->lexer->begin;
-	while (token)
+	prev = cmd->name;
+	if (!(cmd->name = expand_token(shell, cmd->name)))
+		return (1);
+	ft_strdel(&prev);
+	i = -1;
+	while (cmd->arguments && cmd->arguments[++i])
 	{
-		if (token->type == TOKEN_WORD)
-		{
-			prev = token->content;
-			if (!(token->content = expand_token(shell, token->content)))
-				return (1);
-			ft_strdel(&prev);
-		}
-		token = token->next;
+		prev = cmd->arguments[i];
+		if (!(cmd->arguments[i] = expand_token(shell, cmd->arguments[i])))
+			return (1);
+		ft_strdel(&prev);
 	}
 	return (0);
 }

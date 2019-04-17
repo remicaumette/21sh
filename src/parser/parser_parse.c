@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/12 18:12:30 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/01 15:18:13 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/17 10:00:04 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,8 +21,6 @@ int		parser_parse(t_shell *shell)
 
 	cmd = NULL;
 	shell->parser->curr = shell->lexer->begin;
-	if (parser_expand(shell))
-		return (1);
 	while (shell->parser->curr)
 	{
 		cmd = NULL;

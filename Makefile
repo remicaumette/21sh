@@ -6,7 +6,7 @@
 #    By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/01/22 16:11:35 by timfuzea     #+#   ##    ##    #+#        #
-#    Updated: 2019/04/12 15:02:16 by timfuzea    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/04/17 10:00:51 by rcaumett    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -34,7 +34,7 @@ OBJ_PATH	:= $(PWD)/obj
 
 CC			:= /usr/bin/gcc
 CMD_NORME	:= norminette
-DEBUG		:="yes"
+DEBUG		:="valgrind"
 
 export CMD_NORME
 export DEBUG
@@ -119,7 +119,7 @@ TMP_LST		:= command_create.c command_destroy.c command_parse.c \
 				redirection_create.c redirection_destroy.c redirection_parse.c \
 				node_create.c node_destroy.c node_insert.c \
 				parser_cleanup.c parser_create.c parser_destroy.c \
-				parser_parse.c token_istype.c parser_expand.c
+				parser_parse.c token_istype.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/,$(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)
@@ -145,7 +145,7 @@ TMP_NAME	:= eval
 TMP_LST		:= eval_create.c eval_destroy.c eval_all.c eval_line.c \
 				eval_command.c  eval_genargv.c eval_getbin.c \
 				eval_heredoc.c run_eval.c eval_process_redirection.c \
-				eval_builtin_redirection.c
+				eval_builtin_redirection.c expand_command.c
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 SUB_LST		:= $(SUB_LST) $(TMP_NAME)
 SRC_LST		:= $(SRC_LST) $(TMP_SRC)

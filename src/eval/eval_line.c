@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   eval_line.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
+/*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/20 18:18:31 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/29 16:41:55 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/17 10:21:43 by rcaumett    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -43,6 +43,8 @@ int			eval_line(t_node *curr, t_shell *shell)
 	{
 		if (curr->type == TOKEN_WORD)
 		{
+			if (curr->command && expand_command(shell, curr->command))
+				return (FAIL);
 			if (eval_command(curr, &tmp->next, shell) != SUCCESS)
 			{
 				eval_destroy(&shell->eval->next);

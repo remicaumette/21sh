@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/10 13:06:27 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/17 10:58:31 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/17 15:09:41 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -36,6 +36,8 @@ int			shell_processline(t_shell *shell)
 	out = 0;
 	if (lexer_parser(shell) != SUCCESS)
 		out = 1;
+	if (shell->line->content == NULL)
+		return (FAIL);
 	if (!(history_insert(shell->history, shell->line->content)))
 		out = 1;
 	if (!out && shell->parser->root)

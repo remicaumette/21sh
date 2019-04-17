@@ -59,21 +59,24 @@ static int	close_redirection(t_redirection *redir, t_process *process)
 int			eval_process_redirection(t_command *command, t_process *process,
 		t_shell *shell)
 {
+	int					ret;
 	t_redirection		*tmp;
 
 	tmp = command->redirection;
 	while (tmp)
 	{
 		if (token_isfile_redir(tmp->type))
-			file_redirection(tmp, process);
+			ret = file_redirection(tmp, process);
 		if (tmp->type == TOKEN_GREATAND_4 || tmp->type == TOKEN_GREATAND_3_TIP)
-			close_redirection(tmp, process);
+			ret = close_redirection(tmp, process);
 		if (tmp->type == TOKEN_DLESS)
-			eval_process_heredoc(tmp, process, shell);
+			ret = eval_process_heredoc(tmp, process, shell);
 		if (tmp->type == TOKEN_LESS)
-			process_stdin_file(tmp->file, process);
+			ret = process_stdin_file(tmp->file, process);
 		if (tmp->type == TOKEN_GREATAND_4_TIP)
-			dup_redirection(tmp, process);
+			ret = dup_redirection(tmp, process);
+		if (ret != SUCCESS)
+			return (FAIL);
 		tmp = tmp->next;
 	}
 	return (SUCCESS);

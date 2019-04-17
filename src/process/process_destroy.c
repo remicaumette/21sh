@@ -13,7 +13,7 @@
 
 #include "process.h"
 
-void	process_destroy(t_process **as)
+int		process_destroy(t_process **as)
 {
 	t_process	*process;
 
@@ -33,4 +33,5 @@ void	process_destroy(t_process **as)
 		close(process->STDERR);
 		ft_memdel((void **)as);
 	}
+	return (FAIL);
 }

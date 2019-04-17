@@ -27,10 +27,14 @@ int			eval_process_heredoc(t_redirection *redirection, t_process *process,
 	{
 		line_reset(shell->line);
 		ft_putstr("heredoc> ");
-		while ((ret = shell_getline(shell)) == RET_STOP)
+		while ((ret = shell_getline(shell)) == RET_STOP && !shell->kill)
 			;
-		if (ret == FAIL)
+		if (ret == FAIL || shell->kill == 1)
+		{
+			shell->kill_str = ft_strdup(shell->line->content);
+			ret = FAIL;
 			break ;
+		}
 		if (ft_strequ(shell->line->content, redirection->file) == 1)
 			break ;
 		ft_putendl_fd(shell->line->content, fdpipe[1]);
@@ -54,10 +58,14 @@ int			eval_builtin_heredoc(t_redirection *redirection, t_builtin *builtin,
 	{
 		line_reset(shell->line);
 		ft_putstr("heredoc> ");
-		while ((ret = shell_getline(shell)) == RET_STOP)
+		while ((ret = shell_getline(shell)) == RET_STOP && !shell->kill)
 			;
-		if (ret == FAIL)
+		if (ret == FAIL || !shell->kill)
+		{
+			shell->kill_str = ft_strdup(shell->line->content);
+			ret = FAIL;
 			break ;
+		}
 		if (ft_strequ(shell->line->content, redirection->file) == 1)
 			break ;
 		ft_putendl_fd(shell->line->content, fdpipe[1]);

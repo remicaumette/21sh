@@ -27,6 +27,7 @@ static void signale_handle(int sig)
 	{
 		ft_putstr("^C\n");
 		line_reset(g_shell->line);
+		g_shell->kill = 1;
 		shell_prompt(g_shell);
 	}
 }

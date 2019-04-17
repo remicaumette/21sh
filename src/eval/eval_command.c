@@ -57,7 +57,7 @@ static int	make_process(t_command *command, t_process **process,
 	ft_strdel(&bin);
 	ft_strarr_del(argv);
 	if (eval_process_redirection(command, *process, shell) != SUCCESS)
-		return (FAIL);
+		return (process_destroy(process));
 	return (SUCCESS);
 }
 
@@ -78,7 +78,10 @@ static int	make_builtin(t_command *command, t_builtin **builtin,
 				return (-1);
 			ft_strarr_del(argv);
 			if (eval_builtin_redirection(command, *builtin, shell) != SUCCESS)
+			{
+				builtin_destroy(builtin);
 				return (-1);
+			}
 			return (1);
 		}
 		tab_buil++;

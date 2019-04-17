@@ -24,6 +24,8 @@ t_shell	*shell_create(char **environment)
 	shell->line = NULL;
 	shell->lexer = NULL;
 	shell->parser = NULL;
+	shell->kill = 0;
+	shell->kill_str = NULL;
 	if (shell_envinit(shell, environment) ||
 		!(shell->line = line_create()) ||
 		!(shell->term = term_create(shell)) ||

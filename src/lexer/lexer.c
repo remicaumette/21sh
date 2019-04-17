@@ -13,6 +13,12 @@
 
 #include "shell.h"
 
+static int	kill_save(t_shell *shell)
+{
+	shell->kill_str = ft_strdup(shell->line->content);
+	return (FAIL);
+}
+
 static int	get_quote(t_shell *shell)
 {
 	char	*new_line;
@@ -27,8 +33,10 @@ static int	get_quote(t_shell *shell)
 		shell->missing_token == '\'')
 		ft_putstr(shell->missing_token == '"' ? "dquote" : "quote");
 	ft_putstr("> ");
-	while ((ret = shell_getline(shell)) == RET_STOP)
+	while ((ret = shell_getline(shell)) == RET_STOP && !shell->kill)
 		;
+	if (shell->kill)
+		return (kill_save(shell));
 	if (ret == RET_SUCCESS)
 	{
 		if ((new_line = ft_strjoinfree(&save_line,

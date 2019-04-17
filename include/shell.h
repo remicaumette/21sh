@@ -142,6 +142,8 @@ struct						s_shell
 {
 	char		**environment;
 	char		missing_token;
+	int			kill;
+	char		*kill_str;
 	t_line		*line;
 	t_history	*history;
 	t_lexer		*lexer;

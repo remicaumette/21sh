@@ -22,6 +22,7 @@ static int	shell_loop(t_shell *shell)
 		if (shell_prompt(shell) != SUCCESS)
 			return (FAIL);
 		ret = shell_getline(shell);
+		shell->kill = 0;
 		if (ret != RET_SUCCESS)
 		{
 			if (ret == RET_STOP)

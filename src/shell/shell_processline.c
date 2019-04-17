@@ -64,5 +64,12 @@ int			shell_processline(t_shell *shell)
 			out = 1;
 	}
 	shell_cleanup(shell);
+	if (shell->kill && shell->kill_str)
+	{
+		line_replace(shell->line, shell->kill_str);
+		shell->kill_str = NULL;
+		shell->kill = 0;
+		return (shell_processline(shell));
+	}
 	return (out) ? FAIL : SUCCESS;
 }

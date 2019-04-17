@@ -59,21 +59,24 @@ static int	close_redirection(t_redirection *redir, t_builtin *builtin)
 int			eval_builtin_redirection(t_command *command, t_builtin *builtin,
 			t_shell *shell)
 {
+	int					ret;
 	t_redirection		*tmp;
 
 	tmp = command->redirection;
-	while (tmp)
+	while (tmp && !shell->kill)
 	{
 		if (token_isfile_redir(tmp->type))
-			file_redirection(tmp, builtin);
+			ret = file_redirection(tmp, builtin);
 		if (tmp->type == TOKEN_GREATAND_4 || tmp->type == TOKEN_GREATAND_3_TIP)
 			close_redirection(tmp, builtin);
 		if (tmp->type == TOKEN_DLESS)
-			eval_builtin_heredoc(tmp, builtin, shell);
+			ret = eval_builtin_heredoc(tmp, builtin, shell);
 		if (tmp->type == TOKEN_LESS)
-			builtin_stdin_file(tmp->file, builtin);
+			ret = builtin_stdin_file(tmp->file, builtin);
 		if (tmp->type == TOKEN_GREATAND_4_TIP)
-			dup_redirection(tmp, builtin);
+			ret = dup_redirection(tmp, builtin);
+		if (ret != SUCCESS)
+			return (FAIL);
 		tmp = tmp->next;
 	}
 	return (SUCCESS);

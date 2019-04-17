@@ -23,7 +23,7 @@ int		eval_all(t_shell *shell)
 		printf("syntax error: unexpected token\n");
 		return (SUCCESS);
 	}
-	while (curr)
+	while (curr && !shell->kill)
 	{
 		eval_line(curr, shell);
 		while (curr && curr->type != TOKEN_NEWLINE)

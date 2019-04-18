@@ -17,5 +17,6 @@ t_ret			action_stop(t_shell *shell)
 {
 	if (shell->line->size <= 0)
 		return (RET_STOP);
+	return(action_del(shell));
 	return (RET_EGAIN);
 }

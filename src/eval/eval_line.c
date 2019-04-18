@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/20 18:18:31 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/17 10:21:43 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/18 13:11:56 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,10 +19,20 @@ static int	eval_pipe(t_eval *e1, t_eval *e2)
 
 	if (pipe(fdpipe) == -1)
 		return (FAIL);
-	if (e1->process && !e1->process->out_to_err)
-		process_stdout_dup(fdpipe[1], e1->process);
+	if (e1->process)
+	{
+		if (e1->process->err_to_out)
+			process_stderr_dup(fdpipe[1], e1->process);
+		if (!e1->process->out_to_err)
+			process_stdout_dup(fdpipe[1], e1->process);
+	}
 	else if (e1->builtin)
-		builtin_stdout_dup(fdpipe[1], e1->builtin);
+	{
+		if (e1->builtin->err_to_out)
+			builtin_stderr_dup(fdpipe[1], e1->builtin);
+		if (!e1->builtin->out_to_err)
+			builtin_stdout_dup(fdpipe[1], e1->builtin);
+	}
 	if (e2->process)
 		process_stdin_dup(fdpipe[0], e2->process);
 	else

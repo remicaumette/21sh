@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/14 08:08:55 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/17 09:57:14 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/18 13:12:19 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -85,6 +85,7 @@ struct						s_builtin
 	char				**argv;
 	int					std[3];
 	int					out_to_err;
+	int					err_to_out;
 	t_func_builtin		func;
 };
 

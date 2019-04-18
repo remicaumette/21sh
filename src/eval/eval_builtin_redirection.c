@@ -21,6 +21,7 @@ static int	dup_redirection(t_redirection *redir, t_builtin *builtin)
 	if (redir->symbols[0] == '2')
 	{
 		builtin_stderr_dup(builtin->STDOUT, builtin);
+		builtin->err_to_out = 1;
 		builtin->out_to_err = 0;
 		return (SUCCESS);
 	}
@@ -28,6 +29,7 @@ static int	dup_redirection(t_redirection *redir, t_builtin *builtin)
 	{
 		builtin_stdout_dup(builtin->STDERR, builtin);
 		builtin->out_to_err = 1;
+		builtin->err_to_out = 0;
 		return (SUCCESS);
 	}
 	return (FAIL);

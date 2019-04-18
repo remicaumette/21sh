@@ -6,7 +6,7 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/04 11:29:45 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/04 11:29:48 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/18 13:13:25 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,7 +17,6 @@ int			builtin_echo(int argc, char **argv, int std[3], t_shell *shell)
 {
 	char		*tmp;
 
-	dprintf(1, "stdin: %d\nstdout: %d\nstderr: %d\n", STDIN, STDOUT, STDERR);
 	(void)shell;
 	if (argc == 1)
 	{

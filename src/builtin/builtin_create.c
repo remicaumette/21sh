@@ -6,7 +6,7 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/29 14:02:39 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/29 16:22:10 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/18 13:12:40 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,6 +25,7 @@ t_builtin		*builtin_create(char **argv, t_func_builtin func)
 	tmp->STDOUT = dup(STDOUT_FILENO);
 	tmp->STDERR = dup(STDERR_FILENO);
 	tmp->out_to_err = 0;
+	tmp->err_to_out = 0;
 	tmp->func = func;
 	return (tmp);
 }

@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/12 16:53:00 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/10 23:48:22 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/18 17:00:59 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -36,7 +36,7 @@ static int	set_default(t_shell *shell)
 	if (!shell_getenv(shell, "HOME"))
 		setvar_home(shell);
 	if ((tmp = shell_getenv(shell, "SHLVL")) == NULL)
-		setvar_shell(shell);
+		setvar_shlvl(shell);
 	else
 	{
 		tmp = ft_strdup(tmp);

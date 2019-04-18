@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/20 18:18:31 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/18 13:11:56 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/18 14:07:04 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -56,10 +56,7 @@ int			eval_line(t_node *curr, t_shell *shell)
 			if (curr->command && expand_command(shell, curr->command))
 				return (FAIL);
 			if (eval_command(curr, &tmp->next, shell) != SUCCESS)
-			{
-				eval_destroy(&shell->eval->next);
-				return (FAIL);
-			}
+				return (eval_destroy(&shell->eval->next));
 			if (pipe)
 				eval_pipe(tmp, tmp->next);
 			tmp = tmp->next;

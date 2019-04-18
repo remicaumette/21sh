@@ -6,7 +6,7 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/04 11:38:45 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/18 13:20:11 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/18 13:59:20 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,7 +22,6 @@ int		process_stdin_dup(int stdin, t_process *process)
 
 int		process_stdout_dup(int stdout, t_process *process)
 {
-	
 	if (dup2(stdout, process->STDOUT) == -1)
 		return (FAIL);
 	process->out_to_err = 0;

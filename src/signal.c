@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/06/14 14:54:24 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/04 15:32:34 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/18 13:56:28 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,7 +19,7 @@
 **	SIGWINCH = window resize
 */
 
-static void signale_handle(int sig)
+static void		signale_handle(int sig)
 {
 	if (sig == SIGWINCH)
 		term_resize(NULL);
@@ -32,7 +32,7 @@ static void signale_handle(int sig)
 	}
 }
 
-void init_signal(void)
+void			init_signal(void)
 {
 	signal(SIGWINCH, signale_handle);
 	signal(SIGINT, signale_handle);

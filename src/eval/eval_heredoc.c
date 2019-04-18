@@ -6,7 +6,7 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/20 18:18:26 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/18 14:06:43 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/18 17:10:06 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,7 +22,7 @@ int			eval_process_heredoc(t_redirection *redirection, t_process *process,
 	if (pipe(fdpipe) != 0)
 		return (FAIL);
 	process->STDIN = fdpipe[0];
-	while ((ret = SUCCESS))
+	while ((ret = SUCCESS) || 1)
 	{
 		line_reset(shell->line);
 		ft_putstr("heredoc> ");
@@ -52,7 +52,7 @@ int			eval_builtin_heredoc(t_redirection *redirection, t_builtin *builtin,
 	if (pipe(fdpipe) != 0)
 		return (FAIL);
 	builtin->STDIN = fdpipe[0];
-	while ((ret = SUCCESS))
+	while ((ret = SUCCESS) || 1)
 	{
 		line_reset(shell->line);
 		ft_putstr("heredoc> ");

@@ -1,0 +1,29 @@
+
+bug && leak
+==20920== 48 bytes in 8 blocks are definitely lost in loss record 23 of 55
+==20920==    at 0x1000B2626: malloc (in /Users/timfuzea/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==20920==    by 0x10000A154: ft_memalloc (ft_memalloc.c:20)
+==20920==    by 0x10000AD1C: ft_strnew (ft_strnew.c:18)
+==20920==    by 0x10000AA14: ft_strdup (ft_strdup.c:22)
+==20920==    by 0x10000A548: ft_strarr_add (ft_strarr_add.c:30)
+==20920==    by 0x1000033D6: command_parse (command_parse.c:27)
+==20920==    by 0x100003B27: parser_parse (parser_parse.c:29)
+==20920==    by 0x1000069B2: lexer_parser (shell_processline.c:27)
+==20920==    by 0x10000686B: shell_processline (shell_processline.c:37)
+==20920==    by 0x100006AD0: shell_loop (shell_start.c:37)
+==20920==    by 0x100006A1A: shell_start (shell_start.c:48)
+==20920==    by 0x100000FA5: main (main.c:26)
+setenv TOT0=. ; ls $TOTO ; echo ; setenv TOTO /bin ; ls $TOTO ; echo ; unsetenv TOTO ; ls -l $TOTO
+
+
+
+cat << EOF 
+ls
+lsa
+^c
+^D => ne quit pas
+
+cat << EOF > toto 
+ls
+lsa
+^C => ne doit pas write dans toto

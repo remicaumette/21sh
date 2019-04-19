@@ -13,6 +13,19 @@
 
 #include "shell.h"
 
+static void	check_kill(int ret ,t_shell *shell)
+{
+	if (ret == RET_STOP)
+	{
+		shell_destroy(shell);
+		ft_putchar('\n');
+		exit(0);
+	}
+	else
+		shell->kill_str = ft_strdup(shell->line->content);
+}
+
+
 int			eval_process_heredoc(t_redirection *redirection, t_process *process,
 		t_shell *shell)
 {
@@ -30,7 +43,7 @@ int			eval_process_heredoc(t_redirection *redirection, t_process *process,
 			;
 		if (ret == FAIL || shell->kill == 1)
 		{
-			shell->kill_str = ft_strdup(shell->line->content);
+			check_kill(ret , shell);
 			ret = FAIL;
 			break ;
 		}
@@ -60,7 +73,7 @@ int			eval_builtin_heredoc(t_redirection *redirection, t_builtin *builtin,
 			;
 		if (ret == FAIL || !shell->kill)
 		{
-			shell->kill_str = ft_strdup(shell->line->content);
+			check_kill(ret, shell);
 			ret = FAIL;
 			break ;
 		}

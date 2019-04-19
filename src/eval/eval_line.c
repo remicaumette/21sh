@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/20 18:18:31 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/19 11:53:23 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/19 18:09:04 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -64,7 +64,5 @@ int			eval_line(t_node *curr, t_shell *shell)
 			pipe = 1;
 		curr = curr->next;
 	}
-	tmp = shell->eval->next;
-	shell->eval->next = NULL;
-	return (run_eval(tmp, shell));
+	return (run_eval(shell->eval->next, shell));
 }

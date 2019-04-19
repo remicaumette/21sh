@@ -6,20 +6,39 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/20 18:18:19 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/20 18:18:20 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/19 16:09:11 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-char		**eval_genargv(t_command *command)
+static size_t	len_argv(char **argv)
+{
+	size_t		out;
+
+	out = 0;
+	if (!argv)
+		return (0);
+	while (*argv)
+	{
+		if (**argv == '\0')
+			out--;
+		out++;
+		argv++;
+	}
+	return (out);
+}
+
+char			**eval_genargv(t_command *command)
 {
 	int		i;
+	int		j;
 	char	**out;
 
+	j = 1;
 	i = 0;
-	if (!(out = ft_strarr_new(ft_strarr_len(command->arguments) + 1)))
+	if (!(out = ft_strnew_2d(len_argv(command->arguments) + 1)))
 		return (NULL);
 	if (!(*out = ft_strdup(command->name)))
 		return (NULL);
@@ -27,11 +46,15 @@ char		**eval_genargv(t_command *command)
 	{
 		while (command->arguments[i])
 		{
-			if (!(out[1 + i] = ft_strdup(command->arguments[i])))
-				return (NULL);
+			if (command->arguments[i][0] != '\0')
+			{
+				if (!(out[j] = ft_strdup(command->arguments[i])))
+					return (NULL);
+				j++;
+			}
 			i++;
 		}
 	}
-	out[1 + i] = NULL;
+	out[j] = NULL;
 	return (out);
 }

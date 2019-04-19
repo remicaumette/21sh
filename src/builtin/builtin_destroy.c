@@ -6,7 +6,7 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/29 15:28:28 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/29 16:52:22 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/19 16:43:08 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,7 +17,10 @@ void		builtin_destroy(t_builtin **as)
 {
 	t_builtin	*builtin;
 
-	builtin = *as;
+	if (as)
+		builtin = *as;
+	else
+		return ;
 	if (builtin)
 	{
 		ft_strdel_2d(&builtin->argv);

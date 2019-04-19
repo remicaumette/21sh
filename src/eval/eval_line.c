@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/20 18:18:31 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/18 14:07:04 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/19 11:53:23 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -53,8 +53,7 @@ int			eval_line(t_node *curr, t_shell *shell)
 	{
 		if (curr->type == TOKEN_WORD)
 		{
-			if (curr->command && expand_command(shell, curr->command))
-				return (FAIL);
+			expand_command(shell, curr->command);
 			if (eval_command(curr, &tmp->next, shell) != SUCCESS)
 				return (eval_destroy(&shell->eval->next));
 			if (pipe)

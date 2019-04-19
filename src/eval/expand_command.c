@@ -6,7 +6,7 @@
 /*   By: rcaumett <rcaumett@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/01 14:50:43 by rcaumett     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/17 10:09:30 by rcaumett    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/19 11:46:02 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -92,6 +92,8 @@ int			expand_command(t_shell *shell, t_command *cmd)
 	char	*prev;
 	int		i;
 
+	if (!(cmd))
+		return (1);
 	prev = cmd->name;
 	if (!(cmd->name = expand_token(shell, cmd->name)))
 		return (1);

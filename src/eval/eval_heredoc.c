@@ -6,14 +6,14 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/20 18:18:26 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/18 17:10:06 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/19 18:18:05 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-static void	check_kill(int ret ,t_shell *shell)
+static void	check_kill(int ret, t_shell *shell)
 {
 	if (ret == RET_STOP)
 	{
@@ -24,7 +24,6 @@ static void	check_kill(int ret ,t_shell *shell)
 	else
 		shell->kill_str = ft_strdup(shell->line->content);
 }
-
 
 int			eval_process_heredoc(t_redirection *redirection, t_process *process,
 		t_shell *shell)
@@ -43,7 +42,7 @@ int			eval_process_heredoc(t_redirection *redirection, t_process *process,
 			;
 		if (ret == FAIL || shell->kill == 1)
 		{
-			check_kill(ret , shell);
+			check_kill(ret, shell);
 			ret = FAIL;
 			break ;
 		}

@@ -30,7 +30,7 @@ void		builtin_destroy(t_builtin **as)
 			close(builtin->STDOUT);
 		if (builtin->STDERR != -1)
 			close(builtin->STDERR);
+		free(*as);
+		*as = NULL;
 	}
-	free(*as);
-	*as = NULL;
 }

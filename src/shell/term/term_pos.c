@@ -13,23 +13,35 @@
 
 #include "shell.h"
 
-void		term_resize(t_shell *shell)
+static void	feed_pos(char *buf, t_winsize *curent_pos)
 {
-	static	t_shell		*shell_save = NULL;
-	static int			lock = 0;
+	int		i;
 
-	if (lock == 1)
+	i = 0;
+	while (buf[i] == '\n' || buf[i] == 27 || buf[i] == '[')
+		i++;
+	curent_pos->ws_row = ft_atous(&buf[i]);
+	while (buf[i] != ';')
+		i++;
+	curent_pos->ws_col = ft_atous(&buf[++i]);
+}
+
+int			term_getcurentpos(t_winsize *curent_pos)
+{
+	char	buf[32];
+	size_t	i;
+
+	i = 0;
+	ft_putstr(TC_GETCURSOR);
+	while (i < sizeof(buf) - 1)
 	{
-		while (lock)
-			continue;
+		if (read(0, buf + i, 1) != 1)
+			break ;
+		if (buf[i] == 'R')
+			break ;
+		i++;
 	}
-	lock = 1;
-	if (shell_save == NULL && shell)
-	{
-		shell_save = shell;
-		ioctl(STDOUT_FILENO, TIOCGWINSZ, &(shell->line->window));
-	}
-	if (!shell)
-		action_clear(shell_save);
-	lock = 0;
+	buf[i] = '\0';
+	feed_pos(buf, curent_pos);
+	return (SUCCESS);
 }

@@ -64,5 +64,7 @@ int			eval_line(t_node *curr, t_shell *shell)
 			pipe = 1;
 		curr = curr->next;
 	}
-	return (run_eval(shell->eval->next, shell));
+	pipe = run_eval(shell->eval->next, shell);
+	shell->eval->next = NULL;
+	return (pipe);
 }

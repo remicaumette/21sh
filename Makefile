@@ -226,7 +226,7 @@ SRC_LST		:= $(SRC_LST) $(TMP_SRC)
 TMP_DAD		:= shell
 TMP_NAME	:= term
 
-TMP_LST		:= term_create.c term_destroy.c term_row.c term_size.c
+TMP_LST		:= term_create.c term_destroy.c term_row.c term_size.c term_pos.c
 
 TMP_SRC		:= $(addprefix $(TMP_NAME)/, $(TMP_LST))
 TMP_SRC		:= $(addprefix $(TMP_DAD)/, $(TMP_SRC))

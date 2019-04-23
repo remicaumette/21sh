@@ -6,7 +6,7 @@
 /*   By: timfuzea <tifuzeau@student.42.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/04 11:30:16 by timfuzea     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/10 18:54:27 by timfuzea    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/23 11:23:14 by timfuzea    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -71,7 +71,7 @@ int				cd_oldpwd(t_shell *shell, int std[3])
 	char		*new_path;
 
 	if ((new_path = shell_getenv(shell, "OLDPWD")) == NULL)
-		return (FAIL);
+		return (print_cd_error("OLDPWD", "not found\n", std));
 	if (ft_chdir(new_path, std) != SUCCESS)
 		return (FAIL);
 	return (SUCCESS);
